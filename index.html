@@ -302,6 +302,9 @@ details.card .card-inner{padding:0 14px 14px}
 .qa-resolve-btn:hover{background:rgba(46,125,50,.28)}
 .qa-reopen-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--text-dim);font-size:10px;padding:5px 14px;border-radius:6px;cursor:pointer}
 .qa-ans-saved{font-size:11px;background:rgba(30,70,30,.18);border:1px solid rgba(46,125,50,.2);border-radius:6px;padding:7px 10px;color:rgba(255,255,255,.65);margin-bottom:6px;white-space:pre-wrap;line-height:1.5}
+#qa-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+#qa-list .qa-card{margin-bottom:0}
+@media(max-width:700px){#qa-list{grid-template-columns:1fr}}
 
 /* PRINT */
 @media print{
