@@ -148,11 +148,7 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
 .t tr:hover td{background:rgba(201,168,76,.04)}
 .num{text-align:right}
 .t-total td{border-top:1px solid var(--gold-dim);background:rgba(201,168,76,.07);font-weight:700}
-/* SMETA ROWS */
-.smeta-section td{background:rgba(201,168,76,.12)!important;color:var(--gold);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
-.smeta-sub td{background:rgba(255,255,255,.03)!important;color:rgba(255,255,255,.5);font-style:italic;font-size:10px}
-.smeta-grp td{background:rgba(201,168,76,.06)!important;font-weight:600}
-.smeta-itog td{background:rgba(201,168,76,.18)!important;color:var(--gold);font-weight:800;font-size:13px;border-top:2px solid var(--gold-dim)}
+
 @media(max-width:768px){.hide-mob{display:none!important}}
 
 /* BADGES */
@@ -449,7 +445,7 @@ details.card .card-inner{padding:0 14px 14px}
     <a class="doc-pill" href="схема подключения.pdf" download title="Схема подключения слепой трубки"><span class="doc-pill-icon">📄</span><span class="doc-pill-text"><b>Схема подкл.pdf</b></span></a>
     <a class="doc-pill" href="Договор автополив ООО Гарден Сити.docx" download title="Договор на монтаж системы орошения · 12.05.2026"><span class="doc-pill-icon">📝</span><span class="doc-pill-text"><b>Договор ГС.docx</b> · 12.05.26</span></a>
     <a class="doc-pill" href="ТЗ к поливу ООО Гарден Сити.docx" download title="Техническое задание · Приложение №1 к договору"><span class="doc-pill-icon">📄</span><span class="doc-pill-text"><b>ТЗ полив.docx</b></span></a>
-    <a class="doc-pill" href="Сметный расчет (1).xls" download title="Сметный расчёт · Приложение №2 к договору · 38 393 848 ₽"><span class="doc-pill-icon">📊</span><span class="doc-pill-text"><b>Смета.xls</b></span></a>
+
   </div>
 </div>
 
@@ -468,7 +464,7 @@ details.card .card-inner{padding:0 14px 14px}
     <div class="nav-divider" data-roles="all монтаж финансы заказчик"></div>
     <div class="nav-group-label" data-roles="all монтаж финансы заказчик">Управление</div>
     <div class="nav-item" data-roles="all финансы заказчик" onclick="showPage('finance',this)"><span class="ni">💰</span>Финансы</div>
-    <div class="nav-item" data-roles="all финансы" onclick="showPage('smeta',this)"><span class="ni">📋</span>Смета</div>
+
     <div class="nav-item" data-roles="all монтаж" onclick="showPage('tasks',this)"><span class="ni">✅</span>Задачи<span class="nav-badge" id="tasks-badge">7</span></div>
     <div class="nav-item" data-roles="all монтаж заказчик" onclick="showPage('build',this)"><span class="ni">🔨</span>Монтаж</div>
     <div class="nav-item" data-roles="all финансы" onclick="showPage('docs',this)"><span class="ni">📄</span>Документы</div>
@@ -1511,200 +1507,6 @@ details.card .card-inner{padding:0 14px 14px}
   </div>
 </div>
 
-<!-- ══════ СМЕТА ══════ -->
-<div class="page" id="page-smeta">
-  <div class="page-title">Сметный расчёт</div>
-  <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:14px;margin-top:-10px">Приложение №2 к Договору №___ от 12.05.2026 · ООО «Гарден Сити» / ООО «Системы Ирригации»</div>
-
-  <!-- KPI -->
-  <div class="kpi-row" style="margin-bottom:12px">
-    <div class="kpi" id="sk-all" onclick="setSmetaMode('all')" style="cursor:pointer;border-color:var(--gold)">
-      <div class="kpi-num" style="font-size:15px;color:var(--gold)">39 335 287</div>
-      <div class="kpi-lbl">₽ итого факт (обновл.)</div>
-    </div>
-    <div class="kpi" id="sk-mat" onclick="setSmetaMode('mat')" style="cursor:pointer">
-      <div class="kpi-num" style="font-size:15px">22 573 411</div>
-      <div class="kpi-lbl">₽ материалы (факт)</div>
-    </div>
-    <div class="kpi" id="sk-work" onclick="setSmetaMode('work')" style="cursor:pointer">
-      <div class="kpi-num" style="font-size:15px">16 761 876</div>
-      <div class="kpi-lbl">₽ работы</div>
-    </div>
-    <div class="kpi" onclick="setSmetaMode('contract')" id="sk-contract" style="cursor:pointer">
-      <div class="kpi-num" style="font-size:15px;color:#81c784">46 811 588</div>
-      <div class="kpi-lbl">₽ с НДС (договор)</div>
-    </div>
-  </div>
-
-  <!-- Переключатель режима -->
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-    <span style="font-size:11px;color:rgba(255,255,255,.4);font-weight:600">Режим просмотра:</span>
-    <button id="sbtn-all"    onclick="setSmetaMode('all')"      class="smeta-mode-btn smeta-mode-active">📋 Вся смета</button>
-    <button id="sbtn-mat"    onclick="setSmetaMode('mat')"      class="smeta-mode-btn">🔧 Только материалы</button>
-    <button id="sbtn-work"   onclick="setSmetaMode('work')"     class="smeta-mode-btn">👷 Только работы</button>
-    <button id="sbtn-contract" onclick="setSmetaMode('contract')" class="smeta-mode-btn">📄 Договор (с НДС)</button>
-    <span id="smeta-mode-label" style="margin-left:8px;font-size:11px;color:rgba(255,255,255,.35)"></span>
-  </div>
-
-  <!-- Карточка Смета vs Факт -->
-  <div class="card" style="border:1px solid rgba(201,168,76,.3);margin-bottom:12px">
-    <div class="ch">
-      <div class="ch-bar"></div>
-      <div class="ch-title">Смета vs Факт — отклонения цен</div>
-      <div class="ch-badge" style="background:rgba(239,100,100,.2);color:#ef9a9a;border:1px solid rgba(239,100,100,.3)">+941 439 ₽ к смете</div>
-    </div>
-    <div class="cb">
-      <div class="tbl-wrap">
-        <table class="t">
-          <thead>
-            <tr>
-              <th>Позиция</th>
-              <th style="text-align:right">По смете</th>
-              <th style="text-align:right">Факт</th>
-              <th style="text-align:right">Разница</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Насосная установка НС-2 (E-NMM 50-200 + NMM 65-250)</td>
-              <td style="text-align:right;color:rgba(255,255,255,.55)">530 385 ₽</td>
-              <td style="text-align:right;color:#81c784">1 213 400 ₽</td>
-              <td style="text-align:right;color:#ef9a9a">+682 015 ₽</td>
-            </tr>
-            <tr>
-              <td>Шкафы управления НС-2 (ЧРП + плавный пуск)</td>
-              <td style="text-align:right;color:rgba(255,255,255,.55)">502 075 ₽</td>
-              <td style="text-align:right;color:#81c784">760 499 ₽</td>
-              <td style="text-align:right;color:#ef9a9a">+258 424 ₽</td>
-            </tr>
-            <tr style="font-weight:700;border-top:1px solid rgba(255,255,255,.1)">
-              <td style="color:rgba(255,255,255,.8)">Итого НС-2 (насосы + шкафы)</td>
-              <td style="text-align:right;color:rgba(255,255,255,.65)">1 032 460 ₽</td>
-              <td style="text-align:right;color:var(--gold)">1 973 899 ₽</td>
-              <td style="text-align:right;color:#ef9a9a;font-weight:900">+941 439 ₽</td>
-            </tr>
-            <tr>
-              <td>Клапаны ПИОНЕР 3" × 16 шт.</td>
-              <td style="text-align:right;color:rgba(255,255,255,.55)">380 496 ₽</td>
-              <td style="text-align:right;color:rgba(255,255,255,.3);font-style:italic">уточняется</td>
-              <td style="text-align:right;color:rgba(255,255,255,.25)">—</td>
-            </tr>
-            <tr>
-              <td>Клапаны ПИОНЕР 2" × 8 шт.</td>
-              <td style="text-align:right;color:rgba(255,255,255,.55)">149 752 ₽</td>
-              <td style="text-align:right;color:rgba(255,255,255,.3);font-style:italic">уточняется</td>
-              <td style="text-align:right;color:rgba(255,255,255,.25)">—</td>
-            </tr>
-            <tr style="font-weight:900;background:rgba(201,168,76,.07)">
-              <td style="color:var(--gold);border-top:1px solid rgba(201,168,76,.3)">ИТОГО смета (без НДС)</td>
-              <td style="text-align:right;color:rgba(255,255,255,.65);border-top:1px solid rgba(201,168,76,.3)">38 393 848 ₽</td>
-              <td style="text-align:right;color:var(--gold);border-top:1px solid rgba(201,168,76,.3)">39 335 287 ₽</td>
-              <td style="text-align:right;color:#ef9a9a;font-weight:900;border-top:1px solid rgba(201,168,76,.3)">+941 439 ₽</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:8px">* Цены ПИОНЕР уточняются — счёт не выставлен. Остальные позиции смета = факт.</div>
-    </div>
-  </div>
-
-  <!-- Блок договора (виден только в режиме "Договор") -->
-  <div id="smeta-contract-block" class="card" style="border:1px solid rgba(129,199,132,.3);margin-bottom:12px">
-    <div class="ch"><div class="ch-bar" style="background:#81c784"></div><div class="ch-title" style="color:#81c784">Договор №___ от 12.05.2026 — с учётом НДС 22%</div></div>
-    <div class="cb">
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:12px;font-size:12px">
-        <div style="background:rgba(46,125,50,.1);border:1px solid rgba(46,125,50,.25);border-radius:7px;padding:9px;text-align:center">
-          <div style="font-size:10px;color:rgba(255,255,255,.45);margin-bottom:3px">Смета без НДС</div>
-          <div style="font-size:15px;font-weight:900;color:var(--gold)">38 393 848 ₽</div>
-        </div>
-        <div style="background:rgba(46,125,50,.1);border:1px solid rgba(46,125,50,.25);border-radius:7px;padding:9px;text-align:center">
-          <div style="font-size:10px;color:rgba(255,255,255,.45);margin-bottom:3px">НДС 22%</div>
-          <div style="font-size:15px;font-weight:900;color:#81c784">8 417 740 ₽</div>
-          <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px">по договору</div>
-        </div>
-        <div style="background:rgba(46,125,50,.18);border:1px solid rgba(46,125,50,.4);border-radius:7px;padding:9px;text-align:center">
-          <div style="font-size:10px;color:rgba(255,255,255,.45);margin-bottom:3px">Договор итого</div>
-          <div style="font-size:15px;font-weight:900;color:#81c784">46 811 588 ₽</div>
-        </div>
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:7px;padding:9px;text-align:center">
-          <div style="font-size:10px;color:rgba(255,255,255,.45);margin-bottom:3px">Срок выполнения</div>
-          <div style="font-size:15px;font-weight:900;color:rgba(255,255,255,.8)">100 к.д.</div>
-          <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px">с даты предоплаты</div>
-        </div>
-      </div>
-      <div style="font-size:10px;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px">График платежей от АО «Янтарный»</div>
-      <div class="tbl-wrap">
-        <table class="t" style="font-size:12px">
-          <thead><tr><th>Платёж</th><th>Дата</th><th class="num">Сумма, ₽</th><th class="num">% от договора</th><th>Статус</th></tr></thead>
-          <tbody>
-            <tr style="background:rgba(139,26,47,.15)">
-              <td>Предоплата (п. 4.2.1)</td>
-              <td style="color:#ff8a80;font-weight:700">15.05.2026 — ПРОСРОЧЕН!</td>
-              <td class="num" style="color:#ff8a80;font-weight:700">10 000 000</td>
-              <td class="num" style="color:#ff8a80">21,4%</td>
-              <td><span style="color:#ff8a80;font-weight:700">СРОЧНО</span></td>
-            </tr>
-            <tr>
-              <td>Платёж 2 (п. 4.2.2)</td>
-              <td>05.06.2026</td>
-              <td class="num">24 000 000</td>
-              <td class="num" style="color:rgba(255,255,255,.5)">51,3%</td>
-              <td style="color:rgba(255,255,255,.4)">Ожидание</td>
-            </tr>
-            <tr>
-              <td>Платёж 3 (п. 4.2.2)</td>
-              <td>19.06.2026</td>
-              <td class="num">7 000 000</td>
-              <td class="num" style="color:rgba(255,255,255,.5)">15,0%</td>
-              <td style="color:rgba(255,255,255,.4)">Ожидание</td>
-            </tr>
-            <tr>
-              <td>Финальный (п. 4.2.2)</td>
-              <td>04.07.2026</td>
-              <td class="num">5 811 588</td>
-              <td class="num" style="color:rgba(255,255,255,.5)">12,4%</td>
-              <td style="color:rgba(255,255,255,.4)">Ожидание</td>
-            </tr>
-            <tr class="t-total">
-              <td colspan="2"><b>ИТОГО</b></td>
-              <td class="num" style="color:#81c784;font-size:14px;font-weight:900">46 811 588</td>
-              <td class="num" style="color:#81c784">100%</td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div style="margin-top:10px;padding:8px 10px;background:rgba(255,255,255,.03);border-radius:6px;border:1px solid rgba(255,255,255,.07);font-size:11px;color:rgba(255,255,255,.45)">
-        Материалы: 21 631 972 ₽ · Работы: 16 761 876 ₽ · Итого по смете: 38 393 848 ₽ · НДС по договору: 8 417 740 ₽
-      </div>
-    </div>
-  </div>
-
-  <!-- Таблица -->
-  <div class="card">
-    <div class="tbl-wrap">
-      <table class="t" id="smeta-table">
-        <thead id="smeta-thead">
-          <tr>
-            <th style="min-width:40px">№</th>
-            <th style="min-width:260px">Наименование</th>
-            <th class="hide-mob smeta-col-unit" style="min-width:45px">Ед.</th>
-            <th class="num hide-mob smeta-col-qty" style="min-width:60px">Кол-во</th>
-            <th class="num hide-mob smeta-col-pm" style="min-width:80px">Цена мат., ₽</th>
-            <th class="num hide-mob smeta-col-pw" style="min-width:80px">Цена раб., ₽</th>
-            <th class="num hide-mob smeta-col-sm" style="min-width:90px">Стоим. мат., ₽</th>
-            <th class="num hide-mob smeta-col-sw" style="min-width:90px">Стоим. раб., ₽</th>
-            <th class="num smeta-col-total" style="min-width:100px">ВСЕГО, ₽</th>
-          </tr>
-        </thead>
-        <tbody id="smeta-tbody">
-          <!-- заполняется через renderSmeta() -->
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
 <!-- ══════ ЗАДАЧИ ══════ -->
 <div class="page" id="page-tasks">
   <div class="page-title">Задачи и открытые вопросы</div>
@@ -1914,13 +1716,6 @@ details.card .card-inner{padding:0 14px 14px}
               <td>—</td>
               <td><span class="badge bg">Подписан</span></td>
               <td><a class="doc-pill" href="ТЗ к поливу ООО Гарден Сити.docx" download style="display:inline-flex"><span class="doc-pill-icon">📄</span><span class="doc-pill-text"><b>Скачать</b></span></a></td>
-            </tr>
-            <tr>
-              <td><b>Сметный расчёт (Приложение №2 к договору)</b><br><small style="color:rgba(255,255,255,.4)">Система полива · материалы + работы · 38 393 848 ₽ без НДС</small></td>
-              <td>12.05.2026</td>
-              <td><span style="color:var(--gold);font-weight:700">38 393 848 ₽</span></td>
-              <td><span class="badge bg">Подписан</span></td>
-              <td><a class="doc-pill" href="Сметный расчет (1).xls" download style="display:inline-flex"><span class="doc-pill-icon">📊</span><span class="doc-pill-text"><b>Скачать</b></span></a></td>
             </tr>
             <tr>
               <td><b>Агрономический договор Магарач</b><br><small style="color:rgba(255,255,255,.4)">АО «Янтарный» · проект закладки виноградника · №140/2024</small></td>
@@ -2731,10 +2526,6 @@ details.card .card-inner{padding:0 14px 14px}
       <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
       Монтаж
     </button>
-    <button class="bot-tab" onclick="showPage('smeta',this)">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      Смета
-    </button>
     <button class="bot-tab" onclick="showPage('qa',this)">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       Вопросы
@@ -2743,297 +2534,6 @@ details.card .card-inner{padding:0 14px 14px}
 </nav>
 
 <script>
-// ── SMETA DATA ──────────────────────────────────────────────────────────────
-// type: S=section, U=subsection, G=group(итог раздела), R=row
-// [type, n, name, unit, qty, pm, pw, sm, sw, total]
-// null = пустая ячейка
-const SD=[
-['S',null,'РАЗДЕЛ 1. Система полива',null,null,null,null,null,null,null],
-['G','1.','Земляные работы','ед.',1,null,2500000,null,2500000,2500000],
-['R','1.1','Разметка траншеи (геодез)','день',14,null,150000,null,150000,150000],
-['R','1.2','Разработка траншеи 0,7×0,6 м, механизированно','м.п.',8278,null,null,null,null,null],
-['R','1.3','Чистка и уплотнение основания траншеи','м.п.',8278,null,null,null,null,null],
-['R','1.4','Обратная засыпка грунта, механизированно/ручное','м³',3500,null,null,null,null,null],
-['R','1.5','Уплотнение грунта ручное','м²',4966,null,null,null,null,null],
-['G','2.','Прокладка труб','м.п.',10400,null,290,null,3016000,3016000],
-['U',null,'2.1 Укладка трубопроводов ∅50–75 мм',null,null,null,null,null,null,null],
-['R','2.1.1','Труба ПНД ПЭ100 SDR21 d50','м.п.',1500,70.3,null,105450,null,105450],
-['R','2.1.2','Труба ПНД ПЭ100 SDR21 d75','м.п.',5700,156.4,null,891480,null,891480],
-['U',null,'2.2 Укладка трубопроводов ∅90–110 мм',null,null,null,null,null,null,null],
-['R','2.2.1','Труба ПНД ПЭ100 SDR21 d110','м.п.',2400,345.8,null,829920,null,829920],
-['U',null,'2.3 Укладка трубопроводов ∅125–180 мм',null,null,null,null,null,null,null],
-['R','2.3.1','Труба ПНД ПЭ100 SDR21 d140','м.п.',800,538.9,null,431120,null,431120],
-['G','3.','Монтаж фасонных частей / фитинг','шт.',2522,null,155,null,390910,390910],
-['R','3.1','ПЭ Седловой хомут 50×3/4"','шт.',544,134.4,null,73114,null,73114],
-['R','3.2','ПЭ Седловой хомут 75×3/4"','шт.',1624,241.2,null,391709,null,391709],
-['R','3.3','ПЭ Седловой хомут 75×1"','шт.',16,200,null,3200,null,3200],
-['R','3.4','Отвод компрессионный 50×2"','шт.',16,355.4,null,5686,null,5686],
-['R','3.5','Отвод компрессионный 50×50','шт.',24,459.8,null,11035,null,11035],
-['R','3.6','Муфта компрессионная 75×75','шт.',55,899.09,null,49450,null,49450],
-['R','3.7','Муфта компрессионная 50×50','шт.',20,315.7,null,6314,null,6314],
-['R','3.8','Муфта компрессионная 75×75 (2)','шт.',60,899.09,null,53945,null,53945],
-['R','3.9','Муфта компрессионная 75×3" НР','шт.',36,573.8,null,20657,null,20657],
-['R','3.10','Заглушка компрессионная 50','шт.',10,197.18,null,1972,null,1972],
-['R','3.11','Заглушка компрессионная 75','шт.',18,598.76,null,10778,null,10778],
-['R','3.12','Отвод 90° 110 мм литой','шт.',10,453.6,null,4536,null,4536],
-['R','3.13','Отвод 90° 140 мм литой','шт.',20,1008,null,20160,null,20160],
-['R','3.14','Тройник 110×110×110 литой','шт.',24,1995.8,null,47899,null,47899],
-['R','3.15','Муфта 110×50 литая','шт.',8,313.6,null,2509,null,2509],
-['R','3.16','Муфта 110×75 литая','шт.',16,896,null,14336,null,14336],
-['R','3.17','Муфта 160×140 литая','шт.',1,2217.6,null,2218,null,2218],
-['R','3.18','Фланец стальной D110 для буртов ПНД','шт.',6,560,null,3360,null,3360],
-['R','3.19','Фланец стальной D140 для буртов ПНД','шт.',4,1064,null,4256,null,4256],
-['R','3.20','Бурт под фланец 110 мм ПНД','шт.',6,257.6,null,1546,null,1546],
-['R','3.21','Бурт под фланец 140 мм ПНД','шт.',4,716.8,null,2867,null,2867],
-['S',null,'4. Монтаж запорной арматуры',null,null,null,null,null,null,null],
-['G','4.1','Монтаж задвижек','шт.',5,null,4590,null,22950,22950],
-['R','4.1.1','Задвижка фланцевая ДУ 140','шт.',2,25166.4,null,50333,null,50333],
-['R','4.1.2','Задвижка фланцевая ДУ 110','шт.',3,25312,null,75936,null,75936],
-['R','4.1.3','Фланец стальной плоский ДУ 140 мм','шт.',4,1568,null,6272,null,6272],
-['R','4.1.4','Фланец стальной плоский ДУ 110 мм','шт.',4,1120,null,4480,null,4480],
-['R','4.1.5','Втулка под фланец ДУ 140 мм','шт.',8,716.8,null,5734,null,5734],
-['R','4.1.6','Втулка под фланец ДУ 110 мм','шт.',8,376.3,null,3010,null,3010],
-['R','4.1.7','Прокладка паронитовая 110','шт.',10,44.8,null,448,null,448],
-['R','4.1.8','Прокладка паронитовая 140','шт.',10,48.2,null,482,null,482],
-['R','4.1.9','Гайка шестигранная М14','шт.',72,25.2,null,1814,null,1814],
-['R','4.1.10','Болт шестигранный М14×100','шт.',72,56,null,4032,null,4032],
-['G','5.','НС-1 — насосная и фильтрационная станция 1-го подъёма','ед.',1,null,710000,null,710000,710000],
-['U',null,'5.1 Металл',null,null,null,null,null,null,null],
-['R','5.1.1','Вибровставка 150 мм','шт.',4,7280,null,29120,null,29120],
-['R','5.1.2','Манометр','шт.',1,840,null,840,null,840],
-['R','5.1.3','Обратный клапан 160 мм (мет.)','шт.',2,51452.8,null,102906,null,102906],
-['R','5.1.4','Фланец приварной 3" 80 (мет.)','шт.',2,728,null,1456,null,1456],
-['R','5.1.5','Фланец приварной 6" 150 (мет.)','шт.',16,1064,null,17024,null,17024],
-['R','5.1.6','Фланец свободный 8" 160 (мет.)','шт.',9,2016,null,18144,null,18144],
-['R','5.1.7','Шпилька М16 (мет.)','шт.',20,177,null,3540,null,3540],
-['R','5.1.8','Болт М16-100 с полной резьбой (мет.)','шт.',120,33.6,null,4032,null,4032],
-['R','5.1.9','Болт М16-150 с полной резьбой (мет.)','шт.',24,53.6,null,1286,null,1286],
-['R','5.1.10','Болт М16-80 с полной резьбой (мет.)','шт.',24,33.6,null,1613,null,1613],
-['R','5.1.11','Гайка М16 (мет.)','шт.',352,22.4,null,7885,null,7885],
-['R','5.1.12','Отвод приварной DN150-6" (мет.)','шт.',3,2688,null,8064,null,8064],
-['R','5.1.13','Тройник приварной DN150-6" (мет.)','шт.',1,3931.2,null,3931,null,3931],
-['R','5.1.14','Фильтр грубой очистки DN150 L=60 см','шт.',2,67200,null,134400,null,134400],
-['R','5.1.15','Шайба М16 (мет.)','шт.',544,9,null,4896,null,4896],
-['R','5.1.16','Переход конц. 150×80 (мет.)','шт.',2,817.6,null,1635,null,1635],
-['R','5.1.17','Переход конц. 150×65 (мет.)','шт.',2,1573.6,null,3147,null,3147],
-['R','5.1.18','Переход конц. 150×140 (мет.)','шт.',1,1573.6,null,1574,null,1574],
-['R','5.1.19','Сгон приварной 1" (мет.)','шт.',2,58.2,null,116,null,116],
-['R','5.1.20','Сгон приварной 2" (мет.)','шт.',1,123.8,null,124,null,124],
-['R','5.1.21','Насосная установка','шт.',1,1328385,null,1328385,null,1328385],
-['R','5.1.22','Шкаф управления','шт.',1,550000,null,550000,null,550000],
-['R','5.1.23','Обратный клапан Ду150 мм','шт.',5,51452.8,null,257264,null,257264],
-['R','5.1.24','ПГФ 3050 Automat 4" (Ду100) 40–80 м³/ч','шт.',1,835000,null,835000,null,835000],
-['R','5.1.25','Металл. труба 160 мм','м.п.',6,2950,null,17700,null,17700],
-['R','5.1.26','Прокладка паронитовая Ду65 (2")','шт.',2,28,null,56,null,56],
-['R','5.1.27','Прокладка паронитовая Ду150 (6")','шт.',32,48.2,null,1542,null,1542],
-['R','5.1.28','Прокладка паронитовая Ду80 (3")','шт.',2,28,null,56,null,56],
-['U',null,'5.2 Полиэтилен',null,null,null,null,null,null,null],
-['R','5.2.1','Клапан воздушный комб. 2" Bermad','шт.',2,14286.68,null,28573,null,28573],
-['R','5.2.2','Клапан подрывной пласт. 2" Bermad','шт.',1,19210,null,19210,null,19210],
-['R','5.2.3','Кран шаровый ВР 1" Poelsan','шт.',2,407.1,null,814,null,814],
-['R','5.2.4','Кран шаровый ВР 2" Poelsan','шт.',2,1152.7,null,2305,null,2305],
-['R','5.2.5','Кран шаровый НР-ВР 2" Poelsan','шт.',1,1098.9,null,1099,null,1099],
-['R','5.2.6','ПЕ Втулка под фланец 160 мм','шт.',9,1176,null,10584,null,10584],
-['R','5.2.7','ПЕ Колено КОМ 32','шт.',5,144.3,null,722,null,722],
-['R','5.2.8','ПЕ Колено КОМ 63','шт.',3,664,null,1992,null,1992],
-['R','5.2.9','ПЕ Колено Ком-НР 32×1"','шт.',1,103.85,null,104,null,104],
-['R','5.2.10','ПЕ Колено Ком-НР 63×2"','шт.',1,434.94,null,435,null,435],
-['R','5.2.11','ПЕ Муфта КОМ-НР 32×1" Irritec','шт.',1,164,null,164,null,164],
-['R','5.2.12','ПЕ Отвод 90° 200 мм','шт.',6,2540.2,null,15241,null,15241],
-['R','5.2.13','ПЕ Седловой хомут д200×2"','шт.',1,1540,null,1540,null,1540],
-['R','5.2.14','ПЕ Тройник КОМ 63×63×63','шт.',1,1035,null,1035,null,1035],
-['R','5.2.15','Тройник КОМ-НР 32×1"×32 Poelsan','шт.',1,227.9,null,228,null,228],
-['R','5.2.16','Тройник НР 2" Poelsan','шт.',1,510.5,null,511,null,511],
-['R','5.2.17','ПЭ Труба 160 мм SDR21','м.п.',30,1098.6,null,32958,null,32958],
-['R','5.2.18','ПЭ Труба 32 мм SDR17 (дренаж)','м.п.',20,36,null,720,null,720],
-['R','5.2.19','ПЭ Труба 63 мм SDR21 (дренаж ПГС)','м.п.',25,109.1,null,2728,null,2728],
-['R','5.2.20','Фум лента','шт.',2,128.8,null,258,null,258],
-['R','5.2.21','Расходомер','шт.',1,107000,null,107000,null,107000],
-['G','6.','НС-2 — насосная и фильтрационная станция 2-го подъёма','ед.',1,null,710000,null,710000,710000],
-['U',null,'6.1 Металл',null,null,null,null,null,null,null],
-['R','6.1.1','Вибровставка 140 мм','шт.',2,7280,null,14560,null,14560],
-['R','6.1.2','Вибровставка 110 мм','шт.',2,7280,null,14560,null,14560],
-['R','6.1.3','Манометр','шт.',1,840,null,840,null,840],
-['R','6.1.4','Задвижка Ду100 мм (мет.)','шт.',11,15120,null,166320,null,166320],
-['R','6.1.5','Задвижка клиновая Ду140 мм (мет.)','шт.',2,15120,null,30240,null,30240],
-['R','6.1.6','Задвижка клиновая Ду80 (мет.)','шт.',8,10841.6,null,86733,null,86733],
-['R','6.1.7','Обратный клапан 110 мм (мет.)','шт.',3,51452.8,null,154358,null,154358],
-['R','6.1.8','Труба 100 мм (мет.)','м.п.',6,2950,null,17700,null,17700],
-['R','6.1.9','Фланец приварной 2" 65 (мет.)','шт.',2,840,null,1680,null,1680],
-['R','6.1.10','Фланец приварной 4" 100 (мет.)','шт.',21,1072.5,null,22523,null,22523],
-['R','6.1.11','Фланец свободный 3" 90 (мет.)','шт.',16,324.8,null,5197,null,5197],
-['R','6.1.12','Фланец свободный 5.5" 140 (мет.)','шт.',1,324.8,null,325,null,325],
-['R','6.1.13','Фланец свободный 4" 110 (мет.)','шт.',21,358.4,null,7526,null,7526],
-['R','6.1.14','Шпилька М14 (мет.)','шт.',12,177,null,2124,null,2124],
-['R','6.1.15','Болт М14-100 с полной резьбой (мет.)','шт.',432,33.6,null,14515,null,14515],
-['R','6.1.16','Болт М14-120 с полной резьбой (мет.)','шт.',32,43.6,null,1395,null,1395],
-['R','6.1.17','Болт М14-150 с полной резьбой (мет.)','шт.',48,53.6,null,2573,null,2573],
-['R','6.1.18','Болт М14-80 с полной резьбой (мет.)','шт.',56,33.6,null,1882,null,1882],
-['R','6.1.19','Гайка М14 (мет.)','шт.',664,22.4,null,14874,null,14874],
-['R','6.1.20','Отвод приварной DN110-4" (мет.)','шт.',13,2688,null,34944,null,34944],
-['R','6.1.21','Шайба М16 (мет.)','шт.',1232,9,null,11088,null,11088],
-['R','6.1.22','Переход конц. 140×65 (мет.)','шт.',2,817.6,null,1635,null,1635],
-['R','6.1.23','Переход конц. 110×50 (мет.)','шт.',2,817.6,null,1635,null,1635],
-['R','6.1.24','Сгон приварной 2" (мет.)','шт.',1,123.8,null,124,null,124],
-['R','6.1.25','Насосная установка Masdaf (E-NMM 50-200 + NMM 65-250)','шт.',1,1213400,null,1213400,null,1213400],
-['R','6.1.26','Шкафы управления Masdaf (ЧРП + плавный пуск)','шт.',1,760499,null,760499,null,760499],
-['R','6.1.27','Прокладка паронитовая Ду100 (4")','шт.',34,28,null,952,null,952],
-['R','6.1.28','Прокладка паронитовая Ду150 (6")','шт.',2,48.2,null,96,null,96],
-['R','6.1.29','Прокладка паронитовая Ду80 (3")','шт.',2,28,null,560,null,560],
-['R','6.1.30','Фильтр сетчатый 4"','шт.',1,350000,null,350000,null,350000],
-['U',null,'6.2 ПВХ',null,null,null,null,null,null,null],
-['R','6.2.1','ПВХ Втулка под фланец 110 мм','шт.',13,358.4,null,4659,null,4659],
-['R','6.2.2','ПВХ Втулка под фланец 90 мм','шт.',8,324.8,null,2598,null,2598],
-['R','6.2.3','ПВХ Муфта КЛхВР 100×3"','шт.',8,1792,null,14336,null,14336],
-['R','6.2.4','ПВХ Отвод 90° 90 мм','шт.',16,324.8,null,5197,null,5197],
-['R','6.2.5','ПВХ Труба 90 мм','м.п.',24,542.07,null,13010,null,13010],
-['R','6.2.6','ПВХ Фланцы под втулку 110 мм','шт.',8,302.4,null,2419,null,2419],
-['R','6.2.7','ПВХ Фланцы под втулку 90 мм','шт.',8,243,null,1944,null,1944],
-['R','6.2.8','ПВХ Штуцер для врезки в ёмкость 3" + адаптер 3" ВР','шт.',8,13200,null,105600,null,105600],
-['R','6.2.9','Клей','шт.',3,1344,null,4032,null,4032],
-['R','6.2.10','Растворитель','шт.',3,1142.4,null,3427,null,3427],
-['U',null,'6.3 Полиэтилен',null,null,null,null,null,null,null],
-['R','6.3.1','ПЕ Втулка под фланец 110 мм','шт.',8,257.6,null,2061,null,2061],
-['R','6.3.2','ПЕ Втулка под фланец 90 мм','шт.',8,257.6,null,2061,null,2061],
-['R','6.3.3','ПЕ Заглушка 140 мм','шт.',3,1792,null,5376,null,5376],
-['R','6.3.4','ПЕ Колено КОМ 63','шт.',2,664,null,1328,null,1328],
-['R','6.3.5','ПЕ Колено Ком-НР 63×2"','шт.',1,434.94,null,435,null,435],
-['R','6.3.6','ПЕ Муфта КОМ-ВР 63×1½" Irritec','шт.',2,372.61,null,745,null,745],
-['R','6.3.7','ПЕ Отвод 90° 140 мм','шт.',4,2576,null,10304,null,10304],
-['R','6.3.8','ПЕ Отвод 90° 110 мм','шт.',2,4424,null,8848,null,8848],
-['R','6.3.9','ПЕ Седловой хомут д110×2"','шт.',1,1540,null,1540,null,1540],
-['R','6.3.10','ПЕ Тройник КОМ 63×63×63','шт.',2,1035,null,2070,null,2070],
-['R','6.3.11','ПЕ Тройник равносторонний 140 мм','шт.',1,6169,null,6169,null,6169],
-['R','6.3.12','ПЕ Тройник редукционный 140×90','шт.',8,7616,null,60928,null,60928],
-['R','6.3.13','Клапан воздушный комб. 2" Bermad','шт.',2,14286.7,null,28573,null,28573],
-['R','6.3.14','Клапан подрывной пласт. 2" Bermad','шт.',1,19210,null,19210,null,19210],
-['R','6.3.15','Кран шаровый ВР 2" Poelsan','шт.',2,1152.7,null,2305,null,2305],
-['R','6.3.16','ПЭ Крестовина 140 мм','шт.',4,10304,null,41216,null,41216],
-['R','6.3.17','ПЭ Переход редукционный 140×110','шт.',8,4704,null,37632,null,37632],
-['R','6.3.18','Расходомер','шт.',1,107000,null,107000,null,107000],
-['R','6.3.19','Тройник НР 2" Poelsan','шт.',1,510.5,null,511,null,511],
-['R','6.3.20','ПЭ Труба 140 мм SDR21','м.п.',20,1698.4,null,33968,null,33968],
-['R','6.3.21','ПЭ Труба 63 мм SDR21','м.п.',20,109.1,null,2182,null,2182],
-['R','6.3.22','Кран шаровый НР-ВР 2" Poelsan','шт.',1,1098.9,null,1099,null,1099],
-['G','7.','Поливочные блоки','шт.',24,null,4334,null,104016,104016],
-['R','7.1','ПИОНЕР 3" гидравлический ВР ≤60 м³/ч (цена уточняется)','шт.',16,23781,null,380496,null,380496],
-['R','7.2','ПИОНЕР 2" гидравлический ВР ≤40 м³/ч (цена уточняется)','шт.',8,18719,null,149752,null,149752],
-['S',null,'8. Сборка и монтаж капельного полива',null,null,null,null,null,null,null],
-['G','8.1','Установка фитингов капельного полива','шт.',438100,null,8,null,3504800,3504800],
-['R','8.1.1','Капельница компенсированная 2 л METZER (Израиль)','шт.',214000,18,null,3852000,null,3852000],
-['R','8.1.2','Крючок для капельной трубки 16 мм (Китай)','шт.',217000,6,null,1302000,null,1302000],
-['R','8.1.3','Штуцер 16×Н3/4" с гайкой Poelsan','шт.',2300,23.6,null,54280,null,54280],
-['R','8.1.4','Заглушка-восьмёрка 16 Poelsan','шт.',2300,4.6,null,10580,null,10580],
-['R','8.1.5','Штуцер прямой 16×16','шт.',2500,6.7,null,16750,null,16750],
-['R','8.1.6','Дырокол 3 мм','шт.',20,934.9,null,18698,null,18698],
-['R','8.2','Трубка слепая D16×1,2 мм, бухта 100 м','м.п.',217000,25.6,10,5555200,2170000,7725200],
-['G','9.','Накопитель-резервуар','шт.',8,null,10400,null,83200,83200],
-['R','9.1','Ёмкость ПЭ 10 м³','шт.',8,80000,null,640000,null,640000],
-['G','10.','Узел фертигации','ед.',1,420000,50000,420000,50000,470000],
-['G','11.','Доставка материалов, оборудования, техника, разгрузка','ед.',1,null,350000,null,350000,350000],
-['S',null,'РАЗДЕЛ 2. СМР по зданиям и сооружениям',null,null,null,null,null,null,null],
-['G','1.','СМР зданий и сооружений','ед.',1,null,3000000,null,3000000,3000000],
-];
-
-function fmt(n){
-  if(n===null||n===undefined)return'—';
-  return n.toLocaleString('ru-RU',{minimumFractionDigits:0,maximumFractionDigits:2});
-}
-
-/* ── SMETA MODE ── */
-(function(){
-  const style=document.createElement('style');
-  style.textContent=`
-    .smeta-mode-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 12px;font-size:11px;color:rgba(255,255,255,.55);cursor:pointer;transition:all .15s}
-    .smeta-mode-btn:hover{background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)}
-    .smeta-mode-active{background:rgba(201,168,76,.18)!important;border-color:rgba(201,168,76,.5)!important;color:var(--gold)!important;font-weight:700}
-    .smeta-col-mat-hl th,.smeta-col-mat-hl td{opacity:.35}
-    .smeta-col-mat-hl .smeta-col-pm,.smeta-col-mat-hl .smeta-col-sm,.smeta-col-mat-hl .smeta-col-total{opacity:1!important}
-    .smeta-col-work-hl th,.smeta-col-work-hl td{opacity:.35}
-    .smeta-col-work-hl .smeta-col-pw,.smeta-col-work-hl .smeta-col-sw,.smeta-col-work-hl .smeta-col-total{opacity:1!important}
-    .smeta-row-mat-only tr.row-work-only{display:none}
-    .smeta-row-work-only tr.row-mat-only{display:none}
-    .sk-active-kpi{border-color:var(--gold)!important;background:rgba(201,168,76,.12)!important}
-    .sk-active-kpi .kpi-num{color:var(--gold)!important}
-    #smeta-contract-block{display:none;margin-bottom:12px}
-    #smeta-contract-block.visible{display:block}
-  `;
-  document.head.appendChild(style);
-})();
-
-let _smetaMode='all';
-function setSmetaMode(mode){
-  _smetaMode=mode;
-  // кнопки
-  ['all','mat','work','contract'].forEach(function(m){
-    const b=document.getElementById('sbtn-'+m);
-    if(b) b.classList.toggle('smeta-mode-active', m===mode);
-    const k=document.getElementById('sk-'+m);
-    if(k) k.classList.toggle('sk-active-kpi', m===mode);
-  });
-  const table=document.getElementById('smeta-table');
-  const lbl=document.getElementById('smeta-mode-label');
-  if(!table) return;
-  // сброс
-  table.classList.remove('smeta-col-mat-hl','smeta-col-work-hl','smeta-row-mat-only','smeta-row-work-only');
-  const cb=document.getElementById('smeta-contract-block');
-  if(cb) cb.classList.remove('visible');
-  if(mode==='all'){
-    if(lbl) lbl.textContent='Все столбцы · материалы + работы';
-  } else if(mode==='mat'){
-    table.classList.add('smeta-col-mat-hl','smeta-row-mat-only');
-    if(lbl) lbl.textContent='Подсвечены материалы · строки только с материалами';
-  } else if(mode==='work'){
-    table.classList.add('smeta-col-work-hl','smeta-row-work-only');
-    if(lbl) lbl.textContent='Подсвечены работы · строки только с работами';
-  } else if(mode==='contract'){
-    if(cb) cb.classList.add('visible');
-    if(lbl) lbl.textContent='График платежей по договору + НДС';
-  }
-}
-
-function renderSmeta(){
-  const tbody=document.getElementById('smeta-tbody');
-  if(!tbody)return;
-  let html='';
-  SD.forEach(function(r){
-    const type=r[0],n=r[1],name=r[2],unit=r[3],qty=r[4],pm=r[5],pw=r[6],sm=r[7],sw=r[8],total=r[9];
-    if(type==='S'){
-      html+='<tr class="smeta-section"><td colspan="9">'+name+'</td></tr>';
-    } else if(type==='U'){
-      html+='<tr class="smeta-sub"><td colspan="9">'+name+'</td></tr>';
-    } else {
-      const hasMat=sm!==null&&sm>0, hasWork=sw!==null&&sw>0;
-      let cls=type==='G'?'smeta-grp':'';
-      if(hasMat&&!hasWork) cls+=(cls?' ':'')+'row-mat-only';
-      else if(!hasMat&&hasWork) cls+=(cls?' ':'')+'row-work-only';
-      html+='<tr'+(cls?' class="'+cls+'"':'')+'>'
-        +'<td>'+(n||'')+'</td>'
-        +'<td>'+name+'</td>'
-        +'<td class="hide-mob smeta-col-unit">'+(unit||'')+'</td>'
-        +'<td class="num hide-mob smeta-col-qty">'+(qty!==null?fmt(qty):'—')+'</td>'
-        +'<td class="num hide-mob smeta-col-pm">'+(pm!==null?fmt(pm):'—')+'</td>'
-        +'<td class="num hide-mob smeta-col-pw">'+(pw!==null?fmt(pw):'—')+'</td>'
-        +'<td class="num hide-mob smeta-col-sm">'+(sm!==null?fmt(sm):'—')+'</td>'
-        +'<td class="num hide-mob smeta-col-sw">'+(sw!==null?fmt(sw):'—')+'</td>'
-        +'<td class="num smeta-col-total">'+(total!==null?fmt(total):'—')+'</td>'
-        +'</tr>';
-    }
-  });
-  html+='<tr class="smeta-itog">'
-    +'<td colspan="2">ИТОГО по смете</td>'
-    +'<td class="hide-mob"></td>'
-    +'<td class="hide-mob"></td>'
-    +'<td class="hide-mob"></td>'
-    +'<td class="hide-mob"></td>'
-    +'<td class="num hide-mob">21 631 972</td>'
-    +'<td class="num hide-mob">16 761 876</td>'
-    +'<td class="num">38 393 848</td>'
-    +'</tr>';
-  tbody.innerHTML=html;
-}
-// ── END SMETA DATA ───────────────────────────────────────────────────────────
-
 function printPDF(){
   const details=document.querySelectorAll('details');
   const wasOpen=Array.from(details).map(d=>d.open);
@@ -3313,11 +2813,10 @@ function closeMapPopup(){
   document.getElementById('map-popup').classList.remove('show');
 }
 document.addEventListener('DOMContentLoaded',initMap);
-document.addEventListener('DOMContentLoaded',renderSmeta);
 
 // ── QA SYSTEM ───────────────────────────────────────────────────────────────
 const QA_DATA=[
-  {id:'q1',pri:'red',page:'Финансы / Смета',ask:'Ефимкин И.В. (Гарден Сити)',
+  {id:'q1',pri:'red',page:'Финансы',ask:'Ефимкин И.В. (Гарден Сити)',
    title:'Расхождение суммы с НДС в договоре',
    desc:'Смета без НДС: 38 393 848 ₽ × 1,22 = 46 840 494 ₽. В договоре: 46 811 588,42 ₽. Расхождение: 28 906 ₽.',
    q:'Откуда взялась цифра 46 811 588,42 ₽? Была скидка, или НДС считался от другой базы?'},
