@@ -421,12 +421,24 @@ details.card .card-inner{padding:0 14px 14px}
   .content{padding:16px 20px}
   .app-body{height:calc(100vh - 44px)}
 }
+/* ── ROLE SWITCHER ── */
+.role-switcher{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.role-btn{background:transparent;border:1px solid rgba(201,168,76,.2);border-radius:5px;color:rgba(255,255,255,.4);font-size:9px;font-weight:700;padding:4px 9px;cursor:pointer;transition:all .15s;white-space:nowrap;letter-spacing:.3px;font-family:inherit}
+.role-btn:hover{color:rgba(255,255,255,.7);border-color:rgba(201,168,76,.4)}
+.role-btn.active{background:rgba(201,168,76,.15);border-color:var(--gold);color:var(--gold)}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="top-logo">4S GRAPE GARDEN</div>
+  <div class="top-sep"></div>
+  <div class="role-switcher">
+    <button class="role-btn active" data-role="all" onclick="setRole('all',this)">Руководитель</button>
+    <button class="role-btn" data-role="монтаж" onclick="setRole('монтаж',this)">Монтаж</button>
+    <button class="role-btn" data-role="финансы" onclick="setRole('финансы',this)">Финансы</button>
+    <button class="role-btn" data-role="заказчик" onclick="setRole('заказчик',this)">Заказчик</button>
+  </div>
   <div class="top-sep"></div>
   <div class="top-docs-label">Документация:</div>
   <div class="top-docs">
@@ -446,21 +458,21 @@ details.card .card-inner{padding:0 14px 14px}
   <!-- SIDEBAR -->
   <nav class="sidebar">
     <div class="sidebar-logo">4S GG</div>
-    <div class="nav-item active" onclick="showPage('overview',this)"><span class="ni">🏠</span>Главная</div>
-    <div class="nav-divider"></div>
-    <div class="nav-group-label">Объект</div>
-    <div class="nav-item" onclick="showPage('blocks',this)"><span class="ni">📊</span>Блоки</div>
-    <div class="nav-item" onclick="showPage('plantings',this)"><span class="ni">🍇</span>Насаждения</div>
-    <div class="nav-item" onclick="showPage('equip',this)"><span class="ni">⚙️</span>Оборудование</div>
-    <div class="nav-item" onclick="showPage('map',this)"><span class="ni">🗺️</span>Карта</div>
-    <div class="nav-divider"></div>
-    <div class="nav-group-label">Управление</div>
-    <div class="nav-item" onclick="showPage('finance',this)"><span class="ni">💰</span>Финансы</div>
-    <div class="nav-item" onclick="showPage('smeta',this)"><span class="ni">📋</span>Смета</div>
-    <div class="nav-item" onclick="showPage('tasks',this)"><span class="ni">✅</span>Задачи<span class="nav-badge" id="tasks-badge">7</span></div>
-    <div class="nav-item" onclick="showPage('build',this)"><span class="ni">🔨</span>Монтаж</div>
-    <div class="nav-item" onclick="showPage('docs',this)"><span class="ni">📄</span>Документы</div>
-    <div class="nav-item" onclick="showPage('qa',this)"><span class="ni">❓</span>Вопросы<span class="nav-badge" id="qa-badge">13</span></div>
+    <div class="nav-item active" data-roles="all заказчик" onclick="showPage('overview',this)"><span class="ni">🏠</span>Главная</div>
+    <div class="nav-divider" data-roles="all монтаж заказчик"></div>
+    <div class="nav-group-label" data-roles="all монтаж заказчик">Объект</div>
+    <div class="nav-item" data-roles="all монтаж" onclick="showPage('blocks',this)"><span class="ni">📊</span>Блоки</div>
+    <div class="nav-item" data-roles="all заказчик" onclick="showPage('plantings',this)"><span class="ni">🍇</span>Насаждения</div>
+    <div class="nav-item" data-roles="all монтаж" onclick="showPage('equip',this)"><span class="ni">⚙️</span>Оборудование</div>
+    <div class="nav-item" data-roles="all монтаж" onclick="showPage('map',this)"><span class="ni">🗺️</span>Карта</div>
+    <div class="nav-divider" data-roles="all монтаж финансы заказчик"></div>
+    <div class="nav-group-label" data-roles="all монтаж финансы заказчик">Управление</div>
+    <div class="nav-item" data-roles="all финансы заказчик" onclick="showPage('finance',this)"><span class="ni">💰</span>Финансы</div>
+    <div class="nav-item" data-roles="all финансы" onclick="showPage('smeta',this)"><span class="ni">📋</span>Смета</div>
+    <div class="nav-item" data-roles="all монтаж" onclick="showPage('tasks',this)"><span class="ni">✅</span>Задачи<span class="nav-badge" id="tasks-badge">7</span></div>
+    <div class="nav-item" data-roles="all монтаж заказчик" onclick="showPage('build',this)"><span class="ni">🔨</span>Монтаж</div>
+    <div class="nav-item" data-roles="all финансы" onclick="showPage('docs',this)"><span class="ni">📄</span>Документы</div>
+    <div class="nav-item" data-roles="all" onclick="showPage('qa',this)"><span class="ni">❓</span>Вопросы<span class="nav-badge" id="qa-badge">13</span></div>
   </nav>
 
   <!-- MAIN -->
@@ -3447,6 +3459,32 @@ function filterQa(type,btn){
 }
 
 document.addEventListener('DOMContentLoaded',initQa);
+
+// ── ROLE SWITCHER ─────────────────────────────────────────────────────────────
+function setRole(role,btn){
+  document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  else{const b=document.querySelector(`.role-btn[data-role="${role}"]`);if(b)b.classList.add('active');}
+
+  document.querySelectorAll('[data-roles]').forEach(el=>{
+    el.style.display=el.getAttribute('data-roles').split(' ').includes(role)?'':'none';
+  });
+
+  // Если текущая страница скрылась — переключить на первую видимую
+  const activeNav=document.querySelector('.nav-item.active');
+  if(activeNav&&activeNav.style.display==='none'){
+    const visible=[...document.querySelectorAll('.nav-item[data-roles]')]
+      .find(el=>el.getAttribute('data-roles').split(' ').includes(role));
+    if(visible)visible.click();
+  }
+
+  localStorage.setItem('active_role',role);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const saved=localStorage.getItem('active_role')||'all';
+  setRole(saved,null);
+});
 // ── END QA SYSTEM ────────────────────────────────────────────────────────────
 </script>
 </body>
