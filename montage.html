@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ООО СУЛАНЖ — Монтаж системы орошения · Поле №78 · 2026</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+  @media print {
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    body { font-size: 9pt; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Arial', sans-serif; font-size: 10pt; color: #1a1a1a; line-height: 1.45; background: #fff; }
+
+  /* PRINT BUTTON */
+  .no-print {
+    position: fixed; top: 18px; right: 20px; z-index: 999;
+    background: #1b5e20; color: #fff; border: none; border-radius: 6px;
+    padding: 10px 20px; font-size: 13px; font-weight: 700; cursor: pointer;
+  }
+  .no-print:hover { background: #2e7d32; }
+
+  /* COVER */
+  .cover {
+    text-align: center; padding: 40mm 0 30mm;
+    border-bottom: 3px solid #1b5e20; margin-bottom: 10mm;
+  }
+  .cover-logo {
+    font-size: 10pt; font-weight: 700; color: #555; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 8mm;
+  }
+  .cover-title {
+    font-size: 22pt; font-weight: 900; color: #1a1a1a; line-height: 1.2;
+    margin-bottom: 6mm;
+  }
+  .cover-sub {
+    font-size: 12pt; color: #444; margin-bottom: 10mm;
+  }
+  .cover-badge {
+    display: inline-block; background: #1b5e20; color: #fff;
+    font-size: 10pt; font-weight: 700; padding: 4px 16px; border-radius: 20px;
+    margin-bottom: 12mm;
+  }
+  .cover-meta {
+    font-size: 9.5pt; color: #555; line-height: 2;
+  }
+
+  /* SECTIONS */
+  h1 { font-size: 14pt; font-weight: 900; color: #1b5e20; border-bottom: 2px solid #1b5e20; padding-bottom: 3px; margin: 8mm 0 4mm; }
+  h2 { font-size: 11.5pt; font-weight: 800; color: #1a1a1a; margin: 6mm 0 3mm; }
+  h3 { font-size: 10.5pt; font-weight: 700; color: #1b5e20; margin: 5mm 0 2mm; }
+
+  p { margin-bottom: 3mm; }
+
+  /* INFO GRID */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 8mm; margin-bottom: 5mm; }
+  .info-item { border-left: 3px solid #1b5e20; padding: 2mm 0 2mm 4mm; }
+  .info-label { font-size: 7.5pt; color: #777; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+  .info-value { font-size: 10pt; font-weight: 700; color: #1a1a1a; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 5mm; font-size: 9pt; }
+  th { background: #1b5e20; color: #fff; padding: 3px 6px; text-align: left; font-size: 8.5pt; }
+  th.num, td.num { text-align: right; }
+  td { padding: 3px 6px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  tr.grp td { background: #e8f5e9; font-weight: 700; color: #1b5e20; }
+  tr.total td { background: #1b5e20; color: #fff; font-weight: 900; }
+
+  /* STAGE */
+  .stage { border: 1.5px solid #1b5e20; border-radius: 4px; margin-bottom: 5mm; overflow: hidden; }
+  .stage-head { display: flex; align-items: flex-start; gap: 4mm; padding: 3.5mm 5mm; background: #e8f5e9; }
+  .stage-num { width: 22px; height: 22px; background: #1b5e20; color: #fff; font-size: 11pt; font-weight: 900; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .stage-title { font-size: 11pt; font-weight: 800; flex: 1; }
+  .stage-dates { font-size: 8.5pt; color: #555; white-space: nowrap; flex-shrink: 0; }
+  .stage-body { padding: 3.5mm 5mm 3.5mm 5mm; }
+  .task-list { list-style: none; }
+  .task-list li { display: flex; align-items: flex-start; gap: 3mm; margin-bottom: 1.5mm; font-size: 9.5pt; }
+  .task-list li::before { content: '▸'; color: #1b5e20; font-size: 9pt; flex-shrink: 0; margin-top: 0.5mm; }
+  .stage-warn { margin-top: 3mm; padding: 2mm 4mm; background: #fff8e1; border-left: 3px solid #f59f00; font-size: 8.5pt; color: #5d3f00; }
+  .stage-ok { margin-top: 3mm; padding: 2mm 4mm; background: #e8f5e9; border-left: 3px solid #1b5e20; font-size: 8.5pt; color: #1b5e20; }
+
+  /* SPEC TABLE */
+  .spec-table { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .spec-row { display: flex; justify-content: space-between; padding: 2mm 3mm; border-bottom: 1px solid #e0e0e0; font-size: 9pt; }
+  .spec-row:nth-child(odd) { background: #f9f9f9; }
+  .spec-key { color: #555; }
+  .spec-val { font-weight: 700; color: #1a1a1a; }
+
+  /* ALERT */
+  .alert-red { background: #ffebee; border-left: 4px solid #c62828; padding: 3mm 5mm; margin-bottom: 4mm; font-size: 9.5pt; }
+  .alert-orange { background: #fff8e1; border-left: 4px solid #f59f00; padding: 3mm 5mm; margin-bottom: 4mm; font-size: 9.5pt; }
+  .alert-green { background: #e8f5e9; border-left: 4px solid #1b5e20; padding: 3mm 5mm; margin-bottom: 4mm; font-size: 9.5pt; }
+
+  /* CONTACTS */
+  .contacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+  .contact-card { border: 1px solid #c8e6c9; border-radius: 4px; padding: 3mm; }
+  .contact-role { font-size: 7.5pt; color: #777; text-transform: uppercase; font-weight: 700; }
+  .contact-name { font-size: 10pt; font-weight: 800; margin: 1mm 0; }
+  .contact-phone { font-size: 10pt; color: #1b5e20; font-weight: 700; }
+
+  /* FOOTER */
+  .footer { margin-top: 10mm; padding-top: 4mm; border-top: 1px solid #ccc; font-size: 8pt; color: #888; display: flex; justify-content: space-between; }
+
+  /* GANTT simple */
+  .gantt-table td { padding: 2px 5px; border-bottom: 1px solid #e0e0e0; font-size: 8.5pt; }
+  .gantt-bar-cell { width: 60%; }
+  .gbar { height: 11px; border-radius: 2px; display: inline-flex; align-items: center; padding: 0 4px; font-size: 7pt; color: #fff; font-weight: 700; white-space: nowrap; overflow: hidden; }
+  .g1 { background: #1565c0; }
+  .g2 { background: #1565c0; opacity:.75; }
+  .g3 { background: #2e7d32; }
+  .g4 { background: #1565c0; opacity:.55; }
+  .g5 { background: #6a1b9a; }
+  .g6 { background: #bf360c; }
+  .g7 { background: #00796b; }
+
+  .number-badge { display: inline-block; background: #1b5e20; color: #fff; font-weight: 900; font-size: 8pt; padding: 1px 6px; border-radius: 10px; margin-right: 2mm; }
+</style>
+</head>
+<body>
+
+<button class="no-print" onclick="window.print()">🖨 Сохранить PDF / Распечатать</button>
+
+<!-- ═══════════════════ ТИТУЛЬНЫЙ ЛИСТ ═══════════════════ -->
+<div class="cover">
+  <div class="cover-logo">ООО «СУЛАНЖ» — Монтаж систем орошения</div>
+  <div class="cover-title">РЕГЛАМЕНТ МОНТАЖНЫХ РАБОТ<br>СИСТЕМА КАПЕЛЬНОГО ОРОШЕНИЯ</div>
+  <div class="cover-sub">Виноградник · Поле №78 · с. Пожарское, Крым · 56,7 га</div>
+  <div class="cover-badge">Договор №ГС-12-05 от 12.05.2026</div>
+  <div class="cover-meta">
+    <b>Заказчик:</b> АО «Янтарный» (Леновских М.А.)<br>
+    <b>Генподрядчик:</b> ООО «ГАРДЕН СИТИ» (Ефимкин И.В.)<br>
+    <b>Субподрядчик:</b> ООО «СУЛАНЖ»<br>
+    <b>Срок выполнения:</b> 100 календарных дней с даты предоплаты<br>
+    <b>Стоимость работ по смете:</b> 38 393 848 ₽ (в т.ч. НДС 22%)
+  </div>
+</div>
+
+<!-- ═══════════════════ РАЗДЕЛ 1: ОБЩАЯ ИНФОРМАЦИЯ ═══════════════════ -->
+<h1>1. Общая информация об объекте</h1>
+
+<div class="info-grid">
+  <div class="info-item">
+    <div class="info-label">Объект</div>
+    <div class="info-value">Виноградник Поле №78</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Адрес</div>
+    <div class="info-value">Крым, Симферопольский р-н, с/с Пожарский, с. Пожарское</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Кадастровый номер</div>
+    <div class="info-value">90:12:140601:1230</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Площадь участка</div>
+    <div class="info-value">56,7015 га (под насаждениями: 47,785 га)</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Насаждения</div>
+    <div class="info-value">191 140 кустов · схема 2,5×1,0 м · 12 сортов · 24 клетки</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Источник воды</div>
+    <div class="info-value">р. Западный Булганак → НС-1 → ёмкости → НС-2</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Поливной период</div>
+    <div class="info-value">Май — сентябрь</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Смен полива / цикл</div>
+    <div class="info-value">11 смен · 24 блока · цикл 27 ч 30 мин</div>
+  </div>
+</div>
+
+<h2>Параметры системы орошения</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:4mm">
+  <table>
+    <tr><th colspan="2">НС-2 · Технические параметры</th></tr>
+    <tr><td>Расход (Q)</td><td class="num"><b>50 м³/час</b></td></tr>
+    <tr><td>Напор (H)</td><td class="num"><b>80 м</b></td></tr>
+    <tr><td>Марка насоса 1</td><td class="num">Masdaf E-NMM 50-200</td></tr>
+    <tr><td>Марка насоса 2</td><td class="num">Masdaf NMM 65-250</td></tr>
+    <tr><td>Шкафы управления</td><td class="num">ЧРП + плавный пуск</td></tr>
+    <tr><td>Электро (ориент.)</td><td class="num">≈ 45–56 кВт</td></tr>
+  </table>
+  <table>
+    <tr><th colspan="2">Капельная система</th></tr>
+    <tr><td>Капельница</td><td class="num"><b>METZER 2 л/ч (Израиль)</b></td></tr>
+    <tr><td>Шаг капельниц</td><td class="num">0,5 м</td></tr>
+    <tr><td>Трубка капельная</td><td class="num">Ø16 мм · 36 мил · 217 000 м</td></tr>
+    <tr><td>SDR магистраль НС1→НС2</td><td class="num"><b>SDR 17 · d110</b></td></tr>
+    <tr><td>SDR прочие трубы</td><td class="num"><b>SDR 21</b></td></tr>
+    <tr><td>SDR питьевая вода</td><td class="num">SDR 13,6</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════ РАЗДЕЛ 2: БЛОКИРУЮЩИЕ ФАКТОРЫ ═══════════════════ -->
+<h1>2. Блокирующие факторы — решить до начала работ</h1>
+
+<div class="alert-red">
+  <b>⚡ ЭЛЕКТРОСНАБЖЕНИЕ — ТУ не подтверждены</b><br>
+  Требуемая мощность ≈ 45–56 кВт. Технические условия на подключение не получены. Без ТУ НС-2 не может быть введена в эксплуатацию. Уточнить у КвадроГрупп: 8 (918) 943-36-74.
+</div>
+<div class="alert-red">
+  <b>📍 ГЕОДЕЗИЯ — точки ГРО отсутствуют</b><br>
+  Геодезическая съёмка рельефа с пунктами ГРО (от Максима) не предоставлена. Без неё невозможно начать разметку трасс траншей. Этап 3 заблокирован.
+</div>
+<div class="alert-orange">
+  <b>🔴 НАСОСЫ Masdaf (НС-2) — заказ не размещён</b><br>
+  E-NMM 50-200 (395 400 ₽) + шкаф ЧРП (292 522 ₽) + NMM 65-250 (818 000 ₽) + шкаф плавного пуска (467 977 ₽) = 1 973 899 ₽. Поставщик КвадроГрупп (Москва), доставка ~10–14 дней.
+</div>
+<div class="alert-orange">
+  <b>🛢 ЁМКОСТИ 8×10 м³ (счёт КОИ52, 671 040 ₽) — оплата не произведена</b><br>
+  ООО «Крымоптинвест», Севастополь. Срок оплаты просрочен с 15.05. Без оплаты — поставка задержится. Этап 1 заблокирован.
+</div>
+
+<!-- ═══════════════════ РАЗДЕЛ 3: ПЛАН РАБОТ ═══════════════════ -->
+<div class="page-break"></div>
+<h1>3. Сводный план работ (7 этапов · 100 к.д.)</h1>
+
+<p>Срок 100 календарных дней отсчитывается с даты получения первого платежа от АО «Янтарный». Плановый старт — <b>18.05.2026</b>, плановая сдача — <b>23.08.2026</b>.</p>
+
+<!-- упрощённая диаграмма Ганта -->
+<table class="gantt-table" style="margin-bottom:6mm">
+  <thead>
+    <tr>
+      <th style="width:22%">Этап</th>
+      <th style="width:18%">Сроки</th>
+      <th class="gantt-bar-cell">График (май–август)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Эт.1</b> НС + ёмкости</td>
+      <td>15.05–30.05</td>
+      <td><div class="gbar g1" style="width:20%">■■■</div></td>
+    </tr>
+    <tr>
+      <td><b>Эт.2</b> Фильтрация</td>
+      <td>25.05–09.06</td>
+      <td><div style="width:11%;display:inline-block"></div><div class="gbar g2" style="width:15%">■■■</div></td>
+    </tr>
+    <tr>
+      <td><b>Эт.3</b> Земляные работы</td>
+      <td>15.05–14.07</td>
+      <td><div class="gbar g3" style="width:61%">■■■■■■■■■■■■</div></td>
+    </tr>
+    <tr>
+      <td><b>Эт.4</b> Трубопроводы</td>
+      <td>04.06–14.07</td>
+      <td><div style="width:21%;display:inline-block"></div><div class="gbar g4" style="width:40%">■■■■■■■■</div></td>
+    </tr>
+    <tr>
+      <td><b>Эт.5</b> Капельная лента</td>
+      <td>24.06–03.08</td>
+      <td><div style="width:41%;display:inline-block"></div><div class="gbar g5" style="width:40%">■■■■■■■■</div></td>
+    </tr>
+    <tr>
+      <td><b>Эт.6</b> Подключение модулей</td>
+      <td>24.07–13.08</td>
+      <td><div style="width:71%;display:inline-block"></div><div class="gbar g6" style="width:20%">■■■■</div></td>
+    </tr>
+    <tr>
+      <td><b>Эт.7</b> Пусконаладка / сдача</td>
+      <td>13.08–23.08</td>
+      <td><div style="width:90%;display:inline-block"></div><div class="gbar g7" style="width:10%">■■</div></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════ РАЗДЕЛ 4: ОПИСАНИЕ ЭТАПОВ ═══════════════════ -->
+<h1>4. Описание работ по этапам</h1>
+
+<!-- ЭТАП 1 -->
+<div class="stage">
+  <div class="stage-head">
+    <div class="stage-num">1</div>
+    <div class="stage-title">Установка насосных станций и подключение к электросети</div>
+    <div class="stage-dates">15.05 – 30.05.2026</div>
+  </div>
+  <div class="stage-body">
+    <ul class="task-list">
+      <li>Монтаж НС-1 — насосная станция 1-го подъёма (3 насоса, марка уточняется) · забор воды из р. Западный Булганак</li>
+      <li>Монтаж НС-2 — насосная Masdaf E-NMM 50-200 (шкаф ЧРП) + Masdaf NMM 65-250 (шкаф плавного пуска)</li>
+      <li>Установка 8 буферных ёмкостей ПЭ 10 000 л (Гранд Пласт) на площадке 12,7×6,2 м</li>
+      <li>Монтаж металлических трубопроводов и обвязки насосов (вибровставки, обратные клапаны, задвижки)</li>
+      <li>Подключение к электросети (ориент. мощность ≈ 45–56 кВт) — в соответствии с ТУ</li>
+      <li>Заземление насосных станций, защита от перегрузок по нормам ПУЭДОН</li>
+    </ul>
+    <div class="stage-warn">⚠ БЛОКИРУЕТ ЭТАП: ТУ на электроснабжение не получены · Насосы Masdaf не заказаны (доставка ~10–14 дней) · Ёмкости КОИ52 не оплачены</div>
+  </div>
+</div>
+
+<!-- ЭТАП 2 -->
+<div class="stage">
+  <div class="stage-head">
+    <div class="stage-num">2</div>
+    <div class="stage-title">Монтаж фильтрационной станции</div>
+    <div class="stage-dates">25.05 – 09.06.2026</div>
+  </div>
+  <div class="stage-body">
+    <ul class="task-list">
+      <li>Установка двухкамерного ПГФ 3050 Automat 4" (Ду100 · 40–80 м³/ч) · ООО «Системы Ирригации» (счёт ЦБ-242, 632 200 ₽)</li>
+      <li>Монтаж фильтров тонкой очистки Aytok: YD40 (горизонтальный 4" Disc) + DDS4 (двойной 4" Disc) + HURRICANEFILT HDS (авт. промывка)</li>
+      <li>Засыпка ПГФ гравием фракции 1–2 мм (≈ 275 кг)</li>
+      <li>Подключение трубопроводов к фильтрационному узлу</li>
+      <li>Настройка автоматического режима промывки ПГФ и HURRICANEFILT HDS</li>
+    </ul>
+    <div class="stage-warn">⚠ БЛОКИРУЕТ ЭТАП: Счёт ЦБ-242 (ПГФ) — срок истёк 11.05, уточнить актуальность у поставщика. Без поставки ПГФ этап невозможен.</div>
+  </div>
+</div>
+
+<!-- ЭТАП 3 -->
+<div class="stage">
+  <div class="stage-head">
+    <div class="stage-num">3</div>
+    <div class="stage-title">Земляные работы — разметка и копка траншей</div>
+    <div class="stage-dates">15.05 – 14.07.2026</div>
+  </div>
+  <div class="stage-body">
+    <ul class="task-list">
+      <li>Геодезическая разметка трасс траншей — <b>14 рабочих дней</b> · геодезист · требует пунктов ГРО от Максима</li>
+      <li>Разработка траншеи глубиной 0,7 м, шириной 0,6 м, механизированно — <b>8 278 м.п.</b></li>
+      <li>Чистка и уплотнение основания траншеи — 8 278 м.п.</li>
+      <li>Обратная засыпка грунта механизированно/ручное — <b>3 500 м³</b></li>
+      <li>Уплотнение грунта ручное — 4 966 м²</li>
+    </ul>
+    <div class="stage-warn">⚠ БЛОКИРУЕТ ЭТАП: Геодезическая съёмка рельефа от Максима (пункты ГРО) не предоставлена. Без ГРО разметка трасс невозможна.</div>
+  </div>
+</div>
+
+<!-- ЭТАП 4 -->
+<div class="stage">
+  <div class="stage-head">
+    <div class="stage-num">4</div>
+    <div class="stage-title">Прокладка магистральных трубопроводов и монтаж узлов</div>
+    <div class="stage-dates">04.06 – 14.07.2026</div>
+  </div>
+  <div class="stage-body">
+    <ul class="task-list">
+      <li>Магистральный трубопровод НС-1 → НС-2: <b>ПЭ d110 SDR17</b> · 592 м.п. (5 участков)</li>
+      <li>Прокладка распределительных труб ПЭ SDR21: <b>d50</b> — 1 500 м, <b>d75</b> — 5 700 м, <b>d110</b> — 2 400 м, <b>d140</b> — 800 м</li>
+      <li>Монтаж фасонных частей и фитингов — <b>2 522 шт.</b> (все диаметры)</li>
+      <li>Установка седловых хомутов ПЭ: 50×3/4" (544 шт.) + 75×3/4" (1 624 шт.) + 75×1" (16 шт.)</li>
+      <li>Монтаж задвижек фланцевых ДУ140 (2 шт.) + ДУ110 (3 шт.)</li>
+      <li>Установка обратных клапанов Ду150 (5 шт.), Ду110 (3 шт.), Ду160 (2 шт.)</li>
+      <li>Монтаж расходомеров (НС-1 и НС-2 — по 1 шт.)</li>
+      <li>Установка воздушных комбинированных клапанов 2" Bermad (4 шт.)</li>
+      <li>Монтаж клапанов подрывных пластиковых 2" Bermad (2 шт.)</li>
+    </ul>
+    <div class="stage-ok">✅ Трубы ПЭ (счёт №290, 2 359 810 ₽) — срок оплаты 18.05. После оплаты поставка из Симферополя.</div>
+  </div>
+</div>
+
+<!-- ЭТАП 5 -->
+<div class="stage">
+  <div class="stage-head">
+    <div class="stage-num">5</div>
+    <div class="stage-title">Разводка капельных линий по схеме</div>
+    <div class="stage-dates">24.06 – 03.08.2026</div>
+  </div>
+  <div class="stage-body">
+    <ul class="task-list">
+      <li>Укладка капельной ленты <b>METZER 2 л/ч</b> (Израиль) — <b>≈ 219 000 м</b> (2 192 ряда) по 24 блокам</li>
+      <li>Прокладка трубки слепой <b>Ø16 мм × 1,2 мм</b>, бухты 100 м — <b>217 000 м.п.</b></li>
+      <li>Монтаж крючков для капельной трубки 16 мм — <b>217 000 шт.</b></li>
+      <li>Установка штуцеров стартконнекторов 16×Н3/4" с гайкой Poelsan — <b>2 300 шт.</b></li>
+      <li>Установка заглушек восьмёрка 16 мм — <b>2 300 шт.</b></li>
+      <li>Установка штуцеров прямых 16×16 — 2 500 шт. (соединение рядов)</li>
+      <li>Установка дыроколов 3 мм (Poelsan) — 20 шт. на монтажную бригаду</li>
+      <li>Подготовка ремонтников в запасе (на монтаж и эксплуатацию)</li>
+    </ul>
+    <div class="stage-ok">✅ Стартконнекторы: 2 300 шт. · Слепая трубка: 3 470 м — подтверждено заявкой Шпилёва от 14.05.2026</div>
+  </div>
+</div>
+
+<!-- ЭТАП 6 -->
+<div class="stage">
+  <div class="stage-head">
+    <div class="stage-num">6</div>
+    <div class="stage-title">Подключение поливных модулей к распределительной сети</div>
+    <div class="stage-dates">24.07 – 13.08.2026</div>
+  </div>
+  <div class="stage-body">
+    <ul class="task-list">
+      <li>Установка и подключение 24 гидравлических клапанов <b>ПИОНЕР™ 3"</b> (16 шт.) — до 60 м³/ч</li>
+      <li>Установка и подключение 24 гидравлических клапанов <b>ПИОНЕР™ 2"</b> (8 шт.) — до 40 м³/ч</li>
+      <li>Подключение 12 ручных поливных модулей к распределительной сети</li>
+      <li>Привязка 24 клеток к 11 сменам полива согласно схеме</li>
+      <li>Монтаж узла фертигации (1 ед., 420 000 ₽ материал + 50 000 ₽ монтаж)</li>
+      <li>Проверка давления на каждом блоке: вход до 49 м → выход 25–26 м (после PRV-регуляторов)</li>
+      <li>Пусконаладка Masdaf E-NMM 50-200 (шкаф ЧРП) и Masdaf NMM 65-250 (шкаф плавного пуска)</li>
+      <li>Проверка расхода по блокам: Смена 1 — 261 м³/ч (блоки 3, 19, 24) до Смены 11 — 67 м³/ч (блок 4)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ЭТАП 7 -->
+<div class="stage">
+  <div class="stage-head">
+    <div class="stage-num">7</div>
+    <div class="stage-title">Пусконаладочные работы, тестирование и сдача объекта</div>
+    <div class="stage-dates">13.08 – 23.08.2026</div>
+  </div>
+  <div class="stage-body">
+    <ul class="task-list">
+      <li>Пробный запуск НС-1 и НС-2 — проверка расхода (Q = 50 м³/ч) и напора (H = 80 м)</li>
+      <li>Тестирование автоматической промывки ПГФ 3050 Automat и фильтров Aytok YD40 + HURRICANEFILT</li>
+      <li>Прогон системы по всем <b>11 сменам полива</b> — контроль расхода и равномерности распределения</li>
+      <li>Калибровка ЧРП Masdaf под диапазон расходов 44–261 м³/ч</li>
+      <li>Контроль герметичности: визуальный осмотр всех капельных линий, стыков и соединений</li>
+      <li>Проверка работы клапанов ПИОНЕР, воздушных и подрывных клапанов</li>
+      <li>Составление акта пусконаладочных работ (КС-2 / КС-3)</li>
+      <li>Инструктаж обслуживающего персонала — агроном Кочетков (+7 978 856-56-40)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════ РАЗДЕЛ 5: ОБЪЁМЫ РАБОТ ═══════════════════ -->
+<div class="page-break"></div>
+<h1>5. Перечень и объёмы работ по смете (Приложение №2)</h1>
+
+<table>
+  <thead>
+    <tr><th>№</th><th>Наименование работ</th><th>Ед.</th><th class="num">Кол-во</th></tr>
+  </thead>
+  <tbody>
+    <tr class="grp"><td colspan="4">РАЗДЕЛ 1 — Система полива</td></tr>
+    <tr><td>1</td><td>Земляные работы (комплекс: траншеи, засыпка, уплотнение)</td><td>ед.</td><td class="num">1</td></tr>
+    <tr><td>1.1</td><td>в т.ч. Геодезическая разметка (14 рабочих дней)</td><td>дн.</td><td class="num">14</td></tr>
+    <tr><td>2</td><td>Прокладка труб (монтаж всех диаметров)</td><td>м.п.</td><td class="num">10 400</td></tr>
+    <tr><td>3</td><td>Монтаж фасонных частей / фитингов</td><td>шт.</td><td class="num">2 522</td></tr>
+    <tr><td>4.1</td><td>Монтаж задвижек фланцевых</td><td>шт.</td><td class="num">5</td></tr>
+    <tr><td>5</td><td>НС-1: монтаж (насосная 1-го подъёма, обвязка, арматура)</td><td>ед.</td><td class="num">1</td></tr>
+    <tr><td>6</td><td>НС-2: монтаж (насосная 2-го подъёма, обвязка, арматура)</td><td>ед.</td><td class="num">1</td></tr>
+    <tr><td>7</td><td>Монтаж поливочных блоков (клапаны ПИОНЕР)</td><td>шт.</td><td class="num">24</td></tr>
+    <tr><td>8.1</td><td>Установка фитингов капельного полива (стартеры, заглушки, штуцеры)</td><td>шт.</td><td class="num">438 100</td></tr>
+    <tr><td>8.2</td><td>Прокладка трубки слепой Ø16 мм</td><td>м.п.</td><td class="num">217 000</td></tr>
+    <tr><td>9</td><td>Монтаж буферных ёмкостей ПЭ 10 000 л</td><td>шт.</td><td class="num">8</td></tr>
+    <tr><td>10</td><td>Узел фертигации (монтаж)</td><td>ед.</td><td class="num">1</td></tr>
+    <tr><td>11</td><td>Доставка материалов, оборудования, техника для разгрузки</td><td>ед.</td><td class="num">1</td></tr>
+    <tr class="grp"><td colspan="4">РАЗДЕЛ 2 — СМР по зданиям и сооружениям</td></tr>
+    <tr><td>1</td><td>СМР здания и сооружения</td><td>ед.</td><td class="num">1</td></tr>
+  </tbody>
+</table>
+
+<h2>Сводные объёмы по видам работ</h2>
+<table>
+  <thead><tr><th>Работа</th><th>Единица</th><th class="num">Объём</th></tr></thead>
+  <tbody>
+    <tr><td>Траншеи (разработка)</td><td>м.п.</td><td class="num"><b>8 278</b></td></tr>
+    <tr><td>Засыпка грунта</td><td>м³</td><td class="num"><b>3 500</b></td></tr>
+    <tr><td>Уплотнение грунта</td><td>м²</td><td class="num"><b>4 966</b></td></tr>
+    <tr><td>Укладка труб ПЭ (всего)</td><td>м.п.</td><td class="num"><b>10 400</b></td></tr>
+    <tr><td>  — из них d50</td><td>м.п.</td><td class="num">1 500</td></tr>
+    <tr><td>  — из них d75</td><td>м.п.</td><td class="num">5 700</td></tr>
+    <tr><td>  — из них d110</td><td>м.п.</td><td class="num">2 400</td></tr>
+    <tr><td>  — из них d140</td><td>м.п.</td><td class="num">800</td></tr>
+    <tr><td>Монтаж фитингов и фасонных частей</td><td>шт.</td><td class="num"><b>2 522</b></td></tr>
+    <tr><td>Прокладка трубки слепой Ø16 мм</td><td>м.п.</td><td class="num"><b>217 000</b></td></tr>
+    <tr><td>Монтаж капельных фитингов (стартеры, штуцеры, заглушки)</td><td>шт.</td><td class="num"><b>438 100</b></td></tr>
+    <tr><td>Монтаж поливных клапанов ПИОНЕР</td><td>шт.</td><td class="num"><b>24</b></td></tr>
+    <tr><td>Монтаж ёмкостей</td><td>шт.</td><td class="num"><b>8</b></td></tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════ РАЗДЕЛ 6: ПЕРЕЧЕНЬ ОБОРУДОВАНИЯ ═══════════════════ -->
+<h1>6. Основное оборудование, передаваемое на монтаж</h1>
+<table>
+  <thead><tr><th>№</th><th>Наименование</th><th class="num">Кол-во</th><th>Ед.</th><th class="num">Цена, ₽</th></tr></thead>
+  <tbody>
+    <tr class="grp"><td colspan="5">НС-1 (первый подъём — из реки)</td></tr>
+    <tr><td>1</td><td>Насосная установка (марка уточняется)</td><td class="num">1 к-т</td><td>—</td><td class="num">1 328 385</td></tr>
+    <tr><td>2</td><td>Шкаф управления (ЧРП)</td><td class="num">1</td><td>шт.</td><td class="num">550 000</td></tr>
+    <tr><td>3</td><td>ПГФ двухкамерный 4" Automat (40–80 м³/ч)</td><td class="num">1</td><td>шт.</td><td class="num">835 000</td></tr>
+    <tr><td>4</td><td>Расходомер</td><td class="num">1</td><td>шт.</td><td class="num">107 000</td></tr>
+    <tr><td>5</td><td>Обратный клапан Ду150 мм</td><td class="num">5</td><td>шт.</td><td class="num">257 264</td></tr>
+    <tr class="grp"><td colspan="5">НС-2 (второй подъём — из ёмкостей)</td></tr>
+    <tr><td>1</td><td>Насосная Masdaf E-NMM 50-200 (Q=50 м³/ч, H=80 м)</td><td class="num">1</td><td>шт.</td><td class="num">395 400</td></tr>
+    <tr><td>2</td><td>Шкаф управления ЧРП Masdaf (для E-NMM 50-200)</td><td class="num">1</td><td>шт.</td><td class="num">292 522</td></tr>
+    <tr><td>3</td><td>Насосная Masdaf NMM 65-250 (резервный / второй рабочий)</td><td class="num">1</td><td>шт.</td><td class="num">818 000</td></tr>
+    <tr><td>4</td><td>Шкаф плавного пуска Masdaf (для NMM 65-250)</td><td class="num">1</td><td>шт.</td><td class="num">467 977</td></tr>
+    <tr><td>5</td><td>Фильтр сетчатый 4"</td><td class="num">1</td><td>шт.</td><td class="num">350 000</td></tr>
+    <tr><td>6</td><td>Расходомер</td><td class="num">1</td><td>шт.</td><td class="num">107 000</td></tr>
+    <tr class="grp"><td colspan="5">Буферные ёмкости</td></tr>
+    <tr><td>1</td><td>Ёмкость ПЭ 10 000 л Гранд Пласт (В-2850, Ø2250 мм, д.г. 500 мм)</td><td class="num">8</td><td>шт.</td><td class="num">80 000/шт</td></tr>
+    <tr class="grp"><td colspan="5">Фильтры тонкой очистки</td></tr>
+    <tr><td>1</td><td>Aytok YD40 — горизонтальный 4" Disc (70 м³/ч)</td><td class="num">1</td><td>шт.</td><td class="num">47 042</td></tr>
+    <tr><td>2</td><td>Aytok DDS4 — двойной 4" Disc (80 м³/ч)</td><td class="num">1</td><td>шт.</td><td class="num">36 660</td></tr>
+    <tr><td>3</td><td>HURRICANEFILT HDS — авт. промывка (55–70 м³/ч)</td><td class="num">1</td><td>шт.</td><td class="num">193 297</td></tr>
+    <tr class="grp"><td colspan="5">Клапаны и капельная система</td></tr>
+    <tr><td>1</td><td>ПИОНЕР™ клапан гидравлический 3" (≤60 м³/ч, 24V AC)</td><td class="num">16</td><td>шт.</td><td class="num">23 781/шт</td></tr>
+    <tr><td>2</td><td>ПИОНЕР™ клапан гидравлический 2" (≤40 м³/ч, 24V AC)</td><td class="num">8</td><td>шт.</td><td class="num">18 719/шт</td></tr>
+    <tr><td>3</td><td>Капельница компенсированная 2 л/ч METZER (Израиль)</td><td class="num">214 000</td><td>шт.</td><td class="num">18/шт</td></tr>
+    <tr><td>4</td><td>Трубка слепая Ø16×1,2 мм, бухта 100 м</td><td class="num">217 000</td><td>м.п.</td><td class="num">25,60/м</td></tr>
+    <tr><td>5</td><td>Крючок для капельной трубки 16 мм</td><td class="num">217 000</td><td>шт.</td><td class="num">6/шт</td></tr>
+    <tr><td>6</td><td>Узел фертигации</td><td class="num">1</td><td>ед.</td><td class="num">420 000</td></tr>
+    <tr><td>7</td><td>Бензогенератор SGG 5000ESi</td><td class="num">3</td><td>шт.</td><td class="num">89 250/шт</td></tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════ РАЗДЕЛ 7: ТЕХНИКА БЕЗОПАСНОСТИ ═══════════════════ -->
+<div class="page-break"></div>
+<h1>7. Техника безопасности и охрана труда</h1>
+
+<h3>7.1 Электробезопасность</h3>
+<ul class="task-list" style="margin-bottom:4mm">
+  <li>Работы по подключению к электросети выполняются только специалистом с группой допуска не ниже III</li>
+  <li>Насосные станции НС-1 и НС-2 подлежат обязательному заземлению согласно ПУЭ</li>
+  <li>Установить защиту от перегрузок (автоматы, предохранители) до подачи питания</li>
+  <li>Перед пусконаладкой убедиться в отсутствии воды в электрощитах</li>
+</ul>
+
+<h3>7.2 Работа с насосным оборудованием</h3>
+<ul class="task-list" style="margin-bottom:4mm">
+  <li>Перед первым пуском насоса проверить направление вращения (по стрелке на корпусе)</li>
+  <li>Запрещается запуск насоса «насухую» (без заполнения водой)</li>
+  <li>При работе ЧРП вблизи него не должны находиться металлические предметы без изоляции</li>
+  <li>Давление в системе при пуске контролировать по манометрам — не превышать рабочее давление (6 бар)</li>
+</ul>
+
+<h3>7.3 Земляные работы</h3>
+<ul class="task-list" style="margin-bottom:4mm">
+  <li>До начала земляных работ получить разрешение и убедиться в отсутствии подземных коммуникаций</li>
+  <li>При глубине траншеи более 1,5 м — крепление стенок обязательно</li>
+  <li>Запрещается складировать грунт ближе 0,5 м от края траншеи</li>
+</ul>
+
+<h3>7.4 Экологические требования</h3>
+<ul class="task-list" style="margin-bottom:4mm">
+  <li>Забор воды только из согласованного места (р. Западный Булганак, согласно ТЗ)</li>
+  <li>Предотвращать загрязнение прилегающей территории топливом, маслами, хим. веществами</li>
+  <li>Утечки воды устранять незамедлительно — виноградник чувствителен к переувлажнению</li>
+</ul>
+
+<!-- ═══════════════════ РАЗДЕЛ 8: КОНТАКТЫ ═══════════════════ -->
+<h1>8. Контакты и ответственные лица</h1>
+
+<div class="contacts">
+  <div class="contact-card">
+    <div class="contact-role">Генподрядчик (ГС)</div>
+    <div class="contact-name">Ефимкин И.В.</div>
+    <div style="font-size:9pt;color:#555">ООО «ГАРДЕН СИТИ»</div>
+  </div>
+  <div class="contact-card">
+    <div class="contact-role">Руководитель проекта</div>
+    <div class="contact-name">Шпилёв Ал.Ал.</div>
+    <div style="font-size:9pt;color:#555">Владелец проекта</div>
+  </div>
+  <div class="contact-card">
+    <div class="contact-role">Агроном объекта</div>
+    <div class="contact-name">Кочетков</div>
+    <div class="contact-phone">+7 (978) 856-56-40</div>
+  </div>
+  <div class="contact-card">
+    <div class="contact-role">Заказчик</div>
+    <div class="contact-name">Леновских М.А.</div>
+    <div style="font-size:9pt;color:#555">АО «Янтарный»</div>
+  </div>
+  <div class="contact-card">
+    <div class="contact-role">Поставщик насосов НС-2</div>
+    <div class="contact-name">КвадроГрупп</div>
+    <div class="contact-phone">8 (918) 943-36-74</div>
+  </div>
+  <div class="contact-card">
+    <div class="contact-role">Поставщик оборудования</div>
+    <div class="contact-name">ООО «Системы Ирригации»</div>
+    <div style="font-size:9pt;color:#555">ПГФ, фильтры, арматура</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Договор №ГС-12-05 от 12.05.2026 · Объект: Поле №78, Симферопольский р-н, Крым · ООО «ГАРДЕН СИТИ» / ООО «СУЛАНЖ»</span>
+  <span>Документ сформирован: 15.05.2026</span>
+</div>
+
+</body>
+</html>
