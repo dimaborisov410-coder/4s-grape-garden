@@ -417,6 +417,11 @@ details.card .card-inner{padding:0 14px 14px}
   .content{padding:16px 20px}
   .app-body{height:calc(100vh - 44px)}
 }
+/* ── SMETA ── */
+.smeta-section{background:rgba(201,168,76,.08);font-weight:700;color:var(--gold)}
+.smeta-sub{color:rgba(255,255,255,.5);font-size:11px}
+.smeta-grp{background:rgba(255,255,255,.04);font-weight:600;color:rgba(255,255,255,.8)}
+.smeta-itog{background:rgba(201,168,76,.12);font-weight:900;color:var(--gold);font-size:13px}
 /* ── ROLE SWITCHER ── */
 .role-switcher{display:flex;align-items:center;gap:4px;flex-shrink:0}
 .role-btn{background:transparent;border:1px solid rgba(201,168,76,.2);border-radius:5px;color:rgba(255,255,255,.4);font-size:9px;font-weight:700;padding:4px 9px;cursor:pointer;transition:all .15s;white-space:nowrap;letter-spacing:.3px;font-family:inherit}
@@ -467,6 +472,7 @@ details.card .card-inner{padding:0 14px 14px}
 
     <div class="nav-item" data-roles="all монтаж" onclick="showPage('tasks',this)"><span class="ni">✅</span>Задачи<span class="nav-badge" id="tasks-badge">7</span></div>
     <div class="nav-item" data-roles="all монтаж заказчик" onclick="showPage('build',this)"><span class="ni">🔨</span>Монтаж</div>
+    <div class="nav-item" data-roles="all финансы" onclick="showPage('smeta',this)"><span class="ni">📋</span>Смета</div>
     <div class="nav-item" data-roles="all финансы" onclick="showPage('docs',this)"><span class="ni">📄</span>Документы</div>
     <div class="nav-item" data-roles="all" onclick="showPage('qa',this)"><span class="ni">❓</span>Вопросы<span class="nav-badge" id="qa-badge">13</span></div>
   </nav>
@@ -1683,6 +1689,128 @@ details.card .card-inner{padding:0 14px 14px}
       <b>Решение 15.05.2026:</b> Насосы НС-2 — Masdaf (КвадроГрупп, 8 (918) 943-36-74). E-NMM 50-200 (687 922 ₽) + NMM 65-250 (1 285 977 ₽) = 1 973 899 ₽ итого. Запрос счёта.<br>
       <b>Решение 15.05.2026:</b> Капельница — METZER 2 л/ч из последней сметы (ТЗ устаревшее).<br>
       <b>Леха (SDR питьевая):</b> SDR13.6 (12,5 атм) — только питьевая вода для объекта. SDR17 — магистраль НС-1→НС-2. SDR21 — всё остальное.
+    </div>
+  </div>
+</div>
+
+<!-- ══════ СМЕТА ══════ -->
+<div class="page" id="page-smeta">
+  <div class="page-title">Сметный расчёт</div>
+  <div class="card" style="border:1px solid rgba(201,168,76,.3);margin-bottom:14px">
+    <div class="card-title">📋 Приложение №2 к договору №ГС-12-05 от 12.05.2026 — Монтаж системы орошения</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:14px">
+      <div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:10px;text-align:center">
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:4px">ИТОГО по смете</div>
+        <div style="font-size:16px;font-weight:900;color:var(--gold)">38 393 848 ₽</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px">в т.ч. НДС 22%</div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px;text-align:center">
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:4px">Материалы</div>
+        <div style="font-size:15px;font-weight:700;color:rgba(255,255,255,.8)">21 631 972 ₽</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px">56,3%</div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px;text-align:center">
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:4px">Работы</div>
+        <div style="font-size:15px;font-weight:700;color:rgba(255,255,255,.8)">16 761 876 ₽</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px">43,7%</div>
+      </div>
+      <div style="background:rgba(46,125,50,.1);border:1px solid rgba(46,125,50,.2);border-radius:8px;padding:10px;text-align:center">
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:4px">Цена договора</div>
+        <div style="font-size:14px;font-weight:700;color:#81c784">46 811 588 ₽</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px">смета + наценка ГС 10%</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:rgba(255,255,255,.4)">Заказчик: АО «Янтарный» · Подрядчик: ООО «ГАРДЕН СИТИ» · Объект: поле №78, 56,7 га, Симферопольский р-н, Крым</div>
+  </div>
+
+  <!-- РАЗДЕЛ 1 -->
+  <div class="card">
+    <div class="ch"><div class="ch-bar"></div><div class="ch-title">Раздел 1 — Система полива</div></div>
+    <div class="cb">
+      <div class="tbl-wrap">
+        <table class="t" style="font-size:11px">
+          <thead>
+            <tr><th>№</th><th>Наименование</th><th>Ед.</th><th class="num">Кол-во</th><th class="num">Цена мат., ₽</th><th class="num">Цена раб., ₽</th><th class="num">Материал, ₽</th><th class="num">Работа, ₽</th><th class="num">Всего, ₽</th></tr>
+          </thead>
+          <tbody>
+            <tr class="smeta-grp"><td colspan="9" style="font-size:12px;padding-left:8px">🏗 Земляные работы</td></tr>
+            <tr><td>1</td><td>Земляные работы (комплекс: траншеи, засыпка, уплотнение)</td><td>ед.</td><td class="num">1</td><td class="num">—</td><td class="num">2 500 000</td><td class="num">—</td><td class="num">2 500 000</td><td class="num"><b>2 500 000</b></td></tr>
+            <tr class="smeta-sub"><td>1.1</td><td>в т.ч. Разметка траншеи (геодезия, 14 рабочих дней)</td><td>дн.</td><td class="num">14</td><td class="num">—</td><td class="num">150 000</td><td class="num">—</td><td class="num">150 000</td><td class="num">150 000</td></tr>
+            <tr class="smeta-sub"><td>1.2</td><td>Разработка траншеи 0,7×0,6 м (механ.)</td><td>м.п.</td><td class="num">8 278</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">вкл. в п.1</td><td class="num">—</td></tr>
+            <tr class="smeta-sub"><td>1.4</td><td>Обратная засыпка (механ./ручная)</td><td>м³</td><td class="num">3 500</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">вкл. в п.1</td><td class="num">—</td></tr>
+
+            <tr class="smeta-grp"><td colspan="9" style="font-size:12px;padding-left:8px">🔵 Трубопроводы магистральные</td></tr>
+            <tr><td>2</td><td>Прокладка труб (монтаж)</td><td>м.п.</td><td class="num">10 400</td><td class="num">—</td><td class="num">290</td><td class="num">—</td><td class="num">3 016 000</td><td class="num"><b>3 016 000</b></td></tr>
+            <tr class="smeta-sub"><td>2.1.1</td><td>Труба ПНД ПЭ100 SDR21 d50</td><td>м.п.</td><td class="num">1 500</td><td class="num">70,30</td><td class="num">—</td><td class="num">105 450</td><td class="num">—</td><td class="num">105 450</td></tr>
+            <tr class="smeta-sub"><td>2.1.2</td><td>Труба ПНД ПЭ100 SDR21 d75</td><td>м.п.</td><td class="num">5 700</td><td class="num">156,40</td><td class="num">—</td><td class="num">891 480</td><td class="num">—</td><td class="num">891 480</td></tr>
+            <tr class="smeta-sub"><td>2.2.1</td><td>Труба ПНД ПЭ100 SDR21 d110</td><td>м.п.</td><td class="num">2 400</td><td class="num">345,80</td><td class="num">—</td><td class="num">829 920</td><td class="num">—</td><td class="num">829 920</td></tr>
+            <tr class="smeta-sub"><td>2.3.1</td><td>Труба ПНД ПЭ100 SDR21 d140</td><td>м.п.</td><td class="num">800</td><td class="num">538,90</td><td class="num">—</td><td class="num">431 120</td><td class="num">—</td><td class="num">431 120</td></tr>
+
+            <tr class="smeta-grp"><td colspan="9" style="font-size:12px;padding-left:8px">🔩 Фасонные части / фитинги</td></tr>
+            <tr><td>3</td><td>Монтаж фасонных частей и фитингов</td><td>шт.</td><td class="num">2 522</td><td class="num">—</td><td class="num">155</td><td class="num">—</td><td class="num">390 910</td><td class="num"><b>390 910</b></td></tr>
+            <tr class="smeta-sub"><td>3.1</td><td>ПЭ Седловой хомут 50×3/4"</td><td>шт.</td><td class="num">544</td><td class="num">134,40</td><td class="num">—</td><td class="num">73 114</td><td class="num">—</td><td class="num">73 114</td></tr>
+            <tr class="smeta-sub"><td>3.2</td><td>ПЭ Седловой хомут 75×3/4"</td><td>шт.</td><td class="num">1 624</td><td class="num">241,20</td><td class="num">—</td><td class="num">391 709</td><td class="num">—</td><td class="num">391 709</td></tr>
+            <tr class="smeta-sub"><td>3.6</td><td>Муфта компрессионная 75×75</td><td>шт.</td><td class="num">55</td><td class="num">899,09</td><td class="num">—</td><td class="num">49 450</td><td class="num">—</td><td class="num">49 450</td></tr>
+            <tr class="smeta-sub"><td>3.8</td><td>Муфта компрессионная 75×75 (IRRITEC)</td><td>шт.</td><td class="num">60</td><td class="num">899,09</td><td class="num">—</td><td class="num">53 945</td><td class="num">—</td><td class="num">53 945</td></tr>
+            <tr class="smeta-sub"><td>3.11</td><td>Заглушка компрессионная 75</td><td>шт.</td><td class="num">18</td><td class="num">598,76</td><td class="num">—</td><td class="num">10 778</td><td class="num">—</td><td class="num">10 778</td></tr>
+            <tr class="smeta-sub"><td>3.14</td><td>Тройник 110×110×110 литой</td><td>шт.</td><td class="num">24</td><td class="num">1 995,80</td><td class="num">—</td><td class="num">47 899</td><td class="num">—</td><td class="num">47 899</td></tr>
+            <tr><td>4.1</td><td>Монтаж задвижек</td><td>шт.</td><td class="num">5</td><td class="num">—</td><td class="num">4 590</td><td class="num">—</td><td class="num">22 950</td><td class="num"><b>22 950</b></td></tr>
+            <tr class="smeta-sub"><td>4.1.1</td><td>Задвижка фланцевая ДУ140</td><td>шт.</td><td class="num">2</td><td class="num">25 166,40</td><td class="num">—</td><td class="num">50 333</td><td class="num">—</td><td class="num">50 333</td></tr>
+            <tr class="smeta-sub"><td>4.1.2</td><td>Задвижка фланцевая ДУ110</td><td>шт.</td><td class="num">3</td><td class="num">25 312,00</td><td class="num">—</td><td class="num">75 936</td><td class="num">—</td><td class="num">75 936</td></tr>
+
+            <tr class="smeta-grp"><td colspan="9" style="font-size:12px;padding-left:8px">🔴 НС-1 — Насосная станция 1-го подъёма</td></tr>
+            <tr><td>5</td><td>НС-1: монтаж (комплекс)</td><td>ед.</td><td class="num">1</td><td class="num">—</td><td class="num">710 000</td><td class="num">—</td><td class="num">710 000</td><td class="num"><b>710 000</b></td></tr>
+            <tr class="smeta-sub"><td>5.1.21</td><td>Насосная установка (марка уточняется)</td><td>шт.</td><td class="num">1</td><td class="num">1 328 385</td><td class="num">—</td><td class="num">1 328 385</td><td class="num">—</td><td class="num">1 328 385</td></tr>
+            <tr class="smeta-sub"><td>5.1.22</td><td>Шкаф управления (ЧРП)</td><td>шт.</td><td class="num">1</td><td class="num">550 000</td><td class="num">—</td><td class="num">550 000</td><td class="num">—</td><td class="num">550 000</td></tr>
+            <tr class="smeta-sub"><td>5.1.24</td><td>ПГФ двухкамерный 4" Automat (40–80 м³/ч)</td><td>шт.</td><td class="num">1</td><td class="num">835 000</td><td class="num">—</td><td class="num">835 000</td><td class="num">—</td><td class="num">835 000</td></tr>
+            <tr class="smeta-sub"><td>5.1.23</td><td>Обратный клапан Ду150</td><td>шт.</td><td class="num">5</td><td class="num">51 452,80</td><td class="num">—</td><td class="num">257 264</td><td class="num">—</td><td class="num">257 264</td></tr>
+            <tr class="smeta-sub"><td>5.1.3</td><td>Обратный клапан 160 мм</td><td>шт.</td><td class="num">2</td><td class="num">51 452,80</td><td class="num">—</td><td class="num">102 906</td><td class="num">—</td><td class="num">102 906</td></tr>
+            <tr class="smeta-sub"><td>5.2.21</td><td>Расходомер</td><td>шт.</td><td class="num">1</td><td class="num">107 000</td><td class="num">—</td><td class="num">107 000</td><td class="num">—</td><td class="num">107 000</td></tr>
+
+            <tr class="smeta-grp"><td colspan="9" style="font-size:12px;padding-left:8px">🟢 НС-2 — Насосная станция 2-го подъёма</td></tr>
+            <tr><td>6</td><td>НС-2: монтаж (комплекс)</td><td>ед.</td><td class="num">1</td><td class="num">—</td><td class="num">710 000</td><td class="num">—</td><td class="num">710 000</td><td class="num"><b>710 000</b></td></tr>
+            <tr class="smeta-sub"><td>6.1.25</td><td>Насосная установка (Masdaf E-NMM 50-200, факт)</td><td>шт.</td><td class="num">1</td><td class="num">530 385</td><td class="num">—</td><td class="num">530 385</td><td class="num">—</td><td class="num">530 385</td></tr>
+            <tr class="smeta-sub"><td>6.1.26</td><td>Шкаф управления (Masdaf NMM 65-250, факт)</td><td>шт.</td><td class="num">1</td><td class="num">502 075</td><td class="num">—</td><td class="num">502 075</td><td class="num">—</td><td class="num">502 075</td></tr>
+            <tr class="smeta-sub"><td>6.1.30</td><td>Фильтр сетчатый 4"</td><td>шт.</td><td class="num">1</td><td class="num">350 000</td><td class="num">—</td><td class="num">350 000</td><td class="num">—</td><td class="num">350 000</td></tr>
+            <tr class="smeta-sub"><td>6.1.4</td><td>Мет. задвижка Ду100</td><td>шт.</td><td class="num">11</td><td class="num">15 120</td><td class="num">—</td><td class="num">166 320</td><td class="num">—</td><td class="num">166 320</td></tr>
+            <tr class="smeta-sub"><td>6.1.7</td><td>Обратный клапан 110 мм</td><td>шт.</td><td class="num">3</td><td class="num">51 452,80</td><td class="num">—</td><td class="num">154 358</td><td class="num">—</td><td class="num">154 358</td></tr>
+            <tr class="smeta-sub"><td>6.3.18</td><td>Расходомер</td><td>шт.</td><td class="num">1</td><td class="num">107 000</td><td class="num">—</td><td class="num">107 000</td><td class="num">—</td><td class="num">107 000</td></tr>
+
+            <tr class="smeta-grp"><td colspan="9" style="font-size:12px;padding-left:8px">💧 Поливочные блоки (клапаны)</td></tr>
+            <tr><td>7</td><td>Монтаж поливочных блоков</td><td>шт.</td><td class="num">24</td><td class="num">—</td><td class="num">4 334</td><td class="num">—</td><td class="num">104 016</td><td class="num"><b>104 016</b></td></tr>
+            <tr class="smeta-sub"><td>7.1</td><td>ПИОНЕР™ 301-TDFL-24V AC 3" (≤60 м³/ч)</td><td>шт.</td><td class="num">16</td><td class="num">23 781</td><td class="num">—</td><td class="num">380 496</td><td class="num">—</td><td class="num">380 496</td></tr>
+            <tr class="smeta-sub"><td>7.2</td><td>ПИОНЕР™ 301-TDFL-24V AC 2" (≤40 м³/ч)</td><td>шт.</td><td class="num">8</td><td class="num">18 719</td><td class="num">—</td><td class="num">149 752</td><td class="num">—</td><td class="num">149 752</td></tr>
+
+            <tr class="smeta-grp"><td colspan="9" style="font-size:12px;padding-left:8px">🫧 Капельный полив</td></tr>
+            <tr><td>8.1</td><td>Установка фитингов капельного полива</td><td>шт.</td><td class="num">438 100</td><td class="num">—</td><td class="num">8</td><td class="num">—</td><td class="num">3 504 800</td><td class="num"><b>3 504 800</b></td></tr>
+            <tr class="smeta-sub"><td>8.1.1</td><td>Капельница компенсированная 2 л/ч METZER (Израиль)</td><td>шт.</td><td class="num">214 000</td><td class="num">18,00</td><td class="num">—</td><td class="num">3 852 000</td><td class="num">—</td><td class="num">3 852 000</td></tr>
+            <tr class="smeta-sub"><td>8.1.2</td><td>Крючок для капельной трубки 16мм (Китай)</td><td>шт.</td><td class="num">217 000</td><td class="num">6,00</td><td class="num">—</td><td class="num">1 302 000</td><td class="num">—</td><td class="num">1 302 000</td></tr>
+            <tr class="smeta-sub"><td>8.1.3</td><td>Штуцер 16×Н3/4" с гайкой Poelsan</td><td>шт.</td><td class="num">2 300</td><td class="num">23,60</td><td class="num">—</td><td class="num">54 280</td><td class="num">—</td><td class="num">54 280</td></tr>
+            <tr class="smeta-sub"><td>8.1.4</td><td>Заглушка восьмёрка 16 Poelsan</td><td>шт.</td><td class="num">2 300</td><td class="num">4,60</td><td class="num">—</td><td class="num">10 580</td><td class="num">—</td><td class="num">10 580</td></tr>
+            <tr class="smeta-sub"><td>8.1.5</td><td>Штуцер прямой 16×16</td><td>шт.</td><td class="num">2 500</td><td class="num">6,70</td><td class="num">—</td><td class="num">16 750</td><td class="num">—</td><td class="num">16 750</td></tr>
+            <tr class="smeta-sub"><td>8.1.6</td><td>Дырокол 3 мм</td><td>шт.</td><td class="num">20</td><td class="num">934,90</td><td class="num">—</td><td class="num">18 698</td><td class="num">—</td><td class="num">18 698</td></tr>
+            <tr><td>8.2</td><td>Прокладка трубки слепой D16×1,2мм</td><td>м.п.</td><td class="num">217 000</td><td class="num">25,60</td><td class="num">10,00</td><td class="num">5 555 200</td><td class="num">2 170 000</td><td class="num"><b>7 725 200</b></td></tr>
+
+            <tr class="smeta-grp"><td colspan="9" style="font-size:12px;padding-left:8px">🛢 Накопители / ёмкости</td></tr>
+            <tr><td>9</td><td>Монтаж ёмкостей</td><td>шт.</td><td class="num">8</td><td class="num">—</td><td class="num">10 400</td><td class="num">—</td><td class="num">83 200</td><td class="num"><b>83 200</b></td></tr>
+            <tr class="smeta-sub"><td>9.1</td><td>Ёмкость ПЭ 10 000 л (Гранд Пласт · В-2850мм · Ø2250мм)</td><td>шт.</td><td class="num">8</td><td class="num">80 000</td><td class="num">—</td><td class="num">640 000</td><td class="num">—</td><td class="num">640 000</td></tr>
+
+            <tr class="smeta-grp"><td colspan="9" style="font-size:12px;padding-left:8px">⚗️ Прочее</td></tr>
+            <tr><td>10</td><td>Узел фертигации</td><td>ед.</td><td class="num">1</td><td class="num">420 000</td><td class="num">50 000</td><td class="num">420 000</td><td class="num">50 000</td><td class="num"><b>470 000</b></td></tr>
+            <tr><td>11</td><td>Доставка материалов, оборудования, техника</td><td>ед.</td><td class="num">1</td><td class="num">—</td><td class="num">350 000</td><td class="num">—</td><td class="num">350 000</td><td class="num"><b>350 000</b></td></tr>
+
+            <tr class="smeta-section"><td colspan="9" style="padding-left:8px">Раздел 2 — СМР по зданиям и сооружениям</td></tr>
+            <tr><td>1</td><td>СМР здания и сооружения</td><td>ед.</td><td class="num">1</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">3 000 000</td><td class="num"><b>3 000 000</b></td></tr>
+
+            <tr class="smeta-itog"><td colspan="6"><b>ВСЕГО по смете (в т.ч. НДС 22%)</b></td><td class="num">21 631 972</td><td class="num">16 761 876</td><td class="num" style="font-size:15px">38 393 848</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:10px;font-size:10px;color:rgba(255,255,255,.3);line-height:1.7">
+        ** Цена материал = цена за единицу × количество (без монтажа)<br>
+        *** Цена работа = цена монтажа за единицу × количество<br>
+        Показаны ключевые позиции. Полный перечень: XLS-файл «Сметный расчет приложение к договору автополив АО Янтарный (1).xls»
+      </div>
     </div>
   </div>
 </div>
