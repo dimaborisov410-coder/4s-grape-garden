@@ -3102,10 +3102,23 @@ const _BD=[
   {n:23,r:1,c:1,area:2.37,flow:77, lat:96, sh:2, v:'Мальбек',           vc:'v-malb'},
   {n:24,r:1,c:0,area:2.70,flow:88, lat:109,sh:1, v:'Каберне Фран',      vc:'v-cabfr'},
 ];
+function _mapHL(){
+  const hl=['pipes','valves','drip'].some(l=>{
+    const b=document.querySelector('.map-lbtn[onclick*="\''+l+'\'"]');
+    return b&&b.classList.contains('active');
+  });
+  document.querySelectorAll('#map-svg-wrap .blk').forEach(g=>{
+    const k=Array.from(g.children);
+    if(k[0]) k[0].style.opacity=hl?'0.28':'0.9';   // фон блока
+    if(k[1]) k[1].style.opacity=hl?'0.38':'1';      // полоска сорта
+    k.slice(6).forEach(el=>el.style.opacity=hl?'0.32':'1'); // текст + шильдики
+  });
+}
 function toggleMapLayer(id,btn){
   btn.classList.toggle('active');
   const show=btn.classList.contains('active');
   document.querySelectorAll('[data-layer="'+id+'"]').forEach(el=>{el.style.display=show?'':'none';});
+  _mapHL();
 }
 function initMap(){
   const CX=[40,344,613],CW=[302,267,192];
@@ -3114,6 +3127,7 @@ function initMap(){
   const SUB1X=343; // субколлектор между col0 и col1
   const MH=5;     // высота горизонтального коллектора px
   let s='<svg viewBox="0 0 855 970" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;display:block;margin:0 auto">';
+  s+='<style>.blk>rect{transition:opacity .2s}</style>';
   s+='<rect width="855" height="970" fill="#dde8dd"/>';
   s+='<rect x="28" y="28" width="799" height="914" fill="none" stroke="#4a7c4a" stroke-width="1.5" rx="2"/>';
   // column labels
@@ -3139,6 +3153,9 @@ function initMap(){
     } else if(b.c===2){
       s+=`<line x1="${x+w}" y1="${mY}" x2="824" y2="${mY}" stroke="#1565c0" stroke-width="2.2" opacity=".75"/>`;
       s+=`<polygon points="${x+w},${mY} ${x+w+3},${mY-3} ${x+w+3},${mY+3}" fill="#1565c0" opacity=".9"/>`;
+    } else if(b.c===1){
+      s+=`<line x1="${SUB1X}" y1="${mY}" x2="${x}" y2="${mY}" stroke="#1565c0" stroke-width="2.2" opacity=".75"/>`;
+      s+=`<polygon points="${SUB1X},${mY-3} ${SUB1X},${mY+3} ${x},${mY}" fill="#1565c0" opacity=".9"/>`;
     }
   });
   s+='</g>';
@@ -3237,6 +3254,7 @@ function initMap(){
   document.getElementById('map-leg-shifts').innerHTML=usedSh.map(sh=>`<div class="map-leg-item"><div class="map-leg-dot" style="background:${_SHC[sh]}"></div>${_SHN[sh]}</div>`).join('');
   const usedVc=[...new Map(_BD.map(b=>[b.vc,b])).values()];
   document.getElementById('map-leg-varieties').innerHTML=usedVc.map(b=>`<div class="map-leg-item"><div class="map-leg-dot" style="background:${_VCC[b.vc]}"></div>${_VCN[b.vc]}</div>`).join('');
+  setTimeout(_mapHL,0);
 }
 function showBlockPopup(n){
   const b=_BD.find(x=>x.n===n); if(!b)return;
