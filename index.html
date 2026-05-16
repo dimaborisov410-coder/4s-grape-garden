@@ -1215,7 +1215,7 @@ details.card .card-inner{padding:0 14px 14px}
   <div class="page-title">Финансы</div>
   <div class="kpi-row">
     <div class="kpi danger-kpi"><div class="kpi-num" style="font-size:15px">4 656 299</div><div class="kpi-lbl">₽ к оплате (итого · 10 счетов)</div></div>
-    <div class="kpi warn"><div class="kpi-num">7 000К</div><div class="kpi-lbl">₽ первый платёж (Янтарный) — до 18.05</div></div>
+    <div class="kpi danger-kpi"><div class="kpi-num">10 000К</div><div class="kpi-lbl">₽ предоплата (Янтарный) — 15.05 ПРОСРОЧЕНА!</div></div>
     <div class="kpi danger-kpi"><div class="kpi-num" style="font-size:15px">671 040</div><div class="kpi-lbl">₽ Ёмкости × 8 (КОИ52) — ПРОСРОЧЕН!</div></div>
     <div class="kpi danger-kpi"><div class="kpi-num" style="font-size:15px">267 750</div><div class="kpi-lbl">₽ Генераторы × 3 (№3933) — ПРОСРОЧЕН!</div></div>
     <div class="kpi warn"><div class="kpi-num" style="font-size:14px">2 359 810</div><div class="kpi-lbl">₽ Трубы + фитинги (№290) — до 18.05</div></div>
@@ -1234,13 +1234,14 @@ details.card .card-inner{padding:0 14px 14px}
     <div class="cb">
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:14px">
         <div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:10px;text-align:center">
-          <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:4px">Договор (итого)</div>
-          <div style="font-size:16px;font-weight:900;color:var(--gold)">46 811 588 ₽</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:4px">Договор №ГС-12-05 (итого, приблизит.)</div>
+          <div style="font-size:16px;font-weight:900;color:var(--gold)">38 393 848 ₽</div>
+          <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px">в т.ч. НДС 22% = 6 923 481 ₽</div>
         </div>
         <div style="background:rgba(46,125,50,.12);border:1px solid rgba(46,125,50,.25);border-radius:8px;padding:10px;text-align:center">
           <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:4px">Поступило от заказчика</div>
           <div style="font-size:16px;font-weight:900;color:#81c784">0 ₽</div>
-          <div style="font-size:9px;color:#ffaa00;margin-top:2px">⚠ первый платёж 7 млн — до 18.05</div>
+          <div style="font-size:9px;color:#ff8a80;margin-top:2px">⚠ предоплата 10 млн — 15.05 ПРОСРОЧЕНА</div>
         </div>
         <div style="background:rgba(139,26,47,.12);border:1px solid rgba(139,26,47,.3);border-radius:8px;padding:10px;text-align:center">
           <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:4px">К оплате поставщикам</div>
@@ -1254,43 +1255,35 @@ details.card .card-inner{padding:0 14px 14px}
         </div>
       </div>
 
-      <div style="font-size:10px;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px">Уточнённый график оплат от АО «Янтарный» <span style="color:rgba(201,168,76,.6);font-weight:400;letter-spacing:0">(обновлено 14.05)</span></div>
+      <div style="font-size:10px;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px">График оплат по договору №ГС-12-05 (п. 4.2) <span style="color:rgba(201,168,76,.6);font-weight:400;letter-spacing:0">— из договора</span></div>
+      <div style="font-size:10px;color:rgba(255,100,100,.7);margin-bottom:8px">⚠️ Неофициальный график Надежды (18.05/7М, 25.05/5М, 12.06/20М) не соответствует договору — к применению не рекомендован</div>
       <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px">
         <div style="display:flex;align-items:center;gap:10px;font-size:12px">
-          <div style="width:80px;color:rgba(255,255,255,.5);flex-shrink:0">18.05.2026</div>
-          <div style="flex:1;background:rgba(255,170,0,.15);border-radius:4px;overflow:hidden;height:20px">
-            <div style="width:22%;height:100%;background:rgba(255,170,0,.5);display:flex;align-items:center;padding-left:6px">
-              <span style="font-size:10px;font-weight:700;color:#fff;white-space:nowrap">7 000 000 ₽</span>
+          <div style="width:80px;color:#ff8a80;flex-shrink:0">15.05.2026</div>
+          <div style="flex:1;background:rgba(139,26,47,.2);border-radius:4px;overflow:hidden;height:20px;border:1px solid rgba(139,26,47,.4)">
+            <div style="width:26%;height:100%;background:rgba(139,26,47,.6);display:flex;align-items:center;padding-left:6px">
+              <span style="font-size:10px;font-weight:700;color:#fff;white-space:nowrap">10 000 000 ₽</span>
             </div>
           </div>
-          <span style="color:var(--warn);font-weight:700;font-size:11px;flex-shrink:0">Ближайший</span>
+          <span style="color:#ff8a80;font-weight:700;font-size:11px;flex-shrink:0">ПРОСРОЧЕНА</span>
         </div>
         <div style="display:flex;align-items:center;gap:10px;font-size:12px">
-          <div style="width:80px;color:rgba(255,255,255,.5);flex-shrink:0">25.05.2026</div>
+          <div style="width:80px;color:rgba(255,255,255,.5);flex-shrink:0">05.06.2026</div>
           <div style="flex:1;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;height:20px">
-            <div style="width:16%;height:100%;background:rgba(21,101,192,.5);display:flex;align-items:center;padding-left:6px">
-              <span style="font-size:10px;font-weight:700;color:#fff;white-space:nowrap">5 000 000 ₽</span>
+            <div style="width:63%;height:100%;background:rgba(21,101,192,.5);display:flex;align-items:center;padding-left:6px">
+              <span style="font-size:10px;font-weight:700;color:#fff;white-space:nowrap">24 000 000 ₽</span>
             </div>
           </div>
           <span style="color:rgba(255,255,255,.4);font-size:11px;flex-shrink:0">Ожидание</span>
         </div>
         <div style="display:flex;align-items:center;gap:10px;font-size:12px">
-          <div style="width:80px;color:rgba(255,255,255,.5);flex-shrink:0">12.06.2026</div>
+          <div style="width:80px;color:rgba(255,255,255,.5);flex-shrink:0">19.06.2026</div>
           <div style="flex:1;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;height:20px">
-            <div style="width:64%;height:100%;background:rgba(21,101,192,.4);display:flex;align-items:center;padding-left:6px">
-              <span style="font-size:10px;font-weight:700;color:#fff;white-space:nowrap">20 000 000 ₽</span>
+            <div style="width:11%;height:100%;background:rgba(21,101,192,.4);display:flex;align-items:center;padding-left:6px">
+              <span style="font-size:10px;font-weight:700;color:#fff;white-space:nowrap">4 393 848 ₽</span>
             </div>
           </div>
           <span style="color:rgba(255,255,255,.4);font-size:11px;flex-shrink:0">Ожидание</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:12px">
-          <div style="width:80px;color:rgba(255,255,255,.35);flex-shrink:0">TBD</div>
-          <div style="flex:1;background:rgba(255,255,255,.03);border-radius:4px;overflow:hidden;height:20px;border:1px dashed rgba(255,255,255,.1)">
-            <div style="width:46%;height:100%;background:rgba(255,255,255,.07);display:flex;align-items:center;padding-left:6px">
-              <span style="font-size:10px;font-weight:700;color:rgba(255,255,255,.35);white-space:nowrap">14 811 588 ₽</span>
-            </div>
-          </div>
-          <span style="color:rgba(255,255,255,.3);font-size:11px;flex-shrink:0">Не согласован</span>
         </div>
       </div>
 
@@ -1365,27 +1358,29 @@ details.card .card-inner{padding:0 14px 14px}
   <div class="card" style="border:2px solid rgba(201,168,76,.5)">
     <div class="card-title">📋 Договор №ГС-12-05 от 12.05.2026 — Монтаж системы орошения</div>
     <div style="margin-bottom:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
-      <div><b>Заказчик:</b> АО «Янтарный» (Леновских М.А.)</div>
-      <div><b>Подрядчик:</b> ООО «ГАРДЕН СИТИ» (Ефимкин И.В.)</div>
+      <div><b>Заказчик:</b> АО «Янтарный» (Леновских М.А.), р/с 40702810706630000033, ГЕНБАНК, БИК 043510123</div>
+      <div><b>Подрядчик:</b> ООО «ГАРДЕН СИТИ» (Ефимкин И.В.), р/с 40702810302390005036, АЛЬФА-БАНК, БИК 044525593</div>
       <div><b>Объект:</b> Поле №78, кад. 90:12:140601:1230, 56,7 га</div>
-      <div><b>Срок выполнения:</b> 100 к.д. с даты предоплаты</div>
-      <div><b>Общая стоимость:</b> <span style="color:var(--gold);font-weight:700">46 811 588,42 руб.</span></div>
-      <div><b>Наценка генподр.:</b> не более 10% от матер. и работ</div>
+      <div><b>Срок выполнения:</b> 100 к.д. с даты получения предоплаты (п. 5.1)</div>
+      <div><b>Стоимость (приблизит.):</b> <span style="color:var(--gold);font-weight:700">38 393 848,42 руб.</span> в т.ч. НДС 22% = 6 923 480,86 руб.</div>
+      <div><b>Примечание:</b> Наценка на материалы не применяется. Итоговая стоимость — по факту выполненных работ</div>
     </div>
     <div class="tbl-wrap">
       <table class="t">
-        <thead><tr><th>Платёж</th><th>Дата</th><th class="num">Сумма, ₽</th><th>Статус</th></tr></thead>
+        <thead><tr><th>Платёж (п. 4.2 договора)</th><th>Дата</th><th class="num">Сумма, ₽</th><th>Статус</th></tr></thead>
         <tbody>
-          <tr style="background:rgba(255,170,0,.08)"><td>Платёж 1 (уточн.)</td><td style="color:var(--warn);font-weight:700">18.05.2026</td><td class="num" style="color:var(--warn);font-weight:700">7 000 000,00</td><td><span style="color:var(--warn);font-weight:700">Ближайший</span></td></tr>
-          <tr><td>Платёж 2 (уточн.)</td><td>25.05.2026</td><td class="num">5 000 000,00</td><td style="color:rgba(255,255,255,.45)">Ожидание</td></tr>
-          <tr><td>Платёж 3 (уточн.)</td><td>12.06.2026</td><td class="num">20 000 000,00</td><td style="color:rgba(255,255,255,.45)">Ожидание</td></tr>
-          <tr style="background:rgba(255,255,255,.03)"><td>Остаток (не согл.)</td><td style="color:rgba(255,255,255,.35)">TBD</td><td class="num" style="color:rgba(255,255,255,.35)">14 811 588,42</td><td style="color:rgba(255,255,255,.3)">Не согласован</td></tr>
-          <tr class="t-total"><td colspan="2">ИТОГО по договору</td><td class="num" style="color:var(--gold);font-size:15px">46 811 588,42</td><td></td></tr>
+          <tr style="background:rgba(139,26,47,.12)"><td>Предоплата (п. 4.2.1)</td><td style="color:#ff8a80;font-weight:700">15.05.2026</td><td class="num" style="color:#ff8a80;font-weight:700">10 000 000,00</td><td><span style="color:#ff8a80;font-weight:700">ПРОСРОЧЕНА</span></td></tr>
+          <tr><td>Платёж 2 (п. 4.2.2)</td><td>05.06.2026</td><td class="num">24 000 000,00</td><td style="color:rgba(255,255,255,.45)">Ожидание</td></tr>
+          <tr><td>Платёж 3 (п. 4.2.3)</td><td>19.06.2026</td><td class="num">4 393 848,42</td><td style="color:rgba(255,255,255,.45)">Ожидание</td></tr>
+          <tr class="t-total"><td colspan="2">ИТОГО по договору</td><td class="num" style="color:var(--gold);font-size:15px">38 393 848,42</td><td></td></tr>
         </tbody>
       </table>
     </div>
-    <div style="margin-top:12px;padding:10px 12px;background:rgba(139,26,47,.15);border-radius:8px;font-size:12px;color:#ff8a80;border:1px solid rgba(139,26,47,.35)">
-      ⚠️ <b>Оплата 15.05.2026 не поступила.</b> Уточнённый график от 14.05: 18.05 — 7 млн, 25.05 — 5 млн, 12.06 — 20 млн. Срок выполнения работ отсчитывается с даты получения первого платежа.
+    <div style="margin-top:8px;font-size:11px;color:rgba(255,170,0,.7);padding:6px 10px;background:rgba(180,100,0,.1);border-radius:6px;border:1px solid rgba(255,170,0,.2)">
+      ⚠️ Неофициальный график (Надежда): 18.05/7M, 25.05/5M, 12.06/20M — <b>не соответствует договору</b>, применять с осторожностью.
+    </div>
+    <div style="margin-top:8px;padding:10px 12px;background:rgba(139,26,47,.15);border-radius:8px;font-size:12px;color:#ff8a80;border:1px solid rgba(139,26,47,.35)">
+      ⚠️ <b>Предоплата 10 000 000 ₽ (15.05.2026) не поступила — ПРОСРОЧЕНА.</b> Срок выполнения работ (100 к.д.) отсчитывается с даты получения предоплаты — работы ещё не начались по условиям договора.
     </div>
   </div>
 
@@ -1830,9 +1825,9 @@ details.card .card-inner{padding:0 14px 14px}
         <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px">43,7%</div>
       </div>
       <div style="background:rgba(46,125,50,.1);border:1px solid rgba(46,125,50,.2);border-radius:8px;padding:10px;text-align:center">
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:4px">Цена договора</div>
-        <div style="font-size:14px;font-weight:700;color:#81c784">46 811 588 ₽</div>
-        <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px">смета + наценка ГС 10%</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:4px">Цена договора (приблизит.)</div>
+        <div style="font-size:14px;font-weight:700;color:#81c784">38 393 848 ₽</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:2px">= смета (п.4.1), наценка не применяется</div>
       </div>
     </div>
     <div style="font-size:11px;color:rgba(255,255,255,.4)">Заказчик: АО «Янтарный» · Подрядчик: ООО «ГАРДЕН СИТИ» · Объект: поле №78, 56,7 га, Симферопольский р-н, Крым</div>
@@ -2001,7 +1996,7 @@ details.card .card-inner{padding:0 14px 14px}
             <tr style="background:rgba(201,168,76,.05)">
               <td><b>Договор на монтаж системы орошения</b><br><small style="color:rgba(255,255,255,.4)">АО «Янтарный» → ООО «Гарден Сити» · Поле №78 · 56,7 га</small></td>
               <td>12.05.2026</td>
-              <td><span style="color:var(--gold);font-weight:700">46 811 588 ₽</span><br><small style="color:rgba(255,255,255,.4)">100 к.д. с предоплаты</small></td>
+              <td><span style="color:var(--gold);font-weight:700">38 393 848 ₽</span><br><small style="color:rgba(255,255,255,.4)">приблизит., в т.ч. НДС 22%</small></td>
               <td><span class="badge bg">Подписан</span></td>
               <td><a class="doc-pill" href="Договор автополив ООО Гарден Сити.docx" download style="display:inline-flex"><span class="doc-pill-icon">📝</span><span class="doc-pill-text"><b>Скачать</b></span></a></td>
             </tr>
@@ -3111,10 +3106,10 @@ document.addEventListener('DOMContentLoaded',initMap);
 
 // ── QA SYSTEM ───────────────────────────────────────────────────────────────
 const QA_DATA=[
-  {id:'q1',pri:'red',page:'Финансы',ask:'Ефимкин И.В. (Гарден Сити)',
-   title:'Расхождение суммы с НДС в договоре',
-   desc:'Смета без НДС: 38 393 848 ₽ × 1,22 = 46 840 494 ₽. В договоре: 46 811 588,42 ₽. Расхождение: 28 906 ₽.',
-   q:'Откуда взялась цифра 46 811 588,42 ₽? Была скидка, или НДС считался от другой базы?'},
+  {id:'q1',pri:'green',page:'Финансы',ask:'Закрыто 16.05.2026',
+   title:'Сумма договора уточнена ✅',
+   desc:'Договор №ГС-12-05 п.4.1: приблизительная стоимость 38 393 848,42 ₽ В Т.Ч. НДС 22% (= 6 923 480,86 ₽). Наценка на материалы не применяется. Ранее ошибочно указывалось 46 811 588 ₽ — цифра была неверной.',
+   q:'Вопрос закрыт: договор предусматривает 38 393 848,42 ₽ (с НДС). Итоговая сумма уточняется по факту работ.'},
   {id:'q2',pri:'blue',page:'Оборудование',ask:'Ваня / СУЛАНЖ · Шпилев',
    title:'Стартконнекторы: подтверждено 2 300 шт. ✅',
    desc:'Заявка от Шпилёва (14.05.2026): стартконнекторов — 2 300 шт. Спецификация и монтажный список обновлены.',
