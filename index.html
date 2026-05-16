@@ -3379,7 +3379,7 @@ function crewRender() {
         '<td style="color:var(--text-dim);text-align:center">' + (i+1) + '</td>' +
         '<td><b>' + w.name + '</b></td>' +
         '<td style="color:var(--text-dim)">' + (w.role||'—') + '</td>' +
-        '<td style="text-align:right">' + (w.rate||0).toLocaleString('ru') + ' ₽</td>' +
+        '<td style="text-align:right"><input type="number" min="0" value="' + (w.rate||0) + '" style="width:80px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:5px;padding:4px 6px;color:#fff;font-size:12px;outline:none;text-align:right" onchange="crewSetRate(' + i + ',+this.value)"></td>' +
         '<td style="text-align:center"><input type="number" min="0" max="200" value="' + days + '" style="width:64px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:5px;padding:4px 6px;color:#fff;font-size:12px;outline:none;text-align:center" onchange="crewSetDays(' + i + ',+this.value)"></td>' +
         '<td style="text-align:right;font-weight:700;color:' + (salary > 0 ? '#81c784' : 'rgba(255,255,255,.38)') + '">' + salary.toLocaleString('ru') + ' ₽</td>' +
         '<td style="text-align:center"><button onclick="crewRemove(' + i + ')" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,.3);font-size:16px;line-height:1;padding:2px 6px" title="Удалить">×</button></td>';
@@ -3414,6 +3414,12 @@ function crewAdd() {
 
 function crewSetDays(i, val) {
   crewData[i].days = Math.max(0, val || 0);
+  localStorage.setItem('crew_4s', JSON.stringify(crewData));
+  crewRender();
+}
+
+function crewSetRate(i, val) {
+  crewData[i].rate = Math.max(0, val || 0);
   localStorage.setItem('crew_4s', JSON.stringify(crewData));
   crewRender();
 }
