@@ -1355,7 +1355,7 @@ details.card .card-inner{padding:0 14px 14px}
   </div>
 
   <!-- Договор с АО Янтарный -->
-  <div class="card" style="border:2px solid rgba(201,168,76,.5)">
+  <div id="anchor-contract" class="card" style="border:2px solid rgba(201,168,76,.5)">
     <div class="card-title">📋 Договор №ГС-12-05 от 12.05.2026 — Монтаж системы орошения</div>
     <div style="margin-bottom:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
       <div><b>Заказчик:</b> АО «Янтарный» (Леновских М.А.), р/с 40702810706630000033, ГЕНБАНК, БИК 043510123</div>
@@ -1385,7 +1385,7 @@ details.card .card-inner{padding:0 14px 14px}
   </div>
 
   <!-- Счёт 125 — ПРОСРОЧЕН -->
-  <div class="card" style="border:2px solid #f48fb1">
+  <div id="anchor-invoices" class="card" style="border:2px solid #f48fb1">
     <div class="card-title">🚗 Счёт №125 от 12 мая 2026 г. — <span style="color:#c62828">СРОЧНО! (срок оплаты 15.05.2026 — ПРОСРОЧЕН)</span></div>
     <div class="tbl-wrap">
       <table class="t">
@@ -1930,10 +1930,10 @@ details.card .card-inner{padding:0 14px 14px}
   <div class="page-title">Реестр документов</div>
 
   <div class="kpi-row">
-    <div class="kpi"><div class="kpi-num">10</div><div class="kpi-lbl">файлов на сайте</div></div>
-    <div class="kpi danger-kpi"><div class="kpi-num">7</div><div class="kpi-lbl">счетов к оплате</div></div>
-    <div class="kpi danger-kpi"><div class="kpi-num">3</div><div class="kpi-lbl">документа отсутствуют</div></div>
-    <div class="kpi"><div class="kpi-num">1</div><div class="kpi-lbl">договор действующий</div></div>
+    <div class="kpi" style="cursor:pointer" onclick="showPage('docs')" title="Показать все документы"><div class="kpi-num">10</div><div class="kpi-lbl">файлов на сайте</div></div>
+    <div class="kpi danger-kpi" style="cursor:pointer" onclick="showPage('finance');setTimeout(()=>{const el=document.getElementById('anchor-invoices');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},150)" title="Перейти к счетам на оплату"><div class="kpi-num">7</div><div class="kpi-lbl">счетов к оплате ↗</div></div>
+    <div class="kpi danger-kpi" style="cursor:pointer" onclick="showPage('docs');setTimeout(()=>{const el=document.getElementById('anchor-missing');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},150)" title="Показать отсутствующие документы"><div class="kpi-num">3</div><div class="kpi-lbl">документа отсутствуют ↗</div></div>
+    <div class="kpi" style="cursor:pointer" onclick="showPage('finance');setTimeout(()=>{const el=document.getElementById('anchor-contract');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},150)" title="Перейти к договору №ГС-12-05"><div class="kpi-num">1</div><div class="kpi-lbl">договор действующий ↗</div></div>
   </div>
 
   <!-- Проектная документация -->
@@ -2091,7 +2091,7 @@ details.card .card-inner{padding:0 14px 14px}
   </div>
 
   <!-- Документы в ожидании -->
-  <div class="card danger-card">
+  <div id="anchor-missing" class="card danger-card">
     <div class="ch"><div class="ch-bar red"></div><div class="ch-title red">Ожидаемые документы (отсутствуют)</div></div>
     <div class="cb">
       <div class="tbl-wrap">
