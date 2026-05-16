@@ -1646,15 +1646,33 @@ details.card .card-inner{padding:0 14px 14px}
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-title">🏦 Реквизиты для оплаты</div>
-    <div class="info-row"><span class="info-key">Получатель</span><span class="info-val">ООО "СИСТЕМЫ ИРРИГАЦИИ"</span></div>
-    <div class="info-row"><span class="info-key">ИНН / КПП</span><span class="info-val">2364021882 / 236401001</span></div>
-    <div class="info-row"><span class="info-key">Банк</span><span class="info-val">Краснодарское отделение №8619 ПАО Сбербанк</span></div>
-    <div class="info-row"><span class="info-key">БИК</span><span class="info-val">040349602</span></div>
-    <div class="info-row"><span class="info-key">Кор. счёт</span><span class="info-val">30101810100000000602</span></div>
-    <div class="info-row"><span class="info-key">Рас. счёт</span><span class="info-val">40702810830000008188</span></div>
-    <div class="info-row"><span class="info-key">Назначение платежа</span><span class="info-val">Оплата по заказу клиента №ЦБ-242</span></div>
+  <div class="grid2">
+    <div class="card" style="margin-bottom:0">
+      <div class="ch"><div class="ch-bar"></div><div class="ch-title">🏦 Реквизиты · Счёт ЦБ-242 (ПГФ 3050)</div></div>
+      <div class="cb">
+        <div class="info-row"><span class="info-key">Получатель</span><span class="info-val">ООО "СИСТЕМЫ ИРРИГАЦИИ"</span></div>
+        <div class="info-row"><span class="info-key">ИНН / КПП</span><span class="info-val">2364021882 / 236401001</span></div>
+        <div class="info-row"><span class="info-key">Банк</span><span class="info-val">Краснодарское отд. №8619 ПАО Сбербанк</span></div>
+        <div class="info-row"><span class="info-key">БИК</span><span class="info-val">040349602</span></div>
+        <div class="info-row"><span class="info-key">Кор. счёт</span><span class="info-val">30101810100000000602</span></div>
+        <div class="info-row"><span class="info-key">Рас. счёт</span><span class="info-val">40702810830000008188</span></div>
+        <div class="info-row" style="background:rgba(201,168,76,.07);border-radius:5px;padding:4px 6px;margin-top:4px"><span class="info-key">Назначение</span><span class="info-val" style="color:var(--gold);font-weight:700">Оплата по заказу клиента №ЦБ-242</span></div>
+        <div class="info-row" style="margin-top:4px"><span class="info-key">Сумма</span><span class="info-val" style="color:var(--warn);font-weight:700">632 200,00 ₽</span></div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="ch"><div class="ch-bar"></div><div class="ch-title">🏦 Реквизиты · Счёт ЦБ-253 (Фильтры Aytok)</div></div>
+      <div class="cb">
+        <div class="info-row"><span class="info-key">Получатель</span><span class="info-val">ООО "СИСТЕМЫ ИРРИГАЦИИ"</span></div>
+        <div class="info-row"><span class="info-key">ИНН / КПП</span><span class="info-val">2364021882 / 236401001</span></div>
+        <div class="info-row"><span class="info-key">Банк</span><span class="info-val">Краснодарское отд. №8619 ПАО Сбербанк</span></div>
+        <div class="info-row"><span class="info-key">БИК</span><span class="info-val">040349602</span></div>
+        <div class="info-row"><span class="info-key">Кор. счёт</span><span class="info-val">30101810100000000602</span></div>
+        <div class="info-row"><span class="info-key">Рас. счёт</span><span class="info-val">40702810830000008188</span></div>
+        <div class="info-row" style="background:rgba(201,168,76,.07);border-radius:5px;padding:4px 6px;margin-top:4px"><span class="info-key">Назначение</span><span class="info-val" style="color:var(--gold);font-weight:700">Оплата по заказу клиента №ЦБ-253</span></div>
+        <div class="info-row" style="margin-top:4px"><span class="info-key">Сумма</span><span class="info-val" style="color:var(--danger);font-weight:700">276 999,37 ₽</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -3229,10 +3247,10 @@ const QA_DATA=[
    title:'KPI: 260 м³/ч — округление принято ✅',
    desc:'Смена 1 (блоки 3+19+24): 88 + 85 + 88 = 261 м³/ч. Округление до 260 м³/ч принято намеренно.',
    q:'Вопрос закрыт. Округление до 260 м³/ч — норма.'},
-  {id:'q8',pri:'yellow',page:'Финансы · Реквизиты',ask:'Внутреннее — исправление',
-   title:'Реквизиты: назначение платежа только «ЦБ-242», нет для ЦБ-253',
-   desc:'В блоке реквизитов внизу страницы Финансы — «Назначение: ЦБ-242». Счёт ЦБ-253 тоже к оплате.',
-   q:'Добавить второй блок реквизитов с назначением «ЦБ-253» или сделать переключатель?'},
+  {id:'q8',pri:'green',status:'resolved',page:'Финансы · Реквизиты',ask:'Закрыто',
+   title:'Реквизиты: добавлен блок для ЦБ-253 ✅',
+   desc:'Добавлена отдельная карточка реквизитов для счёта ЦБ-253 (фильтры Aytok, 276 999,37 ₽) рядом с ЦБ-242. Получатель тот же — ООО "Системы Ирригации", назначение платежа разное.',
+   q:'Вопрос закрыт. Реквизиты для ЦБ-253 добавлены на вкладку Финансы.'},
   {id:'q9',pri:'green',status:'resolved',page:'Насаждения · Квартал I',ask:'Закрыто',
    title:'Квартал I: итог и сумма совпадают — вопрос снят ✅',
    desc:'Сумма клеток 1–8: 2,2345+2,2072+2,2073+1,6862+1,8998+2,5342+3,1337+3,1338 = 19,0367 га. Итог в таблице: 19,0367 га — совпадает. Ошибка была в первоначальном подсчёте аудита.',
