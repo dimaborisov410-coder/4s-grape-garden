@@ -472,6 +472,7 @@ details.card .card-inner{padding:0 14px 14px}
 
     <div class="nav-item" data-roles="all монтаж" onclick="showPage('tasks',this)"><span class="ni">✅</span>Задачи<span class="nav-badge" id="tasks-badge">7</span></div>
     <div class="nav-item" data-roles="all монтаж заказчик" onclick="showPage('build',this)"><span class="ni">🔨</span>Монтаж</div>
+    <div class="nav-item" data-roles="all монтаж финансы" onclick="showPage('crew',this)"><span class="ni">👷</span>Бригада</div>
     <div class="nav-item" data-roles="all финансы" onclick="showPage('smeta',this)"><span class="ni">📋</span>Смета</div>
     <div class="nav-item" data-roles="all финансы" onclick="showPage('docs',this)"><span class="ni">📄</span>Документы</div>
     <div class="nav-item" data-roles="all" onclick="showPage('qa',this)"><span class="ni">❓</span>Вопросы<span class="nav-badge" id="qa-badge">13</span></div>
@@ -2148,7 +2149,7 @@ details.card .card-inner{padding:0 14px 14px}
     <div class="kpi"><div class="kpi-num">0/7</div><div class="kpi-lbl">этапов завершено</div></div>
     <div class="kpi danger-kpi"><div class="kpi-num">0%</div><div class="kpi-lbl">готовность</div></div>
     <div class="kpi warn"><div class="kpi-num">100</div><div class="kpi-lbl">дней по договору</div></div>
-    <div class="kpi"><div class="kpi-num">23.08</div><div class="kpi-lbl">плановая сдача</div></div>
+    <div class="kpi"><div class="kpi-num">25.08</div><div class="kpi-lbl">плановая сдача</div></div>
     <div class="kpi danger-kpi"><div class="kpi-num">0</div><div class="kpi-lbl">дней прошло</div></div>
     <div class="kpi"><div class="kpi-num">100</div><div class="kpi-lbl">дней осталось</div></div>
   </div>
@@ -2161,7 +2162,7 @@ details.card .card-inner{padding:0 14px 14px}
       </div>
       <div style="display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.4)">
         <span>Старт: после первого платежа (ближайший 18.05.2026)</span>
-        <span>Сдача: 23.08.2026 (100 к.д.)</span>
+        <span>Сдача: 25.08.2026 (100 к.д. с 18.05)</span>
       </div>
       <div style="margin-top:10px;padding:8px 10px;background:rgba(139,26,47,.12);border:1px solid rgba(139,26,47,.3);border-radius:6px;font-size:12px;color:#ff8a80">
         ⏸ Монтаж не начат — ожидаем первый платёж 7 000 000 ₽ от АО «Янтарный» до 18.05.2026. Сроки отсчитываются с даты получения.
@@ -2767,6 +2768,71 @@ details.card .card-inner{padding:0 14px 14px}
   </div>
 </div>
 
+<!-- ══════ БРИГАДА ══════ -->
+<div class="page" id="page-crew">
+  <div class="page-title">Бригада · Учёт рабочих дней и ЗП</div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-num" id="crew-count">0</div><div class="kpi-lbl">рабочих</div></div>
+    <div class="kpi"><div class="kpi-num" id="crew-days">0</div><div class="kpi-lbl">чел.-дней итого</div></div>
+    <div class="kpi warn"><div class="kpi-num" id="crew-salary">0</div><div class="kpi-lbl">ФОТ итого, ₽</div></div>
+    <div class="kpi"><div class="kpi-num" id="crew-avg">—</div><div class="kpi-lbl">ср. ставка, ₽/день</div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="ch"><div class="ch-bar"></div><div class="ch-title">Добавить рабочего</div></div>
+    <div class="cb">
+      <div style="display:grid;grid-template-columns:1fr 1fr 130px auto;gap:8px;align-items:end">
+        <div>
+          <div style="font-size:10px;color:var(--text-dim);margin-bottom:4px">ФИО</div>
+          <input id="crew-inp-name" type="text" placeholder="Иванов Иван Иванович" style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:7px 10px;color:#fff;font-size:12px;outline:none" onkeydown="if(event.key==='Enter')crewAdd()">
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--text-dim);margin-bottom:4px">Должность</div>
+          <input id="crew-inp-role" type="text" placeholder="Монтажник" style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:7px 10px;color:#fff;font-size:12px;outline:none" onkeydown="if(event.key==='Enter')crewAdd()">
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--text-dim);margin-bottom:4px">Ставка ₽/день</div>
+          <input id="crew-inp-rate" type="number" min="0" placeholder="2000" style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:7px 10px;color:#fff;font-size:12px;outline:none" onkeydown="if(event.key==='Enter')crewAdd()">
+        </div>
+        <button onclick="crewAdd()" style="background:var(--gold);color:#111;border:none;border-radius:6px;padding:8px 16px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;height:36px">+ Добавить</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch">
+      <div class="ch-bar"></div>
+      <div class="ch-title">Список рабочих</div>
+      <div style="margin-left:auto;font-size:9px;color:var(--text-faint)">Количество дней редактируется в таблице</div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="t" style="min-width:600px">
+        <thead>
+          <tr>
+            <th style="width:36px">#</th>
+            <th>ФИО</th>
+            <th>Должность</th>
+            <th style="text-align:right">Ставка, ₽/день</th>
+            <th style="text-align:center;width:90px">Дней</th>
+            <th style="text-align:right">Итого, ₽</th>
+            <th style="width:36px"></th>
+          </tr>
+        </thead>
+        <tbody id="crew-tbody"></tbody>
+        <tfoot>
+          <tr style="background:rgba(201,168,76,.08)">
+            <td colspan="4" style="text-align:right;font-weight:700;font-size:11px;color:var(--text-dim);padding:8px 10px">ИТОГО:</td>
+            <td id="crew-foot-days" style="text-align:center;font-weight:800;color:var(--gold);padding:8px 10px">0</td>
+            <td id="crew-foot-salary" style="text-align:right;font-weight:800;color:var(--gold);padding:8px 10px">0 ₽</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
 <!-- ══════ ВОПРОСЫ АУДИТА ══════ -->
 <div class="page" id="page-qa">
   <div class="page-title">Открытые вопросы аудита</div>
@@ -2826,6 +2892,10 @@ details.card .card-inner{padding:0 14px 14px}
     <button class="bot-tab" onclick="showPage('build',this)">
       <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
       Монтаж
+    </button>
+    <button class="bot-tab" onclick="showPage('crew',this)">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      Бригада
     </button>
     <button class="bot-tab" onclick="showPage('qa',this)">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -3286,6 +3356,77 @@ document.addEventListener('DOMContentLoaded',()=>{
   setRole(saved,null);
 });
 // ── END QA SYSTEM ────────────────────────────────────────────────────────────
+
+// ── БРИГАДА ──────────────────────────────────────────────────────────────────
+let crewData = JSON.parse(localStorage.getItem('crew_4s') || '[]');
+
+function crewRender() {
+  const tbody = document.getElementById('crew-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  let totalDays = 0, totalSalary = 0;
+
+  if (crewData.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:rgba(255,255,255,.3);padding:24px;font-size:12px">Рабочих пока нет — добавьте через форму выше</td></tr>';
+  } else {
+    crewData.forEach((w, i) => {
+      const days = w.days || 0;
+      const salary = days * (w.rate || 0);
+      totalDays += days;
+      totalSalary += salary;
+      const tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td style="color:var(--text-dim);text-align:center">' + (i+1) + '</td>' +
+        '<td><b>' + w.name + '</b></td>' +
+        '<td style="color:var(--text-dim)">' + (w.role||'—') + '</td>' +
+        '<td style="text-align:right">' + (w.rate||0).toLocaleString('ru') + ' ₽</td>' +
+        '<td style="text-align:center"><input type="number" min="0" max="200" value="' + days + '" style="width:64px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:5px;padding:4px 6px;color:#fff;font-size:12px;outline:none;text-align:center" onchange="crewSetDays(' + i + ',+this.value)"></td>' +
+        '<td style="text-align:right;font-weight:700;color:' + (salary > 0 ? '#81c784' : 'rgba(255,255,255,.38)') + '">' + salary.toLocaleString('ru') + ' ₽</td>' +
+        '<td style="text-align:center"><button onclick="crewRemove(' + i + ')" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,.3);font-size:16px;line-height:1;padding:2px 6px" title="Удалить">×</button></td>';
+      tbody.appendChild(tr);
+    });
+  }
+
+  const fmt = n => n.toLocaleString('ru');
+  document.getElementById('crew-count').textContent  = crewData.length;
+  document.getElementById('crew-days').textContent   = totalDays;
+  document.getElementById('crew-salary').textContent = fmt(totalSalary);
+  document.getElementById('crew-avg').textContent    = crewData.length
+    ? fmt(Math.round(crewData.reduce((s,w)=>s+(w.rate||0),0)/crewData.length))
+    : '—';
+  document.getElementById('crew-foot-days').textContent   = totalDays;
+  document.getElementById('crew-foot-salary').textContent = fmt(totalSalary) + ' ₽';
+}
+
+function crewAdd() {
+  const name = document.getElementById('crew-inp-name').value.trim();
+  const role = document.getElementById('crew-inp-role').value.trim() || 'Монтажник';
+  const rate = parseInt(document.getElementById('crew-inp-rate').value) || 0;
+  if (!name) { document.getElementById('crew-inp-name').focus(); return; }
+  crewData.push({ name, role, rate, days: 0 });
+  localStorage.setItem('crew_4s', JSON.stringify(crewData));
+  document.getElementById('crew-inp-name').value = '';
+  document.getElementById('crew-inp-role').value = '';
+  document.getElementById('crew-inp-rate').value = '';
+  document.getElementById('crew-inp-name').focus();
+  crewRender();
+}
+
+function crewSetDays(i, val) {
+  crewData[i].days = Math.max(0, val || 0);
+  localStorage.setItem('crew_4s', JSON.stringify(crewData));
+  crewRender();
+}
+
+function crewRemove(i) {
+  if (!confirm('Удалить «' + crewData[i].name + '»?')) return;
+  crewData.splice(i, 1);
+  localStorage.setItem('crew_4s', JSON.stringify(crewData));
+  crewRender();
+}
+
+document.addEventListener('DOMContentLoaded', crewRender);
+// ── END БРИГАДА ───────────────────────────────────────────────────────────────
 </script>
 </body>
 </html>
