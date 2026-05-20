@@ -490,7 +490,7 @@ body {
       tr(
         '<td colspan="2" style="text-align:right;font-size:7.5pt;color:var(--g-dark);">Итого Н'+(weekIdx+1)+
           ' ('+fmt(ms)+'–'+fmt(me)+')</td>'+
-        '<td style="text-align:center;color:var(--g-dark);">'+(weekIdx < 3 ? 'НС' : weekNorm)+'</td>'+
+        '<td style="text-align:center;color:var(--g-dark);">'+(weekNorm === 0 ? 'НС' : weekNorm)+'</td>'+
         '<td></td><td></td><td></td>',
         'week-sum'
       );
@@ -523,7 +523,7 @@ body {
   var ms15 = WEEK_STARTS[14];
   tr(
     '<td colspan="2" style="text-align:right;font-size:7.5pt;color:var(--g-dark);">Итого Н15 ('+fmt(ms15)+'–29.08)</td>'+
-    '<td style="text-align:center;color:var(--g-dark);">'+(weekNorm > 0 ? weekNorm : 6*NORM)+'</td>'+
+    '<td style="text-align:center;color:var(--g-dark);">'+weekNorm+'</td>'+
     '<td></td><td></td><td></td>',
     'week-sum'
   );
