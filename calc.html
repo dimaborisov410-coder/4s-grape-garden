@@ -379,6 +379,53 @@ body {
 </div><!-- /page p1 -->
 
 <!-- ═══════════════ PAGE 2: РАБОЧИЙ ═══════════════ -->
+<div class="page" id="p2">
+  <div class="ph">
+    <div>
+      <h1>РАБОЧИЙ · ПОСУТОЧНЫЙ ЖУРНАЛ</h1>
+      <div class="sub">Выдаётся каждому рабочему. Бригадир подписывает ежедневно. Период: 22.05 – 29.08.2026</div>
+    </div>
+    <div class="role-badge">👷 РАБОЧИЙ</div>
+  </div>
+
+  <div class="pb">
+    <div class="kpi-row kpi-light" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:8px;">
+      <div class="kpi-card">
+        <div class="lbl" style="color:var(--muted);">ФИО / Бригада</div>
+        <div class="val" style="font-size:10pt;border-bottom:1.5px solid var(--g-dark);padding-bottom:2px;">&nbsp;</div>
+      </div>
+      <div class="kpi-card">
+        <div class="lbl" style="color:var(--muted);">Норма в день (с 09.06)</div>
+        <div class="val">325 м</div>
+        <div class="sub-val" style="color:var(--muted);">10 ч/день, 6 дн/нед</div>
+      </div>
+      <div class="kpi-card">
+        <div class="lbl" style="color:var(--muted);">Период</div>
+        <div class="val" style="font-size:10pt;">22.05 – 29.08</div>
+        <div class="sub-val" style="color:var(--muted);">86 р.дн. / 100 к.д.</div>
+      </div>
+    </div>
+
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width:42px;">Дата</th>
+          <th>Участок / Блок</th>
+          <th style="width:52px;">Норма, м</th>
+          <th style="width:52px;">Факт, м</th>
+          <th style="width:60px;">Нараст., м</th>
+          <th style="width:60px;">Подпись бриг.</th>
+        </tr>
+      </thead>
+      <tbody id="worker-rows">
+      </tbody>
+    </table>
+
+    <div style="margin-top:8px;font-size:7pt;color:var(--muted);border-top:1px solid var(--border);padding-top:4px;">
+      * При печати выбрать «Все страницы» — журнал занимает несколько листов A4. НС/тр. = нестандартные работы (трубы, монтаж оборудования) — норма капли не применяется.
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════ PAGE 3: БРИГАДИР ═══════════════ -->
 
@@ -387,7 +434,100 @@ body {
 <!-- ═══════════════ PAGE 5: ДИРЕКТОР ═══════════════ -->
 
 <script>
-/* Генератор строк таблицы Рабочего (Стр. 2) */
+(function buildWorkerTable() {
+  var tbody = document.getElementById('worker-rows');
+  if (!tbody) return;
+
+  var START      = new Date(2026, 4, 22);
+  var DRIP_START = new Date(2026, 5, 9);
+  var END        = new Date(2026, 7, 29);
+  var NORM       = 325;
+
+  var WEEK_STARTS = [
+    new Date(2026,4,22), new Date(2026,4,25),
+    new Date(2026,5,1),  new Date(2026,5,8),
+    new Date(2026,5,15), new Date(2026,5,22),
+    new Date(2026,5,29), new Date(2026,6,6),
+    new Date(2026,6,13), new Date(2026,6,20),
+    new Date(2026,6,27), new Date(2026,7,3),
+    new Date(2026,7,10), new Date(2026,7,17),
+    new Date(2026,7,24)
+  ];
+
+  var HIGHLIGHTS = {
+    '2026-06-09': 'Старт капли ▶',
+    '2026-06-30': '◆ КТ-1 план 46 800 м',
+    '2026-07-21': '◆ КТ-2 план 85 800 м',
+    '2026-08-01': '◆ КТ-3 план 163 800 м',
+    '2026-08-22': '◆ Финиш капли 217 000 м'
+  };
+
+  function fmt(d) {
+    return ('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2);
+  }
+  function iso(d) {
+    return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+  }
+  function tr(html, cls) {
+    var row = document.createElement('tr');
+    if (cls) row.className = cls;
+    row.innerHTML = html;
+    tbody.appendChild(row);
+  }
+
+  var cur      = new Date(START);
+  var weekIdx  = 0;
+  var weekDays = 0;
+  var weekNorm = 0;
+
+  while (cur <= END) {
+    if (cur.getDay() === 0) { cur.setDate(cur.getDate()+1); continue; }
+
+    var nextWeek = WEEK_STARTS[weekIdx + 1];
+    if (nextWeek && cur >= nextWeek) {
+      var ms = WEEK_STARTS[weekIdx];
+      var me = new Date(nextWeek); me.setDate(me.getDate()-1);
+      tr(
+        '<td colspan="2" style="text-align:right;font-size:7.5pt;color:var(--g-dark);">Итого Н'+(weekIdx+1)+
+          ' ('+fmt(ms)+'–'+fmt(me)+')</td>'+
+        '<td style="text-align:center;color:var(--g-dark);">'+(weekIdx < 3 ? 'НС' : weekNorm)+'</td>'+
+        '<td></td><td></td><td></td>',
+        'week-sum'
+      );
+      weekIdx++;
+      weekDays = 0;
+      weekNorm = 0;
+    }
+
+    var key  = iso(cur);
+    var isNS = cur < DRIP_START;
+    var hl   = HIGHLIGHTS[key];
+    var cls  = hl ? 'milestone' : (isNS ? 'ns' : '');
+    var normCell = isNS
+      ? '<span style="color:var(--muted);font-style:italic;">НС/тр.</span>'
+      : NORM;
+
+    tr(
+      '<td style="white-space:nowrap;">'+fmt(cur)+'</td>'+
+      '<td style="'+(hl?'font-weight:bold;color:var(--g-dark);':'')+'">'+(hl||'')+'</td>'+
+      '<td style="text-align:center;">'+normCell+'</td>'+
+      '<td></td><td></td><td></td>',
+      cls
+    );
+
+    if (!isNS) { weekDays++; weekNorm += NORM; }
+    cur.setDate(cur.getDate()+1);
+  }
+
+  /* Итоговая строка последней недели (Н15) */
+  var ms15 = WEEK_STARTS[14];
+  tr(
+    '<td colspan="2" style="text-align:right;font-size:7.5pt;color:var(--g-dark);">Итого Н15 ('+fmt(ms15)+'–29.08)</td>'+
+    '<td style="text-align:center;color:var(--g-dark);">'+(weekNorm > 0 ? weekNorm : 6*NORM)+'</td>'+
+    '<td></td><td></td><td></td>',
+    'week-sum'
+  );
+})();
 </script>
 </body>
 </html>
