@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>График работ · Виноградник · 22.05–29.08.2026</title>
+<style>
+@page { size: A4 landscape; margin: 10mm 12mm; }
+@media print { .no-print { display:none!important; } body { font-size:8pt; } }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:Arial,sans-serif; font-size:9.5pt; color:#1a1a1a; line-height:1.4; background:#fff; }
+.no-print { position:fixed; top:16px; right:16px; background:#1b5e20; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-size:12px; font-weight:700; cursor:pointer; z-index:999; }
+.no-print:hover { background:#2e7d32; }
+h1 { font-size:13pt; font-weight:900; color:#1b5e20; border-bottom:2px solid #1b5e20; padding-bottom:3px; margin:6mm 0 3mm; }
+h2 { font-size:10.5pt; font-weight:800; margin:4mm 0 2mm; color:#1a1a1a; }
+h3 { font-size:9.5pt; font-weight:700; color:#1b5e20; margin:3mm 0 2mm; }
+p { margin-bottom:3mm; }
+.cover { text-align:center; padding:18mm 0 12mm; border-bottom:3px solid #1b5e20; margin-bottom:7mm; }
+.cover-title { font-size:20pt; font-weight:900; line-height:1.2; margin-bottom:4mm; }
+.cover-sub { font-size:11pt; color:#555; margin-bottom:5mm; }
+.cover-badge { display:inline-block; background:#1b5e20; color:#fff; padding:4px 16px; border-radius:20px; font-size:10pt; font-weight:700; margin-bottom:7mm; }
+.cover-info { font-size:9.5pt; color:#444; line-height:2; }
+table { width:100%; border-collapse:collapse; margin-bottom:4mm; font-size:9pt; }
+th { background:#1b5e20; color:#fff; padding:4px 6px; text-align:left; font-size:8.5pt; }
+td { padding:3px 6px; border-bottom:1px solid #e0e0e0; vertical-align:middle; }
+tr:nth-child(even) td { background:#f5f5f5; }
+tr.grp td { background:#e8f5e9; font-weight:700; color:#1b5e20; }
+tr.total td { background:#1b5e20; color:#fff; font-weight:900; }
+tr.deficit td { background:#ffebee; color:#c62828; font-weight:700; }
+.num { text-align:right; }
+.alert-red { background:#ffebee; border-left:4px solid #c62828; padding:3mm 5mm; margin:3mm 0; font-size:9.5pt; }
+.alert-orange { background:#fff8e1; border-left:4px solid #f59f00; padding:3mm 5mm; margin:3mm 0; font-size:9.5pt; }
+.alert-green { background:#e8f5e9; border-left:4px solid #1b5e20; padding:3mm 5mm; margin:3mm 0; font-size:9.5pt; }
+.page-break { page-break-before:always; }
+.footer { margin-top:8mm; padding-top:3mm; border-top:1px solid #ccc; font-size:8pt; color:#888; display:flex; justify-content:space-between; }
+/* CARDS */
+.kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; margin-bottom:5mm; }
+.kpi { border:1.5px solid #c8e6c9; border-radius:4px; padding:3mm; text-align:center; }
+.kpi .big { font-size:20pt; font-weight:900; color:#1b5e20; line-height:1; margin:2mm 0 1mm; }
+.kpi .lbl { font-size:7.5pt; color:#777; text-transform:uppercase; }
+.kpi .sub { font-size:8pt; color:#555; margin-top:1mm; }
+.kpi.red { border-color:#ffcdd2; }
+.kpi.red .big { color:#c62828; }
+/* SCHEDULE */
+.sched { table-layout:fixed; font-size:7.5pt; }
+.sched th { font-size:7pt; text-align:center; padding:3px 2px; }
+.sched th.name-h { text-align:left; width:125px; }
+.sched th.brg-h { width:32px; }
+.sched th.week-h { width:58px; }
+.sched td.name-c { font-weight:700; font-size:8.5pt; border-right:2px solid #1b5e20; white-space:nowrap; }
+.sched td.brg-c { font-weight:900; font-size:8.5pt; text-align:center; border-right:2px solid #1b5e20; }
+.sched td.task { text-align:center; font-size:7pt; padding:3px 2px; line-height:1.35; }
+.sched tr.sep td { height:5px; background:#e8f5e9; padding:0; }
+/* WORK TYPE COLORS */
+.t-ns   { background:#e3f2fd; color:#0d47a1; }
+.t-ge   { background:#fff8e1; color:#5d4037; }
+.t-mag  { background:#e8eaf6; color:#283593; }
+.t-lat  { background:#f3e5f5; color:#6a1b9a; }
+.t-drip { background:#e8f5e9; color:#1b5e20; }
+.t-val  { background:#fce4ec; color:#880e4f; }
+.t-pnr  { background:#e0f2f1; color:#004d40; }
+.t-mgmt { background:#fff3e0; color:#e65100; }
+/* LEGEND */
+.legend { display:flex; flex-wrap:wrap; gap:3mm; margin-bottom:4mm; }
+.leg-item { display:flex; align-items:center; gap:2mm; font-size:8.5pt; }
+.leg-box { width:14px; height:14px; border-radius:2px; flex-shrink:0; }
+</style>
+</head>
+<body>
+<button class="no-print" onclick="window.print()">🖨 Сохранить PDF</button>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-title">ГРАФИК ПРОИЗВОДСТВА РАБОТ<br>КАПЕЛЬНОЕ ОРОШЕНИЕ · ПОЛЕ №78</div>
+  <div class="cover-sub">Виноградник · 56,7 га · с. Пожарское, Крым · 24 блока · 217 000 м капельной трубки</div>
+  <div class="cover-badge">Старт: 22.05.2026 · 100 к.д. · Финиш: 29.08.2026</div>
+  <div class="cover-info">
+    <b>Субподрядчик:</b> ООО «СУЛАНЖ» &nbsp;·&nbsp; <b>Генподрядчик:</b> ООО «Гарден Сити» &nbsp;·&nbsp; <b>Договор:</b> №ГС-12-05 от 12.05.2026<br>
+    <b>Рабочих на объекте:</b> 15 человек (13 полевых + 2 ИТР) &nbsp;·&nbsp; <b>Режим:</b> 6 дней/нед. · пн–сб · 10 ч/день<br>
+    <b>Рабочих дней в 100 к.д. (6-дн. нед.):</b> 86 дней &nbsp;·&nbsp; <b>Фонд трудоёмкости:</b> 13 × 86 = <b>1 118 чел-дней</b>
+  </div>
+</div>
+
+<!-- KPI -->
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="lbl">Полевых рабочих</div>
+    <div class="big">13</div>
+    <div class="sub">9 чел. ГС + 4 чел. СУЛАНЖ<br>+ 2 ИТР (Шпилёв, Яковлев)</div>
+  </div>
+  <div class="kpi">
+    <div class="lbl">Рабочих дней</div>
+    <div class="big">86</div>
+    <div class="sub">22.05 → 29.08.2026<br>6 дней в неделю</div>
+  </div>
+  <div class="kpi">
+    <div class="lbl">Фонд чел-дней</div>
+    <div class="big">1 118</div>
+    <div class="sub">Потребность: ~1 200 чел-дней<br>Дефицит: ~82 чел-дня</div>
+  </div>
+  <div class="kpi red">
+    <div class="lbl">Дефицит к 30.06</div>
+    <div class="big">~45</div>
+    <div class="sub" style="color:#c62828">Нужно 60 чел. к 30.06<br>Есть только 15 чел.</div>
+  </div>
+</div>
+
+<!-- TEAMS -->
+<h1>1. Состав бригад</h1>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4mm;margin-bottom:4mm">
+  <div>
+    <h3 style="background:#e8eaf6;padding:2mm 3mm;border-radius:3px">Бригада А — «Магистраль» · 5 чел. ГС</h3>
+    <table style="font-size:8.5pt">
+      <thead><tr><th>№</th><th>ФИО</th><th>Основная работа</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><b>Примачок Ю.</b></td><td>Трубопроводы → Капля</td></tr>
+        <tr><td>2</td><td><b>Темников А.</b></td><td>Трубопроводы → Капля</td></tr>
+        <tr><td>3</td><td><b>Швец-Роговой Д.</b></td><td>Трубопроводы → Капля</td></tr>
+        <tr><td>4</td><td><b>Васильев А.</b></td><td>Трубопроводы → Капля</td></tr>
+        <tr><td>5</td><td><b>Рыков В.</b></td><td>Трубопроводы → Капля</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3 style="background:#fff8e1;padding:2mm 3mm;border-radius:3px">Бригада Б — «Земля/Латераль» · 4 чел. ГС</h3>
+    <table style="font-size:8.5pt">
+      <thead><tr><th>№</th><th>ФИО</th><th>Основная работа</th></tr></thead>
+      <tbody>
+        <tr><td>6</td><td><b>Прусаков А.</b></td><td>Земляные → d75/d50 → Капля</td></tr>
+        <tr><td>7</td><td><b>Борисов Д.</b></td><td>Земляные → d75/d50 → Капля</td></tr>
+        <tr><td>8</td><td><b>Борисов А.</b></td><td>Земляные → d75/d50 → Капля</td></tr>
+        <tr><td>9</td><td><b>Браковенко Я.</b></td><td>Земляные → d75/d50 → Капля</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3 style="background:#e8f5e9;padding:2mm 3mm;border-radius:3px">Бригада В — «Капельная» · 4 чел. СУЛАНЖ</h3>
+    <table style="font-size:8.5pt">
+      <thead><tr><th>№</th><th>ФИО</th><th>Основная работа</th></tr></thead>
+      <tbody>
+        <tr><td>10</td><td><b>Костров Павел</b></td><td>d140 → Капля (весь период)</td></tr>
+        <tr><td>11</td><td><b>Моисеенко Александр</b></td><td>d140 → Капля (весь период)</td></tr>
+        <tr><td>12</td><td><b>Божко Денис</b></td><td>d140 → Капля (весь период)</td></tr>
+        <tr><td>13</td><td><b>Высидалко Максим</b></td><td>d140 → Капля (весь период)</td></tr>
+      </tbody>
+    </table>
+    <div style="font-size:8pt;color:#555;margin-top:2mm"><b>ИТР:</b> Шпилёв А.А. (РП) · Яковлев А. (снабжение)</div>
+  </div>
+</div>
+
+<!-- VOLUMES & NORMS -->
+<h1>2. Объёмы работ, нормы и расчёт по бригадам</h1>
+<table>
+  <thead>
+    <tr>
+      <th style="width:4%">Эт.</th>
+      <th style="width:28%">Вид работ</th>
+      <th class="num" style="width:10%">Объём</th>
+      <th style="width:6%">Ед.</th>
+      <th class="num" style="width:12%">Норма / чел-день</th>
+      <th class="num" style="width:9%">Чел-дней</th>
+      <th style="width:7%">Бригада</th>
+      <th class="num" style="width:5%">Чел.</th>
+      <th class="num" style="width:11%">Дней бригадой</th>
+      <th style="width:8%">Период</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="grp"><td colspan="10">ЭТАП 1–2 · НС + Ёмкости + Фильтрация</td></tr>
+    <tr><td>1</td><td>Монтаж НС-1 + НС-2 Masdaf + обвязка</td><td class="num">2 к-та</td><td>ед.</td><td class="num">бригада</td><td class="num">45</td><td>А + В</td><td class="num">9</td><td class="num"><b>5 дн.</b></td><td>22–28.05</td></tr>
+    <tr><td>1</td><td>Монтаж 8 ёмкостей ПЭ 10 000 л</td><td class="num">8</td><td>шт.</td><td class="num">2 шт./чел.</td><td class="num">16</td><td>Б</td><td class="num">4</td><td class="num"><b>4 дн.</b></td><td>26–31.05</td></tr>
+    <tr><td>2</td><td>ПГФ 3050 + фильтры Aytok + Hurricane</td><td class="num">5</td><td>ед.</td><td class="num">бригада</td><td class="num">15</td><td>А</td><td class="num">5</td><td class="num"><b>3 дн.</b></td><td>02–04.06</td></tr>
+    <tr class="grp"><td colspan="10">ЭТАП 3 · Земляные работы (параллельно с Эт. 4, экскаватор + бригада)</td></tr>
+    <tr><td>3</td><td>Траншеи 0,7×0,6 м (экскаватор + бригада)</td><td class="num">8 278</td><td>м.п.</td><td class="num">50 м / чел.</td><td class="num">166</td><td>Б</td><td class="num">4</td><td class="num"><b>42 дн.</b></td><td>22.05–12.07</td></tr>
+    <tr><td>3</td><td>Засыпка грунта + уплотнение (текущая)</td><td class="num">3 500</td><td>м³</td><td class="num">параллельно</td><td class="num">—</td><td>Б</td><td class="num">4</td><td class="num">включено</td><td>04.06–14.07</td></tr>
+    <tr class="grp"><td colspan="10">ЭТАП 4 · Магистраль + Латераль</td></tr>
+    <tr><td>4</td><td>Труба ПЭ d110 SDR17 (магистраль НС1→НС2)</td><td class="num">592</td><td>м.п.</td><td class="num">50 м</td><td class="num">12</td><td>А</td><td class="num">5</td><td class="num"><b>3 дн.</b></td><td>16–18.06</td></tr>
+    <tr><td>4</td><td>Труба ПЭ d140 SDR21</td><td class="num">800</td><td>м.п.</td><td class="num">40 м</td><td class="num">20</td><td>В</td><td class="num">4</td><td class="num"><b>5 дн.</b></td><td>02–06.06</td></tr>
+    <tr><td>4</td><td>Труба ПЭ d110 SDR21 (распределит.)</td><td class="num">2 400</td><td>м.п.</td><td class="num">50 м</td><td class="num">48</td><td>А</td><td class="num">5</td><td class="num"><b>10 дн.</b></td><td>09–20.06</td></tr>
+    <tr><td>4</td><td>Труба ПЭ d75 SDR21</td><td class="num">5 700</td><td>м.п.</td><td class="num">65 м</td><td class="num">88</td><td>А + Б</td><td class="num">9</td><td class="num"><b>10 дн.</b></td><td>23.06–05.07</td></tr>
+    <tr><td>4</td><td>Труба ПЭ d50 SDR21</td><td class="num">1 500</td><td>м.п.</td><td class="num">80 м</td><td class="num">19</td><td>Б</td><td class="num">4</td><td class="num"><b>5 дн.</b></td><td>07–11.07</td></tr>
+    <tr><td>4</td><td>Фитинги и фасонные части (параллельно)</td><td class="num">2 522</td><td>шт.</td><td class="num">35 шт.</td><td class="num">72</td><td>А</td><td class="num">5</td><td class="num">параллельно</td><td>09.06–05.07</td></tr>
+    <tr><td>4</td><td>Хомуты седловые 3/4" и 1" (параллельно)</td><td class="num">2 184</td><td>шт.</td><td class="num">60 шт.</td><td class="num">36</td><td>Б</td><td class="num">4</td><td class="num">параллельно</td><td>23.06–12.07</td></tr>
+    <tr class="grp"><td colspan="10">ЭТАП 5 · Капельная лента — КРИТИЧЕСКИЙ ПУТЬ</td></tr>
+    <tr><td>5</td><td>Трубка METZER 2 л/ч (укладка + крючки 217 000 шт.)</td><td class="num">217 000</td><td>м.п.</td><td class="num"><b>325 м / чел.</b></td><td class="num"><b>668</b></td><td>В → А+Б</td><td class="num">13</td><td class="num"><b>52 дн. макс.</b></td><td>09.06–23.08</td></tr>
+    <tr><td>5</td><td>Стартконнекторы 16×Н3/4" + заглушки 16 мм</td><td class="num">4 600</td><td>шт.</td><td class="num">80 шт.</td><td class="num">58</td><td>В</td><td class="num">4</td><td class="num">параллельно</td><td>09.06–23.08</td></tr>
+    <tr><td>5</td><td>Слепая трубка 16 мм (1,5 м/ряд)</td><td class="num">3 470</td><td>м.п.</td><td class="num">включено</td><td class="num">—</td><td>В</td><td class="num">4</td><td class="num">параллельно</td><td>09.06–23.08</td></tr>
+    <tr class="grp"><td colspan="10">ЭТАП 6–7 · Клапаны ПИОНЕР + Пусконаладка</td></tr>
+    <tr><td>6</td><td>Клапаны ПИОНЕР 3" (16 шт.) + 2" (8 шт.) + PRV (24 шт.)</td><td class="num">48</td><td>шт.</td><td class="num">3–4 шт.</td><td class="num">12</td><td>А</td><td class="num">4</td><td class="num"><b>3 дн.</b></td><td>25–27.08</td></tr>
+    <tr><td>7</td><td>Пусконаладка, тесты 11 смен, инструктаж, КС-2</td><td class="num">—</td><td>—</td><td class="num">—</td><td class="num">30</td><td>все</td><td class="num">6</td><td class="num"><b>5 дн.</b></td><td>25–29.08</td></tr>
+    <tr class="total"><td colspan="5"><b>ИТОГО чел-дней (критический путь)</b></td><td class="num"><b>~1 200</b></td><td colspan="4"><b>Доступно: 1 118 чел-дней · Дефицит: ~82 чел-дня</b></td></tr>
+  </tbody>
+</table>
+
+<!-- DRIP TAPE MATH -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-bottom:4mm">
+  <div>
+    <h2>Расчёт: капельная лента с 13 рабочими</h2>
+    <table>
+      <thead><tr><th>Бригада</th><th class="num">Чел.</th><th class="num">Дней на капле</th><th class="num">Выработка, м</th></tr></thead>
+      <tbody>
+        <tr><td>В (СУЛАНЖ) — с Н4 (09.06)</td><td class="num">4</td><td class="num">71</td><td class="num">92 300</td></tr>
+        <tr><td>А (ГС) — с Н9 (14.07), после труб</td><td class="num">5</td><td class="num">36</td><td class="num">58 500</td></tr>
+        <tr><td>Б (ГС) — с Н9 (14.07), после земли</td><td class="num">4</td><td class="num">36</td><td class="num">46 800</td></tr>
+        <tr class="total"><td><b>ИТОГО уложат</b></td><td class="num"><b>13</b></td><td class="num">—</td><td class="num"><b>197 600 м</b></td></tr>
+        <tr><td colspan="3" style="font-weight:700">Нужно уложить</td><td class="num" style="font-weight:700">217 000 м</td></tr>
+        <tr class="deficit"><td colspan="3"><b>ДЕФИЦИТ</b></td><td class="num"><b>−19 400 м</b></td></tr>
+        <tr><td colspan="3" style="color:#1b5e20;font-weight:700">Нужно доп. рабочих (на капле)</td><td class="num" style="color:#1b5e20;font-weight:700">+2–3 чел.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Трубопроводы к 30.06 — реалистично?</h2>
+    <table>
+      <thead><tr><th>Вид труб</th><th class="num">Объём</th><th class="num">Бригада, чел.</th><th class="num">Дней</th><th>Срок</th></tr></thead>
+      <tbody>
+        <tr><td>d140 SDR21</td><td class="num">800 м</td><td class="num">Б·4</td><td class="num">5</td><td>02–06.06</td></tr>
+        <tr><td>d110 SDR17 (маг.)</td><td class="num">592 м</td><td class="num">А·5</td><td class="num">3</td><td>16–18.06</td></tr>
+        <tr><td>d110 SDR21</td><td class="num">2 400 м</td><td class="num">А·5</td><td class="num">10</td><td>09–20.06</td></tr>
+        <tr><td>d75 SDR21</td><td class="num">5 700 м</td><td class="num">А+Б·9</td><td class="num">10</td><td>23.06–05.07</td></tr>
+        <tr><td>d50 SDR21</td><td class="num">1 500 м</td><td class="num">Б·4</td><td class="num">5</td><td>07–11.07</td></tr>
+        <tr class="grp"><td colspan="3"><b>Все трубы закончены</b></td><td class="num"><b>~11.07</b></td><td><b>до 14.07 ✓</b></td></tr>
+      </tbody>
+    </table>
+    <div class="alert-green" style="font-size:8.5pt;margin-top:2mm">
+      ✅ <b>Трубопроводы (магистраль + латераль) выполнимы к 14.07</b> текущим составом. По критическому графику — к 30.06 закрывается ~70% (d140 + d110 SDR17 + d110 SDR21 + начало d75).
+    </div>
+  </div>
+</div>
+
+<div class="alert-red">
+  <b>🚨 ВЫВОД:</b> При 13 полевых рабочих и 6-дневной неделе недостаёт <b>~19 400 м</b> капельной трубки (~82 чел-дня). Нужно <b>+2–3 человека на весь период</b> ИЛИ <b>+5–6 человек с 14 июля</b> исключительно на укладку капли.
+</div>
+<div class="alert-orange" style="margin-top:2mm">
+  <b>💡 Оптимальное решение:</b> Нанять 3–5 разнорабочих с 01.07, поставить их под руководство бригады В на капельную ленту. Норма освоения — 2–3 дня. Это закроет дефицит и обеспечит сдачу к 25.08 с запасом ~1 недели.
+</div>
+
+<!-- WEEKLY SCHEDULE -->
+<div class="page-break"></div>
+<h1>3. Понедельный график — кто, что и сколько</h1>
+
+<div class="legend">
+  <div class="leg-item"><div class="leg-box t-ns"></div>НС + ёмкости + фильтрация</div>
+  <div class="leg-item"><div class="leg-box t-ge"></div>Земляные работы + засыпка</div>
+  <div class="leg-item"><div class="leg-box t-mag"></div>Магистраль d110/d140</div>
+  <div class="leg-item"><div class="leg-box t-lat"></div>Латераль d75/d50 + хомуты</div>
+  <div class="leg-item"><div class="leg-box t-drip"></div>Капельная лента METZER</div>
+  <div class="leg-item"><div class="leg-box t-val"></div>Клапаны ПИОНЕР</div>
+  <div class="leg-item"><div class="leg-box t-pnr"></div>Пусконаладка / сдача</div>
+  <div class="leg-item"><div class="leg-box t-mgmt"></div>Координация / снабжение</div>
+</div>
+
+<p style="font-size:8pt;color:#555;margin-bottom:3mm">
+  <b>Н1</b>=22–24.05(3дн) &nbsp;·&nbsp; <b>Н2</b>=26–31.05(6) &nbsp;·&nbsp; <b>Н3</b>=02–07.06(6) &nbsp;·&nbsp; <b>Н4</b>=09–14.06(6) &nbsp;·&nbsp; <b>Н5</b>=16–21.06(6) &nbsp;·&nbsp; <b>Н6</b>=23–28.06(6) &nbsp;·&nbsp; <b>Н7</b>=30.06–05.07(6) &nbsp;·&nbsp; <b>Н8</b>=07–12.07(6) &nbsp;·&nbsp; <b>Н9</b>=14–19.07(6) &nbsp;·&nbsp; <b>Н10</b>=21–26.07(6) &nbsp;·&nbsp; <b>Н11</b>=28.07–02.08(6) &nbsp;·&nbsp; <b>Н12</b>=04–09.08(6) &nbsp;·&nbsp; <b>Н13</b>=11–16.08(6) &nbsp;·&nbsp; <b>Н14</b>=18–23.08(6) &nbsp;·&nbsp; <b>Н15</b>=25–29.08(5)
+</p>
+
+<table class="sched">
+  <thead>
+    <tr>
+      <th class="name-h">Работник</th>
+      <th class="brg-h">Брг</th>
+      <th class="week-h">Н1<br>22–24.05<br>3 дня</th>
+      <th class="week-h">Н2<br>26–31.05<br>6 дн.</th>
+      <th class="week-h">Н3<br>02–07.06<br>6 дн.</th>
+      <th class="week-h">Н4<br>09–14.06<br>6 дн.</th>
+      <th class="week-h">Н5<br>16–21.06<br>6 дн.</th>
+      <th class="week-h">Н6<br>23–28.06<br>6 дн.</th>
+      <th class="week-h">Н7<br>30.06–05.07<br>6 дн.</th>
+      <th class="week-h">Н8<br>07–12.07<br>6 дн.</th>
+      <th class="week-h">Н9<br>14–19.07<br>6 дн.</th>
+      <th class="week-h">Н10<br>21–26.07<br>6 дн.</th>
+      <th class="week-h">Н11<br>28.07–02.08<br>6 дн.</th>
+      <th class="week-h">Н12<br>04–09.08<br>6 дн.</th>
+      <th class="week-h">Н13<br>11–16.08<br>6 дн.</th>
+      <th class="week-h">Н14<br>18–23.08<br>6 дн.</th>
+      <th class="week-h">Н15<br>25–29.08<br>5 дн.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- ITR -->
+    <tr>
+      <td class="name-c">Шпилёв А.А. (РП)</td>
+      <td class="brg-c t-mgmt">ИТР</td>
+      <td class="task t-mgmt" colspan="15" style="text-align:left;padding-left:4px">Координация · приёмка материалов · контроль качества · отчётность · контакт с заказчиком</td>
+    </tr>
+    <tr>
+      <td class="name-c">Яковлев А. (снабж.)</td>
+      <td class="brg-c t-mgmt">ИТР</td>
+      <td class="task t-mgmt" colspan="15" style="text-align:left;padding-left:4px">Снабжение · логистика · согласование поставок · документооборот</td>
+    </tr>
+    <tr class="sep"><td colspan="17"></td></tr>
+
+    <!-- TEAM A -->
+    <tr>
+      <td class="name-c">Примачок Ю.</td>
+      <td class="brg-c t-mag">А</td>
+      <td class="task t-ns">НС-1<br>монтаж</td>
+      <td class="task t-ns">НС-2<br>Masdaf</td>
+      <td class="task t-ns">Фильтр<br>ПГФ</td>
+      <td class="task t-mag">d110<br>SDR21<br>50м/д</td>
+      <td class="task t-mag">d110<br>SDR17<br>50м/д</td>
+      <td class="task t-lat">d75<br>65м/д</td>
+      <td class="task t-lat">d75<br>+фит.<br>65м/д</td>
+      <td class="task t-lat">d75<br>+хомуты<br>65м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-val">Клап.<br>ПИОНЕР</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr>
+      <td class="name-c">Темников А.</td>
+      <td class="brg-c t-mag">А</td>
+      <td class="task t-ns">НС-1<br>монтаж</td>
+      <td class="task t-ns">НС-2<br>Masdaf</td>
+      <td class="task t-ns">Фильтр<br>ПГФ</td>
+      <td class="task t-mag">d110<br>SDR21<br>50м/д</td>
+      <td class="task t-mag">d110<br>SDR17<br>50м/д</td>
+      <td class="task t-lat">d75<br>65м/д</td>
+      <td class="task t-lat">d75<br>+фит.<br>65м/д</td>
+      <td class="task t-lat">d75<br>+хомуты<br>65м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-val">Клап.<br>ПИОНЕР</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr>
+      <td class="name-c">Швец-Роговой Д.</td>
+      <td class="brg-c t-mag">А</td>
+      <td class="task t-ns">НС-1<br>монтаж</td>
+      <td class="task t-ns">НС-2<br>Masdaf</td>
+      <td class="task t-ns">Фильтр<br>ПГФ</td>
+      <td class="task t-mag">d110<br>SDR21<br>50м/д</td>
+      <td class="task t-mag">d110<br>SDR17<br>50м/д</td>
+      <td class="task t-lat">d75<br>65м/д</td>
+      <td class="task t-lat">d75<br>+фит.<br>65м/д</td>
+      <td class="task t-lat">d75<br>+хомуты<br>65м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-val">Клап.<br>ПИОНЕР</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr>
+      <td class="name-c">Васильев А.</td>
+      <td class="brg-c t-mag">А</td>
+      <td class="task t-ns">НС-1<br>монтаж</td>
+      <td class="task t-ns">НС-2<br>Masdaf</td>
+      <td class="task t-ns">Фильтр<br>ПГФ</td>
+      <td class="task t-mag">d110<br>SDR21<br>50м/д</td>
+      <td class="task t-mag">d110<br>SDR17<br>50м/д</td>
+      <td class="task t-lat">d75<br>65м/д</td>
+      <td class="task t-lat">d75<br>+фит.<br>65м/д</td>
+      <td class="task t-lat">d75<br>+хомуты<br>65м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-val">Клап.<br>ПИОНЕР</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr>
+      <td class="name-c">Рыков В.</td>
+      <td class="brg-c t-mag">А</td>
+      <td class="task t-ns">НС-1<br>монтаж</td>
+      <td class="task t-ns">НС-2<br>Masdaf</td>
+      <td class="task t-ns">Фильтр<br>ПГФ</td>
+      <td class="task t-mag">d110<br>SDR21<br>50м/д</td>
+      <td class="task t-mag">d110<br>SDR17<br>50м/д</td>
+      <td class="task t-lat">d75<br>65м/д</td>
+      <td class="task t-lat">d75<br>+фит.<br>65м/д</td>
+      <td class="task t-lat">d75<br>+хомуты<br>65м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-val">Клап.<br>ПИОНЕР</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr class="sep"><td colspan="17"></td></tr>
+
+    <!-- TEAM B -->
+    <tr>
+      <td class="name-c">Прусаков А.</td>
+      <td class="brg-c t-ge">Б</td>
+      <td class="task t-ge">Земля<br>разметка</td>
+      <td class="task t-ge">Земля<br>траншеи<br>50м/д</td>
+      <td class="task t-ge">Земля<br>траншеи<br>50м/д</td>
+      <td class="task t-ge">Земля<br>+засыпка<br>50м/д</td>
+      <td class="task t-ge">Земля<br>+засыпка<br>50м/д</td>
+      <td class="task t-lat">d75<br>65м/д</td>
+      <td class="task t-lat">d50<br>80м/д<br>хомуты</td>
+      <td class="task t-lat">d50<br>засыпка<br>хвосты</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr>
+      <td class="name-c">Борисов Д.</td>
+      <td class="brg-c t-ge">Б</td>
+      <td class="task t-ge">Земля<br>разметка</td>
+      <td class="task t-ge">Земля<br>траншеи<br>50м/д</td>
+      <td class="task t-ge">Земля<br>траншеи<br>50м/д</td>
+      <td class="task t-ge">Земля<br>+засыпка<br>50м/д</td>
+      <td class="task t-ge">Земля<br>+засыпка<br>50м/д</td>
+      <td class="task t-lat">d75<br>65м/д</td>
+      <td class="task t-lat">d50<br>80м/д<br>хомуты</td>
+      <td class="task t-lat">d50<br>засыпка<br>хвосты</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr>
+      <td class="name-c">Борисов А.</td>
+      <td class="brg-c t-ge">Б</td>
+      <td class="task t-ge">Земля<br>разметка</td>
+      <td class="task t-ge">Земля<br>траншеи<br>50м/д</td>
+      <td class="task t-ge">Земля<br>траншеи<br>50м/д</td>
+      <td class="task t-ge">Земля<br>+засыпка<br>50м/д</td>
+      <td class="task t-ge">Земля<br>+засыпка<br>50м/д</td>
+      <td class="task t-lat">d75<br>65м/д</td>
+      <td class="task t-lat">d50<br>80м/д<br>хомуты</td>
+      <td class="task t-lat">d50<br>засыпка<br>хвосты</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr>
+      <td class="name-c">Браковенко Я.</td>
+      <td class="brg-c t-ge">Б</td>
+      <td class="task t-ge">Земля<br>разметка</td>
+      <td class="task t-ge">Земля<br>траншеи<br>50м/д</td>
+      <td class="task t-ge">Земля<br>траншеи<br>50м/д</td>
+      <td class="task t-ge">Земля<br>+засыпка<br>50м/д</td>
+      <td class="task t-ge">Земля<br>+засыпка<br>50м/д</td>
+      <td class="task t-lat">d75<br>65м/д</td>
+      <td class="task t-lat">d50<br>80м/д<br>хомуты</td>
+      <td class="task t-lat">d50<br>засыпка<br>хвосты</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr class="sep"><td colspan="17"></td></tr>
+
+    <!-- TEAM C (SULANZH) -->
+    <tr>
+      <td class="name-c">Костров Павел</td>
+      <td class="brg-c t-drip">В</td>
+      <td class="task t-ns">НС<br>помощь</td>
+      <td class="task t-ns">Ёмкости<br>монтаж</td>
+      <td class="task t-mag">d140<br>40м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-val">Клап.<br>ПИОНЕР</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr>
+      <td class="name-c">Моисеенко Александр</td>
+      <td class="brg-c t-drip">В</td>
+      <td class="task t-ns">НС<br>помощь</td>
+      <td class="task t-ns">Ёмкости<br>монтаж</td>
+      <td class="task t-mag">d140<br>40м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-val">Клап.<br>ПИОНЕР</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr>
+      <td class="name-c">Божко Денис</td>
+      <td class="brg-c t-drip">В</td>
+      <td class="task t-ns">НС<br>помощь</td>
+      <td class="task t-ns">Ёмкости<br>монтаж</td>
+      <td class="task t-mag">d140<br>40м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-val">Клап.<br>ПИОНЕР</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+    <tr>
+      <td class="name-c">Высидалко Максим</td>
+      <td class="brg-c t-drip">В</td>
+      <td class="task t-ns">НС<br>помощь</td>
+      <td class="task t-ns">Ёмкости<br>монтаж</td>
+      <td class="task t-mag">d140<br>40м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-drip">Капля<br>325м/д</td>
+      <td class="task t-val">Клап.<br>ПИОНЕР</td>
+      <td class="task t-pnr">Пуско-<br>наладка</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- PER-PERSON TOTALS -->
+<div class="page-break"></div>
+<h1>4. Итоговые нормы на человека за 100 дней</h1>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5mm">
+  <div>
+    <h2>Бригада А (5 чел. ГС)</h2>
+    <table style="font-size:8.5pt">
+      <thead><tr><th>Период</th><th>Работа</th><th class="num">Норма/день</th><th class="num">На чел.</th></tr></thead>
+      <tbody>
+        <tr><td>Н1–Н3 (15 дн.)</td><td>НС + фильтрация</td><td class="num">бригада</td><td class="num">—</td></tr>
+        <tr><td>Н4–Н5 (12 дн.)</td><td>Труба d110 SDR21+17</td><td class="num">50 м</td><td class="num">600 м</td></tr>
+        <tr><td>Н6–Н8 (18 дн.)</td><td>d75 + фитинги + хомуты</td><td class="num">65 м</td><td class="num">1 170 м</td></tr>
+        <tr><td>Н9–Н14 (36 дн.)</td><td>Капельная лента</td><td class="num"><b>325 м</b></td><td class="num"><b>11 700 м</b></td></tr>
+        <tr><td>Н15 (5 дн.)</td><td>Клапаны + пусконаладка</td><td class="num">бригада</td><td class="num">—</td></tr>
+        <tr class="total"><td colspan="3"><b>Капли на 1 чел.</b></td><td class="num"><b>11 700 м</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Бригада Б (4 чел. ГС)</h2>
+    <table style="font-size:8.5pt">
+      <thead><tr><th>Период</th><th>Работа</th><th class="num">Норма/день</th><th class="num">На чел.</th></tr></thead>
+      <tbody>
+        <tr><td>Н1–Н2 (9 дн.)</td><td>Ёмкости + земля старт</td><td class="num">2 шт. / 50 м</td><td class="num">8 шт./450 м</td></tr>
+        <tr><td>Н3–Н5 (18 дн.)</td><td>Земляные работы</td><td class="num">50 м траншей</td><td class="num">900 м</td></tr>
+        <tr><td>Н6 (6 дн.)</td><td>Труба d75</td><td class="num">65 м</td><td class="num">390 м</td></tr>
+        <tr><td>Н7–Н8 (12 дн.)</td><td>d50 + хомуты + засыпка</td><td class="num">80 м / 60 шт.</td><td class="num">480 м</td></tr>
+        <tr><td>Н9–Н14 (36 дн.)</td><td>Капельная лента</td><td class="num"><b>325 м</b></td><td class="num"><b>11 700 м</b></td></tr>
+        <tr><td>Н15 (5 дн.)</td><td>Пусконаладка</td><td class="num">бригада</td><td class="num">—</td></tr>
+        <tr class="total"><td colspan="3"><b>Капли на 1 чел.</b></td><td class="num"><b>11 700 м</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Бригада В (4 чел. СУЛАНЖ)</h2>
+    <table style="font-size:8.5pt">
+      <thead><tr><th>Период</th><th>Работа</th><th class="num">Норма/день</th><th class="num">На чел.</th></tr></thead>
+      <tbody>
+        <tr><td>Н1–Н2 (9 дн.)</td><td>НС + ёмкости</td><td class="num">бригада</td><td class="num">—</td></tr>
+        <tr><td>Н3 (6 дн.)</td><td>Труба d140</td><td class="num">40 м</td><td class="num">240 м</td></tr>
+        <tr><td>Н4–Н14 (71 дн.)</td><td>Капельная лента</td><td class="num"><b>325 м</b></td><td class="num"><b>23 075 м</b></td></tr>
+        <tr><td>Н15 (5 дн.)</td><td>Клапаны + пусконаладка</td><td class="num">бригада</td><td class="num">—</td></tr>
+        <tr class="total"><td colspan="3"><b>Капли на 1 чел.</b></td><td class="num"><b>23 075 м</b></td></tr>
+      </tbody>
+    </table>
+    <div class="alert-orange" style="font-size:8pt;margin-top:3mm">
+      <b>Примечание по нормам:</b> 325 м/чел.день = укладка трубки + установка крючков 16 мм (по 1 кр./0,5 м = 650 шт./день). Работа парами — один раскатывает, второй прибивает крючки. Норма реалистична при готовых распределительных трубах.
+    </div>
+  </div>
+</div>
+
+<div class="alert-green" style="margin-top:5mm">
+  <b>✅ ВЫВОД — что выполнимо с 15 людьми за 100 дней:</b><br>
+  ▸ НС-1 + НС-2 Masdaf + 8 ёмкостей + фильтрация — <b>выполнимо к 07.06</b><br>
+  ▸ Все земляные работы (8 278 м траншей) — <b>выполнимо к 14.07</b><br>
+  ▸ Магистраль + вся латераль (11 000 м труб + 2 522 фитинга + 2 184 хомута) — <b>выполнимо к 12.07</b><br>
+  ▸ Капельная лента: 197 600 м из 217 000 м — <b>не хватает 19 400 м (≈ 9%)</b> → нужно +2–3 чел. на капельную с 01.07
+</div>
+
+<div class="footer">
+  <span>ООО «ГАРДЕН СИТИ» / ООО «СУЛАНЖ» · Поле №78, Симферопольский р-н, Крым · Договор №ГС-12-05 от 12.05.2026</span>
+  <span>График сформирован: 20.05.2026</span>
+</div>
+
+</body>
+</html>
