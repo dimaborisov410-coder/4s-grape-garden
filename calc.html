@@ -734,6 +734,152 @@ body {
 </div>
 
 <!-- ═══════════════ PAGE 5: ДИРЕКТОР ═══════════════ -->
+<div class="page" id="p5">
+  <div class="ph">
+    <div>
+      <h1>ДИРЕКТОР · СТАТУС ОБЪЕКТА + ШАБЛОН НОВОГО ОБЪЕКТА</h1>
+      <div class="sub">Текущий объект — данные заполняет РП. Правая колонка — шаблон для следующего объекта.</div>
+    </div>
+    <div class="role-badge">👔 ДИРЕКТОР</div>
+  </div>
+
+  <div class="pb">
+    <div class="two-col">
+
+      <!-- ─── ЛЕВАЯ: текущий объект ─── -->
+      <div>
+        <div class="st">Текущий объект</div>
+
+        <div class="kpi-row kpi-light" style="grid-template-columns:1fr 1fr;margin-bottom:8px;">
+          <div class="kpi-card">
+            <div class="lbl" style="color:var(--muted);">Договор (сумма)</div>
+            <div class="val" style="font-size:11pt;">38,4 млн ₽</div>
+            <div class="sub-val" style="color:var(--muted);">№ГС-12-05 от 12.05.2026</div>
+          </div>
+          <div class="kpi-card">
+            <div class="lbl" style="color:var(--muted);">Готовность, %</div>
+            <div class="val" style="border-bottom:1.5px solid var(--g-dark);">___ %</div>
+          </div>
+          <div class="kpi-card">
+            <div class="lbl" style="color:var(--muted);">ФОТ план</div>
+            <div class="val" style="font-size:10pt;">2 193 750 ₽</div>
+            <div class="sub-val" style="color:var(--muted);">15 × 45 000 × 3,25 мес</div>
+          </div>
+          <div class="kpi-card">
+            <div class="lbl" style="color:var(--muted);">Прогноз финиша</div>
+            <div class="val" style="border-bottom:1.5px solid var(--g-dark);font-size:10pt;">__.__.2026</div>
+            <div class="sub-val" style="color:var(--muted);">Договор: 25.08.2026</div>
+          </div>
+        </div>
+
+        <div class="st">ФОТ факт / план (₽)</div>
+        <table class="tbl" style="font-size:8pt;margin-bottom:8px;">
+          <thead><tr><th>Месяц</th><th>План, ₽</th><th>Факт, ₽</th><th>Δ, ₽</th></tr></thead>
+          <tbody>
+            <tr><td>Май (0,3 мес)</td><td style="text-align:right;">202 500</td><td></td><td></td></tr>
+            <tr><td>Июнь (1 мес)</td><td style="text-align:right;">675 000</td><td></td><td></td></tr>
+            <tr><td>Июль (1 мес)</td><td style="text-align:right;">675 000</td><td></td><td></td></tr>
+            <tr><td>Август (0,95 мес)</td><td style="text-align:right;">641 250</td><td></td><td></td></tr>
+            <tr class="week-sum"><td>ИТОГО</td><td style="text-align:right;">2 193 750</td><td></td><td></td></tr>
+          </tbody>
+        </table>
+
+        <div class="st">ТОП-3 риска</div>
+        <div class="risk">
+          <b>Нехватка трубки</b> — 1-я поставка METZER 46 800 м ≈ 94 катушки к 30.06
+        </div>
+        <div class="risk">
+          <b>Дефицит рабочих</b> — базовый сценарий: −19 400 м; нужно +3 чел. с 01.07
+        </div>
+        <div class="risk">
+          <b>Задержка насосов</b> — Masdaf 1 973 899 ₽, поставка критична до 20.08
+        </div>
+      </div>
+
+      <!-- ─── ПРАВАЯ: шаблон нового объекта ─── -->
+      <div>
+        <div class="st">Шаблон — новый объект</div>
+        <div style="background:#f0f7f2;border:2px solid var(--g-light);border-radius:6px;padding:10px;margin-bottom:8px;">
+          <div style="font-size:8pt;color:var(--g-dark);font-weight:bold;margin-bottom:8px;">
+            ⬇ Заменить только эти 6 полей — всё остальное пересчитается автоматически
+          </div>
+
+          <div class="tpl-field">
+            <label>Площадь, га</label>
+            <input class="inp" type="text" placeholder="56,7">
+          </div>
+          <div class="tpl-field">
+            <label>Межрядье, м</label>
+            <input class="inp" type="text" placeholder="3">
+          </div>
+          <div class="tpl-field">
+            <label>Дата старта</label>
+            <input class="inp" type="text" placeholder="ДД.ММ.ГГГГ">
+          </div>
+          <div class="tpl-field">
+            <label>Срок к.д. (договор)</label>
+            <input class="inp" type="text" placeholder="100">
+          </div>
+          <div class="tpl-field">
+            <label>Кол-во рабочих</label>
+            <input class="inp" type="text" placeholder="15">
+          </div>
+          <div class="tpl-field">
+            <label>Ставка ₽/мес</label>
+            <input class="inp" type="text" placeholder="45 000">
+          </div>
+        </div>
+
+        <div class="st">Формула пересчёта</div>
+        <div style="font-size:7.5pt;color:var(--muted);margin-bottom:4px;">
+          L_капли = Площадь × 10 000 ÷ Межрядье (м)
+        </div>
+        <div class="formula-chain">
+          <div class="fc-box">L_капли</div>
+          <div class="fc-arrow">→</div>
+          <div class="fc-box">T = L ÷ (N × 325)</div>
+          <div class="fc-arrow">→</div>
+          <div class="fc-box">N_min = ⌈L ÷ (325 × Д_p)⌉</div>
+          <div class="fc-arrow">→</div>
+          <div class="fc-box">ФОТ = N × Ставка × Мес</div>
+          <div class="fc-arrow">→</div>
+          <div class="fc-box">Финиш = Старт + Д_p</div>
+        </div>
+        <div style="font-size:7pt;color:var(--muted);margin-top:4px;">
+          Д_p — рабочих дней (6/7 × к.д.) &nbsp;·&nbsp; N — число рабочих &nbsp;·&nbsp;
+          325 м — норма капли на чел.день
+        </div>
+
+        <div class="st" style="margin-top:8px;">Пример (текущий объект)</div>
+        <table class="tbl" style="font-size:7.5pt;">
+          <tbody>
+            <tr>
+              <td style="color:var(--muted);">L_капли</td>
+              <td>56,7 га × 10 000 ÷ 3 м = <b>189 000 м</b></td>
+              <td style="color:var(--muted);font-size:7pt;">(корр. до 217 000 м)</td>
+            </tr>
+            <tr>
+              <td style="color:var(--muted);">N_min (капля)</td>
+              <td>217 000 ÷ (325 × 71 дн.) = <b>≥ 10 чел.</b></td>
+              <td style="color:var(--muted);font-size:7pt;">(71 р.дн. с 09.06)</td>
+            </tr>
+            <tr>
+              <td style="color:var(--muted);">ФОТ план</td>
+              <td>15 × 45 000 × 3,25 = <b>2 193 750 ₽</b></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td style="color:var(--muted);">Финиш договор</td>
+              <td>18.05 + 100 к.д. = <b>25.08.2026</b></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /two-col -->
+  </div><!-- /pb -->
+</div><!-- /page p5 -->
 
 <script>
 (function buildWorkerTable() {
