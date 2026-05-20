@@ -220,6 +220,163 @@ body {
 <body>
 
 <!-- ═══════════════ PAGE 1: ДАШБОРД ═══════════════ -->
+<div class="page" id="p1">
+
+  <!-- Шапка с кнопкой PDF -->
+  <div class="ph">
+    <div>
+      <h1>ВИНОГРАДНИК · 56,7 ГА · С. ПОЖАРСКОЕ, КРЫМ</h1>
+      <div class="sub">ООО «СУЛАНЖ» + ООО «Гарден Сити» &nbsp;·&nbsp; Договор №ГС-12-05 от 12.05.2026 &nbsp;·&nbsp; 38,4 млн ₽</div>
+    </div>
+    <button class="btn-pdf no-print" onclick="window.print()">⬇ Сохранить PDF</button>
+  </div>
+
+  <!-- KPI-карточки на тёмном фоне -->
+  <div style="background:var(--g-mid);padding:8px 14px;">
+    <div class="kpi-row kpi-dark" style="grid-template-columns:1fr 1fr 1fr 1fr;">
+      <div class="kpi-card">
+        <div class="lbl">Готовность</div>
+        <div class="val" id="kpi-ready">___&nbsp;%</div>
+        <div class="sub-val" style="opacity:.7;">от 217 000 м</div>
+      </div>
+      <div class="kpi-card">
+        <div class="lbl">Капля уложена</div>
+        <div class="val" id="kpi-laid">___&nbsp;м</div>
+        <div class="sub-val" style="opacity:.7;">из 217 000 м</div>
+      </div>
+      <div class="kpi-card">
+        <div class="lbl">На объекте</div>
+        <div class="val">15&nbsp;чел.</div>
+        <div class="sub-val" style="opacity:.7;">13 пол. + 2 ИТР</div>
+      </div>
+      <div class="kpi-card">
+        <div class="lbl">Финиш (договор)</div>
+        <div class="val" style="font-size:11pt;">25.08.2026</div>
+        <div class="sub-val" style="opacity:.7;">100 к.д. от 18.05</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pb">
+
+    <!-- Прогресс-бар с контрольными точками -->
+    <div class="st">Контрольные точки — укладка капли</div>
+    <div class="prog-wrap">
+      <div class="prog-track">
+        <div class="prog-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;font-size:7pt;text-align:center;">
+        <div style="color:var(--g-dark);font-weight:bold;">
+          КТ-1 · 30.06<br><span style="font-size:8pt;font-weight:bold;">46 800 м</span>
+        </div>
+        <div style="color:var(--g-dark);font-weight:bold;">
+          КТ-2 · 21.07<br><span style="font-size:8pt;font-weight:bold;">85 800 м</span>
+        </div>
+        <div style="color:var(--g-dark);font-weight:bold;">
+          КТ-3 · 01.08<br><span style="font-size:8pt;font-weight:bold;">163 800 м</span>
+        </div>
+        <div style="color:#c62828;font-weight:bold;">
+          ФИНИШ · 23.08<br><span style="font-size:8pt;font-weight:bold;">217 000 м</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Таблица ключевых точек -->
+    <div class="st">График выполнения — план</div>
+    <table class="tbl" style="margin-bottom:10px;">
+      <thead>
+        <tr>
+          <th>КТ</th><th>Дата</th><th>Нараст. план, м</th><th>Нараст. факт, м</th><th>% вып.</th><th>Откл. ±м</th><th>Статус</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:bold;color:var(--g-dark);">КТ-1</td>
+          <td>30.06.2026</td>
+          <td style="text-align:right;">46 800</td>
+          <td style="text-align:right;"></td>
+          <td style="text-align:center;"></td>
+          <td style="text-align:right;"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="font-weight:bold;color:var(--g-dark);">КТ-2</td>
+          <td>21.07.2026</td>
+          <td style="text-align:right;">85 800</td>
+          <td style="text-align:right;"></td>
+          <td style="text-align:center;"></td>
+          <td style="text-align:right;"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="font-weight:bold;color:var(--g-dark);">КТ-3</td>
+          <td>01.08.2026</td>
+          <td style="text-align:right;">163 800</td>
+          <td style="text-align:right;"></td>
+          <td style="text-align:center;"></td>
+          <td style="text-align:right;"></td>
+          <td></td>
+        </tr>
+        <tr style="background:#fce4ec;">
+          <td style="font-weight:bold;color:#c62828;">ФИНИШ</td>
+          <td>23.08.2026</td>
+          <td style="text-align:right;">217 000</td>
+          <td style="text-align:right;"></td>
+          <td style="text-align:center;"></td>
+          <td style="text-align:right;"></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Карточки бригад -->
+    <div class="st">Бригады на объекте</div>
+    <div class="brigade-grid">
+
+      <div class="brig-card">
+        <div class="brig-head">
+          БРИГАДА А · 5 чел.
+          <span style="font-size:6.5pt;font-weight:normal;opacity:.8;float:right;">ГС / НС + трубы → капля</span>
+        </div>
+        <div class="brig-body">
+          <div class="brig-member">👷 Примачок (бригадир)</div>
+          <div class="brig-member">Темников</div>
+          <div class="brig-member">Швец-Роговой</div>
+          <div class="brig-member">Васильев</div>
+          <div class="brig-member">Рыков</div>
+        </div>
+      </div>
+
+      <div class="brig-card">
+        <div class="brig-head">
+          БРИГАДА Б · 4 чел.
+          <span style="font-size:6.5pt;font-weight:normal;opacity:.8;float:right;">ГС / земля + трубы → капля</span>
+        </div>
+        <div class="brig-body">
+          <div class="brig-member">👷 Прусаков (бригадир)</div>
+          <div class="brig-member">Борисов Д.</div>
+          <div class="brig-member">Борисов А.</div>
+          <div class="brig-member">Браковенко</div>
+        </div>
+      </div>
+
+      <div class="brig-card">
+        <div class="brig-head">
+          БРИГАДА В · 4 чел.
+          <span style="font-size:6.5pt;font-weight:normal;opacity:.8;float:right;">СУЛАНЖ / капля с Н4</span>
+        </div>
+        <div class="brig-body">
+          <div class="brig-member">👷 Костров (бригадир)</div>
+          <div class="brig-member">Моисеенко</div>
+          <div class="brig-member">Божко</div>
+          <div class="brig-member">Высидалко</div>
+        </div>
+      </div>
+
+    </div><!-- /brigade-grid -->
+
+  </div><!-- /pb -->
+</div><!-- /page p1 -->
 
 <!-- ═══════════════ PAGE 2: РАБОЧИЙ ═══════════════ -->
 
