@@ -2,655 +2,235 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Шпаргалка расчётов · Монтаж капельного орошения</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Шпаргалка · Виноградник 56,7 га · №ГС-12-05</title>
 <style>
-@page { size: A4; margin: 13mm 11mm 13mm 11mm; }
-*{ box-sizing:border-box; margin:0; padding:0; }
-body{ font-family: Arial, Helvetica, sans-serif; font-size:9.5pt; color:#111; background:#fff; line-height:1.35; }
+:root {
+  --g-dark:  #1a4d2e;
+  --g-mid:   #2d6a4f;
+  --g-light: #40916c;
+  --yellow:  #fff3cd;
+  --y-bord:  #ffc107;
+  --red-lt:  #fce4ec;
+  --blue-lt: #e3f2fd;
+  --border:  #dee2e6;
+  --text:    #212529;
+  --muted:   #6c757d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  color: var(--text);
+  background: #ecf0ec;
+}
 
-/* PRINT BUTTON */
-.pdf-btn{ position:fixed; top:10px; right:10px; background:#1a4d2e; color:#fff; border:none; padding:8px 18px; font-size:10pt; cursor:pointer; border-radius:4px; z-index:99; }
-@media print{ .pdf-btn{ display:none; } }
+/* ── A4 shell ── */
+@page { size: A4 portrait; margin: 10mm 10mm 10mm 12mm; }
+@media print {
+  body { background: white; }
+  .no-print { display: none !important; }
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  margin: 0 auto 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.15);
+  page-break-before: always;
+  page-break-after: always;
+  overflow: hidden;
+}
+.page:first-of-type { page-break-before: avoid; }
 
-/* PAGE BREAK */
-.pb{ page-break-before:always; padding-top:4px; }
+/* ── Page header bar ── */
+.ph {
+  background: var(--g-dark);
+  color: white;
+  padding: 9px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.ph h1 { font-size: 11pt; font-weight: bold; line-height: 1.2; }
+.ph .sub { font-size: 7pt; opacity: .75; margin-top: 2px; }
+.ph .role-badge {
+  background: rgba(255,255,255,.2);
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 8pt;
+  font-weight: bold;
+  white-space: nowrap;
+  align-self: center;
+}
 
-/* DOCUMENT HEADER */
-.doc-header{ background:#1a4d2e; color:#fff; padding:9px 13px 8px; margin-bottom:10px; }
-.doc-header h1{ font-size:13pt; letter-spacing:.3px; }
-.doc-header .sub{ font-size:8.5pt; opacity:.82; margin-top:3px; }
+/* ── PDF button ── */
+.btn-pdf {
+  background: rgba(255,255,255,.2);
+  color: white;
+  border: 1px solid rgba(255,255,255,.4);
+  padding: 5px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 8.5pt;
+  align-self: center;
+}
 
-/* SECTION HEADERS */
-h2{ font-size:10.5pt; color:#1a4d2e; border-bottom:2px solid #1a4d2e; padding-bottom:2px; margin:10px 0 6px; }
-h3{ font-size:9.5pt; color:#2d6a4f; margin:7px 0 4px; font-weight:bold; }
+/* ── Page body ── */
+.pb { padding: 10px 14px 12px; }
 
-/* FORMULA BOX */
-.fbox{ background:#f0f7f0; border-left:3px solid #2d6a4f; padding:6px 10px; margin:4px 0; font-family:'Courier New',monospace; font-size:9pt; }
-.fbox .res{ color:#1a4d2e; font-weight:bold; }
-.fbox .ex{ color:#888; font-size:8.3pt; }
+/* ── KPI cards ── */
+.kpi-row { display: grid; gap: 6px; margin-bottom: 10px; }
+.kpi-card {
+  border-radius: 6px;
+  padding: 8px 10px;
+  text-align: center;
+}
+.kpi-card .lbl { font-size: 6.5pt; margin-bottom: 2px; }
+.kpi-card .val { font-size: 14pt; font-weight: bold; line-height: 1.1; }
+.kpi-card .sub-val { font-size: 7pt; margin-top: 1px; }
 
-/* ALERT */
-.ay{ background:#fff9e6; border-left:3px solid #e0a000; padding:5px 9px; margin:4px 0; font-size:8.8pt; }
-.ag{ background:#eaf5ec; border-left:3px solid #2d6a4f; padding:5px 9px; margin:4px 0; font-size:8.8pt; }
+/* KPI on dark header */
+.kpi-dark .kpi-card { background: rgba(255,255,255,.15); color: white; }
+.kpi-dark .kpi-card .lbl { opacity: .75; }
 
-/* TABLES */
-table{ width:100%; border-collapse:collapse; margin:5px 0; font-size:8.8pt; }
-th{ background:#1a4d2e; color:#fff; padding:4px 6px; text-align:left; font-size:8.5pt; }
-td{ padding:3px 6px; border-bottom:1px solid #ddd; vertical-align:middle; }
-tr:nth-child(even) td{ background:#f8fdf8; }
-.tf{ font-family:'Courier New',monospace; font-size:8.5pt; background:#f0f7f0 !important; }
-.te{ color:#888; font-size:8pt; font-style:italic; }
-.tk{ background:#fff3cd !important; font-weight:bold; }
-.tg{ background:#eaf5ec !important; font-weight:bold; }
+/* KPI on white body */
+.kpi-light .kpi-card { background: #f0f7f2; color: var(--g-dark); border: 1px solid #c8e6c9; }
 
-/* FILLABLE FIELD */
-.f{ display:inline-block; border-bottom:1.5px dashed #888; min-width:55px; text-align:center; color:#555; font-style:italic; font-size:8.5pt; }
-.fw{ min-width:100px; }
+/* ── Section title ── */
+.st {
+  font-size: 8pt;
+  font-weight: bold;
+  color: var(--g-dark);
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  border-bottom: 2px solid var(--g-dark);
+  padding-bottom: 2px;
+  margin: 10px 0 6px;
+}
 
-/* GRID LAYOUTS */
-.g2{ display:grid; grid-template-columns:1fr 1fr; gap:9px; }
-.g3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
-.g4{ display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:6px; }
+/* ── Data tables ── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 8pt; }
+.tbl th {
+  background: var(--g-dark);
+  color: white;
+  padding: 3px 5px;
+  font-size: 7.5pt;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid var(--g-mid);
+}
+.tbl td { padding: 2px 5px; border: 1px solid var(--border); vertical-align: middle; }
+.tbl tr.week-sum { background: #e8f5e9; font-weight: bold; }
+.tbl tr.milestone { background: var(--yellow); }
+.tbl tr.kt { background: var(--blue-lt); font-weight: bold; }
+.tbl tr.ns td { color: var(--muted); font-style: italic; }
 
-/* INPUT FIELDS GRID */
-.ibox{ border:1px dashed #bbb; border-radius:3px; padding:5px 7px; }
-.ibox .lbl{ font-size:7.8pt; color:#666; margin-bottom:2px; }
-.ibox .val{ border-bottom:1.5px solid #333; height:16px; }
+/* ── Brigade cards ── */
+.brigade-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 6px; }
+.brig-card {
+  border: 2px solid var(--g-dark);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.brig-head {
+  background: var(--g-dark);
+  color: white;
+  padding: 5px 8px;
+  font-size: 8pt;
+  font-weight: bold;
+}
+.brig-body { padding: 6px 8px; font-size: 7.5pt; }
+.brig-member { padding: 1.5px 0; border-bottom: 1px dashed #eee; }
+.brig-member:last-child { border-bottom: none; }
 
-/* STEP BADGE */
-.step{ display:inline-block; background:#1a4d2e; color:#fff; width:18px; height:18px; border-radius:50%; text-align:center; line-height:18px; font-size:7.5pt; margin-right:4px; flex-shrink:0; }
+/* ── Progress bar ── */
+.prog-wrap { margin: 8px 0; }
+.prog-track {
+  height: 16px;
+  background: #c8e6c9;
+  border-radius: 8px;
+  position: relative;
+  margin-bottom: 4px;
+}
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--g-dark), var(--g-light));
+  border-radius: 8px;
+}
+.prog-labels { display: flex; justify-content: space-between; font-size: 6.5pt; color: var(--muted); }
 
-/* FOOTER */
-.footer{ margin-top:12px; padding-top:6px; border-top:1px solid #ddd; font-size:7.8pt; color:#999; text-align:center; }
+/* ── Two-column layout (Page 5) ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-/* QUICK REF CARD */
-.qcard{ border:1.5px solid #2d6a4f; border-radius:4px; padding:7px; }
-.qcard h3{ margin-top:0; }
+/* ── Risk list ── */
+.risk {
+  background: var(--red-lt);
+  border-left: 3px solid #e91e63;
+  padding: 4px 8px;
+  margin-bottom: 4px;
+  font-size: 7.5pt;
+  border-radius: 0 4px 4px 0;
+}
 
-/* HIGHLIGHT RESULT */
-.big-formula{ background:#1a4d2e; color:#fff; padding:5px 10px; border-radius:3px; font-family:'Courier New',monospace; font-size:9pt; margin:4px 0; display:inline-block; }
+/* ── Template fields (Page 5) ── */
+.tpl-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+  font-size: 8pt;
+}
+.tpl-field label { min-width: 130px; color: var(--muted); font-size: 7.5pt; }
+.tpl-field .inp {
+  flex: 1;
+  border: none;
+  border-bottom: 1.5px solid var(--g-dark);
+  padding: 1px 4px;
+  font-size: 9pt;
+  font-family: Arial, sans-serif;
+  outline: none;
+  background: transparent;
+}
+
+/* ── Formula chain ── */
+.formula-chain {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  font-size: 7.5pt;
+  margin: 6px 0;
+}
+.fc-box {
+  background: #e8f5e9;
+  border: 1px solid var(--g-light);
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-weight: bold;
+  color: var(--g-dark);
+  white-space: nowrap;
+}
+.fc-arrow { color: var(--g-mid); font-size: 9pt; }
 </style>
 </head>
 <body>
 
-<button class="pdf-btn" onclick="window.print()">⊞ Сохранить PDF</button>
+<!-- ═══════════════ PAGE 1: ДАШБОРД ═══════════════ -->
 
-<!-- ===================== HEADER ===================== -->
-<div class="doc-header">
-  <h1>ШПАРГАЛКА РАСЧЁТОВ · МОНТАЖ КАПЕЛЬНОГО ОРОШЕНИЯ</h1>
-  <div class="sub">Универсальный шаблон · заполни поля → получи план · Пример: Виноградник 56,7 га, Крым, 2026 · Составлено 20.05.2026</div>
-</div>
+<!-- ═══════════════ PAGE 2: РАБОЧИЙ ═══════════════ -->
 
-<!-- ===================== SECTION 1: INPUT DATA ===================== -->
-<h2>1. Исходные данные объекта (заполнить)</h2>
+<!-- ═══════════════ PAGE 3: БРИГАДИР ═══════════════ -->
 
-<div class="g4" style="margin-bottom:6px">
-  <div class="ibox"><div class="lbl">Площадь, га</div><div class="val"></div></div>
-  <div class="ibox"><div class="lbl">Культура / культ. ряды</div><div class="val"></div></div>
-  <div class="ibox"><div class="lbl">Межрядье, м</div><div class="val"></div></div>
-  <div class="ibox"><div class="lbl">Шаг эмиттеров, м</div><div class="val"></div></div>
-  <div class="ibox"><div class="lbl">Кол-во блоков</div><div class="val"></div></div>
-  <div class="ibox"><div class="lbl">Дата старта работ</div><div class="val"></div></div>
-  <div class="ibox"><div class="lbl">Срок, к.д.</div><div class="val"></div></div>
-  <div class="ibox"><div class="lbl">Дата финиша (договор)</div><div class="val"></div></div>
-  <div class="ibox"><div class="lbl">Режим работы, дн/нед</div><div class="val"></div></div>
-  <div class="ibox"><div class="lbl">Часов в рабочий день</div><div class="val"></div></div>
-  <div class="ibox"><div class="lbl">Полевых рабочих (факт)</div><div class="val"></div></div>
-  <div class="ibox"><div class="lbl">Ставка рабочего, ₽/мес</div><div class="val"></div></div>
-</div>
+<!-- ═══════════════ PAGE 4: РУКОВОДИТЕЛЬ ═══════════════ -->
 
-<!-- ===================== SECTION 2: FIELD GEOMETRY ===================== -->
-<h2>2. Геометрия поля → длина капельной трубки</h2>
+<!-- ═══════════════ PAGE 5: ДИРЕКТОР ═══════════════ -->
 
-<table>
-  <tr>
-    <th style="width:4%"></th>
-    <th style="width:28%">Что считаем</th>
-    <th style="width:36%">Формула</th>
-    <th style="width:15%">Заполнить</th>
-    <th style="width:17%">Пример (56,7 га)</th>
-  </tr>
-  <tr>
-    <td><span class="step">1</span></td>
-    <td>Площадь, м²</td>
-    <td class="tf">S = Площадь_га × 10 000</td>
-    <td><span class="f fw"></span> м²</td>
-    <td class="te">567 000 м²</td>
-  </tr>
-  <tr>
-    <td><span class="step">2</span></td>
-    <td>Суммарная длина рядов</td>
-    <td class="tf">L_рядов = S ÷ Межрядье</td>
-    <td><span class="f fw"></span> м</td>
-    <td class="te">567 000 ÷ 3 = 189 000 м</td>
-  </tr>
-  <tr>
-    <td><span class="step">3</span></td>
-    <td>Кол-во капельных линий на ряд</td>
-    <td class="tf">k = 1 или 2 (по проекту)</td>
-    <td><span class="f"></span></td>
-    <td class="te">1 линия/ряд</td>
-  </tr>
-  <tr>
-    <td><span class="step">4</span></td>
-    <td>Поправка на петли, запасы, подключения</td>
-    <td class="tf">Кп = 1,05–1,15 (короткие ряды → 1,15)</td>
-    <td><span class="f"></span></td>
-    <td class="te">1,148 (≈ 1,15)</td>
-  </tr>
-  <tr class="tk">
-    <td><span class="step" style="background:#856404">5</span></td>
-    <td><b>ИТОГО капельной трубки</b></td>
-    <td class="tf"><b>L_капли = L_рядов × k × Кп</b></td>
-    <td><span class="f fw"></span> м</td>
-    <td class="te"><b>217 000 м</b></td>
-  </tr>
-</table>
-
-<div class="ay">Коэф. 1,05–1,15: петли на торцах (0,5–1 м/ряд), подрезка трубки, подключение к старт-коннектору. При рядах до 100 м берите 1,15, при рядах 200+ м берите 1,05–1,08.</div>
-
-<!-- ===================== SECTION 3: PIPE VOLUMES ===================== -->
-<h2>3. Объёмы трубопроводов (по спецификации проекта)</h2>
-
-<div class="g2">
-<div>
-<h3>Магистраль — ориентиры по диаметрам</h3>
-<table>
-  <tr><th>Диаметр</th><th>Ориентир на 1 га</th><th>Объём на объект</th></tr>
-  <tr><td>d140 (ПНД)</td><td class="te">8–12 м/га</td><td><span class="f"></span> м</td></tr>
-  <tr><td>d110 (ПНД)</td><td class="te">15–25 м/га</td><td><span class="f"></span> м</td></tr>
-  <tr><td>d75 (ПЭ)</td><td class="te">30–50 м/га</td><td><span class="f"></span> м</td></tr>
-  <tr><td>d50 (ПЭ)</td><td class="te">40–80 м/га</td><td><span class="f"></span> м</td></tr>
-  <tr class="tg"><td><b>ИТОГО магистраль</b></td><td></td><td><span class="f"></span> м</td></tr>
-</table>
-</div>
-<div>
-<h3>Арматура и расходники</h3>
-<table>
-  <tr><th>Позиция</th><th>Формула / ориентир</th><th>Кол-во</th></tr>
-  <tr><td>Капельные крючки</td><td class="te">L_капли ÷ шаг_эм.</td><td><span class="f"></span> шт</td></tr>
-  <tr><td>Стартовые коннекторы</td><td class="te">≈ 1 на ряд</td><td><span class="f"></span> шт</td></tr>
-  <tr><td>Заглушки капли</td><td class="te">≈ 1 на ряд</td><td><span class="f"></span> шт</td></tr>
-  <tr><td>Регуляторы давления</td><td class="te">1 на блок</td><td><span class="f"></span> шт</td></tr>
-  <tr><td>Воздушные клапаны</td><td class="te">1 на блок / 2 на конце</td><td><span class="f"></span> шт</td></tr>
-</table>
-</div>
-</div>
-
-<!-- ===================== PAGE 2 ===================== -->
-<div class="pb"></div>
-
-<!-- ===================== SECTION 4: NORMS ===================== -->
-<h2>4. Нормы выработки на 1 человека</h2>
-
-<table>
-  <tr>
-    <th style="width:30%">Вид работ</th>
-    <th style="width:6%">Ед.</th>
-    <th style="width:13%">8 ч/день</th>
-    <th style="width:13%">10 ч/день</th>
-    <th style="width:13%">12 ч/день</th>
-    <th>Примечание</th>
-  </tr>
-  <tr class="tk">
-    <td><b>Капельная трубка (раскладка + крючки)</b></td>
-    <td>м</td>
-    <td style="text-align:center">260</td>
-    <td style="text-align:center"><b>325</b></td>
-    <td style="text-align:center">390</td>
-    <td>Бутылка на 200–400 м/ряд; 1 чел ≈ 1 ряд в день</td>
-  </tr>
-  <tr>
-    <td>Труба d50 (сборка + укладка + хомуты)</td>
-    <td>м</td>
-    <td style="text-align:center">65</td>
-    <td style="text-align:center"><b>80</b></td>
-    <td style="text-align:center">96</td>
-    <td>С фитингами и хомутами крепления</td>
-  </tr>
-  <tr>
-    <td>Труба d75</td>
-    <td>м</td>
-    <td style="text-align:center">52</td>
-    <td style="text-align:center"><b>65</b></td>
-    <td style="text-align:center">78</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Труба d110</td>
-    <td>м</td>
-    <td style="text-align:center">40</td>
-    <td style="text-align:center"><b>50</b></td>
-    <td style="text-align:center">60</td>
-    <td>Тяжелее — темп ниже</td>
-  </tr>
-  <tr>
-    <td>Труба d140</td>
-    <td>м</td>
-    <td style="text-align:center">32</td>
-    <td style="text-align:center"><b>40</b></td>
-    <td style="text-align:center">48</td>
-    <td>Монтировать парой</td>
-  </tr>
-  <tr>
-    <td>Ручная траншея (h = 0,5–0,7 м, суглинок)</td>
-    <td>м</td>
-    <td style="text-align:center">40</td>
-    <td style="text-align:center"><b>50</b></td>
-    <td style="text-align:center">60</td>
-    <td>Экскаватор — нормировать отдельно</td>
-  </tr>
-  <tr>
-    <td>НС + фильтры (монтаж комплекта)</td>
-    <td>компл.</td>
-    <td colspan="3" style="text-align:center"><b>3–7 чел.дней / комплект</b></td>
-    <td>Зависит от состава оборудования</td>
-  </tr>
-  <tr>
-    <td>Воздушный/промывочный клапан</td>
-    <td>шт</td>
-    <td colspan="3" style="text-align:center"><b>8–15 шт / чел.день</b></td>
-    <td></td>
-  </tr>
-</table>
-
-<div class="ag"><b>Пересчёт нормы под свои часы:</b> Норма_твоя = Норма_10ч × (часов_в_день ÷ 10).
-&nbsp; Пример 8 ч: 325 × 0,8 = 260 м/чел.день. &nbsp; Пример 12 ч: 325 × 1,2 = 390 м/чел.день.</div>
-
-<!-- ===================== SECTION 5: LABOUR ===================== -->
-<h2>5. Расчёт трудоёмкости по видам работ</h2>
-
-<table>
-  <tr>
-    <th style="width:25%">Вид работ</th>
-    <th>Объём</th>
-    <th>Ед.</th>
-    <th>Норма (10ч)</th>
-    <th class="tk" style="width:22%">Чел.дней = Объём ÷ Норма</th>
-    <th>Заполнить</th>
-  </tr>
-  <tr>
-    <td>НС + ёмкости + фильтры</td>
-    <td class="te">1 компл.</td><td>компл.</td>
-    <td class="te">5</td>
-    <td class="tf">1 × 5 = 5</td>
-    <td><span class="f"></span></td>
-  </tr>
-  <tr>
-    <td>Труба d140</td><td></td><td>м</td><td class="te">40</td>
-    <td class="tf">V_140 ÷ 40</td>
-    <td><span class="f"></span></td>
-  </tr>
-  <tr>
-    <td>Труба d110</td><td></td><td>м</td><td class="te">50</td>
-    <td class="tf">V_110 ÷ 50</td>
-    <td><span class="f"></span></td>
-  </tr>
-  <tr>
-    <td>Труба d75</td><td></td><td>м</td><td class="te">65</td>
-    <td class="tf">V_75 ÷ 65</td>
-    <td><span class="f"></span></td>
-  </tr>
-  <tr>
-    <td>Труба d50</td><td></td><td>м</td><td class="te">80</td>
-    <td class="tf">V_50 ÷ 80</td>
-    <td><span class="f"></span></td>
-  </tr>
-  <tr>
-    <td>Траншея ручная</td><td></td><td>м</td><td class="te">50</td>
-    <td class="tf">V_тр ÷ 50</td>
-    <td><span class="f"></span></td>
-  </tr>
-  <tr>
-    <td>Арматура (клапаны, краны)</td><td></td><td>шт</td><td class="te">10</td>
-    <td class="tf">Кол_шт ÷ 10</td>
-    <td><span class="f"></span></td>
-  </tr>
-  <tr class="tk">
-    <td><b>Капельная трубка ← узкое место</b></td>
-    <td class="te">217 000</td><td>м</td>
-    <td class="te">325</td>
-    <td class="tf"><b>217 000 ÷ 325 = 668</b></td>
-    <td><span class="f"></span></td>
-  </tr>
-  <tr>
-    <td>Прочие</td><td></td><td>—</td><td></td>
-    <td class="tf">оценка</td>
-    <td><span class="f"></span></td>
-  </tr>
-  <tr class="tg">
-    <td colspan="4"><b>ИТОГО трудоёмкость (T_итого)</b></td>
-    <td class="tf"><b>Σ всех строк</b></td>
-    <td><span class="f fw"></span> чел.дн.</td>
-  </tr>
-</table>
-
-<!-- ===================== SECTION 6: WORKING TIME ===================== -->
-<h2>6. Фонд рабочего времени и баланс персонала</h2>
-
-<div class="g2">
-<div>
-<div class="fbox">
-<b>Рабочие дни из календарных:</b><br>
-<span class="res">Д_раб = Д_кал × (режим ÷ 7) − Праздники</span><br><br>
-<span class="ex">6-дн. нед.: 100 × (6÷7) − 0 ≈ 86 р.дн.</span><br>
-<span class="ex">5-дн. нед.: 100 × (5÷7) ≈ 71 р.дн.</span>
-</div>
-<div class="fbox" style="margin-top:6px">
-<b>Фонд чел.дней (ФЧД):</b><br>
-<span class="res">ФЧД = N_полевых × Д_раб</span><br><br>
-<span class="ex">Пример: 13 чел × 86 дн = 1 118 чел.дн.</span>
-</div>
-</div>
-<div>
-<div class="fbox">
-<b>Минимум людей, чтобы успеть:</b><br>
-<span class="res">N_min = T_итого ÷ Д_раб</span><br><br>
-<span class="ex">Пример: 1 200 ÷ 86 = 14 чел. (округлить вверх)</span>
-</div>
-<div class="fbox" style="margin-top:6px">
-<b>Дефицит (−) / Профицит (+):</b><br>
-<span class="res">Δ = ФЧД − T_итого</span><br>
-Если Δ &lt; 0 → не успеем, нужны люди<br><br>
-<span class="ex">Пример: 1 118 − 1 200 = −82 чел.дн.</span>
-</div>
-</div>
-</div>
-
-<table style="margin-top:6px">
-  <tr><th>Параметр</th><th>Формула</th><th>Заполнить</th><th>Пример</th></tr>
-  <tr><td>Календарных дней</td><td class="tf">Дата финиша − Дата старта</td><td><span class="f"></span></td><td class="te">100</td></tr>
-  <tr><td>Рабочих дней в неделю</td><td class="tf">5 или 6</td><td><span class="f"></span></td><td class="te">6</td></tr>
-  <tr><td>Рабочих дней всего (Д_раб)</td><td class="tf">Д_кал × (реж÷7) − праздники</td><td><span class="f"></span></td><td class="te">86</td></tr>
-  <tr><td>Полевых рабочих фактически</td><td class="tf">по списку</td><td><span class="f"></span></td><td class="te">13</td></tr>
-  <tr><td>ФЧД (фонд чел.дней)</td><td class="tf">N × Д_раб</td><td><span class="f"></span></td><td class="te">1 118</td></tr>
-  <tr><td>Итого трудоёмкость (T_итого)</td><td class="tf">из раздела 5</td><td><span class="f"></span></td><td class="te">~1 200</td></tr>
-  <tr class="tk"><td><b>Дефицит (−) / Профицит (+)</b></td><td class="tf"><b>ФЧД − T_итого</b></td><td><span class="f"></span></td><td class="te">−82 чел.дн.</td></tr>
-</table>
-
-<!-- ===================== PAGE 3 ===================== -->
-<div class="pb"></div>
-
-<!-- ===================== SECTION 7: DRIP CRITICAL PATH ===================== -->
-<h2>7. Капля — критический путь (55–65% всей трудоёмкости)</h2>
-
-<div class="ay"><b>Почему капля — критический путь?</b> На неё уходит 55–65% всей трудоёмкости. НС, магистраль, траншея — выполняются параллельно и раньше. Именно количество монтажников капли и дата старта их работы определяют финальную дату сдачи объекта.</div>
-
-<div class="g2" style="margin-top:6px">
-<div>
-<div class="fbox">
-<b>Минимум монтажников для укладки в срок:</b><br>
-<span class="res">N_min_капля = L_капли ÷ (325 × Д_раб_капли)</span><br><br>
-<span class="ex">Д_раб_капли = Д_раб − Д_до_старта_капли</span><br>
-<span class="ex">Пример: 217 000 ÷ (325 × 86) = 7,75 → 8 чел.</span>
-</div>
-<div class="fbox" style="margin-top:6px">
-<b>Сколько дней займёт капля при N монтажниках:</b><br>
-<span class="res">Д_капли_раб = L_капли ÷ (N × 325)</span><br>
-<span class="res">Д_капли_кал = Д_капли_раб × (7 ÷ Реж)</span><br><br>
-<span class="ex">Пример: 217 000 ÷ (8×325) = 83 р.дн. → 97 к.д.</span>
-</div>
-</div>
-<div>
-<div class="fbox">
-<b>Выработка капли за период (плановая):</b><br>
-<span class="res">V_период = N_монт × Д_период × 325</span><br><br>
-<span class="ex">Пример Н1–Н6 (36 р.дн., 8 чел):</span><br>
-<span class="ex">8 × 36 × 325 = 93 600 м</span>
-</div>
-<div class="fbox" style="margin-top:6px">
-<b>Дата окончания капли:</b><br>
-<span class="res">Финиш = Старт_капли + Д_капли_кал</span><br><br>
-<span class="ex">Старт капли ≈ Н4 (9 июня — после НС+магистрали)</span><br>
-<span class="ex">09.06 + 97 к.д. = ~14 сентября (при 8 чел.)</span><br>
-<span class="ex">Пример 22.05 + 97 к.д. = 27 августа (при 8 чел. с 22.05)</span>
-</div>
-</div>
-</div>
-
-<table style="margin-top:6px">
-  <tr><th>Параметр</th><th>Формула</th><th>Заполнить</th><th>Пример (проект)</th></tr>
-  <tr><td>Длина капельной трубки</td><td class="tf">из раздела 2</td><td><span class="f fw"></span> м</td><td class="te">217 000 м</td></tr>
-  <tr><td>Норма 1 монтажника (10 ч/день)</td><td class="tf">325 м/чел.день</td><td><span class="f"></span></td><td class="te">325</td></tr>
-  <tr><td>Число монтажников капли (факт)</td><td class="tf">по составу бригады</td><td><span class="f"></span></td><td class="te">8 чел.</td></tr>
-  <tr><td>Рабочих дней на каплю</td><td class="tf">L ÷ (N × 325)</td><td><span class="f"></span></td><td class="te">83 р.дн.</td></tr>
-  <tr><td>Дата старта монтажа капли</td><td class="tf">после НС + магистраль d110</td><td><span class="f"></span></td><td class="te">09.06.2026 (Н4)</td></tr>
-  <tr class="tk"><td><b>Расчётная дата финиша капли</b></td><td class="tf"><b>Старт + Д_раб × (7÷реж) к.д.</b></td><td><span class="f fw"></span></td><td class="te"><b>~23.08.2026</b></td></tr>
-</table>
-
-<!-- ===================== SECTION 8: SCENARIOS ===================== -->
-<h2>8. Сценарный анализ — добавить людей</h2>
-
-<div class="fbox">
-<b>Общая формула сценария «+N человек с даты D»:</b><br>
-<span class="res">V_доп = N_доп × Д_остаток (р.дн. от D до финиша) × 325</span><br>
-<span class="res">Доп.ФОТ = N_доп × Ставка × (Д_кал_остаток ÷ 30)</span><br><br>
-<span class="ex">Пример +3 чел с 01.07 (54 р.дн. до 29.08): 3 × 54 × 325 = 52 650 м доп. объёма, ФОТ ≈ 130 000 ₽</span>
-</div>
-
-<table>
-  <tr>
-    <th>Параметр</th>
-    <th>База (факт)</th>
-    <th>+2 чел.</th>
-    <th>+3 чел.</th>
-    <th>+5 чел.</th>
-    <th>Твой вариант</th>
-  </tr>
-  <tr><td>Монтажников капли</td><td>8</td><td>10</td><td>11</td><td>13</td><td><span class="f"></span></td></tr>
-  <tr><td>Выработка в день, м</td><td class="tf">8×325=2600</td><td class="tf">10×325=3250</td><td class="tf">11×325=3575</td><td class="tf">13×325=4225</td><td><span class="f"></span></td></tr>
-  <tr><td>Рабочих дней на каплю (86 р.дн. всего)</td><td class="tf">217000÷2600=83</td><td class="tf">217000÷3250=67</td><td class="tf">217000÷3575=61</td><td class="tf">217000÷4225=51</td><td><span class="f"></span></td></tr>
-  <tr class="tk"><td><b>Укладываемся в 86 р.дн.?</b></td><td><b>Да (с 22.05)</b></td><td><b>Да ✓✓</b></td><td><b>Да ✓✓</b></td><td><b>Да ✓✓✓</b></td><td><span class="f"></span></td></tr>
-  <tr><td>Доп. ФОТ за период, ₽</td><td>—</td><td class="te">~86 000</td><td class="te">~130 000</td><td class="te">~215 000</td><td><span class="f"></span></td></tr>
-</table>
-
-<!-- ===================== SECTION 9: PAYROLL ===================== -->
-<h2>9. Расчёт ФОТ</h2>
-
-<div class="g2">
-<div>
-<div class="fbox">
-<b>ФОТ за весь период:</b><br>
-<span class="res">ФОТ = N_чел × Ставка × Кол_мес</span><br><br>
-<span class="ex">Пример: 15 чел × 45 000 ₽ × 3,25 мес = 2 193 750 ₽</span>
-</div>
-</div>
-<div>
-<div class="fbox">
-<b>Стоимость монтажа на единицу объёма:</b><br>
-<span class="res">Цена_м = ФОТ ÷ L_капли</span><br><br>
-<span class="ex">Пример: 2 193 750 ÷ 217 000 = 10,1 ₽/м капли</span>
-</div>
-</div>
-</div>
-
-<table style="margin-top:5px">
-  <tr><th>Категория</th><th>Кол-во</th><th>Ставка, ₽/мес</th><th>Месяцев</th><th>Итого ФОТ, ₽</th><th>Заполнить</th></tr>
-  <tr><td>ГС (монтажники)</td><td></td><td></td><td></td><td class="tf">N × С × М</td><td><span class="f"></span></td></tr>
-  <tr><td>СУЛАНЖ / субподрядчик</td><td></td><td></td><td></td><td class="tf">N × С × М</td><td><span class="f"></span></td></tr>
-  <tr><td>ИТР (РП + снабжение)</td><td></td><td></td><td></td><td class="tf">N × С × М</td><td><span class="f"></span></td></tr>
-  <tr class="tg"><td><b>ИТОГО ФОТ</b></td><td></td><td></td><td></td><td class="tf">Σ</td><td><span class="f fw"></span> ₽</td></tr>
-</table>
-
-<!-- ===================== PAGE 4 ===================== -->
-<div class="pb"></div>
-
-<!-- ===================== SECTION 10: WEEKLY TARGETS ===================== -->
-<h2>10. Недельные контрольные точки (план-факт капли)</h2>
-
-<div class="fbox">
-<b>Недельный план капли:</b>
-<span class="res">V_нед = N_монт × 6 р.дн. × 325</span>
-&nbsp;&nbsp;<span class="ex">Пример 8 чел: 8×6×325 = 15 600 м/нед.</span>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<b>Нарастающий итог (d р.дн. с момента старта капли):</b>
-<span class="res">V_нараст = N_монт × d × 325</span>
-&nbsp;&nbsp;<span class="ex">Пример через 4 нед (24 р.дн.): 8×24×325 = 62 400 м</span>
-</div>
-
-<table>
-  <tr>
-    <th>Неделя</th>
-    <th>Дата (пн–сб)</th>
-    <th>Монтажников капли</th>
-    <th>Норма нараст. (8 чел.), м</th>
-    <th>Факт нараст., м</th>
-    <th>Откл. %, причина</th>
-  </tr>
-  <tr><td>Н1 (старт)</td><td class="te">22–24.05 (3 р.дн.)</td><td>—</td><td class="te">НС + магистраль</td><td></td><td></td></tr>
-  <tr><td>Н2</td><td><span class="f"></span></td><td><span class="f"></span></td><td class="tf">N×d×325</td><td></td><td></td></tr>
-  <tr><td>Н3</td><td><span class="f"></span></td><td><span class="f"></span></td><td class="tf">N×d×325</td><td></td><td></td></tr>
-  <tr class="tk"><td><b>Н4 — 1-я партия METZER</b></td><td><span class="f"></span></td><td><span class="f"></span></td><td class="tf"><b>N×d×325</b></td><td></td><td></td></tr>
-  <tr><td>Н5</td><td><span class="f"></span></td><td><span class="f"></span></td><td class="tf">N×d×325</td><td></td><td></td></tr>
-  <tr><td>Н6</td><td><span class="f"></span></td><td><span class="f"></span></td><td class="tf">N×d×325</td><td></td><td></td></tr>
-  <tr class="tk"><td><b>Н7 — КТ 30.06 (план 46 800 м)</b></td><td class="te">30.06–05.07</td><td><span class="f"></span></td><td class="tf"><b>46 800</b></td><td></td><td></td></tr>
-  <tr><td>Н8</td><td><span class="f"></span></td><td><span class="f"></span></td><td class="tf">N×d×325</td><td></td><td></td></tr>
-  <tr><td>Н9</td><td><span class="f"></span></td><td><span class="f"></span></td><td class="tf">N×d×325</td><td></td><td></td></tr>
-  <tr class="tk"><td><b>Н10 — КТ 21.07 (план 85 800 м)</b></td><td class="te">21–26.07</td><td><span class="f"></span></td><td class="tf"><b>85 800</b></td><td></td><td></td></tr>
-  <tr><td>Н11</td><td><span class="f"></span></td><td><span class="f"></span></td><td class="tf">N×d×325</td><td></td><td></td></tr>
-  <tr><td>Н12</td><td><span class="f"></span></td><td><span class="f"></span></td><td class="tf">N×d×325</td><td></td><td></td></tr>
-  <tr class="tk"><td><b>Н13 — КТ 01.08 (план 163 800 м)</b></td><td class="te">28.07–02.08</td><td><span class="f"></span></td><td class="tf"><b>163 800</b></td><td></td><td></td></tr>
-  <tr><td>Н14</td><td><span class="f"></span></td><td><span class="f"></span></td><td class="tf">N×d×325</td><td></td><td></td></tr>
-  <tr class="tg"><td><b>Н15 — ФИНИШ (217 000 м)</b></td><td class="te">25–29.08</td><td><span class="f"></span></td><td class="tf"><b>217 000</b></td><td></td><td></td></tr>
-</table>
-
-<!-- ===================== SECTION 11: SANITY CHECKS ===================== -->
-<h2>11. Проверочные пропорции (быстрая проверка адекватности)</h2>
-
-<table>
-  <tr>
-    <th>Проверка</th>
-    <th>Нормальный диапазон</th>
-    <th>Формула расчёта</th>
-    <th>Твой результат</th>
-    <th>OK?</th>
-  </tr>
-  <tr>
-    <td>Капля как % от трудоёмкости</td>
-    <td class="te">50–65%</td>
-    <td class="tf">T_капли ÷ T_итого × 100</td>
-    <td><span class="f"></span></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Трудоёмкость на 1 га</td>
-    <td class="te">18–25 чел.дн/га (межр. 3м)</td>
-    <td class="tf">T_итого ÷ Площадь_га</td>
-    <td><span class="f"></span></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Нагрузка капли на 1 монтажника</td>
-    <td class="te">15 000–35 000 м/чел.</td>
-    <td class="tf">L_капли ÷ N_монт</td>
-    <td><span class="f"></span></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Загрузка бригады (использование ФЧД)</td>
-    <td class="te">85–100% — хорошо; &gt;100% — не успеем</td>
-    <td class="tf">T_итого ÷ ФЧД × 100%</td>
-    <td><span class="f"></span></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Стоимость монтажа капли</td>
-    <td class="te">8–15 ₽/м (зависит от ставок)</td>
-    <td class="tf">ФОТ_монт ÷ L_капли</td>
-    <td><span class="f"></span></td>
-    <td></td>
-  </tr>
-  <tr class="tk">
-    <td><b>Хватает рабочих дней на каплю?</b></td>
-    <td class="te">Д_раб_после_магистрали ≥ T_капли ÷ N</td>
-    <td class="tf">Д_раб − (L ÷ N ÷ 325)</td>
-    <td><span class="f"></span></td>
-    <td></td>
-  </tr>
-</table>
-
-<!-- ===================== SECTION 12: QUICK REFERENCE ===================== -->
-<h2>12. Шпаргалка за 5 шагов — одна карточка</h2>
-
-<div class="g3">
-<div class="qcard">
-<h3>Геометрия поля</h3>
-<div class="fbox" style="font-size:8.5pt; margin-top:4px">
-S(м²) = га × 10 000<br>
-L_рядов = S ÷ межрядье<br>
-L_капли = L_рядов × k × Кп<br><br>
-<b>3м межр., 56,7га → 217 000м</b><br>
-<span class="ex">Кп=1,05–1,15 (петли+запас)</span>
-</div>
-</div>
-<div class="qcard">
-<h3>Нормы (10 ч/день)</h3>
-<div class="fbox" style="font-size:8.5pt; margin-top:4px">
-<b>Капля: 325 м/чел.день</b><br>
-d50: 80 &nbsp; d75: 65<br>
-d110: 50 &nbsp; d140: 40<br>
-Траншея: 50 м/чел.день<br>
-НС+фильтры: 5 чел.дн./компл.<br>
-<span class="ex">8ч → × 0,8 &nbsp; 12ч → × 1,2</span>
-</div>
-</div>
-<div class="qcard">
-<h3>Рабочие дни</h3>
-<div class="fbox" style="font-size:8.5pt; margin-top:4px">
-6дн/нед: Д = К × 6/7<br>
-5дн/нед: Д = К × 5/7<br><br>
-100 к.д. → <b>86 р.дн.</b> (6-дн.)<br>
-100 к.д. → 71 р.дн. (5-дн.)<br>
-<span class="ex">− праздники</span>
-</div>
-</div>
-</div>
-
-<div class="g3" style="margin-top:7px">
-<div class="qcard">
-<h3>Трудоёмкость и баланс</h3>
-<div class="fbox" style="font-size:8.5pt; margin-top:4px">
-T_вид = Объём ÷ Норма<br>
-ФЧД = N_чел × Д_раб<br>
-<b>Δ = ФЧД − T_итого</b><br><br>
-<span class="ex">668 чел.дн. = 217 000÷325</span><br>
-<span class="ex">1118 чел.дн. = 13×86</span>
-</div>
-</div>
-<div class="qcard">
-<h3>Минимум людей</h3>
-<div class="fbox" style="font-size:8.5pt; margin-top:4px">
-N_min = T_итого ÷ Д_раб<br>
-<b>N_капля = L ÷ (325×Д_раб)</b><br><br>
-217 000 ÷ (325×86) = 7,75<br>
-→ <b>8 монтажников</b> (минимум)<br>
-<span class="ex">Округлять всегда вверх</span>
-</div>
-</div>
-<div class="qcard">
-<h3>Недельный план капли</h3>
-<div class="fbox" style="font-size:8.5pt; margin-top:4px">
-V_нед = N × 6 × 325<br><br>
-6 чел → 11 700 м/нед<br>
-8 чел → <b>15 600 м/нед</b><br>
-10 чел → 19 500 м/нед<br>
-12 чел → 23 400 м/нед
-</div>
-</div>
-</div>
-
-<div class="ag" style="margin-top:9px; font-size:9pt">
-<b>Алгоритм расчёта за 5 шагов:</b> &nbsp;
-<b>①</b> L_капли = га×10000÷межр.×1,1 &nbsp;→&nbsp;
-<b>②</b> T_капли = L÷325 &nbsp;→&nbsp;
-<b>③</b> N_min = T_капли÷Д_раб (округлить вверх) &nbsp;→&nbsp;
-<b>④</b> Δ = ФЧД−T_итого (если &lt;0 — нужны люди) &nbsp;→&nbsp;
-<b>⑤</b> Финиш = Старт_капли + T_капли÷N × (7÷режим) к.д.
-</div>
-
-<div class="footer">
-  Шпаргалка расчётов · Монтаж капельного орошения · Составлено: 20.05.2026 · ООО «СУЛАНЖ» + ООО «Гарден Сити» · Виноградник 56,7 га, с. Пожарское, Крым
-</div>
-
+<script>
+/* Генератор строк таблицы Рабочего (Стр. 2) */
+</script>
 </body>
 </html>
