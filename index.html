@@ -501,13 +501,14 @@ details.card .card-inner{padding:0 14px 14px}
   <!-- Ряд 1: Срочные задачи + ТЗ -->
   <div class="grid2">
     <div class="card danger-card">
-      <div class="ch"><div class="ch-bar red"></div><div class="ch-title red">Срочные задачи</div><div class="ch-badge">6 открыто</div></div>
+      <div class="ch"><div class="ch-bar red"></div><div class="ch-title red">Срочные задачи</div><div class="ch-badge">7 открыто</div></div>
       <div class="cb">
         <div class="ar"><div class="adot orange"></div><div class="at"><b>Первый платёж по договору</b> — 7 000 000 ₽ до <b>18.05.2026</b> · АО «Янтарный» → ГС (уточнённый график)</div></div>
         <div class="ar"><div class="adot red"></div><div class="at"><b>Счёт №125 — ПРОСРОЧЕН</b> — 58 900 ₽ · ИП Парамонов · срок 15.05.2026</div></div>
         <div class="ar"><div class="adot red"></div><div class="at"><b>Согласовать объём</b> первой очереди — критично для старта монтажа</div></div>
         <div class="ar"><div class="adot orange"></div><div class="at"><b>Счёт ЦБ-242</b> — уточнить актуальность · 632 200 ₽ · ПГФ 3050</div></div>
         <div class="ar"><div class="adot orange"></div><div class="at"><b>Съёмка рельефа</b> от Максима (пункты ГРО) — нужна для геодезиста</div></div>
+        <div class="ar"><div class="adot red"></div><div class="at">🚨 <b>Нехватка персонала</b> — нужно 60 чел. к 30.06 (есть только 15), + 5 ед. техники</div></div>
       </div>
     </div>
     <div class="card green-card">
@@ -1646,6 +1647,37 @@ details.card .card-inner{padding:0 14px 14px}
     </div>
   </div>
 
+  <!-- Оплачено 18.05.2026 -->
+  <div class="card" style="border:1px solid rgba(46,125,50,.5);background:rgba(46,125,50,.07);margin-bottom:14px">
+    <div class="ch"><div class="ch-bar" style="background:#2e7d32"></div><div class="ch-title" style="color:#81c784">✅ Оплачено 18.05.2026</div></div>
+    <div class="cb">
+      <div style="font-size:11px;color:rgba(255,255,255,.42);margin-bottom:10px">Платежи, подтверждённые в рабочем чате 18.05.2026</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(46,125,50,.12);border-radius:6px;border:1px solid rgba(46,125,50,.25)">
+          <div>
+            <div style="font-size:13px;font-weight:700">Доставка + аренда 2 бытовок</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45)">WhatsApp Scan 18.05 · ООО «Крымтехкаркас»</div>
+          </div>
+          <span style="color:#81c784;font-weight:700;font-size:11px;background:rgba(46,125,50,.3);padding:3px 8px;border-radius:4px;white-space:nowrap">✅ ОПЛАЧЕН</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(46,125,50,.12);border-radius:6px;border:1px solid rgba(46,125,50,.25)">
+          <div>
+            <div style="font-size:13px;font-weight:700">Товары с Озон — бытовые для бытовки</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45)">ООО «Интернет Решения» · чайник + конвектор + микроволновка · доставка: 22–26.05</div>
+          </div>
+          <span style="color:#81c784;font-weight:700;font-size:11px;background:rgba(46,125,50,.3);padding:3px 8px;border-radius:4px;white-space:nowrap">✅ ОПЛАЧЕН</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(46,125,50,.12);border-radius:6px;border:1px solid rgba(46,125,50,.25)">
+          <div>
+            <div style="font-size:13px;font-weight:700">Договор аренды автомобиля (Lada Granta)</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.45)">ИП Парамонов · Топливная карта ГС получена</div>
+          </div>
+          <span style="color:#81c784;font-weight:700;font-size:11px;background:rgba(46,125,50,.3);padding:3px 8px;border-radius:4px;white-space:nowrap">✅ ОПЛАЧЕН</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="grid2">
     <div class="card" style="margin-bottom:0">
       <div class="ch"><div class="ch-bar"></div><div class="ch-title">🏦 Реквизиты · Счёт ЦБ-242 (ПГФ 3050)</div></div>
@@ -1680,9 +1712,9 @@ details.card .card-inner{padding:0 14px 14px}
 <div class="page" id="page-tasks">
   <div class="page-title">Задачи и открытые вопросы</div>
   <div class="kpi-row">
-    <div class="kpi danger-kpi"><div class="kpi-num">7</div><div class="kpi-lbl">срочных</div></div>
-    <div class="kpi warn"><div class="kpi-num">16</div><div class="kpi-lbl">в работе</div></div>
-    <div class="kpi"><div class="kpi-num">0</div><div class="kpi-lbl">выполнено</div></div>
+    <div class="kpi danger-kpi"><div class="kpi-num">8</div><div class="kpi-lbl">срочных</div></div>
+    <div class="kpi warn"><div class="kpi-num">17</div><div class="kpi-lbl">в работе</div></div>
+    <div class="kpi"><div class="kpi-num">1</div><div class="kpi-lbl">выполнено</div></div>
   </div>
 
   <div class="card">
@@ -1710,6 +1742,10 @@ details.card .card-inner{padding:0 14px 14px}
     <div class="task-item danger">
       <input type="checkbox" class="task-cb" onchange="toggleTask(this)">
       <div class="task-text">Согласовать объём работ <b>первой очереди</b> — критично для старта монтажа <span class="task-tag tt-danger">СРОЧНО</span></div>
+    </div>
+    <div class="task-item danger">
+      <input type="checkbox" class="task-cb" onchange="toggleTask(this)">
+      <div class="task-text">🚨 <b>НЕХВАТКА ПЕРСОНАЛА</b> — для монтажа к 30.06 нужно: 30 чел. (капля) + 9 чел. (магистраль) + 12 чел. (латераль) + 9 чел. (стройка) = <b>60 человек + 5 ед. техники</b>. Сейчас на объекте только 4 монтажника СУЛАНЖ. Предложение Лёхи: продлить рабочий день за почасовую доплату <span class="task-tag tt-danger">КРИТИЧНО · к 30.06</span></div>
     </div>
     <div class="task-item danger">
       <input type="checkbox" class="task-cb" onchange="toggleTask(this)">
@@ -1805,7 +1841,11 @@ details.card .card-inner{padding:0 14px 14px}
     </div>
     <div class="task-item warn">
       <input type="checkbox" class="task-cb" onchange="toggleTask(this)">
-      <div class="task-text"><b>18.05.2026</b> — оплатить договор аренды автомобиля, получить топливную карту ГС <span class="task-tag tt-warn">ДО 18.05</span></div>
+      <div class="task-text done-txt"><b>18.05.2026</b> — договор аренды автомобиля оплачен ✅ Топливная карта ГС получена ✅ <span class="task-tag" style="background:rgba(46,125,50,.3);color:#81c784">ВЫПОЛНЕНО</span></div>
+    </div>
+    <div class="task-item warn">
+      <input type="checkbox" class="task-cb" onchange="toggleTask(this)">
+      <div class="task-text">Добавить <b>Максима (заказчик, АО «Янтарный»)</b> и <b>Женю Кочеткова (агроном)</b> в видеочат монтажа (просьба Лёхи, 19.05). Чат создан, Дима и Лёха уже добавлены — нужно добавить Макса и Женю <span class="task-tag tt-warn">Уточнить</span></div>
     </div>
   </div>
 
@@ -1827,6 +1867,11 @@ details.card .card-inner{padding:0 14px 14px}
       <b>16.05.2026 — Подбор насосов:</b> Запрос на НС-1 и НС-2 подан. НС-1: Q=65 м³/ч, H=40 м, Ø140 мм, L=600 м. НС-2 два варианта: 45 м³/ч (цикл ~56 ч) и 65 м³/ч (цикл ~85 ч), перепад 8 м, Ø110 мм, L=2400 м. Ответ в понедельник 18.05.<br>
       <b>16.05.2026 — Бытовки:</b> Счёт на покупку бытовок удалён. Переходим на аренду у ООО «Крымтехкаркас» (~15 000 ₽/мес).<br>
       <b>16.05.2026 — Люди СУЛАНЖ на объекте:</b> Костров Павел, Моисеенко Александр, Божко Денис, Высидалко Максим.<br>
+      <b>18.05.2026 — Персонал ГС (СБ):</b> Примачок Ю., Темников А., Швец-Роговой Д., Васильев А., Рыков В., Прусаков А., Борисов Д., Борисов А., Браковенко Я., Шпилёв А., Яковлев А. (11 чел. ГС + 4 СУЛАНЖ = 15 итого).<br>
+      <b>18.05.2026 — Транспорт:</b> Ларгус У643ТК 797, Газель Т410ВУ977, Toyota RAV4 В325ЕС 92 (Леха), VW Tiguan А289ХР 92.<br>
+      <b>18.05.2026 — Оплачено:</b> Бытовки+доставка (WhatsApp Scan) ✅ · Озон (товары для бытовки) ✅ · Аренда авто ✅<br>
+      <b>19–20.05.2026 — Нехватка персонала:</b> Для монтажа к 30.06 нужно 60 чел. (30 капля + 9 магистраль + 12 латераль + 9 стройка) + 5 ед. техники. Предложение — продление рабочего дня.<br>
+      <b>19.05.2026 — Видеочат монтажа:</b> Создан Шпилёвым. Добавлены Дима и Лёха. Нужно добавить Макса (заказчик) и Женю агронома.<br>
       <b>16.05.2026 — Новые счета (архив «Обеспечение Виноградник 50»):</b> №7175 Офис-Про (инструмент) — 215 888 ₽; №224 СИМПЛАСТ (трубы магистраль/латераль) — 144 657 ₽ до 20.05; №-545 (продукты/быт монтажников) — 15 054 ₽.<br>
       <b>16.05.2026 — Примечание Шпилёв (закреп):</b> ИП «Плюта» — питьевая вода (контакты у Игоря ГС). Питание — Дарья ГС +7-978-767-23-36. 18.05 — оплатить аренду авто + топливная карта ГС. Счёт Офис-Про: удалить п.11, добавить мешки 40 шт, рукав ПЭ 50м×1,5м, ножницы ПНД 5 шт, канистры 4 шт.<br>
       <b>СимПласт (из чата):</b> Магистраль и латераль в границах виноградника — счёт №224, 144 657 ₽, срок 20.05.
@@ -2914,6 +2959,72 @@ details.card .card-inner{padding:0 14px 14px}
 </div>
 
 <!-- ══════ ВОПРОСЫ АУДИТА ══════ -->
+<!-- Персонал ГС на объекте -->
+  <div class="card" style="margin-bottom:12px;border:1px solid rgba(201,168,76,.2)">
+    <div class="ch"><div class="ch-bar"></div><div class="ch-title">Персонал ГС на объекте</div><div class="ch-badge" style="background:rgba(201,168,76,.15);color:var(--gold)">15 чел. всего</div></div>
+    <div class="cb">
+      <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:8px">Список персонала АО «Янтарный» / ООО «Гарден Сити», участвующих в производстве работ · Источник: Шпилёв → СБ, 18.05.2026</div>
+      <div class="grid2" style="gap:10px">
+        <div>
+          <div style="font-size:10px;font-weight:700;color:rgba(201,168,76,.7);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Персонал ГС (11 чел.)</div>
+          <div class="tbl-wrap">
+            <table class="t" style="font-size:12px">
+              <thead><tr><th>#</th><th>ФИО</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Примачок Ю.</td></tr>
+                <tr><td>2</td><td>Темников А.</td></tr>
+                <tr><td>3</td><td>Швец-Роговой Д.</td></tr>
+                <tr><td>4</td><td>Васильев А.</td></tr>
+                <tr><td>5</td><td>Рыков В.</td></tr>
+                <tr><td>6</td><td>Прусаков А.</td></tr>
+                <tr><td>7</td><td>Борисов Д.</td></tr>
+                <tr><td>8</td><td>Борисов А.</td></tr>
+                <tr><td>9</td><td>Браковенко Я.</td></tr>
+                <tr><td>10</td><td><b>Шпилёв А.</b> · руководитель проекта</td></tr>
+                <tr><td>11</td><td><b>Яковлев А.</b> · координатор</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:rgba(100,181,246,.7);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Монтажники СУЛАНЖ (4 чел.)</div>
+          <div class="tbl-wrap">
+            <table class="t" style="font-size:12px">
+              <thead><tr><th>#</th><th>ФИО</th></tr></thead>
+              <tbody>
+                <tr><td>12</td><td>Костров Павел</td></tr>
+                <tr><td>13</td><td>Моисеенко Александр</td></tr>
+                <tr><td>14</td><td>Божко Денис</td></tr>
+                <tr><td>15</td><td>Высидалко Максим</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:10px;padding:8px 10px;background:rgba(139,26,47,.12);border-radius:6px;border:1px solid rgba(139,26,47,.25);font-size:11px;color:#ff8a80">
+        ⚠️ Для монтажа к <b>30.06.2026</b> требуется: 30+9+12+9 = <b>60 человек + 5 ед. техники</b>. Текущий состав (15 чел.) недостаточен — дефицит ~45 человек.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;border:1px solid rgba(66,165,245,.2)">
+    <div class="ch"><div class="ch-bar" style="background:#1565c0"></div><div class="ch-title">Транспорт объекта</div><div class="ch-badge" style="background:rgba(21,101,192,.15);color:#90caf9">4 авт.</div></div>
+    <div class="cb">
+      <div class="tbl-wrap">
+        <table class="t" style="font-size:12px">
+          <thead><tr><th>#</th><th>Марка / Модель</th><th>Гос. номер</th><th>Принадлежность</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Lada Largus</td><td><b>У643ТК 797</b></td><td>ГС</td></tr>
+            <tr><td>2</td><td>ГАЗель</td><td><b>Т410ВУ977</b></td><td>ГС</td></tr>
+            <tr><td>3</td><td>Toyota RAV4</td><td><b>В325ЕС 92</b></td><td>Леха</td></tr>
+            <tr><td>4</td><td>Volkswagen Tiguan</td><td><b>А289ХР 92</b></td><td>Шпилёв</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:6px;font-size:11px;color:rgba(255,255,255,.35)">+ Lada Granta ИП Парамонов П.С. · аренда · Счёт №125</div>
+    </div>
+  </div>
+
 <div class="page" id="page-qa">
   <div class="page-title">Открытые вопросы аудита</div>
   <div class="kpi-row">
@@ -3369,6 +3480,14 @@ const QA_DATA=[
    title:'Капельница METZER 2 л/ч ✅ — принято по последней смете',
    desc:'Принято: расход капельницы 2 л/ч (METZER) согласно последнему сметному расчёту. ТЗ содержало устаревшие данные (1,6 л/ч). Смета является приоритетным документом.',
    q:'Вопрос закрыт. Капельница METZER 2 л/ч — подтверждено сметой 15.05.2026.'},
+  {id:'q15',pri:'orange',page:'Задачи · Монтаж · Персонал',ask:'Шпилёв · СУЛАНЖ · Леха',
+   title:'Нехватка персонала: нужно 60 чел. к 30.06.2026',
+   desc:'По данным из рабочего чата (~20.05.2026): для монтажа к 30.06 нужно 30 чел. (капля) + 9 (магистраль) + 12 (латераль) + 9 (стройка) = 60 человек + 5 ед. техники. Сейчас на объекте 15 человек (4 монтажника СУЛАНЖ + 11 ГС). Дефицит ~45 человек.',
+   q:'Как решается вопрос привлечения рабочей силы? Планируется ли продление рабочего дня за почасовую доплату?'},
+  {id:'q16',pri:'orange',page:'Договор · Сроки',ask:'Шпилёв · АО Янтарный',
+   title:'Сдвиг сроков: нужно перенести на месяц или не разделять оплаты',
+   desc:'Из переписки Шпилёва: «Сроки нужно сдвигать на месяц, либо не разделять оплаты». Текущая дата сдачи: 25.08.2026. При сдвиге на месяц — 25.09.2026. Изменение потребует доп. соглашения к договору №ГС-12-05.',
+   q:'Согласовано ли изменение сроков с АО «Янтарный»? Если да — нужно подписать доп. соглашение и обновить дату сдачи в дашборде.'},
 ];
 
 function qaCardHtml(q){
