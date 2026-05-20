@@ -215,6 +215,17 @@ body {
   white-space: nowrap;
 }
 .fc-arrow { color: var(--g-mid); font-size: 9pt; }
+
+/* ── Print tweaks ── */
+@media print {
+  .page { box-shadow: none; margin: 0; }
+  .brig-card { break-inside: avoid; }
+  .tbl tbody tr { break-inside: avoid; }
+  .brigade-grid { break-inside: avoid; }
+  .two-col { break-inside: avoid; }
+  #p2 { min-height: auto; page-break-after: always; }
+  .tbl thead { display: table-header-group; }
+}
 </style>
 </head>
 <body>
