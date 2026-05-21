@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Схема 24 блоков · Поле №78 · 2026</title>
+<style>
+@page { size: A4 landscape; margin: 8mm 10mm; }
+@media print { .no-print{display:none!important} body{font-size:7pt} }
+*{ box-sizing:border-box; margin:0; padding:0; }
+body{ font-family:Arial,sans-serif; font-size:9pt; color:#1a1a1a; background:#fff; line-height:1.4; padding:8mm 10mm; }
+.no-print{ position:fixed; top:14px; right:16px; background:#1b5e20; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-size:12px; font-weight:700; cursor:pointer; z-index:999; }
+.no-print:hover{ background:#2e7d32; }
+h1{ font-size:12pt; font-weight:900; color:#1b5e20; border-bottom:2px solid #1b5e20; padding-bottom:3px; margin:5mm 0 3mm; }
+h2{ font-size:9.5pt; font-weight:800; margin:3mm 0 2mm; }
+
+/* COVER */
+.cover{ text-align:center; padding:6mm 0 5mm; border-bottom:3px solid #1b5e20; margin-bottom:4mm; }
+.cover-title{ font-size:15pt; font-weight:900; margin-bottom:2mm; }
+.cover-sub{ font-size:9pt; color:#555; margin-bottom:3mm; }
+.cover-badge{ display:inline-block; background:#1b5e20; color:#fff; padding:3px 14px; border-radius:20px; font-size:9pt; font-weight:700; margin-bottom:3mm; }
+.cover-info{ font-size:8pt; color:#444; line-height:2; }
+
+/* LEGEND */
+.legend{ display:flex; flex-wrap:wrap; gap:3mm; margin-bottom:4mm; align-items:center; }
+.leg-item{ display:flex; align-items:center; gap:2mm; font-size:8pt; }
+.leg-box{ width:18px; height:14px; border-radius:2px; border:1px solid #ccc; flex-shrink:0; }
+
+/* SHIFT COLORS */
+.s1 { background:#e3f2fd; }
+.s2 { background:#f3e5f5; }
+.s3 { background:#fff8e1; }
+.s4 { background:#e8f5e9; }
+.s5 { background:#fce4ec; }
+.s6 { background:#e0f2f1; }
+.s7 { background:#fff3e0; }
+.s8 { background:#e8eaf6; }
+.s9 { background:#f1f8e9; }
+.s10{ background:#fbe9e7; }
+.s11{ background:#f5f5f5; }
+
+/* MAIN FIELD GRID */
+.field-wrap{ overflow-x:auto; }
+.field-container{ min-width: 820px; }
+
+/* ZONE HEADER */
+.zone-label{ background:#37474f; color:#fff; text-align:center; font-weight:800; font-size:9pt; padding:4px 0; margin-bottom:0; }
+
+/* COLUMN HEADERS */
+.col-headers{ display:grid; grid-template-columns:120px 1fr 1fr 1fr; gap:0; }
+.col-h{ background:#1b5e20; color:#fff; text-align:center; padding:5px 3px; font-size:8pt; font-weight:700; }
+.col-h.zone-h{ background:#546e7a; }
+
+/* BLOCK GRID */
+.block-row{ display:grid; grid-template-columns:120px 1fr 1fr 1fr; gap:1px; background:#ccc; margin-bottom:1px; }
+.row-label{ background:#eceff1; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:3px; font-size:7.5pt; color:#555; font-weight:700; text-align:center; }
+.row-label .rl-len{ font-size:9pt; font-weight:900; color:#37474f; }
+.row-label .rl-zone{ font-size:7pt; color:#888; }
+
+.block{ padding:4px 5px; cursor:pointer; position:relative; transition:filter .15s; border:1px solid transparent; }
+.block:hover{ filter:brightness(0.92); border-color:#1b5e20; z-index:2; }
+
+.block-num{ font-size:13pt; font-weight:900; color:#1a1a1a; line-height:1; }
+.block-variety{ font-size:7.5pt; color:#444; margin:1px 0 2px; line-height:1.2; }
+.block-rows{ font-size:7.5pt; }
+.block-rows b{ color:#1b5e20; }
+.block-drip{ font-size:7.5pt; color:#1b5e20; font-weight:700; }
+.block-valve{ display:inline-block; font-size:7pt; font-weight:800; padding:1px 5px; border-radius:8px; margin-top:2px; }
+.valve-3{ background:#e8eaf6; color:#283593; }
+.valve-2{ background:#fce4ec; color:#880e4f; }
+.block-shift{ font-size:7pt; color:#888; margin-top:1px; }
+.block-area{ font-size:7pt; color:#555; }
+.block-mats{ margin-top:3px; font-size:7pt; line-height:1.5; }
+
+/* MATERIALS BADGE */
+.mat-bad { color:#c62828; font-weight:700; }
+.mat-warn{ color:#e65100; }
+.mat-unk { color:#888; }
+.mat-ok  { color:#2e7d32; }
+
+/* TOTALS ROW */
+.totals-row{ display:grid; grid-template-columns:120px 1fr 1fr 1fr; gap:1px; background:#ccc; margin-top:2px; }
+.total-cell{ background:#e8f5e9; padding:4px 5px; font-size:8pt; }
+.total-cell b{ color:#1b5e20; }
+
+/* MATERIALS TABLE */
+.mat-table{ width:100%; border-collapse:collapse; font-size:8.5pt; margin-bottom:3mm; }
+.mat-table th{ background:#1b5e20; color:#fff; padding:4px 6px; text-align:left; }
+.mat-table td{ padding:3px 6px; border-bottom:1px solid #eee; vertical-align:top; }
+.mat-table tr:nth-child(even) td{ background:#f9fbe7; }
+
+/* STATUS BADGE */
+.sbad{ background:#ffcdd2; color:#c62828; font-weight:700; padding:1px 6px; border-radius:10px; font-size:7.5pt; }
+.swarn{ background:#ffe0b2; color:#e65100; padding:1px 6px; border-radius:10px; font-size:7.5pt; }
+.sunk{ background:#f5f5f5; color:#888; padding:1px 6px; border-radius:10px; font-size:7.5pt; }
+.sok{ background:#c8e6c9; color:#1b5e20; padding:1px 6px; border-radius:10px; font-size:7.5pt; }
+
+/* POPUP */
+.popup-overlay{ display:none; position:fixed; top:0;left:0;right:0;bottom:0; background:rgba(0,0,0,.4); z-index:100; }
+.popup-overlay.active{ display:flex; align-items:center; justify-content:center; }
+.popup-box{ background:#fff; border-radius:8px; padding:16px 20px; max-width:420px; width:92%; box-shadow:0 8px 32px rgba(0,0,0,.3); }
+.popup-title{ font-size:14pt; font-weight:900; margin-bottom:6px; }
+.popup-row{ display:flex; justify-content:space-between; padding:3px 0; border-bottom:1px solid #eee; font-size:8.5pt; }
+.popup-row:last-child{ border:none; }
+.popup-close{ margin-top:10px; background:#1b5e20; color:#fff; border:none; border-radius:6px; padding:6px 16px; cursor:pointer; font-size:9pt; font-weight:700; }
+
+.alert-red { background:#ffebee; border-left:4px solid #c62828; padding:3mm 5mm; margin:3mm 0; font-size:8.5pt; }
+.alert-orange{ background:#fff8e1; border-left:4px solid #f59f00; padding:3mm 5mm; margin:3mm 0; font-size:8.5pt; }
+.alert-green { background:#e8f5e9; border-left:4px solid #1b5e20; padding:3mm 5mm; margin:3mm 0; font-size:8.5pt; }
+
+.footer{ margin-top:6mm; padding-top:3mm; border-top:1px solid #ccc; font-size:7.5pt; color:#888; display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+<button class="no-print" onclick="window.print()">🖨 PDF / Распечатать</button>
+
+<div class="cover">
+  <div class="cover-title">СХЕМА ПОЛЯ №78 · 24 БЛОКА ОРОШЕНИЯ</div>
+  <div class="cover-sub">Виноградник 56,7 га · с. Пожарское, Симферопольский р-н, Крым</div>
+  <div class="cover-badge">217 000 м капельной ленты · 11 смен полива · 24 клапана ПИОНЕР</div>
+  <div class="cover-info">
+    <b>Договор №ГС-12-05</b> от 12.05.2026 · ООО «СУЛАНЖ» / ООО «Гарден Сити»
+  </div>
+</div>
+
+<div id="root"></div>
+
+<!-- POPUP -->
+<div class="popup-overlay no-print" id="popup" onclick="closePopup(event)">
+  <div class="popup-box">
+    <div class="popup-title" id="popup-title">Блок</div>
+    <div id="popup-body"></div>
+    <button class="popup-close" onclick="document.getElementById('popup').classList.remove('active')">Закрыть</button>
+  </div>
+</div>
+
+<script>
+const BLOCKS = {
+  1:  { variety:'Совиньон белый',    rows:69,  rowLen:99,  blind:104, valve:'2"', shift:'С3',  flow:55,  prv:'34→25', area:1.70, drip:6831 },
+  2:  { variety:'Совиньон белый',    rows:96,  rowLen:99,  blind:144, valve:'3"', shift:'С2',  flow:77,  prv:'27→25', area:2.37, drip:9504 },
+  3:  { variety:'Совиньон белый',    rows:109, rowLen:99,  blind:164, valve:'3"', shift:'С1',  flow:88,  prv:'32→25', area:2.70, drip:10791 },
+  4:  { variety:'Пино белый',        rows:69,  rowLen:118, blind:104, valve:'2"', shift:'С11', flow:67,  prv:'46→26', area:2.04, drip:8142 },
+  5:  { variety:'Пино чёрный',       rows:96,  rowLen:119, blind:144, valve:'3"', shift:'С9',  flow:93,  prv:'45→25', area:2.85, drip:11424 },
+  6:  { variety:'Мерло',             rows:109, rowLen:119, blind:164, valve:'3"', shift:'С8',  flow:105, prv:'48→25', area:3.24, drip:12971 },
+  7:  { variety:'Мерло',             rows:109, rowLen:119, blind:164, valve:'3"', shift:'С8',  flow:105, prv:'47→26', area:3.24, drip:12971 },
+  8:  { variety:'Пино Менье/Кокур',  rows:96,  rowLen:119, blind:144, valve:'3"', shift:'С9',  flow:93,  prv:'45→25', area:2.85, drip:11424 },
+  9:  { variety:'Шардоне',           rows:69,  rowLen:118, blind:104, valve:'2"', shift:'С10', flow:67,  prv:'46→26', area:2.04, drip:8142 },
+  10: { variety:'Шардоне',           rows:69,  rowLen:79,  blind:104, valve:'2"', shift:'С7',  flow:44,  prv:'46→25', area:1.36, drip:5451 },
+  11: { variety:'Шардоне',           rows:96,  rowLen:79,  blind:144, valve:'3"', shift:'С6',  flow:62,  prv:'46→25', area:1.90, drip:7584 },
+  12: { variety:'Пино белый',        rows:109, rowLen:79,  blind:164, valve:'3"', shift:'С6',  flow:70,  prv:'49→25', area:2.16, drip:8611 },
+  13: { variety:'Пино чёрный',       rows:109, rowLen:79,  blind:164, valve:'3"', shift:'С5',  flow:70,  prv:'48→25', area:2.16, drip:8611 },
+  14: { variety:'Мерло',             rows:69,  rowLen:79,  blind:104, valve:'2"', shift:'С5',  flow:44,  prv:'45→25', area:1.36, drip:5451 },
+  15: { variety:'Каберне Совиньон',  rows:96,  rowLen:79,  blind:144, valve:'3"', shift:'С5',  flow:62,  prv:'45→25', area:1.90, drip:7584 },
+  16: { variety:'Каберне Совиньон',  rows:69,  rowLen:79,  blind:104, valve:'2"', shift:'С4',  flow:44,  prv:'44→25', area:1.36, drip:5451 },
+  17: { variety:'Шардоне',           rows:96,  rowLen:79,  blind:144, valve:'3"', shift:'С4',  flow:62,  prv:'44→25', area:1.90, drip:7584 },
+  18: { variety:'Шардоне',           rows:109, rowLen:79,  blind:164, valve:'3"', shift:'С4',  flow:70,  prv:'47→25', area:2.16, drip:8611 },
+  19: { variety:'Шардоне',           rows:109, rowLen:96,  blind:164, valve:'3"', shift:'С1',  flow:85,  prv:'37→25', area:2.62, drip:10464 },
+  20: { variety:'Пино белый',        rows:69,  rowLen:96,  blind:104, valve:'2"', shift:'С3',  flow:54,  prv:'39→25', area:1.65, drip:6624 },
+  21: { variety:'Пино чёрный',       rows:96,  rowLen:96,  blind:144, valve:'3"', shift:'С2',  flow:75,  prv:'35→25', area:2.30, drip:9216 },
+  22: { variety:'Мальбек',           rows:69,  rowLen:99,  blind:104, valve:'2"', shift:'С3',  flow:55,  prv:'37→25', area:1.70, drip:6831 },
+  23: { variety:'Мальбек',           rows:96,  rowLen:99,  blind:144, valve:'3"', shift:'С2',  flow:77,  prv:'32→25', area:2.37, drip:9504 },
+  24: { variety:'Каберне Фран',      rows:109, rowLen:99,  blind:164, valve:'3"', shift:'С1',  flow:88,  prv:'35→25', area:2.70, drip:10791 },
+};
+
+const SHIFT_CSS = {
+  'С1':'s1','С2':'s2','С3':'s3','С4':'s4','С5':'s5',
+  'С6':'s6','С7':'s7','С8':'s8','С9':'s9','С10':'s10','С11':'s11'
+};
+
+/* Сетка: 8 рядов × 3 колонки [col0=109р, col1=96р, col2=69р] */
+const GRID = [
+  /* Зона A: ряды 119м */
+  { zone:'Зона A · ряды 119 м', rowLen:'119 м', blocks:[7,  8,  9]  },
+  { zone:'',                    rowLen:'119 м', blocks:[6,  5,  4]  },
+  /* Зона B: ряды 79м */
+  { zone:'Зона Б · ряды 79 м',  rowLen:'79 м',  blocks:[18, 17, 16] },
+  { zone:'',                    rowLen:'79 м',  blocks:[13, 15, 14] },
+  { zone:'',                    rowLen:'79 м',  blocks:[12, 11, 10] },
+  /* Зона C: ряды 99м */
+  { zone:'Зона В · ряды 99 м',  rowLen:'99 м',  blocks:[24, 23, 22] },
+  { zone:'',                    rowLen:'99 м',  blocks:[19, 21, 20] },
+  { zone:'',                    rowLen:'99 м',  blocks:[3,  2,  1]  },
+];
+
+/* Материалы по блокам — статус на 22.05.2026 */
+/* Общие материалы для всех блоков */
+const GLOBAL_MATS = [
+  { s:'unk', t:'Капельная лента METZER 2 л/ч' },
+  { s:'unk', t:'Крючки 16 мм (650 шт/чел/день)' },
+  { s:'unk', t:'Стартконнекторы 16×Н3/4"' },
+  { s:'unk', t:'Заглушки-восьмёрки 16 мм' },
+];
+
+/* Дополнительные материалы для col2 (клапан 2") */
+const COL2_BLOCKS = new Set([1,4,9,10,14,16,20,22]);
+
+function getMatHtml(blockNum) {
+  const isCol2 = COL2_BLOCKS.has(blockNum);
+  const valve = isCol2 ? '2"' : '3"';
+  const valveName = isCol2 ? 'ПИОНЕР™ 2" × 1 шт.' : 'ПИОНЕР™ 3" × 1 шт.';
+  return `
+    <div class="mat-item mat-unk">❓ Капельная лента METZER</div>
+    <div class="mat-item mat-unk">❓ Крючки + стартконн. + заглушки</div>
+    <div class="mat-item mat-unk">❓ Клапан ${valveName}</div>
+    <div class="mat-item mat-unk">❓ PRV регулятор × 1 шт.</div>
+  `;
+}
+
+function renderBlock(num) {
+  const b = BLOCKS[num];
+  const css = SHIFT_CSS[b.shift];
+  const vClass = b.valve === '2"' ? 'valve-2' : 'valve-3';
+  return `<div class="block ${css}" onclick="showPopup(${num})" title="Нажмите для деталей">
+    <div class="block-num">${num}</div>
+    <div class="block-variety">${b.variety}</div>
+    <div class="block-rows"><b>${b.rows}</b> р. × ${b.rowLen} м</div>
+    <div class="block-drip">≈ ${b.drip.toLocaleString('ru-RU')} м</div>
+    <div><span class="block-valve ${vClass}">ПИОНЕР ${b.valve}</span></div>
+    <div class="block-shift">${b.shift} · ${b.flow} м³/ч · ${b.area} га</div>
+    <div class="block-mats no-print">${getMatHtml(num)}</div>
+  </div>`;
+}
+
+function showPopup(num) {
+  const b = BLOCKS[num];
+  document.getElementById('popup-title').textContent = `Блок ${num} — ${b.variety}`;
+  document.getElementById('popup-body').innerHTML = `
+    <div class="popup-row"><span>Сорт</span><b>${b.variety}</b></div>
+    <div class="popup-row"><span>Рядов</span><b>${b.rows} рядов</b></div>
+    <div class="popup-row"><span>Длина ряда</span><b>${b.rowLen} м</b></div>
+    <div class="popup-row"><span>Слепая трубка</span><b>${b.blind} м</b></div>
+    <div class="popup-row"><span>Капельная лента</span><b>≈ ${b.drip.toLocaleString('ru-RU')} м</b></div>
+    <div class="popup-row"><span>Клапан</span><b>ПИОНЕР™ ${b.valve}</b></div>
+    <div class="popup-row"><span>Смена полива</span><b>${b.shift}</b></div>
+    <div class="popup-row"><span>Расход</span><b>${b.flow} м³/ч</b></div>
+    <div class="popup-row"><span>PRV вх → вых</span><b>${b.prv} м</b></div>
+    <div class="popup-row"><span>Площадь</span><b>${b.area} га</b></div>
+    <div style="margin-top:8px;font-size:8.5pt">
+      <b>Материалы (статус ❓ — уточнить):</b><br>
+      ❓ Капельная лента METZER 2 л/ч × ${b.drip.toLocaleString('ru-RU')} м<br>
+      ❓ Крючки 16 мм × ${b.rows*b.rowLen*2} шт. (шаг 0,5 м)<br>
+      ❓ Стартконнекторы 16×Н3/4" × ${b.rows} шт.<br>
+      ❓ Заглушки-восьмёрки 16 мм × ${b.rows} шт.<br>
+      ❓ Слепая трубка 16×1,2 мм × ${b.blind} м<br>
+      ❓ Клапан ПИОНЕР™ ${b.valve} × 1 шт.<br>
+      ❓ PRV-регулятор давления × 1 шт.
+    </div>
+  `;
+  document.getElementById('popup').classList.add('active');
+}
+
+function closePopup(e) {
+  if (e.target === document.getElementById('popup')) {
+    document.getElementById('popup').classList.remove('active');
+  }
+}
+
+function render() {
+  let html = '';
+
+  /* LEGEND */
+  const shiftColors = {
+    'С1':'#e3f2fd','С2':'#f3e5f5','С3':'#fff8e1','С4':'#e8f5e9','С5':'#fce4ec',
+    'С6':'#e0f2f1','С7':'#fff3e0','С8':'#e8eaf6','С9':'#f1f8e9','С10':'#fbe9e7','С11':'#f5f5f5'
+  };
+  html += `<div class="legend">`;
+  Object.entries(shiftColors).forEach(([shift, color]) => {
+    html += `<div class="leg-item"><div class="leg-box" style="background:${color}"></div>${shift}</div>`;
+  });
+  html += `<div class="leg-item" style="margin-left:8px"><div class="leg-box valve-3" style="border:2px solid #283593"></div>ПИОНЕР 3" (col0+col1)</div>`;
+  html += `<div class="leg-item"><div class="leg-box valve-2" style="border:2px solid #880e4f"></div>ПИОНЕР 2" (col2)</div>`;
+  html += `</div>`;
+
+  html += `<div class="field-wrap"><div class="field-container">`;
+
+  /* COLUMN HEADERS */
+  html += `<div class="col-headers">
+    <div class="col-h zone-h"></div>
+    <div class="col-h">col0 · 109 рядов<br><small style="font-weight:400;opacity:.8">ПИОНЕР 3"</small></div>
+    <div class="col-h">col1 · 96 рядов<br><small style="font-weight:400;opacity:.8">ПИОНЕР 3"</small></div>
+    <div class="col-h">col2 · 69 рядов<br><small style="font-weight:400;opacity:.8">ПИОНЕР 2"</small></div>
+  </div>`;
+
+  let prevZone = '';
+  GRID.forEach((row, idx) => {
+    if (row.zone && row.zone !== prevZone) {
+      html += `<div class="zone-label">${row.zone}</div>`;
+      prevZone = row.zone;
+    }
+    html += `<div class="block-row">
+      <div class="row-label">
+        <div class="rl-len">${row.rowLen}</div>
+        <div class="rl-zone">ряд</div>
+      </div>
+      ${row.blocks.map(n => renderBlock(n)).join('')}
+    </div>`;
+  });
+
+  /* TOTALS */
+  const totals = [0,1,2].map(col => {
+    const nums = GRID.map(r => r.blocks[col]);
+    const totalDrip = nums.reduce((s,n) => s + BLOCKS[n].drip, 0);
+    const totalRows = nums.reduce((s,n) => s + BLOCKS[n].rows, 0);
+    const totalArea = nums.reduce((s,n) => s + BLOCKS[n].area, 0);
+    return { drip: totalDrip, rows: totalRows, area: totalArea.toFixed(2), count: nums.length };
+  });
+  const allDrip = totals.reduce((s,t) => s+t.drip, 0);
+
+  html += `<div class="totals-row">
+    <div class="total-cell"><b>ИТОГО</b><br>24 блока</div>
+    ${totals.map((t,i) => `<div class="total-cell">
+      8 блоков · <b>${t.drip.toLocaleString('ru-RU')} м</b><br>
+      ${t.rows} рядов · ${t.area} га
+    </div>`).join('')}
+  </div>`;
+  html += `<div style="font-size:8pt;color:#555;margin-top:2mm">
+    Итого капельной ленты: <b style="color:#1b5e20">${allDrip.toLocaleString('ru-RU')} м</b> (по расчёту рядов × длина; проект: 217 000 м)
+  </div>`;
+
+  html += `</div></div>`;
+
+  /* MATERIALS TABLE */
+  html += `<h1 style="margin-top:6mm">Материалы по блокам — статус на 22.05.2026</h1>`;
+
+  html += `<div class="alert-red">
+    ❌ <b>КРИТИЧНО для всех 24 блоков:</b> Капельная лента METZER 2 л/ч × 217 000 м — статус поставки НЕИЗВЕСТЕН. Нужна к 09.06.2026 (день 16).
+  </div>`;
+  html += `<div class="alert-orange">
+    ❓ <b>Статус неизвестен — уточнить у Яковлева А.:</b><br>
+    • Крючки 16 мм × 217 000 шт. · Стартконнекторы 16×Н3/4" × 2 300 шт. · Заглушки-восьмёрки 16 мм × 2 300 шт.<br>
+    • Слепая трубка Ø16×1,2 мм × 3 288 м (по 1,5 м/ряд · 2 192 рядов) · Штуцеры прямые 16×16 × 2 500 шт.<br>
+    • Клапаны ПИОНЕР™ 3" × 16 шт. + 2" × 8 шт. — нужны к 18.08.2026 · PRV × 24 шт.
+  </div>`;
+  html += `<div class="alert-green">
+    ✅ <b>Трубы ПЭ:</b> СТИЛЕКС d110/d75/d50 (счёт №290, 2 359 810 ₽) — ожидается · СИМПЛАСТ d140 (счёт №224) — ожидается
+  </div>`;
+
+  /* PER BLOCK TABLE */
+  html += `<table class="mat-table">
+    <thead>
+      <tr>
+        <th style="width:5%">Блок</th>
+        <th style="width:14%">Сорт</th>
+        <th style="width:7%">Смена</th>
+        <th style="width:8%">Клапан</th>
+        <th style="width:10%">Капля, м</th>
+        <th style="width:10%">Крючки, шт</th>
+        <th style="width:9%">Старт-конн.</th>
+        <th style="width:9%">Заглушки</th>
+        <th style="width:9%">Слепая тр.</th>
+        <th style="width:10%">Статус</th>
+      </tr>
+    </thead>
+    <tbody>`;
+
+  let totalDrip=0, totalHooks=0, totalStart=0, totalBlind=0;
+  for (let n = 1; n <= 24; n++) {
+    const b = BLOCKS[n];
+    const hooks = b.rows * b.rowLen * 2; // 0.5м = 2 шт/м
+    totalDrip += b.drip;
+    totalHooks += hooks;
+    totalStart += b.rows;
+    totalBlind += b.blind;
+    html += `<tr>
+      <td><b>${n}</b></td>
+      <td>${b.variety}</td>
+      <td>${b.shift}</td>
+      <td><span class="block-valve ${b.valve==='2"'?'valve-2':'valve-3'}">${b.valve}</span></td>
+      <td>${b.drip.toLocaleString('ru-RU')}</td>
+      <td>${hooks.toLocaleString('ru-RU')}</td>
+      <td>${b.rows}</td>
+      <td>${b.rows}</td>
+      <td>${b.blind}</td>
+      <td><span class="sunk">❓ не известен</span></td>
+    </tr>`;
+  }
+
+  html += `</tbody>
+    <tfoot>
+      <tr style="background:#e8f5e9;font-weight:700">
+        <td colspan="4"><b>ИТОГО</b></td>
+        <td><b>${totalDrip.toLocaleString('ru-RU')}</b></td>
+        <td><b>${totalHooks.toLocaleString('ru-RU')}</b></td>
+        <td><b>${totalStart.toLocaleString('ru-RU')}</b></td>
+        <td><b>${totalStart.toLocaleString('ru-RU')}</b></td>
+        <td><b>${totalBlind.toLocaleString('ru-RU')}</b></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>`;
+
+  html += `<div class="footer">
+    <span>Договор №ГС-12-05 от 12.05.2026 · Объект: Поле №78, Симферопольский р-н · ООО «ГАРДЕН СИТИ» / ООО «СУЛАНЖ»</span>
+    <span>Схема от 22.05.2026 · Нажмите блок для деталей</span>
+  </div>`;
+
+  document.getElementById('root').innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>
