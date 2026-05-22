@@ -1,0 +1,14 @@
+<div class="page" id="page-qa">
+  <div class="page-title">Открытые вопросы аудита</div>
+  <div class="kpi-row">
+    <div class="kpi danger-kpi"><div class="kpi-num" id="qa-cnt-open">—</div><div class="kpi-lbl">открытых</div></div>
+    <div class="kpi" style="border-color:rgba(102,187,106,.2);background:rgba(30,70,30,.2)"><div class="kpi-num" style="color:#66bb6a" id="qa-cnt-done">—</div><div class="kpi-lbl">отвечено</div></div>
+    <div class="kpi"><div class="kpi-num" id="qa-cnt-all">—</div><div class="kpi-lbl">всего</div></div>
+  </div>
+  <div class="qa-filter">
+    <button class="qf-btn active" data-filter="all" onclick="filterQa('all',this)">Все</button>
+    <button class="qf-btn" data-filter="open" onclick="filterQa('open',this)">⬜ Открытые</button>
+    <button class="qf-btn" data-filter="resolved" onclick="filterQa('resolved',this)">✅ Отвеченные</button>
+  </div>
+  <div id="qa-list"></div>
+</div>

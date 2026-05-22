@@ -1,0 +1,347 @@
+<div class="page" id="page-build">
+  <div class="page-title">Монтаж системы орошения</div>
+
+  <div style="margin-bottom:12px">
+    <a href="montage.html" target="_blank" style="display:flex;align-items:center;gap:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.35);border-radius:9px;padding:12px 16px;text-decoration:none;transition:background .15s" onmouseover="this.style.background='rgba(201,168,76,.18)'" onmouseout="this.style.background='rgba(201,168,76,.1)'">
+      <span style="font-size:22px">👷</span>
+      <div>
+        <div style="color:var(--gold);font-size:13px;font-weight:800">Регламент монтажников СУЛАНЖ</div>
+        <div style="color:rgba(255,255,255,.45);font-size:10px;margin-top:2px">Открыть инструкцию для бригады → montage.html</div>
+      </div>
+      <span style="margin-left:auto;color:rgba(201,168,76,.6);font-size:16px">↗</span>
+    </a>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-num">0/7</div><div class="kpi-lbl">этапов завершено</div></div>
+    <div class="kpi danger-kpi"><div class="kpi-num">0%</div><div class="kpi-lbl">готовность</div></div>
+    <div class="kpi warn"><div class="kpi-num">100</div><div class="kpi-lbl">дней по договору</div></div>
+    <div class="kpi"><div class="kpi-num">25.08</div><div class="kpi-lbl">плановая сдача</div></div>
+    <div class="kpi danger-kpi"><div class="kpi-num" id="build-days-passed">0</div><div class="kpi-lbl">дней прошло</div></div>
+    <div class="kpi"><div class="kpi-num" id="build-days-left">100</div><div class="kpi-lbl">дней осталось</div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="ch"><div class="ch-bar"></div><div class="ch-title">Общий прогресс строительства</div></div>
+    <div class="cb">
+      <div style="background:rgba(255,255,255,.06);border-radius:8px;height:14px;margin-bottom:8px;overflow:hidden">
+        <div style="width:0%;height:100%;background:linear-gradient(90deg,#1b5e20,#4caf50);border-radius:8px;transition:width .4s"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.4)">
+        <span>Старт: 18.05.2026 · получен платёж 10 000 000 ₽</span>
+        <span>Сдача: 25.08.2026 (100 к.д. с 18.05)</span>
+      </div>
+      <div style="margin-top:10px;padding:8px 10px;background:rgba(46,125,50,.12);border:1px solid rgba(46,125,50,.3);border-radius:6px;font-size:12px;color:#81c784">
+        🟢 Монтаж начат 18.05.2026 · Получен платёж 10 000 000 ₽ (транш 1) · Транш 2 (20 млн) получен 22.05.2026 · Сдача 25.08.2026 (100 к.д. с 18.05)
+      </div>
+    </div>
+  </div>
+
+  <style>
+  .build-stage{border:1px solid var(--card-border);border-radius:9px;margin-bottom:10px;overflow:hidden}
+  .build-stage.bs-done{border-color:rgba(46,125,50,.4)}
+  .build-stage.bs-active{border-color:rgba(21,101,192,.4)}
+  .build-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.03)}
+  .build-stage.bs-done .build-head{background:rgba(46,125,50,.08)}
+  .build-stage.bs-active .build-head{background:rgba(21,101,192,.08)}
+  .build-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .build-stage.bs-done .build-num{background:#1b5e20;color:#fff}
+  .build-stage.bs-active .build-num{background:#1565c0;color:#fff}
+  .build-title{font-size:13px;font-weight:700;color:var(--text);flex:1}
+  .build-dates{font-size:10px;color:rgba(255,255,255,.4);text-align:right;flex-shrink:0}
+  .build-status{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;white-space:nowrap;flex-shrink:0}
+  .bs-pill-wait{background:rgba(255,255,255,.07);color:rgba(255,255,255,.4)}
+  .bs-pill-active{background:rgba(21,101,192,.25);color:#90caf9}
+  .bs-pill-done{background:rgba(46,125,50,.25);color:#81c784}
+  .build-body{padding:10px 14px;border-top:1px solid var(--sep)}
+  .build-prog{background:rgba(255,255,255,.06);border-radius:4px;height:6px;margin:6px 0 8px;overflow:hidden}
+  .build-prog-bar{height:100%;border-radius:4px;background:#555}
+  .bs-done .build-prog-bar{background:#2e7d32}
+  .bs-active .build-prog-bar{background:#1565c0}
+  .build-tasks{display:flex;flex-direction:column;gap:4px}
+  .bt-item{display:flex;align-items:flex-start;gap:6px;font-size:11px;line-height:1.5;color:rgba(255,255,255,.62)}
+  .bt-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.25);margin-top:5px;flex-shrink:0}
+  .build-issue{margin-top:8px;padding:6px 10px;background:rgba(180,100,0,.12);border:1px solid rgba(255,170,0,.2);border-radius:6px;font-size:11px;color:#ffcc44;line-height:1.5}
+  /* Gantt */
+  .gantt-wrap{background:var(--card);border:1px solid var(--sep);border-radius:10px;margin-bottom:16px;overflow:hidden}
+  .gantt-title{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:12px;font-weight:700;color:#90caf9;background:rgba(144,202,249,.06);border-bottom:1px solid var(--sep)}
+  .gantt-range{margin-left:auto;font-size:10px;font-weight:400;color:rgba(255,255,255,.38)}
+  .gantt-row{display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.04);min-height:27px}
+  .gantt-lbl{width:168px;min-width:168px;font-size:10px;color:rgba(255,255,255,.52);padding:3px 8px 3px 12px;line-height:1.3}
+  .gantt-area{flex:1;position:relative;min-height:25px;background-image:linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:1px 100%;background-position:17% 0,47% 0,78% 0;background-repeat:no-repeat}
+  .gantt-months .gantt-area{min-height:34px;background-color:rgba(255,255,255,.025)}
+  .gantt-month{position:absolute;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:rgba(255,255,255,.48)}
+  .gantt-month span{font-size:8px;font-weight:400;color:rgba(255,255,255,.28);margin-top:1px}
+  .gantt-bar{position:absolute;top:4px;bottom:4px;border-radius:4px;display:flex;align-items:center;padding:0 5px;font-size:9px;font-weight:600;white-space:nowrap;overflow:hidden;cursor:default}
+  .gb-blocker{background:repeating-linear-gradient(135deg,rgba(198,40,40,.45) 0,rgba(198,40,40,.45) 5px,rgba(80,0,0,.25) 5px,rgba(80,0,0,.25) 10px);color:#ff8a80;border:1px solid rgba(198,40,40,.5)}
+  .gb-ok{background:rgba(46,125,50,.78);color:#c8e6c9;border:1px solid rgba(76,175,80,.4)}
+  .gb-crit{background:rgba(183,28,28,.88);color:#ff8a80;border:1px solid rgba(229,57,53,.6)}
+  .gb-warn{background:rgba(230,119,0,.6);color:#ffe082;border:1px solid rgba(255,160,0,.4)}
+  .gb-s1{background:rgba(21,101,192,.88);color:#fff;border:1px solid rgba(66,165,245,.3)}
+  .gb-s2{background:rgba(21,101,192,.7);color:#fff;border:1px solid rgba(66,165,245,.25)}
+  .gb-s3{background:rgba(46,125,50,.68);color:#fff;border:1px solid rgba(102,187,106,.3)}
+  .gb-s4{background:rgba(21,101,192,.55);color:#fff;border:1px solid rgba(66,165,245,.2)}
+  .gb-s5{background:rgba(106,27,154,.78);color:#fff;border:1px solid rgba(171,71,188,.35)}
+  .gb-s6{background:rgba(191,54,12,.78);color:#fff;border:1px solid rgba(255,112,67,.3)}
+  .gb-s7{background:rgba(0,121,107,.88);color:#fff;border:1px solid rgba(77,182,172,.35)}
+  .gantt-grp{padding:4px 12px;font-size:9px;font-weight:700;color:rgba(255,255,255,.3);background:rgba(255,255,255,.02);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid rgba(255,255,255,.04)}
+  .gantt-legend{display:flex;flex-wrap:wrap;gap:10px;padding:8px 12px;border-top:1px solid var(--sep);background:rgba(255,255,255,.02)}
+  .gl-item{display:flex;align-items:center;gap:5px;font-size:9px;color:rgba(255,255,255,.38)}
+  .gl-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+  </style>
+
+  <!-- ПЛАН РАБОТ / ГАНТА -->
+  <div class="gantt-wrap">
+    <div class="gantt-title">
+      <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><rect x="3" y="5" width="8" height="2" rx="1" fill="#90caf9"/><rect x="3" y="11" width="14" height="2" rx="1" fill="#64b5f6"/><rect x="3" y="17" width="10" height="2" rx="1" fill="#42a5f5"/><rect x="13" y="5" width="8" height="2" rx="1" fill="rgba(144,202,249,.3)"/></svg>
+      ПЛАН РАБОТ · КАЛЕНДАРНЫЙ ГРАФИК
+      <span class="gantt-range">18 мая — 25 августа 2026 · 100 календарных дней · договор №ГС-12-05</span>
+    </div>
+    <div class="gantt-row gantt-months">
+      <div class="gantt-lbl" style="color:rgba(255,255,255,.28);font-size:9px">Наименование</div>
+      <div class="gantt-area">
+        <div class="gantt-month" style="left:0%;width:17%">МАЙ<span>15–31</span></div>
+        <div class="gantt-month" style="left:17%;width:30%">ИЮНЬ<span>1–30</span></div>
+        <div class="gantt-month" style="left:47%;width:31%">ИЮЛЬ<span>1–31</span></div>
+        <div class="gantt-month" style="left:78%;width:22%">АВГ<span>1–22</span></div>
+      </div>
+    </div>
+    <div class="gantt-grp">⛔ Блокирующие факторы</div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">ТУ электроснабжения</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-blocker" style="left:0%;right:0" title="≈45–56 кВт — ТУ не подтверждены, НС-2 не может быть введена без ТУ">⚡ ≈45–56 кВт — ТУ не подтверждены (критично)</div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">ГРО съёмка (Максим)</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-blocker" style="left:0%;right:0" title="Максим сообщил: точек ГРО не существует — земляные работы задержатся">📍 Нет геодезических точек ГРО — земляные работы задержаны</div>
+      </div>
+    </div>
+    <div class="gantt-grp">📦 Поставки (критичный путь)</div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Ёмкости 8×10 м³ (КОИ52)</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-warn" style="left:0%;width:3%" title="Оплата просрочена с 15.05 — счёт КОИ52 не оплачен, доставка задержана">⚠ Оплата просрочена · 15.05</div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Насосы Masdaf (КвадроГрупп)</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-crit" style="left:0%;width:15%" title="КРИТИЧНО: заказ ещё не размещён. Доставка из Москвы ~10–14 дней. Блокирует Этап 1.">🔴 Не заказаны · доставка ~10–14 дн из Москвы</div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Трубы ПЭ №290 (СТИЛЕКС)</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-warn" style="left:0%;width:4%" title="Оплата до 18.05, поставщик Симферополь — поставка сразу после оплаты">⚠ Оплата до 18 мая</div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">ПГФ 3050 Automat (ЦБ-242)</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-warn" style="left:0%;width:8%" title="Счёт ЦБ-242 просрочен с 11.05.2026 — срочно уточнить у поставщика">⚠ Счёт просрочен с 11.05 — уточнить</div>
+      </div>
+    </div>
+    <div class="gantt-grp">🏗 Этапы монтажа</div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Эт.1 НС + ёмкости</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-s1" style="left:0%;width:20%" title="15.05–03.06: монтаж НС-1, Masdaf НС-2 (E-NMM 50-200 + NMM 65-250), 8 ёмкостей, электро">15.05–03.06</div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Эт.2 Фильтрация</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-s2" style="left:11%;width:15%" title="25.05–09.06: ПГФ 3050 Automat 4 дюйма + фильтры Aytok">25.05–09.06</div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Эт.3 Земляные работы</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-s3" style="left:0%;width:61%" title="15.05–14.07: геодезия 14 дн, траншеи 8278 м.п., засыпка 3500 м³. БЛОК: нет ГРО">15.05–14.07 · ⚠ ждём ГРО</div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Эт.4 Трубопроводы</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-s4" style="left:21%;width:40%" title="04.06–14.07: ПЭ SDR21 всех диаметров, седловые хомуты 2070 шт, PRV 24 шт">04.06–14.07</div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Эт.5 Капельная лента</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-s5" style="left:41%;width:40%" title="24.06–03.08: METZER 2 л/ч 217 000 м, 2192 ряда, стартеры 2300 шт, заглушки 2300 шт">24.06–03.08</div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Эт.6 Пусконаладка</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-s6" style="left:71%;width:20%" title="24.07–13.08: клапаны ПИОНЕР-3&quot; и ПИОНЕР-2&quot;, Masdaf ЧРП + плавный пуск, 11 смен">24.07–13.08</div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-lbl">Эт.7 Сдача объекта</div>
+      <div class="gantt-area">
+        <div class="gantt-bar gb-s7" style="left:90%;width:10%" title="13.08–22.08: финальный запуск всех смен, КС-2/КС-3, инструктаж агроном Кочетков">13.08–22.08</div>
+      </div>
+    </div>
+    <div class="gantt-legend">
+      <span class="gl-item"><span class="gl-dot" style="background:repeating-linear-gradient(135deg,#c62828 0,#c62828 3px,#500000 3px,#500000 6px)"></span>Блокирующий фактор</span>
+      <span class="gl-item"><span class="gl-dot" style="background:#2e7d32"></span>Поставка OK</span>
+      <span class="gl-item"><span class="gl-dot" style="background:#b71c1c"></span>Критично</span>
+      <span class="gl-item"><span class="gl-dot" style="background:#e67300"></span>Уточнить</span>
+      <span class="gl-item"><span class="gl-dot" style="background:#1565c0"></span>Эт.1,2,4</span>
+      <span class="gl-item"><span class="gl-dot" style="background:#388e3c"></span>Эт.3</span>
+      <span class="gl-item"><span class="gl-dot" style="background:#6a1b9a"></span>Эт.5</span>
+      <span class="gl-item"><span class="gl-dot" style="background:#bf360c"></span>Эт.6</span>
+      <span class="gl-item"><span class="gl-dot" style="background:#00796b"></span>Эт.7</span>
+    </div>
+  </div>
+
+  <!-- Этап 1 -->
+  <div class="build-stage">
+    <div class="build-head">
+      <div class="build-num">1</div>
+      <div class="build-title">Установка насосных станций и подключение к электросети</div>
+      <div class="build-dates">План: 15.05 – 30.05.2026<br>Факт: —</div>
+      <span class="build-status bs-pill-wait">Не начат</span>
+    </div>
+    <div class="build-body">
+      <div class="build-prog"><div class="build-prog-bar" style="width:0%"></div></div>
+      <div class="build-tasks">
+        <div class="bt-item"><div class="bt-dot"></div>Монтаж НС-1 (насосная станция, марка уточняется, 3 насоса) — забор из р. Зап. Булганак</div>
+        <div class="bt-item"><div class="bt-dot"></div>Монтаж НС-2 (Masdaf E-NMM 50-200 + NMM 65-250) + шкафы Masdaf (ЧРП + плавный пуск)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Установка 8 буферных ёмкостей × 10 м³ на площадке 12,7×6,2 м</div>
+        <div class="bt-item"><div class="bt-dot"></div>Подключение к электросети (≈45–56 кВт, уточнить у КвадроГрупп)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Заземление и защита от перегрузок по нормам</div>
+      </div>
+      <div class="build-issue">⚠️ Открытый вопрос: ТУ на электроснабжение — не уточнены мощность и точка подключения. Нужно решить до старта монтажа НС.</div>
+    </div>
+  </div>
+
+  <!-- Этап 2 -->
+  <div class="build-stage">
+    <div class="build-head">
+      <div class="build-num">2</div>
+      <div class="build-title">Монтаж фильтрационной станции</div>
+      <div class="build-dates">План: 25.05 – 09.06.2026<br>Факт: —</div>
+      <span class="build-status bs-pill-wait">Не начат</span>
+    </div>
+    <div class="build-body">
+      <div class="build-prog"><div class="build-prog-bar" style="width:0%"></div></div>
+      <div class="build-tasks">
+        <div class="bt-item"><div class="bt-dot"></div>Установка двухкамерного ПГФ 3050 Automat 4" (Ду100 · 40–80 м³/ч)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Монтаж фильтров тонкой очистки Aytok YD40 + DDS4 + HURRICANEFILT HDS</div>
+        <div class="bt-item"><div class="bt-dot"></div>Засыпка ПГФ гравием 1–2 мм (275 кг)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Подключение трубопроводов к фильтрационному узлу</div>
+        <div class="bt-item"><div class="bt-dot"></div>Настройка автопромывки ПГФ и HURRICANEFILT</div>
+      </div>
+      <div class="build-issue">⚠️ Открытый вопрос: счёт ЦБ-242 (ПГФ 3050, 632 200 ₽) — срок истёк 11.05. Уточнить актуальность и оплатить. Без поставки ПГФ этап не может начаться.</div>
+    </div>
+  </div>
+
+  <!-- Этап 3 -->
+  <div class="build-stage">
+    <div class="build-head">
+      <div class="build-num">3</div>
+      <div class="build-title">Земляные работы — разметка и копка траншей</div>
+      <div class="build-dates">План: 15.05 – 14.07.2026<br>Факт: —</div>
+      <span class="build-status bs-pill-wait">Не начат</span>
+    </div>
+    <div class="build-body">
+      <div class="build-prog"><div class="build-prog-bar" style="width:0%"></div></div>
+      <div class="build-tasks">
+        <div class="bt-item"><div class="bt-dot"></div>Геодезическая разметка трасс траншей — 14 дней · геодезист</div>
+        <div class="bt-item"><div class="bt-dot"></div>Разработка траншеи 0,7×0,6 м, механизированно — 8 278 м.п.</div>
+        <div class="bt-item"><div class="bt-dot"></div>Чистка и уплотнение основания траншеи — 8 278 м.п.</div>
+        <div class="bt-item"><div class="bt-dot"></div>Обратная засыпка грунта механизированно/ручное — 3 500 м³</div>
+        <div class="bt-item"><div class="bt-dot"></div>Уплотнение грунта ручное — 4 966 м²</div>
+      </div>
+      <div class="build-issue">⚠️ Открытый вопрос: геодезическая съёмка рельефа от Максима (пункты ГРО) — без неё нельзя начать разметку трасс. Критично — нужна до старта этапа.</div>
+    </div>
+  </div>
+
+  <!-- Этап 4 -->
+  <div class="build-stage">
+    <div class="build-head">
+      <div class="build-num">4</div>
+      <div class="build-title">Прокладка магистральных трубопроводов и монтаж узлов</div>
+      <div class="build-dates">План: 04.06 – 14.07.2026<br>Факт: —</div>
+      <span class="build-status bs-pill-wait">Не начат</span>
+    </div>
+    <div class="build-body">
+      <div class="build-prog"><div class="build-prog-bar" style="width:0%"></div></div>
+      <div class="build-tasks">
+        <div class="bt-item"><div class="bt-dot"></div>Магистраль НС-1 → НС-2: ПЭ 110 мм SDR17, 592 м (5 участков)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Распределительная сеть ПЭ SDR21 (250/225/200/180/160/140/125/110/90/75/63/50 мм)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Монтаж 24 PRV-регуляторов давления (21× IR-4", 3× IR-3")</div>
+        <div class="bt-item"><div class="bt-dot"></div>Установка седловых хомутов (2 070 шт., диаметры 50–160 мм)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Монтаж обратных клапанов, расходомеров, воздушных клапанов</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Этап 5 -->
+  <div class="build-stage">
+    <div class="build-head">
+      <div class="build-num">5</div>
+      <div class="build-title">Разводка капельных линий по схеме</div>
+      <div class="build-dates">План: 24.06 – 03.08.2026<br>Факт: —</div>
+      <span class="build-status bs-pill-wait">Не начат</span>
+    </div>
+    <div class="build-body">
+      <div class="build-prog"><div class="build-prog-bar" style="width:0%"></div></div>
+      <div class="build-tasks">
+        <div class="bt-item"><div class="bt-dot"></div>Укладка капельной ленты METZER 2 л/ч (217 000 м, 2192 ряда) по 24 блокам</div>
+        <div class="bt-item"><div class="bt-dot"></div>Монтаж соединительной слепой трубки Ø16 мм (3 470 м / 2 300 сёдел)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Установка стартконнекторов зажимных Е 3/4"×5/8" НР (2 300 шт.)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Установка заглушек 16 мм (2 300 шт.)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Подключение ремонтников (2 500 шт. в запасе на монтаж и эксплуатацию)</div>
+      </div>
+      <div class="build-issue" style="background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.3);color:rgba(201,168,76,.8)">✅ Стартконнекторы подтверждены: 2 300 шт., слепая трубка 3 470 м — заявка Шпилёва от 14.05.2026</div>
+    </div>
+  </div>
+
+  <!-- Этап 6 -->
+  <div class="build-stage">
+    <div class="build-head">
+      <div class="build-num">6</div>
+      <div class="build-title">Подключение модулей полива к распределителю</div>
+      <div class="build-dates">План: 24.07 – 13.08.2026<br>Факт: —</div>
+      <span class="build-status bs-pill-wait">Не начат</span>
+    </div>
+    <div class="build-body">
+      <div class="build-prog"><div class="build-prog-bar" style="width:0%"></div></div>
+      <div class="build-tasks">
+        <div class="bt-item"><div class="bt-dot"></div>Подключение 12 ручных поливных модулей к распределительной сети</div>
+        <div class="bt-item"><div class="bt-dot"></div>Привязка 24 клеток к 11 сменам полива по схеме</div>
+        <div class="bt-item"><div class="bt-dot"></div>Проверка давления на каждом блоке (вход до 49 м → выход 25–26 м после PRV)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Пусконаладка Masdaf E-NMM 50-200 (шкаф ЧРП) + Masdaf NMM 65-250 (шкаф плавного пуска)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Проверка расхода по блокам (смена 1: 261 м³/ч → смена 11: 67 м³/ч)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Этап 7 -->
+  <div class="build-stage">
+    <div class="build-head">
+      <div class="build-num">7</div>
+      <div class="build-title">Пусконаладочные работы и тестирование</div>
+      <div class="build-dates">План: 13.08 – 23.08.2026<br>Факт: —</div>
+      <span class="build-status bs-pill-wait">Не начат</span>
+    </div>
+    <div class="build-body">
+      <div class="build-prog"><div class="build-prog-bar" style="width:0%"></div></div>
+      <div class="build-tasks">
+        <div class="bt-item"><div class="bt-dot"></div>Пробный запуск НС-1 и НС-2 — проверка подачи и напора (50 м³/ч · 80 м)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Тестирование автопромывки ПГФ 3050 и фильтров Aytok</div>
+        <div class="bt-item"><div class="bt-dot"></div>Прогон по всем 11 сменам полива — контроль расхода и равномерности</div>
+        <div class="bt-item"><div class="bt-dot"></div>Калибровка ЧРП под диапазон расходов 44–261 м³/ч</div>
+        <div class="bt-item"><div class="bt-dot"></div>Составление акта пусконаладочных работ (КС-2 / КС-3)</div>
+        <div class="bt-item"><div class="bt-dot"></div>Инструктаж обслуживающего персонала (агроном Кочетков)</div>
+      </div>
+    </div>
+  </div>
+</div>

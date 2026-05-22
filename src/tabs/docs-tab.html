@@ -1,0 +1,202 @@
+<div class="page" id="page-docs">
+  <div class="page-title">Реестр документов</div>
+
+  <div class="kpi-row">
+    <div class="kpi" style="cursor:pointer" onclick="showPage('docs')" title="Показать все документы"><div class="kpi-num">10</div><div class="kpi-lbl">файлов на сайте</div></div>
+    <div class="kpi danger-kpi" style="cursor:pointer" onclick="showPage('finance');setTimeout(()=>{const el=document.getElementById('anchor-invoices');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},150)" title="Перейти к счетам на оплату"><div class="kpi-num">8</div><div class="kpi-lbl">счетов к оплате ↗</div></div>
+    <div class="kpi danger-kpi" style="cursor:pointer" onclick="showPage('docs');setTimeout(()=>{const el=document.getElementById('anchor-missing');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},150)" title="Показать отсутствующие документы"><div class="kpi-num">3</div><div class="kpi-lbl">документа отсутствуют ↗</div></div>
+    <div class="kpi" style="cursor:pointer" onclick="showPage('finance');setTimeout(()=>{const el=document.getElementById('anchor-contract');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},150)" title="Перейти к договору №ГС-12-05"><div class="kpi-num">1</div><div class="kpi-lbl">договор действующий ↗</div></div>
+  </div>
+
+  <!-- Проектная документация -->
+  <div class="card">
+    <div class="ch"><div class="ch-bar"></div><div class="ch-title">Проектная документация</div></div>
+    <div class="cb">
+      <div class="tbl-wrap">
+        <table class="t" style="font-size:12px">
+          <thead><tr><th>Документ</th><th>Дата</th><th>Формат</th><th>Статус</th><th>Скачать</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Капельная сеть орошения</b><br><small style="color:rgba(255,255,255,.4)">4S Grape Garden 50 ha — план расстановки оборудования</small></td>
+              <td>11.04.2026</td>
+              <td><span class="badge bo">DWG</span></td>
+              <td><span class="badge bg">Актуальный</span></td>
+              <td><a class="doc-pill" href="4S Grape Garden 50 ha — сеть изменение 11.04.26г..dwg" download style="display:inline-flex"><span class="doc-pill-icon">📐</span><span class="doc-pill-text"><b>Скачать</b></span></a></td>
+            </tr>
+            <tr>
+              <td><b>Магистральный трубопровод</b><br><small style="color:rgba(255,255,255,.4)">НС-1 → ёмкости → НС-2 · трасса 592 м · ПЭ 110 мм SDR17</small></td>
+              <td>11.04.2026</td>
+              <td><span class="badge bo">DWG</span></td>
+              <td><span class="badge bg">Актуальный</span></td>
+              <td><a class="doc-pill" href="4S Grape Garden 50 ha магистраль — копия изменение 11.04.26г..dwg" download style="display:inline-flex"><span class="doc-pill-icon">📐</span><span class="doc-pill-text"><b>Скачать</b></span></a></td>
+            </tr>
+            <tr>
+              <td><b>Полный проект системы ирригации</b><br><small style="color:rgba(255,255,255,.4)">ООО «Системы Ирригации» · Крым 50 га · смета и спецификация</small></td>
+              <td>18.02.2025</td>
+              <td><span class="badge br">PDF</span></td>
+              <td><span class="badge bg">Актуальный</span></td>
+              <td><a class="doc-pill" href="Крым 50га 18.02 (исправл.) 2.pdf" download style="display:inline-flex"><span class="doc-pill-icon">📄</span><span class="doc-pill-text"><b>Скачать</b></span></a></td>
+            </tr>
+            <tr>
+              <td><b>Агрономический проект Магарач</b><br><small style="color:rgba(255,255,255,.4)">АО «Янтарный» · Поле 78 том 2 · 191 140 кустов · 12 сортов</small></td>
+              <td>2024</td>
+              <td><span class="badge br">PDF</span></td>
+              <td><span class="badge bg">Актуальный</span></td>
+              <td><a class="doc-pill" href="Поле 78 том 2.pdf" download style="display:inline-flex"><span class="doc-pill-icon">📄</span><span class="doc-pill-text"><b>Скачать</b></span></a></td>
+            </tr>
+            <tr>
+              <td><b>Схема подключения слепой трубки</b><br><small style="color:rgba(255,255,255,.4)">Монтажная схема · стартконнектор → седло 140×3/4" → ряд капельниц</small></td>
+              <td>—</td>
+              <td><span class="badge br">PDF</span></td>
+              <td><span class="badge bg">Актуальный</span></td>
+              <td><a class="doc-pill" href="схема подключения.pdf" download style="display:inline-flex"><span class="doc-pill-icon">📄</span><span class="doc-pill-text"><b>Скачать</b></span></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Договоры -->
+  <div class="card">
+    <div class="ch"><div class="ch-bar"></div><div class="ch-title">Договоры</div></div>
+    <div class="cb">
+      <div class="tbl-wrap">
+        <table class="t" style="font-size:12px">
+          <thead><tr><th>Документ</th><th>Дата</th><th>Сумма / Срок</th><th>Статус</th><th>Файл</th></tr></thead>
+          <tbody>
+            <tr style="background:rgba(201,168,76,.05)">
+              <td><b>Договор на монтаж системы орошения</b><br><small style="color:rgba(255,255,255,.4)">АО «Янтарный» → ООО «Гарден Сити» · Поле №78 · 56,7 га</small></td>
+              <td>12.05.2026</td>
+              <td><span style="color:var(--gold);font-weight:700">38 393 848 ₽</span><br><small style="color:rgba(255,255,255,.4)">приблизит., в т.ч. НДС 22%</small></td>
+              <td><span class="badge bg">Подписан</span></td>
+              <td><a class="doc-pill" href="Договор автополив ООО Гарден Сити.docx" download style="display:inline-flex"><span class="doc-pill-icon">📝</span><span class="doc-pill-text"><b>Скачать</b></span></a></td>
+            </tr>
+            <tr>
+              <td><b>ТЗ к поливу (Приложение №1 к договору)</b><br><small style="color:rgba(255,255,255,.4)">Техническое задание · нормы · схема · оборудование</small></td>
+              <td>12.05.2026</td>
+              <td>—</td>
+              <td><span class="badge bg">Подписан</span></td>
+              <td><a class="doc-pill" href="ТЗ к поливу ООО Гарден Сити.docx" download style="display:inline-flex"><span class="doc-pill-icon">📄</span><span class="doc-pill-text"><b>Скачать</b></span></a></td>
+            </tr>
+            <tr>
+              <td><b>Агрономический договор Магарач</b><br><small style="color:rgba(255,255,255,.4)">АО «Янтарный» · проект закладки виноградника · №140/2024</small></td>
+              <td>08.10.2024</td>
+              <td>—</td>
+              <td><span class="badge bg">Подписан</span></td>
+              <td><span style="color:rgba(255,255,255,.3);font-size:11px">Файл: Магарач.pdf</span></td>
+            </tr>
+            <tr>
+              <td><b>Договор с ООО «СУЛАНЖ» на монтаж</b><br><small style="color:rgba(255,255,255,.4)">Субподряд · монтаж системы орошения</small></td>
+              <td style="color:var(--warn)">Уточнить</td>
+              <td style="color:var(--warn)">Уточнить</td>
+              <td><span class="badge bn">Не загружен</span></td>
+              <td><span style="color:rgba(255,255,255,.3);font-size:11px">Отсутствует</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Счета и финансовые документы -->
+  <div class="card">
+    <div class="ch"><div class="ch-bar"></div><div class="ch-title">Счета и финансовые документы</div></div>
+    <div class="cb">
+      <div class="tbl-wrap">
+        <table class="t" style="font-size:12px">
+          <thead><tr><th>Документ</th><th>Дата</th><th class="num">Сумма, ₽</th><th>Срок оплаты</th><th>Статус</th></tr></thead>
+          <tbody>
+            <tr style="background:rgba(46,125,50,.08)">
+              <td><b>Счёт №125 — Транспорт</b><br><small style="color:rgba(255,255,255,.4)">ИП Парамонов · аренда Lada Granta · 31 день</small></td>
+              <td>12.05.2026</td>
+              <td class="num" style="color:#81c784;font-weight:700">58 900</td>
+              <td style="color:#81c784;font-weight:700">✅ ОПЛАЧЕН 18.05.2026</td>
+              <td><span class="badge bg">✅ Оплачен</span></td>
+            </tr>
+            <tr style="background:rgba(180,100,0,.08)">
+              <td><b>Счёт ЦБ-242 — ПГФ 3050 Automat 4"</b><br><small style="color:rgba(255,255,255,.4)">Двухкамерный фильтр · ООО «Системы Ирригации»</small></td>
+              <td>11.05.2026</td>
+              <td class="num" style="color:var(--warn);font-weight:700">632 200</td>
+              <td style="color:var(--warn)">Истёк 11.05 — уточнить</td>
+              <td><span class="badge bn">Уточнить</span></td>
+            </tr>
+            <tr>
+              <td><b>Заказ ЦБ-253 — Фильтры тонкой очистки</b><br><small style="color:rgba(255,255,255,.4)">Aytok YD40 + DDS4 + HURRICANEFILT HDS</small></td>
+              <td>13.05.2026</td>
+              <td class="num" style="color:var(--danger);font-weight:700">276 999</td>
+              <td style="color:var(--danger);font-weight:700">ПРОСРОЧЕН · 13.05</td>
+              <td><span class="badge br">ПРОСРОЧЕН</span></td>
+            </tr>
+            <tr style="background:rgba(46,125,50,.08)">
+              <td><b>Счёт №86 — Биотуалет</b><br><small style="color:rgba(255,255,255,.4)">ИП Сазыкин · 1 кабина · 4 обслуживания</small></td>
+              <td>13.05.2026</td>
+              <td class="num" style="color:#81c784;font-weight:700">14 000</td>
+              <td style="color:#81c784;font-weight:700">✅ ОПЛАЧЕН 18.05.2026</td>
+              <td><span class="badge bg">✅ Оплачен</span></td>
+            </tr>
+            <tr style="background:rgba(139,26,47,.15)">
+              <td><b>Счёт КОИ52 — Ёмкости 10 000 л × 8 шт.</b><br><small style="color:rgba(255,255,255,.4)">ООО «Крымоптинвест» · Гранд Пласт В-2850 мм · Севастополь</small></td>
+              <td>14.05.2026</td>
+              <td class="num" style="color:var(--danger);font-weight:700">671 040</td>
+              <td style="color:var(--danger);font-weight:700">15.05.2026 — ПРОСРОЧЕН!</td>
+              <td><span class="badge br">ПРОСРОЧЕН</span></td>
+            </tr>
+            <tr style="background:rgba(139,26,47,.15)">
+              <td><b>Счёт №3933 — Бензогенераторы SGG 5000ESi × 3</b><br><small style="color:rgba(255,255,255,.4)">ООО «ГК КОНКОРДИЯ» · Симферополь · товар заказной</small></td>
+              <td>14.05.2026</td>
+              <td class="num" style="color:var(--danger);font-weight:700">267 750</td>
+              <td style="color:var(--danger);font-weight:700">1 р.д. от 14.05 = ПРОСРОЧЕН!</td>
+              <td><span class="badge br">ПРОСРОЧЕН</span></td>
+            </tr>
+            <tr style="background:rgba(180,100,0,.08)">
+              <td><b>Счёт №290 — Трубы ПЭ + фитинги (23 позиции)</b><br><small style="color:rgba(255,255,255,.4)">ООО «СТИЛЕКС» · оплачено 700 000 ₽ из 2 359 810 ₽</small></td>
+              <td>13.05.2026</td>
+              <td class="num" style="color:var(--warn);font-weight:700">1 659 810</td>
+              <td style="color:var(--warn)">⚠️ ЧАСТИЧНО (700 000 оплачено)</td>
+              <td><span class="badge bo">⚠️ Частично</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Документы в ожидании -->
+  <div id="anchor-missing" class="card danger-card">
+    <div class="ch"><div class="ch-bar red"></div><div class="ch-title red">Ожидаемые документы (отсутствуют)</div></div>
+    <div class="cb">
+      <div class="tbl-wrap">
+        <table class="t" style="font-size:12px">
+          <thead><tr><th>Документ</th><th>Ответственный</th><th>Когда нужен</th><th>Статус</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Акты КС-2 / КС-3</b><br><small style="color:rgba(255,255,255,.4)">Акты выполненных работ по договору монтажа</small></td>
+              <td>ООО «СУЛАНЖ» → ООО «Гарден Сити»</td>
+              <td>После каждого этапа</td>
+              <td><span class="badge bw">Монтаж не начат</span></td>
+            </tr>
+            <tr>
+              <td><b>Накладные на оборудование (ТОРГ-12)</b><br><small style="color:rgba(255,255,255,.4)">На каждую поставку: ПГФ, Masdaf, Aytok и др.</small></td>
+              <td>ООО «Системы Ирригации»</td>
+              <td>После отгрузки</td>
+              <td><span class="badge bw">Ожидание поставки</span></td>
+            </tr>
+            <tr>
+              <td><b>Акт пусконаладочных работ</b><br><small style="color:rgba(255,255,255,.4)">Подтверждение запуска системы, параметры Q и H</small></td>
+              <td>ООО «Системы Ирригации» + Агроном</td>
+              <td>Этап 6 · август 2026</td>
+              <td><span class="badge bw">Монтаж не начат</span></td>
+            </tr>
+            <tr>
+              <td><b>Геодезическая съёмка рельефа (ГРО)</b><br><small style="color:rgba(255,255,255,.4)">Точки геодезической разбивочной основы · от Максима</small></td>
+              <td>Максим (геодезист СУЛАНЖ)</td>
+              <td>Срочно — до Этапа 3</td>
+              <td><span class="badge br">Не получена</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
