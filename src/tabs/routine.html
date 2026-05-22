@@ -1,0 +1,326 @@
+<div class="page" id="page-routine">
+<style>
+
+@page { size: A4 portrait; margin: 10mm 12mm; }
+@media print { .no-print{display:none!important} body{font-size:8pt} }
+*{ box-sizing:border-box; margin:0; padding:0; }
+body{ font-family:Arial,sans-serif; font-size:9.5pt; color:#1a1a1a; background:#fff; line-height:1.4; max-width:900px; margin:0 auto; padding:10mm; }
+.no-print{ position:fixed; top:14px; right:16px; background:#1b5e20; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-size:12px; font-weight:700; cursor:pointer; z-index:999; }
+.no-print:hover{ background:#2e7d32; }
+
+h1{ font-size:13pt; font-weight:900; color:#1b5e20; border-bottom:2px solid #1b5e20; padding-bottom:3px; margin:5mm 0 3mm; }
+h2{ font-size:10pt; font-weight:800; margin:4mm 0 2mm; }
+
+/* COVER */
+.cover{ text-align:center; padding:8mm 0 6mm; border-bottom:3px solid #1b5e20; margin-bottom:5mm; }
+.cover-title{ font-size:16pt; font-weight:900; margin-bottom:2mm; }
+.cover-sub{ font-size:9.5pt; color:#555; margin-bottom:3mm; }
+.cover-badge{ display:inline-block; background:#1b5e20; color:#fff; padding:3px 14px; border-radius:20px; font-size:9pt; font-weight:700; margin-bottom:4mm; }
+.cover-info{ font-size:8.5pt; color:#444; line-height:2; }
+
+/* TIMELINE */
+.timeline{ position:relative; margin:4mm 0; }
+.tl-row{ display:flex; align-items:stretch; margin-bottom:2px; min-height:36px; }
+.tl-time{ width:70px; flex-shrink:0; text-align:right; padding-right:8px; padding-top:6px; font-size:8.5pt; font-weight:700; color:#555; white-space:nowrap; }
+.tl-dot{ width:16px; flex-shrink:0; display:flex; flex-direction:column; align-items:center; }
+.tl-circle{ width:10px; height:10px; border-radius:50%; margin-top:9px; flex-shrink:0; }
+.tl-line{ width:2px; flex:1; margin-top:1px; }
+.tl-body{ flex:1; padding:5px 10px 5px 10px; border-radius:5px; margin-left:4px; margin-bottom:2px; }
+.tl-label{ font-weight:700; font-size:9pt; }
+.tl-desc{ font-size:8pt; color:#555; margin-top:1px; line-height:1.4; }
+.tl-who{ display:inline-block; font-size:7.5pt; font-weight:700; padding:1px 6px; border-radius:10px; margin-top:3px; background:rgba(0,0,0,.06); }
+
+/* COLOR THEMES */
+.c-wake   { background:#f3e5f5; } .c-wake   .tl-circle{ background:#6a1b9a; } .c-wake   .tl-line{ background:#ce93d8; }
+.c-prep   { background:#e8eaf6; } .c-prep   .tl-circle{ background:#283593; } .c-prep   .tl-line{ background:#9fa8da; }
+.c-drive  { background:#fff8e1; } .c-drive  .tl-circle{ background:#5d4037; } .c-drive  .tl-line{ background:#bcaaa4; }
+.c-brief  { background:#fce4ec; } .c-brief  .tl-circle{ background:#880e4f; } .c-brief  .tl-line{ background:#f48fb1; }
+.c-work   { background:#e8f5e9; } .c-work   .tl-circle{ background:#1b5e20; } .c-work   .tl-line{ background:#a5d6a7; }
+.c-break  { background:#fff3e0; } .c-break  .tl-circle{ background:#e65100; } .c-break  .tl-line{ background:#ffcc80; }
+.c-lunch  { background:#e3f2fd; } .c-lunch  .tl-circle{ background:#0d47a1; } .c-lunch  .tl-line{ background:#90caf9; }
+.c-end    { background:#e0f2f1; } .c-end    .tl-circle{ background:#004d40; } .c-end    .tl-line{ background:#80cbc4; }
+.c-eve    { background:#fafafa; border:1px solid #eee; } .c-eve .tl-circle{ background:#888; } .c-eve .tl-line{ background:#ccc; }
+
+/* DUTIES TABLE */
+.duties{ width:100%; border-collapse:collapse; font-size:8.5pt; margin-bottom:3mm; }
+.duties th{ background:#1b5e20; color:#fff; padding:4px 6px; text-align:left; }
+.duties td{ padding:3px 6px; border-bottom:1px solid #eee; vertical-align:top; }
+.duties tr:nth-child(even) td{ background:#f9fbe7; }
+
+/* NORMS */
+.norms-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:3mm; margin-bottom:4mm; }
+.norm-card{ border:1.5px solid #c8e6c9; border-radius:4px; padding:3mm; }
+.norm-card .nc-title{ font-weight:800; color:#1b5e20; font-size:9pt; margin-bottom:2mm; }
+.norm-card .nc-item{ font-size:8pt; line-height:1.6; }
+.norm-card .nc-item b{ color:#1b5e20; }
+
+/* WEATHER ALERT */
+.alert-heat{ background:#fff3e0; border-left:4px solid #f59f00; padding:3mm 5mm; margin:3mm 0; font-size:9pt; }
+.alert-safety{ background:#fce4ec; border-left:4px solid #c62828; padding:3mm 5mm; margin:3mm 0; font-size:9pt; }
+.alert-green{ background:#e8f5e9; border-left:4px solid #1b5e20; padding:3mm 5mm; margin:3mm 0; font-size:9pt; }
+
+.footer{ margin-top:8mm; padding-top:3mm; border-top:1px solid #ccc; font-size:7.5pt; color:#888; display:flex; justify-content:space-between; }
+
+</style>
+<div class="page-inner-doc">
+<button class="no-print" onclick="window.print()">🖨 Распечатать / PDF</button>
+
+<div class="cover">
+  <div class="cover-title">РАСПОРЯДОК РАБОЧЕГО ДНЯ</div>
+  <div class="cover-sub">Капельное орошение · Поле №78 · с. Пожарское, Крым</div>
+  <div class="cover-badge">Сезон 2026 · Июнь–Август · 15 человек</div>
+  <div class="cover-info">
+    <b>Субподрядчик:</b> ООО «СУЛАНЖ» &nbsp;·&nbsp;
+    <b>Генподрядчик:</b> ООО «Гарден Сити»<br>
+    <b>Руководитель:</b> Шпилёв А.А. +7(978)812-36-47 &nbsp;·&nbsp;
+    <b>Снабжение:</b> Яковлев А. +7(978)786-07-67
+  </div>
+</div>
+
+<div class="alert-heat">
+  ⚠️ <b>Крымское лето:</b> июль–август до +38°C. Работы после 14:00 в жаркие дни согласовывать с бригадирами. Питьевая вода — не менее 3 л/чел/день. В жару (>35°C) обед продлевается до 2 часов.
+</div>
+
+<h1>Суточный распорядок</h1>
+
+<div class="timeline">
+
+  <div class="tl-row">
+    <div class="tl-time">5:30</div>
+    <div class="tl-dot"><div class="tl-circle c-wake"></div><div class="tl-line c-wake"></div></div>
+    <div class="tl-body c-wake">
+      <div class="tl-label">Подъём</div>
+      <div class="tl-desc">Все 15 человек. Гигиена, подготовка одежды (спецовка, головной убор обязательно).</div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">5:30–6:00</div>
+    <div class="tl-dot"><div class="tl-circle c-prep"></div><div class="tl-line c-prep"></div></div>
+    <div class="tl-body c-prep">
+      <div class="tl-label">Завтрак + подготовка инструмента</div>
+      <div class="tl-desc">Завтрак. Бригадиры проверяют инструмент и расходники на день: раскатчики, крючкобойки, дыроколы 3 мм, запас трубки и крючков 16 мм. Яковлев А. готовит машину и материалы.</div>
+      <div><span class="tl-who">Бригадиры А, Б, В</span> <span class="tl-who">Яковлев А.</span></div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">6:30</div>
+    <div class="tl-dot"><div class="tl-circle c-drive"></div><div class="tl-line c-drive"></div></div>
+    <div class="tl-body c-drive">
+      <div class="tl-label">Выезд на объект (4 автомобиля)</div>
+      <div class="tl-desc">Авт.1: Шпилёв + 4 чел. Бр.А · Авт.2: Бр.Б 4 чел. · Авт.3: Бр.В 4 чел. · Авт.4: Яковлев + материалы. Время в пути ~30–40 мин.</div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">7:00</div>
+    <div class="tl-dot"><div class="tl-circle c-brief"></div><div class="tl-line c-brief"></div></div>
+    <div class="tl-body c-brief">
+      <div class="tl-label">🦺 Утренний инструктаж ТБ (15 мин)</div>
+      <div class="tl-desc">Шпилёв А.А.: задачи на день по каждой бригаде, норма выработки, блок/участок. Проверка СИЗ: каска/кепка, перчатки, очки при сварке. Питьевая вода на рабочих местах. Разбивка по блокам согласно суточному журналу (daily.html).</div>
+      <div><span class="tl-who">Все 15 чел.</span> <span class="tl-who">Шпилёв А.А.</span></div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">7:15</div>
+    <div class="tl-dot"><div class="tl-circle c-work"></div><div class="tl-line c-work"></div></div>
+    <div class="tl-body c-work">
+      <div class="tl-label">🟢 НАЧАЛО РАБОТ — Бригады А, Б, В</div>
+      <div class="tl-desc">
+        <b>Бр.А (5 чел. ГС):</b> Примачок, Темников, Швец-Роговой, Васильев, Рыков — по плану суточного журнала (НС / трубы / капля)<br>
+        <b>Бр.Б (4 чел. ГС):</b> Прусаков, Борисов Д., Борисов А., Браковенко — земля / латераль / капля<br>
+        <b>Бр.В (4 чел. СУЛАНЖ):</b> Костров, Моисеенко, Божко, Высидалко — d140 / капля / клапаны
+      </div>
+      <div><span class="tl-who">13 полевых</span></div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">9:30–9:45</div>
+    <div class="tl-dot"><div class="tl-circle c-break"></div><div class="tl-line c-break"></div></div>
+    <div class="tl-body c-break">
+      <div class="tl-label">☕ Перерыв (15 мин)</div>
+      <div class="tl-desc">Вода, лёгкий перекус. Не уходить далеко от рабочего места. Бригадиры фиксируют промежуточный объём (метраж трубки, прогресс по блоку).</div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">9:45–12:00</div>
+    <div class="tl-dot"><div class="tl-circle c-work"></div><div class="tl-line c-work"></div></div>
+    <div class="tl-body c-work">
+      <div class="tl-label">🟢 Работа (продолжение)</div>
+      <div class="tl-desc">Основной производительный блок дня. Шпилёв А.А. обходит бригады, контролирует качество укладки трубки (шаг крючков 0,5 м ±2 см), глубину траншей (0,65–0,70 м), сварные стыки.</div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">12:00–13:00</div>
+    <div class="tl-dot"><div class="tl-circle c-lunch"></div><div class="tl-line c-lunch"></div></div>
+    <div class="tl-body c-lunch">
+      <div class="tl-label">🍽 Обед (1 час) · в жару +35°C — 2 часа (до 14:00)</div>
+      <div class="tl-desc">Обед в тени / в автомобилях. В жаркие дни (июль–август) — расширенный перерыв до 14:00. Бригадиры подают Шпилёву А.А. промежуточные данные: уложено за утро (м капли / м труб).</div>
+      <div><span class="tl-who">Все 15 чел.</span></div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">13:00 / 14:00</div>
+    <div class="tl-dot"><div class="tl-circle c-work"></div><div class="tl-line c-work"></div></div>
+    <div class="tl-body c-work">
+      <div class="tl-label">🟢 Возобновление работ</div>
+      <div class="tl-desc">13:00 — в прохладные дни. 14:00 — в жаркие (>35°C). Выдача следующей порции материалов (трубка, крючки, фитинги) со склада / автомобиля Яковлева А. Яковлев А. контролирует остатки, при необходимости выезжает на базу.</div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">15:30–15:45</div>
+    <div class="tl-dot"><div class="tl-circle c-break"></div><div class="tl-line c-break"></div></div>
+    <div class="tl-body c-break">
+      <div class="tl-label">💧 Перерыв (15 мин)</div>
+      <div class="tl-desc">Вода. Проверка самочувствия — в жару риск теплового удара. Бригадир фиксирует объём за вторую половину дня.</div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">15:45–18:00</div>
+    <div class="tl-dot"><div class="tl-circle c-work"></div><div class="tl-line c-work"></div></div>
+    <div class="tl-body c-work">
+      <div class="tl-label">🟢 Работа (финальный блок дня)</div>
+      <div class="tl-desc">В 17:30 — начало уборки инструмента и рабочего места. Все открытые концы трубки 16 мм закрыть заглушками-восьмёрками. Временные крышки на отводы. Инструмент — в кейсы, крючкобойки — в чехлы.</div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">18:00</div>
+    <div class="tl-dot"><div class="tl-circle c-end"></div><div class="tl-line c-end"></div></div>
+    <div class="tl-body c-end">
+      <div class="tl-label">🔴 Конец рабочего дня · Итоговый замер</div>
+      <div class="tl-desc">Каждый бригадир сообщает Шпилёву А.А.: уложено метров трубки / труб за день, какой блок завершён/начат. Шпилёв фиксирует в суточном журнале. Укладка инструмента в машины. Осмотр рабочего места (нет открытых траншей, нет незакрытых концов трубки).</div>
+      <div><span class="tl-who">Бригадиры А, Б, В</span> <span class="tl-who">Шпилёв А.А.</span></div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">18:30</div>
+    <div class="tl-dot"><div class="tl-circle c-drive"></div><div class="tl-line c-drive"></div></div>
+    <div class="tl-body c-drive">
+      <div class="tl-label">Выезд с объекта</div>
+      <div class="tl-desc">4 машины. Яковлев А. фиксирует остатки материалов на объекте и составляет заявку на следующий день.</div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">19:00–19:30</div>
+    <div class="tl-dot"><div class="tl-circle c-eve"></div><div class="tl-line c-eve"></div></div>
+    <div class="tl-body c-eve">
+      <div class="tl-label">Прибытие на базу · Ужин</div>
+      <div class="tl-desc">Гигиена, смена одежды, ужин. Отдых.</div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">20:00–20:30</div>
+    <div class="tl-dot"><div class="tl-circle c-brief"></div><div class="tl-line c-brief"></div></div>
+    <div class="tl-body c-brief">
+      <div class="tl-label">📋 Вечерняя планёрка (30 мин)</div>
+      <div class="tl-desc">
+        <b>Шпилёв А.А. ведёт:</b><br>
+        1. Итог дня: сколько уложено vs план (норма). Отставание / опережение.<br>
+        2. Проблемы: нехватка материалов, неисправность инструмента, вопросы качества.<br>
+        3. Задача на завтра: каждый бригадир получает конкретный блок и объём.<br>
+        4. Заявка Яковлеву А. на материалы — что привезти утром.
+      </div>
+      <div><span class="tl-who">Шпилёв А.А.</span> <span class="tl-who">Яковлев А.</span> <span class="tl-who">бригадиры А, Б, В</span></div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">21:00</div>
+    <div class="tl-dot"><div class="tl-circle c-wake"></div><div class="tl-line c-wake"></div></div>
+    <div class="tl-body c-wake">
+      <div class="tl-label">Отбой · Отдых</div>
+      <div class="tl-desc">Полноценный сон не менее 8 часов. Телефоны — на беззвучном (только Шпилёв А.А. на связи в экстренных случаях).</div>
+    </div>
+  </div>
+
+</div>
+
+<h1>Нормы выработки на одного рабочего</h1>
+<div class="norms-grid">
+  <div class="norm-card">
+    <div class="nc-title">Бр.В · СУЛАНЖ (капля)</div>
+    <div class="nc-item">Капельная лента: <b>325 м/чел/день</b></div>
+    <div class="nc-item">Крючки 16 мм: <b>650 шт/чел/день</b> (шаг 0,5 м)</div>
+    <div class="nc-item">Пары: 1 раскатывает, 2-й бьёт крючки</div>
+    <div class="nc-item">Бр.В итого: <b>1 300 м/день</b> (4 чел.)</div>
+  </div>
+  <div class="norm-card">
+    <div class="nc-title">Бр.А · ГС (трубы → капля)</div>
+    <div class="nc-item">Трубы ПЭ d110/d75: <b>50–65 м/чел/день</b></div>
+    <div class="nc-item">Фитинги ПЭ: <b>35 шт/чел/день</b></div>
+    <div class="nc-item">Капельная лента: <b>325 м/чел/день</b></div>
+    <div class="nc-item">Бр.А итого: <b>1 625 м/день</b> (5 чел.)</div>
+  </div>
+  <div class="norm-card">
+    <div class="nc-title">Бр.Б · ГС (земля → капля)</div>
+    <div class="nc-item">Траншеи (с экскаватором): <b>50 м/чел/день</b></div>
+    <div class="nc-item">Труба d50/d75: <b>65–80 м/чел/день</b></div>
+    <div class="nc-item">Хомуты седловые: <b>60 шт/чел/день</b></div>
+    <div class="nc-item">Капельная лента: <b>325 м/чел/день</b></div>
+  </div>
+</div>
+
+<h1>Ежедневные обязанности</h1>
+<table class="duties">
+  <thead>
+    <tr>
+      <th style="width:22%">Кто</th>
+      <th style="width:40%">Утро (до начала работ)</th>
+      <th style="width:38%">Вечер (после работ)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Шпилёв А.А.</b><br>Руководитель</td>
+      <td>Инструктаж ТБ · Постановка задач · Разбивка по блокам</td>
+      <td>Фиксация итогов · Обновление daily.html · Планёрка · Отчёт заказчику (по необходимости)</td>
+    </tr>
+    <tr>
+      <td><b>Яковлев А.</b><br>Снабжение</td>
+      <td>Загрузка материалов · Подготовка машины · Инвентаризация остатков</td>
+      <td>Составление заявки на завтра · Контроль поступления счетов</td>
+    </tr>
+    <tr>
+      <td><b>Бригадир Бр.А</b><br>(Примачок)</td>
+      <td>Получение материалов · Подготовка инструмента · Разбивка на пары</td>
+      <td>Фиксация: м трубки уложено, блок, метраж. Сдача данных Шпилёву</td>
+    </tr>
+    <tr>
+      <td><b>Бригадир Бр.Б</b><br>(Прусаков)</td>
+      <td>Согласование с экскаватором · Разметка участка · Инструмент</td>
+      <td>Фиксация: м траншей/труб · Закрытие концов трубки · Данные Шпилёву</td>
+    </tr>
+    <tr>
+      <td><b>Бригадир Бр.В</b><br>(Костров П.)</td>
+      <td>Получение трубки и крючков · Разбивка пар · Проверка дыроколов</td>
+      <td>Фиксация: м капельной ленты, блок (№, строка рядов). Данные Шпилёву</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="alert-safety">
+  🦺 <b>ТБ (обязательно ежедневно):</b> головной убор на улице · перчатки при работе с трубкой · защитные очки при сварке ПЭ труб · не стоять в открытой траншее при работе экскаватора · при температуре воздуха >38°C — остановить работы и сообщить Шпилёву А.А.
+</div>
+
+<div class="alert-green">
+  📱 <b>Связь:</b> при нехватке материала → Яковлев А. +7(978)786-07-67 · при ЧП или вопросе по проекту → Шпилёв А.А. +7(978)812-36-47 · при вопросах по схеме клапанов → смотреть Схему поля (field-map.html) — блок, смена, тип клапана
+</div>
+
+<div class="footer">
+  <span>Договор №ГС-12-05 · Объект: Поле №78, Симферопольский р-н · ООО «ГАРДЕН СИТИ» / ООО «СУЛАНЖ»</span>
+  <span>Документ от 22.05.2026</span>
+</div>
+</div>
+</div>
