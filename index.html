@@ -476,7 +476,8 @@ details.card .card-inner{padding:0 14px 14px}
     <div class="nav-item" data-roles="all монтаж финансы" onclick="showPage('crew',this)"><span class="ni">👷</span>Бригада</div>
     <div class="nav-item" data-roles="all финансы" onclick="showPage('smeta',this)"><span class="ni">📋</span>Смета</div>
     <div class="nav-item" data-roles="all финансы" onclick="showPage('docs',this)"><span class="ni">📄</span>Документы</div>
-    <div class="nav-item" data-roles="all" onclick="showPage('qa',this)"><span class="ni">❓</span>Вопросы<span class="nav-badge" id="qa-badge">13</span></div>
+    <div class="nav-item" data-roles="all" onclick="showPage('qa',this)"><span class="ni">❓</span>Вопросы<span class="nav-badge" id="qa-badge">7</span></div>
+    <div class="nav-item" data-roles="all" onclick="showPage('ops',this)"><span class="ni">⚡</span>Оперативка</div>
   </nav>
 
   <!-- MAIN -->
@@ -3347,7 +3348,15 @@ details.card .card-inner{padding:0 14px 14px}
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       Вопросы
     </button>
-    <button class="bot-tab" onclick="showPage('ops',this)" style="color:#f59f00">
+    <button class="bot-tab" onclick="showPage('smeta',this)">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Смета
+    </button>
+    <button class="bot-tab" onclick="showPage('docs',this)">
+      <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+      Документы
+    </button>
+    <button class="bot-tab" onclick="showPage('ops',this)">
       <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       Опер.
     </button>
