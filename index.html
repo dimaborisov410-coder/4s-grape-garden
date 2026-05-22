@@ -1421,7 +1421,7 @@ details.card .card-inner{padding:0 14px 14px}
       <div><b>Поставщик:</b> ИП Парамонов П.С.</div>
       <div><b>Получатель:</b> ООО "ГАРДЕН СИТИ"</div>
       <div><b>Счёт:</b> №125 от 12.05.2026</div>
-      <div><b>Срок оплаты:</b> <span style="color:#c62828;font-weight:700">15.05.2026 — ПРОСРОЧЕН!</span></div>
+      <div><b>Срок оплаты:</b> <span style="color:var(--danger);font-weight:700">15.05.2026 — ПРОСРОЧЕН!</span></div>
     </div>
     <div style="margin-top:10px;padding:10px 12px;background:rgba(180,100,0,.15);border-radius:8px;font-size:12px;color:#ffaa00;border:1px solid rgba(255,170,0,.3)">
       ⚠️ <b>Срок оплаты 15.05.2026 — ПРОСРОЧЕН!</b> Необходимо оплатить или согласовать задержку с ИП Парамоновым.
@@ -1504,7 +1504,7 @@ details.card .card-inner{padding:0 14px 14px}
       <div><b>Банк:</b> ООО «ОЗОН Банк» · БИК 044525068</div>
       <div><b>р/с:</b> 40702810200000324212</div>
       <div><b>Кор. счёт:</b> 30101810645374525068</div>
-      <div><b>Срок оплаты:</b> <span style="color:#c62828;font-weight:700">15.05.2026 — ПРОСРОЧЕН!</span></div>
+      <div><b>Срок оплаты:</b> <span style="color:var(--danger);font-weight:700">15.05.2026 — ПРОСРОЧЕН!</span></div>
     </div>
     <div style="margin-top:10px;padding:10px 12px;background:rgba(139,26,47,.15);border-radius:8px;font-size:12px;color:#ff8a80;border:1px solid rgba(139,26,47,.35)">
       ⚠️ <b>Срок оплаты — ПРОСРОЧЕН 15.05.2026!</b> Это буферные ёмкости НС-2 (8 × 10 м³). При неоплате не гарантируется наличие товара.
@@ -1529,7 +1529,7 @@ details.card .card-inner{padding:0 14px 14px}
       <div><b>Банк:</b> АО «АЛЬФА-БАНК» · БИК 044525593</div>
       <div><b>р/с:</b> 40702810902270000632</div>
       <div><b>Назначение:</b> Оплата по заказу клиента №3933</div>
-      <div><b>Срок оплаты:</b> <span style="color:#c62828;font-weight:700">1 рабочий день от 14.05 = 15.05 — ПРОСРОЧЕН!</span></div>
+      <div><b>Срок оплаты:</b> <span style="color:var(--danger);font-weight:700">1 рабочий день от 14.05 = 15.05 — ПРОСРОЧЕН!</span></div>
     </div>
     <div style="margin-top:10px;padding:10px 12px;background:rgba(139,26,47,.15);border-radius:8px;font-size:12px;color:#ff8a80;border:1px solid rgba(139,26,47,.35)">
       ⚠️ <b>Товар заказной, возврат не принимается.</b> Отказ = штраф 40% от суммы (п.7 условий). Срок оплаты 15.05 — ПРОСРОЧЕН. Срочно связаться с менеджером.
@@ -2786,8 +2786,8 @@ details.card .card-inner{padding:0 14px 14px}
       <div class="card" style="flex:0 0 auto;border:2px solid #ffcc02">
         <div class="card-title" style="color:var(--warn)">⚡ Открытые вопросы</div>
         <div style="font-size:12px;line-height:2;color:rgba(255,255,255,.65)">
-          <div style="color:#c62828;font-weight:700">🔴 Предоплата 10 млн — ПРОСРОЧЕНА (срок 15.05)</div>
-          <div style="color:#c62828;font-weight:700">🔴 Съёмка рельефа — нужна от Максима (ГРО)</div>
+          <div style="color:var(--danger);font-weight:700">🔴 Предоплата 10 млн — ПРОСРОЧЕНА (срок 15.05)</div>
+          <div style="color:var(--danger);font-weight:700">🔴 Съёмка рельефа — нужна от Максима (ГРО)</div>
           <div style="color:var(--warn)">🟡 Смена 1 площадь: 7,02 vs 8,02 га (ждём Магарач)</div>
           <div style="color:var(--warn)">🟡 Смена 2 площадь: 6,64 vs 7,04 га (ждём Магарач)</div>
           <div style="color:var(--warn)">🟡 Клетка 8: сорт не определён</div>
@@ -3050,7 +3050,7 @@ details.card .card-inner{padding:0 14px 14px}
 
 <!-- ══════ ОПЕРАТИВКА ══════ -->
 <div class="page" id="page-ops">
-  <div class="page-title">Оперативка · 22.05.2026</div>
+  <div class="page-title">Оперативка · <span id="ops-date">22.05.2026</span></div>
 
   <!-- ДВИЖЕНИЕ ДЕНЕГ -->
   <div style="margin-bottom:14px">
@@ -3152,38 +3152,38 @@ details.card .card-inner{padding:0 14px 14px}
   </div>
 
   <!-- ГОРЯЩИЕ ВОПРОСЫ -->
-  <div style="margin-bottom:4mm">
-    <div style="font-size:10pt;font-weight:800;color:#e65100;margin-bottom:2mm">🔥 Горящие вопросы (Шпилёв А.А.)</div>
-    <table style="width:100%;border-collapse:collapse;font-size:8.5pt">
+  <div style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:800;color:var(--warn);letter-spacing:.3px;text-transform:uppercase;margin-bottom:8px">🔥 Горящие вопросы (Шпилёв А.А.)</div>
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
       <thead><tr>
-        <th style="background:#37474f;color:#fff;padding:4px 6px;text-align:left;width:4%">#</th>
-        <th style="background:#37474f;color:#fff;padding:4px 6px;text-align:left;width:54%">Вопрос</th>
-        <th style="background:#37474f;color:#fff;padding:4px 6px;text-align:left;width:20%">Статус</th>
-        <th style="background:#37474f;color:#fff;padding:4px 6px;text-align:left;width:22%">Ответственный</th>
+        <th style="background:rgba(255,255,255,.06);color:var(--text-dim);padding:6px 8px;text-align:left;width:4%;border-bottom:1px solid var(--gold-dim)">#</th>
+        <th style="background:rgba(255,255,255,.06);color:var(--text-dim);padding:6px 8px;text-align:left;width:54%;border-bottom:1px solid var(--gold-dim)">Вопрос</th>
+        <th style="background:rgba(255,255,255,.06);color:var(--text-dim);padding:6px 8px;text-align:left;width:20%;border-bottom:1px solid var(--gold-dim)">Статус</th>
+        <th style="background:rgba(255,255,255,.06);color:var(--text-dim);padding:6px 8px;text-align:left;width:22%;border-bottom:1px solid var(--gold-dim)">Ответственный</th>
       </tr></thead>
       <tbody>
         <tr>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee">1</td>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee">Оплата обедов: ГС кормит Суланжевцев или Суланж сам?</td>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee"><span style="background:#fff8e1;color:#e65100;padding:2px 6px;border-radius:8px;font-size:7.5pt;font-weight:700">⏳ В процессе</span></td>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee">Дария ГС +7-978-767-23-36 · завтра ответ</td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">1</td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Оплата обедов: ГС кормит Суланжевцев или Суланж сам?</td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><span class="status-pill sp-orange">⏳ В процессе</span></td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Дария ГС +7-978-767-23-36 · завтра ответ</td>
         </tr>
         <tr>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee">2</td>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee">Согласовать объём работ первой очереди</td>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee"><span style="background:#ffcdd2;color:#c62828;padding:2px 6px;border-radius:8px;font-size:7.5pt;font-weight:700">❌ Открыт</span></td>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee">Шпилёв А.А. + ГС</td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">2</td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Согласовать объём работ первой очереди</td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><span class="status-pill sp-red">❌ Открыт</span></td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Шпилёв А.А. + ГС</td>
         </tr>
         <tr>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee">3</td>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee">Сроки: сдвинуть на месяц либо не разделять оплаты</td>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee"><span style="background:#ffcdd2;color:#c62828;padding:2px 6px;border-radius:8px;font-size:7.5pt;font-weight:700">❌ Открыт</span></td>
-          <td style="padding:4px 6px;border-bottom:1px solid #eee">Шпилёв А.А. + заказчик</td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">3</td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Сроки: сдвинуть на месяц либо не разделять оплаты</td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><span class="status-pill sp-red">❌ Открыт</span></td>
+          <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Шпилёв А.А. + заказчик</td>
         </tr>
         <tr>
           <td style="padding:4px 6px">4</td>
           <td style="padding:4px 6px">Съёмка рельефа с геодезическими точками ГРО от Максима</td>
-          <td style="padding:4px 6px"><span style="background:#ffcdd2;color:#c62828;padding:2px 6px;border-radius:8px;font-size:7.5pt;font-weight:700">❌ Открыт</span></td>
+          <td style="padding:4px 6px"><span class="status-pill sp-red">❌ Открыт</span></td>
           <td style="padding:4px 6px">Макс Лёновских (заказчик) · Кад. №90:12:140601:1230</td>
         </tr>
       </tbody>
@@ -3191,58 +3191,58 @@ details.card .card-inner{padding:0 14px 14px}
   </div>
 
   <!-- СТАТУС МАТЕРИАЛОВ -->
-  <div style="font-size:10pt;font-weight:800;color:#1b5e20;margin:4mm 0 2mm">📦 Статус ключевых материалов</div>
-  <table style="width:100%;border-collapse:collapse;font-size:8.5pt;margin-bottom:4mm">
+  <div style="font-size:12px;font-weight:800;color:var(--gold);letter-spacing:.3px;text-transform:uppercase;margin:14px 0 8px">📦 Статус ключевых материалов</div>
+  <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:14px">
     <thead><tr>
-      <th style="background:#1b5e20;color:#fff;padding:4px 6px;text-align:left;width:28%">Материал</th>
-      <th style="background:#1b5e20;color:#fff;padding:4px 6px;text-align:center;width:10%">Статус</th>
-      <th style="background:#1b5e20;color:#fff;padding:4px 6px;text-align:left;width:40%">Комментарий</th>
-      <th style="background:#1b5e20;color:#fff;padding:4px 6px;text-align:left;width:22%">Нужен к</th>
+      <th style="background:rgba(27,94,32,.5);color:rgba(255,255,255,.7);padding:6px 8px;text-align:left;width:28%;border-bottom:1px solid var(--gold-dim)">Материал</th>
+      <th style="background:rgba(27,94,32,.5);color:rgba(255,255,255,.7);padding:6px 8px;text-align:center;width:10%;border-bottom:1px solid var(--gold-dim)">Статус</th>
+      <th style="background:rgba(27,94,32,.5);color:rgba(255,255,255,.7);padding:6px 8px;text-align:left;width:40%;border-bottom:1px solid var(--gold-dim)">Комментарий</th>
+      <th style="background:rgba(27,94,32,.5);color:rgba(255,255,255,.7);padding:6px 8px;text-align:left;width:22%;border-bottom:1px solid var(--gold-dim)">Нужен к</th>
     </tr></thead>
     <tbody>
-      <tr style="background:#ffebee">
-        <td style="padding:4px 6px;border-bottom:1px solid #eee"><b>Насосы Masdaf</b></td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee;text-align:center">❌</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee">Запрос подан КвадроГрупп, ответ в пн</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee;color:#c62828;font-weight:700">26.05! (просрочено)</td>
+      <tr style="background:rgba(139,26,47,.12)">
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><b>Насосы Masdaf</b></td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07);text-align:center">❌</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Запрос подан КвадроГрупп, ответ в пн</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07);color:var(--danger);font-weight:700">26.05! (просрочено)</td>
       </tr>
-      <tr style="background:#ffebee">
-        <td style="padding:4px 6px;border-bottom:1px solid #eee"><b>Ёмкости ПЭ 10 000л × 8 шт.</b></td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee;text-align:center">❌</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee">КОИ52, 671 040 ₽ — не оплачен</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee;color:#c62828;font-weight:700">26.05! (просрочено)</td>
+      <tr style="background:rgba(139,26,47,.12)">
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><b>Ёмкости ПЭ 10 000л × 8 шт.</b></td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07);text-align:center">❌</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">КОИ52, 671 040 ₽ — не оплачен</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07);color:var(--danger);font-weight:700">26.05! (просрочено)</td>
       </tr>
-      <tr style="background:#fff8e1">
-        <td style="padding:4px 6px;border-bottom:1px solid #eee"><b>Капельная лента METZER</b></td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee;text-align:center">⚠️</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee">Первые 50 000 м придут 29.05 · Нужно 217 000 м · Дефицит 167 000 м</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee;color:#e65100;font-weight:700">09.06 (день 16)</td>
+      <tr style="background:rgba(180,100,0,.1)">
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><b>Капельная лента METZER</b></td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07);text-align:center">⚠️</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Первые 50 000 м придут 29.05 · Нужно 217 000 м · Дефицит 167 000 м</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07);color:var(--warn);font-weight:700">09.06 (день 16)</td>
       </tr>
-      <tr style="background:#fff8e1">
-        <td style="padding:4px 6px;border-bottom:1px solid #eee"><b>Крючки Irritec 16 мм</b></td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee;text-align:center">⚠️</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee">62 000 шт. на Суланже · Нужно ~217 000 · Дефицит 155 000 шт.</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee;color:#e65100;font-weight:700">09.06 (день 16)</td>
+      <tr style="background:rgba(180,100,0,.1)">
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><b>Крючки Irritec 16 мм</b></td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07);text-align:center">⚠️</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">62 000 шт. на Суланже · Нужно ~217 000 · Дефицит 155 000 шт.</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07);color:var(--warn);font-weight:700">09.06 (день 16)</td>
       </tr>
-      <tr style="background:#e8f5e9">
-        <td style="padding:4px 6px;border-bottom:1px solid #eee"><b>Трубы ПЭ СТИЛЕКС</b></td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee;text-align:center">✅</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee">Оплачено 700 000 ₽ · Поставка ожидается</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee">09.06</td>
+      <tr style="background:rgba(46,125,50,.1)">
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><b>Трубы ПЭ СТИЛЕКС</b></td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07);text-align:center">✅</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Оплачено 700 000 ₽ · Поставка ожидается</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">09.06</td>
       </tr>
-      <tr style="background:#e8f5e9">
-        <td style="padding:4px 6px;border-bottom:1px solid #eee"><b>Бытовки × 2 шт.</b></td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee;text-align:center">✅</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee">Оплачены · Крымтехкаркас, аренда ~15 000 ₽/мес</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee">22.05</td>
+      <tr style="background:rgba(46,125,50,.1)">
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><b>Бытовки × 2 шт.</b></td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07);text-align:center">✅</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Оплачены · Крымтехкаркас, аренда ~15 000 ₽/мес</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">22.05</td>
       </tr>
-      <tr style="background:#e8f5e9">
-        <td style="padding:4px 6px;border-bottom:1px solid #eee"><b>Биотуалет</b></td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee;text-align:center">✅</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee">Оплачен (1 ед. + обслуживание)</td>
-        <td style="padding:4px 6px;border-bottom:1px solid #eee">22.05</td>
+      <tr style="background:rgba(46,125,50,.1)">
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><b>Биотуалет</b></td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07);text-align:center">✅</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Оплачен (1 ед. + обслуживание)</td>
+        <td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">22.05</td>
       </tr>
-      <tr style="background:#e8f5e9">
+      <tr style="background:rgba(46,125,50,.1)">
         <td style="padding:4px 6px"><b>Товары Озон (бытовка)</b></td>
         <td style="padding:4px 6px;text-align:center">✅</td>
         <td style="padding:4px 6px">Оплачены · Доставка 22–26.05 в с.Пожарское</td>
@@ -3252,53 +3252,53 @@ details.card .card-inner{padding:0 14px 14px}
   </table>
 
   <!-- ГРАФИК ОПЛАТ -->
-  <div style="font-size:10pt;font-weight:800;color:#1b5e20;margin:4mm 0 2mm">💰 График оплат (от заказчика)</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm;margin-bottom:4mm">
-    <div style="border:1.5px solid #c8e6c9;border-radius:4px;padding:3mm;text-align:center">
-      <div style="font-size:7.5pt;color:#777;text-transform:uppercase">Транш 1</div>
-      <div style="font-size:18pt;font-weight:900;color:#1b5e20;line-height:1;margin:2mm 0 1mm">7 млн</div>
-      <div style="font-size:8pt;color:#555">18.05.2026</div>
-      <div style="font-size:7.5pt;margin-top:2mm"><span style="background:#c8e6c9;color:#1b5e20;padding:1px 6px;border-radius:8px;font-weight:700">✅ Получен</span></div>
+  <div style="font-size:12px;font-weight:800;color:var(--gold);letter-spacing:.3px;text-transform:uppercase;margin:14px 0 8px">💰 График оплат (от заказчика)</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">
+    <div style="border:1px solid rgba(46,125,50,.4);border-radius:8px;padding:10px;text-align:center;background:rgba(46,125,50,.08)">
+      <div style="font-size:10px;color:var(--text-dim);text-transform:uppercase">Транш 1</div>
+      <div style="font-size:24px;font-weight:900;color:#81c784;line-height:1;margin:6px 0 4px">7 млн</div>
+      <div style="font-size:11px;color:var(--text-dim)">18.05.2026</div>
+      <div style="font-size:10px;margin-top:6px"><span style="background:rgba(46,125,50,.3);color:#81c784;padding:1px 6px;border-radius:8px;font-weight:700">✅ Получен</span></div>
     </div>
-    <div style="border:1.5px solid #ffe0b2;border-radius:4px;padding:3mm;text-align:center">
-      <div style="font-size:7.5pt;color:#777;text-transform:uppercase">Транш 2</div>
-      <div style="font-size:18pt;font-weight:900;color:#e65100;line-height:1;margin:2mm 0 1mm">5 млн</div>
-      <div style="font-size:8pt;color:#555">25.05.2026</div>
-      <div style="font-size:7.5pt;margin-top:2mm"><span style="background:#fff8e1;color:#e65100;padding:1px 6px;border-radius:8px;font-weight:700">⏳ Ожидается</span></div>
+    <div style="border:1px solid rgba(255,170,0,.3);border-radius:8px;padding:10px;text-align:center;background:rgba(180,100,0,.08)">
+      <div style="font-size:10px;color:var(--text-dim);text-transform:uppercase">Транш 2</div>
+      <div style="font-size:24px;font-weight:900;color:var(--warn);line-height:1;margin:6px 0 4px">5 млн</div>
+      <div style="font-size:11px;color:var(--text-dim)">25.05.2026</div>
+      <div style="font-size:10px;margin-top:6px"><span style="background:rgba(180,100,0,.2);color:var(--warn);padding:1px 6px;border-radius:8px;font-weight:700">⏳ Ожидается</span></div>
     </div>
-    <div style="border:1.5px solid #e0e0e0;border-radius:4px;padding:3mm;text-align:center">
-      <div style="font-size:7.5pt;color:#777;text-transform:uppercase">Транш 3</div>
-      <div style="font-size:18pt;font-weight:900;color:#555;line-height:1;margin:2mm 0 1mm">20 млн</div>
-      <div style="font-size:8pt;color:#555">12.06.2026</div>
-      <div style="font-size:7.5pt;margin-top:2mm"><span style="background:#f5f5f5;color:#888;padding:1px 6px;border-radius:8px;font-weight:700">🗓 Запланирован</span></div>
+    <div style="border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;text-align:center;background:rgba(255,255,255,.03)">
+      <div style="font-size:10px;color:var(--text-dim);text-transform:uppercase">Транш 3</div>
+      <div style="font-size:24px;font-weight:900;color:var(--text-dim);line-height:1;margin:6px 0 4px">20 млн</div>
+      <div style="font-size:11px;color:var(--text-dim)">12.06.2026</div>
+      <div style="font-size:10px;margin-top:6px"><span style="background:rgba(255,255,255,.06);color:var(--text-dim);padding:1px 6px;border-radius:8px;font-weight:700">🗓 Запланирован</span></div>
     </div>
   </div>
 
   <!-- ДЕФИЦИТ ЛЮДЕЙ -->
-  <div style="font-size:10pt;font-weight:800;color:#c62828;margin:4mm 0 2mm">👷 Дефицит людей (по данным чата)</div>
-  <div style="background:#ffebee;border-left:4px solid #c62828;padding:3mm 5mm;margin-bottom:3mm;font-size:8.5pt">
+  <div style="font-size:12px;font-weight:800;color:var(--danger);letter-spacing:.3px;text-transform:uppercase;margin:14px 0 8px">👷 Дефицит людей (по данным чата)</div>
+  <div style="background:var(--danger-bg);border:1px solid var(--danger-border);border-left:4px solid var(--danger);padding:10px 14px;margin-bottom:12px;font-size:12px;border-radius:6px;color:var(--text)">
     <b>«Только так можно успеть до 30.06»</b> — Лёха, 22.05.2026<br>
     На монтаж капли: <b>30 чел.</b> (есть 13) · На магистраль: <b>9 чел.</b> (есть 5) · На латераль: <b>12 чел.</b> · Стройка: <b>9 чел.</b> · 5 ед. техники<br>
     <b>Нужно продлить рабочий день за почасовую доплату</b>
   </div>
 
   <!-- ТРАНСПОРТ -->
-  <div style="font-size:10pt;font-weight:800;color:#1b5e20;margin:4mm 0 2mm">🚗 Транспорт</div>
-  <table style="width:100%;border-collapse:collapse;font-size:8.5pt;margin-bottom:4mm">
+  <div style="font-size:12px;font-weight:800;color:var(--gold);letter-spacing:.3px;text-transform:uppercase;margin:14px 0 8px">🚗 Транспорт</div>
+  <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:14px">
     <thead><tr>
-      <th style="background:#1b5e20;color:#fff;padding:4px 6px;text-align:left">#</th>
-      <th style="background:#1b5e20;color:#fff;padding:4px 6px;text-align:left">Автомобиль</th>
-      <th style="background:#1b5e20;color:#fff;padding:4px 6px;text-align:left">Гос. номер</th>
-      <th style="background:#1b5e20;color:#fff;padding:4px 6px;text-align:left">Назначение</th>
+      <th style="background:rgba(27,94,32,.5);color:rgba(255,255,255,.7);padding:6px 8px;text-align:left;border-bottom:1px solid var(--gold-dim)">#</th>
+      <th style="background:rgba(27,94,32,.5);color:rgba(255,255,255,.7);padding:6px 8px;text-align:left;border-bottom:1px solid var(--gold-dim)">Автомобиль</th>
+      <th style="background:rgba(27,94,32,.5);color:rgba(255,255,255,.7);padding:6px 8px;text-align:left;border-bottom:1px solid var(--gold-dim)">Гос. номер</th>
+      <th style="background:rgba(27,94,32,.5);color:rgba(255,255,255,.7);padding:6px 8px;text-align:left;border-bottom:1px solid var(--gold-dim)">Назначение</th>
     </tr></thead>
     <tbody>
-      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee">1</td><td style="padding:4px 6px;border-bottom:1px solid #eee">Ларгус</td><td style="padding:4px 6px;border-bottom:1px solid #eee"><b>У643ТК 797</b></td><td style="padding:4px 6px;border-bottom:1px solid #eee">ГС — перевозка людей Бр.А/Б</td></tr>
-      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee">2</td><td style="padding:4px 6px;border-bottom:1px solid #eee">Газель</td><td style="padding:4px 6px;border-bottom:1px solid #eee"><b>Т410ВУ 977</b></td><td style="padding:4px 6px;border-bottom:1px solid #eee">ГС — перевозка материалов / людей Бр.А/Б</td></tr>
-      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee">3</td><td style="padding:4px 6px;border-bottom:1px solid #eee">Toyota RAV4</td><td style="padding:4px 6px;border-bottom:1px solid #eee"><b>В325ЕС 92</b></td><td style="padding:4px 6px;border-bottom:1px solid #eee">Лёха (руководство) — объект + логистика</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">1</td><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Ларгус</td><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><b>У643ТК 797</b></td><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">ГС — перевозка людей Бр.А/Б</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">2</td><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Газель</td><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><b>Т410ВУ 977</b></td><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">ГС — перевозка материалов / людей Бр.А/Б</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">3</td><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Toyota RAV4</td><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)"><b>В325ЕС 92</b></td><td style="padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)">Лёха (руководство) — объект + логистика</td></tr>
       <tr><td style="padding:4px 6px">4</td><td style="padding:4px 6px">Volkswagen Tiguan</td><td style="padding:4px 6px"><b>А289ХР 92</b></td><td style="padding:4px 6px">Лёха — резерв / Бр.В СУЛАНЖ</td></tr>
     </tbody>
   </table>
-  <div style="font-size:8pt;color:#888">Лада Гранта (аренда) — трансфер рабочих Суланж: Ароматное → Пожарское и обратно · счёт №125 оплачен, 31 день</div>
+  <div style="font-size:11px;color:var(--text-dim)">Лада Гранта (аренда) — трансфер рабочих Суланж: Ароматное → Пожарское и обратно · счёт №125 оплачен, 31 день</div>
 </div>
 
 </div></div></div>
@@ -3453,6 +3453,10 @@ function loadTubeData(){
   });
 }
 document.addEventListener('DOMContentLoaded',initTubeCalc);
+document.addEventListener('DOMContentLoaded',function(){
+  var el=document.getElementById('ops-date');
+  if(el)el.textContent=new Date().toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit',year:'numeric'});
+});
 /* ── Карта поля ── */
 const _SHC={1:'#1b5e20',2:'#1565c0',3:'#00695c',4:'#4527a0',5:'#e65100',6:'#f57f17',7:'#c62828',8:'#ad1457',9:'#558b2f',10:'#00838f',11:'#6a1b9a'};
 const _SHN={1:'Смена 1',2:'Смена 2',3:'Смена 3',4:'Смена 4',5:'Смена 5',6:'Смена 6',7:'Смена 7',8:'Смена 8',9:'Смена 9',10:'Смена 10',11:'Смена 11'};
