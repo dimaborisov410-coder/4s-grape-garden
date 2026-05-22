@@ -7,112 +7,112 @@
     .page-break { page-break-before: always; }
     body { font-size: 9pt; }
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  #page-montage * { box-sizing: border-box; margin: 0; padding: 0; }
   #page-montage { font-family: 'Arial', sans-serif; font-size: 10pt; color: #1a1a1a; line-height: 1.45; background: #fff; padding: 16px 24px; }
 
   /* PRINT BUTTON */
-  .no-print {
+  #page-montage .no-print {
     position: fixed; top: 18px; right: 20px; z-index: 999;
     background: #1b5e20; color: #fff; border: none; border-radius: 6px;
     padding: 10px 20px; font-size: 13px; font-weight: 700; cursor: pointer;
   }
-  .no-print:hover { background: #2e7d32; }
+  #page-montage .no-print:hover { background: #2e7d32; }
 
   /* COVER */
-  .cover {
+  #page-montage .cover {
     text-align: center; padding: 40mm 0 30mm;
     border-bottom: 3px solid #1b5e20; margin-bottom: 10mm;
   }
-  .cover-logo {
+  #page-montage .cover-logo {
     font-size: 10pt; font-weight: 700; color: #555; letter-spacing: 2px;
     text-transform: uppercase; margin-bottom: 8mm;
   }
-  .cover-title {
+  #page-montage .cover-title {
     font-size: 22pt; font-weight: 900; color: #1a1a1a; line-height: 1.2;
     margin-bottom: 6mm;
   }
-  .cover-sub {
+  #page-montage .cover-sub {
     font-size: 12pt; color: #444; margin-bottom: 10mm;
   }
-  .cover-badge {
+  #page-montage .cover-badge {
     display: inline-block; background: #1b5e20; color: #fff;
     font-size: 10pt; font-weight: 700; padding: 4px 16px; border-radius: 20px;
     margin-bottom: 12mm;
   }
-  .cover-meta {
+  #page-montage .cover-meta {
     font-size: 9.5pt; color: #555; line-height: 2;
   }
 
   /* SECTIONS */
-  h1 { font-size: 14pt; font-weight: 900; color: #1b5e20; border-bottom: 2px solid #1b5e20; padding-bottom: 3px; margin: 8mm 0 4mm; }
-  h2 { font-size: 11.5pt; font-weight: 800; color: #1a1a1a; margin: 6mm 0 3mm; }
-  h3 { font-size: 10.5pt; font-weight: 700; color: #1b5e20; margin: 5mm 0 2mm; }
+  #page-montage h1 { font-size: 14pt; font-weight: 900; color: #1b5e20; border-bottom: 2px solid #1b5e20; padding-bottom: 3px; margin: 8mm 0 4mm; }
+  #page-montage h2 { font-size: 11.5pt; font-weight: 800; color: #1a1a1a; margin: 6mm 0 3mm; }
+  #page-montage h3 { font-size: 10.5pt; font-weight: 700; color: #1b5e20; margin: 5mm 0 2mm; }
 
-  p { margin-bottom: 3mm; }
+  #page-montage p { margin-bottom: 3mm; }
 
   /* INFO GRID */
-  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 8mm; margin-bottom: 5mm; }
-  .info-item { border-left: 3px solid #1b5e20; padding: 2mm 0 2mm 4mm; }
-  .info-label { font-size: 7.5pt; color: #777; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
-  .info-value { font-size: 10pt; font-weight: 700; color: #1a1a1a; }
+  #page-montage .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 8mm; margin-bottom: 5mm; }
+  #page-montage .info-item { border-left: 3px solid #1b5e20; padding: 2mm 0 2mm 4mm; }
+  #page-montage .info-label { font-size: 7.5pt; color: #777; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+  #page-montage .info-value { font-size: 10pt; font-weight: 700; color: #1a1a1a; }
 
   /* TABLES */
-  table { width: 100%; border-collapse: collapse; margin-bottom: 5mm; font-size: 9pt; }
-  th { background: #1b5e20; color: #fff; padding: 3px 6px; text-align: left; font-size: 8.5pt; }
-  th.num, td.num { text-align: right; }
-  td { padding: 3px 6px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
-  tr:nth-child(even) td { background: #f5f5f5; }
-  tr.grp td { background: #e8f5e9; font-weight: 700; color: #1b5e20; }
-  tr.total td { background: #1b5e20; color: #fff; font-weight: 900; }
+  #page-montage table { width: 100%; border-collapse: collapse; margin-bottom: 5mm; font-size: 9pt; }
+  #page-montage th { background: #1b5e20; color: #fff; padding: 3px 6px; text-align: left; font-size: 8.5pt; }
+  #page-montage th.num, #page-montage td.num { text-align: right; }
+  #page-montage td { padding: 3px 6px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  #page-montage tr:nth-child(even) td { background: #f5f5f5; color: #1a1a1a; }
+  #page-montage tr.grp td { background: #e8f5e9; font-weight: 700; color: #1b5e20; }
+  #page-montage tr.total td { background: #1b5e20; color: #fff; font-weight: 900; }
 
   /* STAGE */
-  .stage { border: 1.5px solid #1b5e20; border-radius: 4px; margin-bottom: 5mm; overflow: hidden; }
-  .stage-head { display: flex; align-items: flex-start; gap: 4mm; padding: 3.5mm 5mm; background: #e8f5e9; }
-  .stage-num { width: 22px; height: 22px; background: #1b5e20; color: #fff; font-size: 11pt; font-weight: 900; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .stage-title { font-size: 11pt; font-weight: 800; flex: 1; }
-  .stage-dates { font-size: 8.5pt; color: #555; white-space: nowrap; flex-shrink: 0; }
-  .stage-body { padding: 3.5mm 5mm 3.5mm 5mm; }
-  .task-list { list-style: none; }
-  .task-list li { display: flex; align-items: flex-start; gap: 3mm; margin-bottom: 1.5mm; font-size: 9.5pt; }
-  .task-list li::before { content: '▸'; color: #1b5e20; font-size: 9pt; flex-shrink: 0; margin-top: 0.5mm; }
-  .stage-warn { margin-top: 3mm; padding: 2mm 4mm; background: #fff8e1; border-left: 3px solid #f59f00; font-size: 8.5pt; color: #5d3f00; }
-  .stage-ok { margin-top: 3mm; padding: 2mm 4mm; background: #e8f5e9; border-left: 3px solid #1b5e20; font-size: 8.5pt; color: #1b5e20; }
+  #page-montage .stage { border: 1.5px solid #1b5e20; border-radius: 4px; margin-bottom: 5mm; overflow: hidden; }
+  #page-montage .stage-head { display: flex; align-items: flex-start; gap: 4mm; padding: 3.5mm 5mm; background: #e8f5e9; }
+  #page-montage .stage-num { width: 22px; height: 22px; background: #1b5e20; color: #fff; font-size: 11pt; font-weight: 900; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  #page-montage .stage-title { font-size: 11pt; font-weight: 800; flex: 1; }
+  #page-montage .stage-dates { font-size: 8.5pt; color: #555; white-space: nowrap; flex-shrink: 0; }
+  #page-montage .stage-body { padding: 3.5mm 5mm 3.5mm 5mm; }
+  #page-montage .task-list { list-style: none; }
+  #page-montage .task-list li { display: flex; align-items: flex-start; gap: 3mm; margin-bottom: 1.5mm; font-size: 9.5pt; }
+  #page-montage .task-list li::before { content: '▸'; color: #1b5e20; font-size: 9pt; flex-shrink: 0; margin-top: 0.5mm; }
+  #page-montage .stage-warn { margin-top: 3mm; padding: 2mm 4mm; background: #fff8e1; border-left: 3px solid #f59f00; font-size: 8.5pt; color: #5d3f00; }
+  #page-montage .stage-ok { margin-top: 3mm; padding: 2mm 4mm; background: #e8f5e9; border-left: 3px solid #1b5e20; font-size: 8.5pt; color: #1b5e20; }
 
   /* SPEC TABLE */
-  .spec-table { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-  .spec-row { display: flex; justify-content: space-between; padding: 2mm 3mm; border-bottom: 1px solid #e0e0e0; font-size: 9pt; }
-  .spec-row:nth-child(odd) { background: #f9f9f9; }
-  .spec-key { color: #555; }
-  .spec-val { font-weight: 700; color: #1a1a1a; }
+  #page-montage .spec-table { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  #page-montage .spec-row { display: flex; justify-content: space-between; padding: 2mm 3mm; border-bottom: 1px solid #e0e0e0; font-size: 9pt; }
+  #page-montage .spec-row:nth-child(odd) { background: #f9f9f9; color: #1a1a1a; }
+  #page-montage .spec-key { color: #555; }
+  #page-montage .spec-val { font-weight: 700; color: #1a1a1a; }
 
   /* ALERT */
-  .alert-red { background: #ffebee; border-left: 4px solid #c62828; padding: 3mm 5mm; margin-bottom: 4mm; font-size: 9.5pt; }
-  .alert-orange { background: #fff8e1; border-left: 4px solid #f59f00; padding: 3mm 5mm; margin-bottom: 4mm; font-size: 9.5pt; }
-  .alert-green { background: #e8f5e9; border-left: 4px solid #1b5e20; padding: 3mm 5mm; margin-bottom: 4mm; font-size: 9.5pt; }
+  #page-montage .alert-red { background: #ffebee; border-left: 4px solid #c62828; padding: 3mm 5mm; margin-bottom: 4mm; font-size: 9.5pt; }
+  #page-montage .alert-orange { background: #fff8e1; border-left: 4px solid #f59f00; padding: 3mm 5mm; margin-bottom: 4mm; font-size: 9.5pt; }
+  #page-montage .alert-green { background: #e8f5e9; border-left: 4px solid #1b5e20; padding: 3mm 5mm; margin-bottom: 4mm; font-size: 9.5pt; }
 
   /* CONTACTS */
-  .contacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
-  .contact-card { border: 1px solid #c8e6c9; border-radius: 4px; padding: 3mm; }
-  .contact-role { font-size: 7.5pt; color: #777; text-transform: uppercase; font-weight: 700; }
-  .contact-name { font-size: 10pt; font-weight: 800; margin: 1mm 0; }
-  .contact-phone { font-size: 10pt; color: #1b5e20; font-weight: 700; }
+  #page-montage .contacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+  #page-montage .contact-card { border: 1px solid #c8e6c9; border-radius: 4px; padding: 3mm; }
+  #page-montage .contact-role { font-size: 7.5pt; color: #777; text-transform: uppercase; font-weight: 700; }
+  #page-montage .contact-name { font-size: 10pt; font-weight: 800; margin: 1mm 0; }
+  #page-montage .contact-phone { font-size: 10pt; color: #1b5e20; font-weight: 700; }
 
   /* FOOTER */
-  .footer { margin-top: 10mm; padding-top: 4mm; border-top: 1px solid #ccc; font-size: 8pt; color: #888; display: flex; justify-content: space-between; }
+  #page-montage .footer { margin-top: 10mm; padding-top: 4mm; border-top: 1px solid #ccc; font-size: 8pt; color: #888; display: flex; justify-content: space-between; }
 
   /* GANTT simple */
-  .gantt-table td { padding: 2px 5px; border-bottom: 1px solid #e0e0e0; font-size: 8.5pt; }
-  .gantt-bar-cell { width: 60%; }
-  .gbar { height: 11px; border-radius: 2px; display: inline-flex; align-items: center; padding: 0 4px; font-size: 7pt; color: #fff; font-weight: 700; white-space: nowrap; overflow: hidden; }
-  .g1 { background: #1565c0; }
-  .g2 { background: #1565c0; opacity:.75; }
-  .g3 { background: #2e7d32; }
-  .g4 { background: #1565c0; opacity:.55; }
-  .g5 { background: #6a1b9a; }
-  .g6 { background: #bf360c; }
-  .g7 { background: #00796b; }
+  #page-montage .gantt-table td { padding: 2px 5px; border-bottom: 1px solid #e0e0e0; font-size: 8.5pt; }
+  #page-montage .gantt-bar-cell { width: 60%; }
+  #page-montage .gbar { height: 11px; border-radius: 2px; display: inline-flex; align-items: center; padding: 0 4px; font-size: 7pt; color: #fff; font-weight: 700; white-space: nowrap; overflow: hidden; }
+  #page-montage .g1 { background: #1565c0; }
+  #page-montage .g2 { background: #1565c0; opacity:.75; }
+  #page-montage .g3 { background: #2e7d32; }
+  #page-montage .g4 { background: #1565c0; opacity:.55; }
+  #page-montage .g5 { background: #6a1b9a; }
+  #page-montage .g6 { background: #bf360c; }
+  #page-montage .g7 { background: #00796b; }
 
-  .number-badge { display: inline-block; background: #1b5e20; color: #fff; font-weight: 900; font-size: 8pt; padding: 1px 6px; border-radius: 10px; margin-right: 2mm; }
+  #page-montage .number-badge { display: inline-block; background: #1b5e20; color: #fff; font-weight: 900; font-size: 8pt; padding: 1px 6px; border-radius: 10px; margin-right: 2mm; }
 
 </style>
 <div class="page-inner-doc">
