@@ -1,3 +1,41 @@
+# daily.html — Суточный журнал бригадира · Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Создать `daily.html` — суточный рабочий журнал для руководителя проекта и бригадиров, отображающий задачи всех 15 человек на каждый из 86 рабочих дней (22.05–29.08.2026) с нормами выработки и статусом материалов.
+
+**Architecture:** Один самодостаточный HTML файл без внешних зависимостей. CSS inline, данные в JS-массиве DAYS (86 объектов), генерируемом из компактной структуры BRIGADE_PLAN (15 недель × 3 бригады). Рендеринг через DOM-генерацию при загрузке страницы.
+
+**Tech Stack:** HTML5, CSS3 (print + screen), Vanilla JS (ES6). Стиль: белый фон, #1b5e20 зелёный (как montage.html).
+
+---
+
+## Числа для проверки
+
+| Бригада | Период на капле | Дней | Людей | Метров |
+|---------|-----------------|-------|-------|--------|
+| В (СУЛАНЖ) | Н4–Н14 (09.06–23.08) | 66 | 4 | 85 800 м |
+| А (ГС) | Н9–Н14 (14.07–23.08) | 36 | 5 | 58 500 м |
+| Б (ГС) | Н9–Н14 (14.07–23.08) | 36 | 4 | 46 800 м |
+| **Итого** | | | **13** | **191 100 м** |
+| Нужно | | | | **217 000 м** |
+| **Дефицит** | | | | **−25 900 м (нужно +2–3 чел. с 01.07)** |
+
+Номера дней (1=22.05, 86=29.08):
+- Н1: 1–3 · Н2: 4–9 · Н3: 10–15 · Н4: 16–21 · Н5: 22–27
+- Н6: 28–33 · Н7: 34–39 · Н8: 40–45 · Н9: 46–51 · Н10: 52–57
+- Н11: 58–63 · Н12: 64–69 · Н13: 70–75 · Н14: 76–81 · Н15: 82–86
+
+---
+
+## Task 1: Skeleton + CSS
+
+**Files:**
+- Create: `C:\Users\user\Desktop\vineyard-deploy\daily.html`
+
+- [ ] **Step 1.1: Создать файл с полным CSS**
+
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,7 +47,7 @@
 @media print {
   .no-print { display:none!important; }
   body { font-size:7.5pt; }
-  .week-sep { page-break-inside:avoid; }
+  .week-sep { page-break-before: avoid; }
 }
 *{ box-sizing:border-box; margin:0; padding:0; }
 body{ font-family:Arial,sans-serif; font-size:9.5pt; color:#1a1a1a; background:#fff; line-height:1.4; }
@@ -53,7 +91,6 @@ body{ font-family:Arial,sans-serif; font-size:9.5pt; color:#1a1a1a; background:#
 
 /* MAIN TABLE */
 table{ width:100%; border-collapse:collapse; font-size:8pt; margin-bottom:4mm; }
-thead{ position:sticky; top:0; }
 th{ background:#1b5e20; color:#fff; padding:4px 5px; text-align:left; font-size:7.5pt; vertical-align:middle; }
 th.num{ text-align:right; }
 td{ padding:3px 5px; border-bottom:1px solid #e0e0e0; vertical-align:top; }
@@ -110,6 +147,31 @@ p{ margin-bottom:3mm; }
 <button class="no-print" onclick="window.print()">🖨 Сохранить PDF / Распечатать</button>
 <div id="root"></div>
 <script>
+/* ══════════════════════════════════════════════════
+   DATA + RENDERER — см. Task 2 и Task 3
+══════════════════════════════════════════════════ */
+</script>
+</body>
+</html>
+```
+
+- [ ] **Step 1.2: Открыть в браузере, убедиться что файл открывается без ошибок**
+
+Открыть `C:\Users\user\Desktop\vineyard-deploy\daily.html` в браузере.
+Ожидание: белая страница с кнопкой «Сохранить PDF», без JS-ошибок в консоли.
+
+---
+
+## Task 2: JS — данные (SCHEDULE, WORK_TYPES, BRIGADE_PLAN, MATERIALS, MILESTONES)
+
+**Files:**
+- Modify: `C:\Users\user\Desktop\vineyard-deploy\daily.html` — заменить `/* см. Task 2 */` на полный блок данных
+
+- [ ] **Step 2.1: Вставить полный блок данных в `<script>`**
+
+Заменить содержимое `<script>` на следующий код:
+
+```javascript
 /* ─── РАБОЧИЙ КАЛЕНДАРЬ (15 недель, 86 дней) ─── */
 const SCHEDULE_WEEKS = [
   { label:'Н1',  range:'22–24.05',  dates:['22.05','23.05','24.05'] },
@@ -233,35 +295,36 @@ const BRIGADE_PLAN = {
   ],
 };
 
-/* ─── МАТЕРИАЛЫ — статус обновлён 22.05.2026 по данным чата ─── */
+/* ─── МАТЕРИАЛЫ — статус на 22.05.2026 ─── */
 /* status: 'ok' ✅ | 'warn' ⚠ | 'bad' ❌ | 'unk' ❓ */
 const MATERIALS = {
-  1: [
-    { s:'bad',  t:'Насосы Masdaf E-NMM 50-200 + NMM 65-250 — запрос подан поставщику КвадроГрупп, ответ ждём в пн; доставка 10–14 дн.' },
-    { s:'bad',  t:'Шкафы ЧРП (292 522 ₽) + плавного пуска (467 977 ₽) — в комплекте с насосами, ждём подтверждение' },
-    { s:'bad',  t:'Ёмкости ПЭ 10 000 л × 8 шт. (КОИ52, 671 040 ₽) — счёт НЕ ОПЛАЧЕН (просрочен 15.05!)' },
-    { s:'bad',  t:'ТУ на электроснабжение ≈ 45–56 кВт (НС-1: 30 кВт + 30 кВт, НС-2: 15 кВт) — НЕ ПОЛУЧЕНЫ' },
+  /* Ключ = первый день недели когда материал нужен */
+  1: [ /* Н1: НС + ёмкости */
+    { s:'bad', t:'Насосы Masdaf E-NMM 50-200 + NMM 65-250 — ЗАКАЗ НЕ РАЗМЕЩЁН (доставка 10–14 дн. от заказа, нужны к 26.05!)' },
+    { s:'bad', t:'Шкафы ЧРП + плавного пуска Masdaf — ЗАКАЗ НЕ РАЗМЕЩЁН' },
+    { s:'bad', t:'Ёмкости ПЭ 10 000 л × 8 шт. (КОИ52, 671 040 ₽) — счёт НЕ ОПЛАЧЕН (просрочен 15.05!)' },
+    { s:'bad', t:'ТУ на электроснабжение ≈ 45–56 кВт — НЕ ПОЛУЧЕНЫ' },
   ],
-  10: [
+  10: [ /* Н3: фильтры + d140 */
     { s:'warn', t:'ПГФ 3050 Automat 4" (ЦБ-242, 632 200 ₽) — срок оплаты ИСТЁК 11.05, статус поставки неизвестен!' },
     { s:'warn', t:'Фильтры Aytok YD40 + DDS4 + HURRICANEFILT (ЦБ-253, 276 999 ₽) — счёт НЕ ОПЛАЧЕН' },
-    { s:'unk',  t:'Трубы СИМПЛАСТ d140 SDR21 (счёт №224, 144 657 ₽) — срок 20.05, поступление подтвердить' },
+    { s:'unk',  t:'Трубы СИМПЛАСТ (счёт №224, 144 657 ₽) — срок 20.05, поступление подтвердить' },
   ],
-  16: [
-    { s:'ok',   t:'Трубы ПЭ СТИЛЕКС d110/d75/d50 (счёт №290) — оплачено 700 000 ₽ ✅, поставка ожидается' },
-    { s:'warn', t:'Капельная трубка METZER 2 л/ч — ПЕРВАЯ ПАРТИЯ 50 000 м придёт 29.05! (из 217 000 нужно, дефицит 167 000 м)' },
-    { s:'warn', t:'Крючки Irritec 16 мм — 62 000 шт. согласованы и отправлены на Суланж! (из ~217 000 нужно, дефицит 155 000 шт.)' },
-    { s:'unk',  t:'Стартконнекторы 16×Н3/4" × 2 300 шт. — статус неизвестен' },
+  16: [ /* Н4: d110 + СТАРТ КАПЛИ */
+    { s:'warn', t:'Трубы ПЭ СТИЛЕКС (счёт №290, 2 359 810 ₽) — срок 18.05, поступление подтвердить' },
+    { s:'unk',  t:'Капельная трубка METZER 2 л/ч × 217 000 м — статус поставки НЕИЗВЕСТЕН!' },
+    { s:'unk',  t:'Крючки для трубки 16 мм × 217 000 шт. — статус неизвестен' },
+    { s:'unk',  t:'Стартконнекторы 16×Н3/4" × 2 300 шт. — подтверждено заявкой Шпилёва 14.05, поставка?' },
     { s:'unk',  t:'Заглушки-восьмёрки 16 мм × 2 300 шт. — статус неизвестен' },
     { s:'unk',  t:'Фитинги и фасонные части ПЭ × 2 522 шт. — статус неизвестен' },
   ],
-  28: [
+  28: [ /* Н6: d75 + хомуты */
     { s:'unk',  t:'Хомуты седловые: 50×3/4" (544 шт.) + 75×3/4" (1 624 шт.) + 75×1" (16 шт.) — статус неизвестен' },
   ],
-  52: [
+  52: [ /* Н10: узел фертигации */
     { s:'unk',  t:'Узел фертигации (420 000 ₽ материал) — статус неизвестен, нужен к Н10 (21.07)' },
   ],
-  76: [
+  76: [ /* Н14: клапаны ПИОНЕР */
     { s:'unk',  t:'Клапаны ПИОНЕР™ 3" × 16 шт. + 2" × 8 шт. — статус неизвестен' },
     { s:'unk',  t:'PRV-регуляторы давления × 24 шт. — статус неизвестен' },
   ],
@@ -280,13 +343,14 @@ const MILESTONES = {
 /* ─── ДНИ НЕДЕЛИ ─── */
 const DOW = ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
 
-/* ─── ГЕНЕРАТОР: SCHEDULE_WEEKS → плоский массив 86 дней ─── */
+/* ─── ГЕНЕРАТОР: превратить SCHEDULE_WEEKS в плоский массив DAYS ─── */
 function buildDays() {
   const days = [];
   let dayNum = 0;
   SCHEDULE_WEEKS.forEach(week => {
     week.dates.forEach((dateStr, idx) => {
       dayNum++;
+      // Определяем день недели (22.05.2026 = Пятница = 5)
       const [d,m] = dateStr.split('.').map(Number);
       const dt = new Date(2026, m-1, d);
       const dow = DOW[dt.getDay()];
@@ -307,16 +371,62 @@ function getBrigadeTask(brigadeKey, dayNum) {
 
 /* ─── ПОЛУЧИТЬ МАТЕРИАЛЫ ДЛЯ ДНЯ N ─── */
 function getMaterials(dayNum) {
-  if (MATERIALS[dayNum]) return MATERIALS[dayNum];
+  // Показываем материалы в первый день той недели, когда они нужны
+  const mats = MATERIALS[dayNum];
+  if (mats) return mats;
+  // Для Н1 (дни 1-3) показываем критические материалы каждый день
   if (dayNum >= 1 && dayNum <= 3) return MATERIALS[1];
   return null;
 }
 
+/* ─── НАРАСТАЮЩИЙ ИТОГ КАПЛИ ─── */
+let dripCumA = 0, dripCumB = 0, dripCumC = 0;
+function updateDrip(dayNum) {
+  const segA = getBrigadeTask('A', dayNum);
+  const segB = getBrigadeTask('B', dayNum);
+  const segC = getBrigadeTask('C', dayNum);
+  if (segA.type === 'drip') dripCumA += 1625;
+  if (segB.type === 'drip') dripCumB += 1300;
+  if (segC.type === 'drip') dripCumC += 1300;
+  return dripCumA + dripCumB + dripCumC;
+}
+
+/* ─── НАРАСТАЮЩИЙ ИТОГ ТРУБ ─── */
+let pipeCum = 0;
+function updatePipes(dayNum) {
+  const segA = getBrigadeTask('A', dayNum);
+  const segB = getBrigadeTask('B', dayNum);
+  const segC = getBrigadeTask('C', dayNum);
+  if (segA.type === 'mag') pipeCum += 250;
+  if (segB.type === 'ge')  pipeCum += 0; // траншеи считаем отдельно
+  if (segC.type === 'mag') pipeCum += 160;
+  if (segA.type === 'lat') pipeCum += 325;
+  if (segB.type === 'lat') pipeCum += 320;
+  return pipeCum;
+}
+```
+
+- [ ] **Step 2.2: Проверить консоль браузера (F12 → Console)**
+
+После перезагрузки страницы: не должно быть ошибок. Если есть SyntaxError — исправить и сохранить.
+
+---
+
+## Task 3: HTML-рендерер
+
+**Files:**
+- Modify: `daily.html` — добавить функции рендеринга и вызов `init()` после блока данных
+
+- [ ] **Step 3.1: Добавить функции рендеринга и main() в тот же `<script>`**
+
+Добавить после всех данных (после последней функции `updatePipes`):
+
+```javascript
 /* ─── РЕНДЕР KPI ─── */
 function renderKPI() {
   const today = new Date();
-  const start = new Date(2026,4,22);
-  const finish = new Date(2026,7,29);
+  const start = new Date(2026,4,22); // 22 мая 2026
+  const finish = new Date(2026,7,29); // 29 авг 2026
   const diffStart = Math.max(0, Math.floor((today-start)/(1000*60*60*24)));
   const diffFinish = Math.max(0, Math.floor((finish-today)/(1000*60*60*24)));
   const currentDay = Math.min(86, diffStart+1);
@@ -382,7 +492,7 @@ function renderMatsCell(mats) {
 function renderMilestone(ms) {
   const isFinal = ms.type === 'final';
   return `<tr class="milestone-row ${isFinal?'kt-final':''}">
-    <td colspan="5">
+    <td colspan="6">
       <span class="ms-label">🏁 ${ms.label}</span>
       <span class="ms-desc"> — ${ms.desc}</span>
     </td>
@@ -392,10 +502,6 @@ function renderMilestone(ms) {
 /* ─── РЕНДЕР ПОЛНОЙ ТАБЛИЦЫ ─── */
 function renderTable(days) {
   let dripCumA=0, dripCumB=0, dripCumC=0;
-
-  /* Разрывы страниц перед месяцами: день 22 (Н5), день 46 (Н9), день 64 (Н12) */
-  const pageBreakBefore = new Set([22, 46, 64]);
-
   let rows = `<thead><tr>
     <th style="width:65px">Дата</th>
     <th style="width:22%">Бр.А · 5 чел. ГС<br><small style="font-weight:400;opacity:.8">Примачок, Темников, Швец-Роговой, Васильев, Рыков</small></th>
@@ -407,14 +513,15 @@ function renderTable(days) {
   days.forEach(day => {
     const n = day.dayNum;
 
+    // Вставить разделитель недели
     if (day.isWeekStart) {
-      const pb = pageBreakBefore.has(n) ? 'style="page-break-before:always"' : '';
-      rows += `<tr class="week-sep" ${pb}>
+      rows += `<tr class="week-sep">
         <td colspan="4"><b>${day.weekLabel}</b> · ${day.weekRange} · 2026</td>
         <td class="ws-right">ИТР: Шпилёв А.А. (координация) · Яковлев А. (снабжение)</td>
       </tr>`;
     }
 
+    // Вставить контрольную точку ДО строки дня
     if (MILESTONES[n]) rows += renderMilestone(MILESTONES[n]);
 
     const segA = getBrigadeTask('A', n);
@@ -424,6 +531,7 @@ function renderTable(days) {
     if (segA.type === 'drip') dripCumA += 1625;
     if (segB.type === 'drip') dripCumB += 1300;
     if (segC.type === 'drip') dripCumC += 1300;
+    const dripTot = dripCumA + dripCumB + dripCumC;
 
     const cumA = segA.type === 'drip' ? dripCumA : null;
     const cumB = segB.type === 'drip' ? dripCumB : null;
@@ -448,47 +556,47 @@ function renderTable(days) {
   return `<table>${rows}</table>`;
 }
 
-/* ─── СВОДКА МАТЕРИАЛОВ ─── */
+/* ─── РЕНДЕР СВОДКИ МАТЕРИАЛОВ (в конце) ─── */
 function renderMaterialsSummary() {
-  return `<h1>Сводка материалов — статус обновлён 22.05.2026</h1>
+  return `<h1>Сводка материалов — статус на 22.05.2026</h1>
   <div class="alert-red">
-    <b>❌ КРИТИЧНО — не оплачены, блокируют старт:</b><br>
-    • Насосы Masdaf E-NMM 50-200 + NMM 65-250 — запрос подан поставщику КвадроГрупп +7(918)943-36-74, ответ в пн; нужны к 26.05!<br>
-    • Шкафы ЧРП + плавного пуска Masdaf — в комплекте с насосами, ждём подтверждение<br>
-    • Ёмкости ПЭ 10 000 л × 8 шт. (КОИ52, 671 040 ₽) — счёт НЕ ОПЛАЧЕН, просрочен с 15.05<br>
-    • ТУ на электроснабжение (НС-1: 30+30 кВт, НС-2: 15 кВт, итого ~75 кВт) — НЕ ПОЛУЧЕНЫ
+    <b>❌ КРИТИЧНО — блокируют работы первых двух недель:</b><br>
+    • Насосы Masdaf E-NMM 50-200 (395 400 ₽) + NMM 65-250 (818 000 ₽) — заказ НЕ размещён, доставка 10–14 дн. от заказа. Нужны к 26.05!<br>
+    • Шкафы ЧРП (292 522 ₽) + плавного пуска (467 977 ₽) Masdaf — заказ НЕ размещён<br>
+    • Ёмкости ПЭ 10 000 л × 8 шт. (счёт КОИ52, 671 040 ₽) — НЕ ОПЛАЧЕН, просрочен с 15.05<br>
+    • ТУ на электроснабжение ≈ 45–56 кВт — НЕ ПОЛУЧЕНЫ
   </div>
   <div class="alert-orange">
-    <b>⚠ ЧАСТИЧНО / ПРОСРОЧЕНЫ:</b><br>
-    • ПГФ 3050 Automat 4" (ЦБ-242, 632 200 ₽) — срок оплаты истёк 11.05. Нужен к 02.06<br>
-    • Фильтры Aytok YD40 + DDS4 + HURRICANEFILT (ЦБ-253, 276 999 ₽) — НЕ ОПЛАЧЕН. Нужны к 02.06<br>
-    • Капельная трубка METZER — ПЕРВАЯ ПАРТИЯ 50 000 м придёт 29.05 (нужно 217 000 м, дефицит 167 000 м!)<br>
-    • Крючки Irritec 16 мм — 62 000 шт. на Суланже (нужно ~217 000 шт., дефицит 155 000 шт.!)
+    <b>⚠ ПРОСРОЧЕНЫ — срочно подтвердить поставку:</b><br>
+    • ПГФ 3050 Automat 4" (счёт ЦБ-242, 632 200 ₽) — срок оплаты истёк 11.05. Нужен к 02.06<br>
+    • Фильтры Aytok YD40 + DDS4 + HURRICANEFILT (счёт ЦБ-253, 276 999 ₽) — НЕ ОПЛАЧЕН. Нужны к 02.06
   </div>
   <div class="alert-orange">
-    <b>❓ СТАТУС НЕИЗВЕСТЕН — уточнить у Яковлева А.:</b><br>
+    <b>❓ СТАТУС НЕИЗВЕСТЕН — уточнить срочно:</b><br>
+    • Капельная трубка METZER 2 л/ч × 217 000 м — нужна к 09.06 (день 16)<br>
+    • Крючки 16 мм × 217 000 шт. — нужны к 09.06<br>
     • Стартконнекторы 16×Н3/4" × 2 300 шт. — нужны к 09.06<br>
     • Заглушки-восьмёрки 16 мм × 2 300 шт. — нужны к 09.06<br>
     • Фитинги и фасонные части ПЭ × 2 522 шт. — нужны к 09.06<br>
     • Хомуты седловые × 2 184 шт. (три типоразмера) — нужны к 23.06<br>
-    • Трубы СИМПЛАСТ d140 SDR21 (счёт №224) — поступление подтвердить<br>
     • Узел фертигации (420 000 ₽) — нужен к 21.07<br>
-    • Клапаны ПИОНЕР™ 3" × 16 шт. + 2" × 8 шт. + PRV × 24 шт. — нужны к 18.08
+    • Клапаны ПИОНЕР™ 3" × 16 шт. + 2" × 8 шт. — нужны к 18.08<br>
+    • PRV-регуляторы давления × 24 шт. — нужны к 18.08
   </div>
   <div class="alert-green">
-    <b>✅ Оплачены / подтверждены:</b><br>
-    • Трубы ПЭ СТИЛЕКС d110/d75/d50 (счёт №290) — оплачено 700 000 ₽, поставка ожидается<br>
-    • Бытовки × 2 шт. + доставка (Крымтехкаркас) — оплачены 22.05<br>
-    • Биотуалет — оплачен 22.05<br>
-    • Товары Озон (бытовка): чайник, микроволновка, конвектор, рукомойник — оплачены, доставка 22–26.05<br>
-    • Генераторы SGG 5000ESi × 3 шт. (счёт №3933, 267 750 ₽) — статус поставки уточнить
+    <b>✅ Оплачены / ожидаются:</b><br>
+    • Трубы ПЭ + фитинги СТИЛЕКС (счёт №290, 2 359 810 ₽) — срок 18.05, поступление ожидается<br>
+    • Трубы СИМПЛАСТ d140 (счёт №224, 144 657 ₽) — срок 20.05, поступление ожидается<br>
+    • Генераторы SGG 5000ESi × 3 шт. (счёт №3933, 267 750 ₽) — просрочен 15.05, статус поставки уточнить
   </div>`;
 }
 
-/* ─── MAIN ─── */
+/* ─── MAIN INIT ─── */
 function init() {
   const days = buildDays();
   document.getElementById('root').innerHTML = `
+    <button class="no-print" onclick="window.print()">🖨 Сохранить PDF / Распечатать</button>
+
     <div class="cover">
       <div class="cover-title">СУТОЧНЫЙ ЖУРНАЛ ПРОИЗВОДСТВА РАБОТ<br>КАПЕЛЬНОЕ ОРОШЕНИЕ · ПОЛЕ №78</div>
       <div class="cover-sub">Виноградник 56,7 га · с. Пожарское, Симферопольский р-н, Крым · 24 блока · 217 000 м капельной трубки</div>
@@ -521,6 +629,95 @@ function init() {
 }
 
 init();
-</script>
-</body>
-</html>
+```
+
+- [ ] **Step 3.2: Перезагрузить браузер, проверить таблицу**
+
+Открыть файл в браузере. Убедиться:
+- Отображается KPI-строка (4 карточки)
+- Отображается легенда 8 цветов
+- Таблица с 86 строками + 15 разделителей недель
+- Первые 3 строки: Бр.А = синий (НС), Бр.Б = синий (НС), Бр.В = синий (НС)
+- Строки Н4+ (день 16): Бр.А = синий (d110), Бр.В = зелёный (капля)
+- Строки Н9+ (день 46): все бригады = зелёный (капля)
+- Блок материалов в конце страницы
+
+- [ ] **Step 3.3: Проверить консоль — 0 ошибок**
+
+F12 → Console. Если есть ошибки — исправить.
+
+---
+
+## Task 4: Финальная полировка и печать
+
+**Files:**
+- Modify: `daily.html`
+
+- [ ] **Step 4.1: Добавить разрывы страниц для каждого месяца**
+
+В функции `renderTable()`, перед разделителем недели Н5 (день 22 = 16.06), Н9 (день 46 = 14.07), Н12 (день 64 = 04.08) добавить `<tr><td colspan="5" style="page-break-before:always;padding:0;height:0"></td></tr>`.
+
+В CSS `.week-sep` добавить `page-break-inside:avoid`.
+
+- [ ] **Step 4.2: Проверить Print Preview**
+
+В браузере: Ctrl+P → предварительный просмотр. Убедиться:
+- Строки не обрываются посередине
+- Заголовки таблицы повторяются на каждой странице (если поддерживается)
+- Цвета ячеек сохранены при печати
+
+- [ ] **Step 4.3: Добавить заголовки колонок `thead` с `position:sticky`**
+
+Добавить `thead { position: sticky; top: 0; }` в CSS для удобства прокрутки в браузере (не влияет на печать).
+
+---
+
+## Task 5: Deploy
+
+**Files:**
+- `C:\Users\user\Desktop\vineyard-deploy\daily.html` — финальная версия
+- `C:\Users\user\Desktop\vineyard-deploy\index.html` — добавить ссылку на daily.html в topbar
+
+- [ ] **Step 5.1: Добавить ссылку в topbar дашборда**
+
+В `4S_Grape_Garden.html` в блоке `.top-docs` добавить:
+```html
+<a class="doc-pill" href="https://dimaborisov410-coder.github.io/4s-grape-garden/daily.html" target="_blank">
+  <span class="doc-pill-icon">📅</span>
+  <span class="doc-pill-text"><b>Журнал</b> по суткам</span>
+</a>
+```
+Скопировать обновлённый `4S_Grape_Garden.html` как `vineyard-deploy/index.html`.
+
+- [ ] **Step 5.2: Commit и push**
+
+```powershell
+cd C:\Users\user\Desktop\vineyard-deploy
+git add daily.html index.html
+git commit -m "add daily.html — суточный журнал бригадира 86 дней"
+git push
+```
+
+Ожидание: `main -> main` без ошибок.
+
+- [ ] **Step 5.3: Проверить деплой**
+
+Открыть https://dimaborisov410-coder.github.io/4s-grape-garden/daily.html
+Ожидание: страница загрузилась, таблица отображается, кнопка «Сохранить PDF» работает.
+
+---
+
+## Self-Review
+
+**Spec coverage:**
+- ✅ 86 рабочих дней, 3 бригады × все дни
+- ✅ Нормы выработки (325 м/чел./день капля, 50 м/чел./день трубы)
+- ✅ Нарастающий итог капельной ленты
+- ✅ Материалы с 3 статусами (❌/⚠/❓) и датами потребности
+- ✅ Контрольные точки КТ-0, КТ-1, КТ-2, КТ-3, ФИНИШ, СДАЧА
+- ✅ Печать A4 landscape
+- ✅ Деплой на GitHub Pages + ссылка из дашборда
+
+**Placeholder scan:** Все функции определены, все данные заполнены.
+
+**Type consistency:** `getBrigadeTask(key, n)` → `seg.type`, `seg.task`, `seg.target` — используются одинаково в `renderBCell()` и `renderTable()`.

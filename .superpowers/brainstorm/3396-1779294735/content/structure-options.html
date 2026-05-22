@@ -1,0 +1,134 @@
+<h2>Как организовать документ?</h2>
+<p class="subtitle">Реальные данные объекта уже внутри. Выберите структуру — как расположить 4 роли × 3 периода.</p>
+
+<div class="cards">
+
+  <!-- OPTION A: Tabs by role -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="font-family:Arial,sans-serif; font-size:8pt; background:#f8f9fa; border-radius:6px; padding:10px;">
+
+      <!-- Tab nav -->
+      <div style="display:flex; gap:2px; margin-bottom:8px;">
+        <div style="background:#1a4d2e; color:white; padding:4px 10px; border-radius:4px 4px 0 0; font-size:7.5pt; font-weight:bold;">👷 Рабочий</div>
+        <div style="background:#ddd; color:#555; padding:4px 10px; border-radius:4px 4px 0 0; font-size:7.5pt;">🦺 Бригадир</div>
+        <div style="background:#ddd; color:#555; padding:4px 10px; border-radius:4px 4px 0 0; font-size:7.5pt;">📋 Рук-ль</div>
+        <div style="background:#ddd; color:#555; padding:4px 10px; border-radius:4px 4px 0 0; font-size:7.5pt;">👔 Директор</div>
+      </div>
+
+      <!-- Worker tab content -->
+      <div style="background:white; border-radius:0 6px 6px 6px; padding:8px; border:1px solid #e0e0e0;">
+        <div style="font-weight:bold; color:#1a4d2e; margin-bottom:5px; font-size:8.5pt;">РАБОЧИЙ · ПОСУТОЧНО · Бригада В (Капельная)</div>
+        <table style="width:100%; border-collapse:collapse; font-size:7.5pt;">
+          <tr style="background:#f0f7f0;">
+            <td style="padding:2px 5px; border:1px solid #ddd; font-weight:bold;">Дата</td>
+            <td style="padding:2px 5px; border:1px solid #ddd; font-weight:bold;">Участок/блок</td>
+            <td style="padding:2px 5px; border:1px solid #ddd; font-weight:bold;">Норма, м</td>
+            <td style="padding:2px 5px; border:1px solid #ddd; font-weight:bold;">Факт, м</td>
+            <td style="padding:2px 5px; border:1px solid #ddd; font-weight:bold;">Подпись</td>
+          </tr>
+          <tr><td style="padding:2px 5px; border:1px solid #ddd;">22.05</td><td style="padding:2px 5px; border:1px solid #ddd; color:#888; font-style:italic;">НС + монтаж</td><td style="padding:2px 5px; border:1px solid #ddd; text-align:center;">—</td><td style="padding:2px 5px; border:1px solid #ddd;"></td><td style="padding:2px 5px; border:1px solid #ddd;"></td></tr>
+          <tr style="background:#fffde7;"><td style="padding:2px 5px; border:1px solid #ddd;">09.06</td><td style="padding:2px 5px; border:1px solid #ddd; font-weight:bold; color:#1a4d2e;">Старт капли Н4</td><td style="padding:2px 5px; border:1px solid #ddd; text-align:center; font-weight:bold;">325</td><td style="padding:2px 5px; border:1px solid #ddd;"></td><td style="padding:2px 5px; border:1px solid #ddd;"></td></tr>
+          <tr><td style="padding:2px 5px; border:1px solid #ddd;">10.06</td><td style="padding:2px 5px; border:1px solid #ddd;"></td><td style="padding:2px 5px; border:1px solid #ddd; text-align:center;">325</td><td style="padding:2px 5px; border:1px solid #ddd;"></td><td style="padding:2px 5px; border:1px solid #ddd;"></td></tr>
+        </table>
+        <div style="margin-top:5px; font-size:7pt; color:#888;">4 вкладки · каждая печатается отдельно</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>А — Вкладки по ролям</h3>
+      <p>4 вкладки: Рабочий / Бригадир / Руководитель / Директор. Каждый видит только своё. Каждая вкладка — отдельная страница при печати. Быстро найти нужное.</p>
+    </div>
+  </div>
+
+  <!-- OPTION B: One page per role, scrollable -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="font-family:Arial,sans-serif; font-size:8pt; background:#f8f9fa; border-radius:6px; padding:10px;">
+
+      <!-- Page 1 marker -->
+      <div style="display:flex; align-items:center; gap:6px; margin-bottom:5px;">
+        <div style="background:#1a4d2e; color:white; padding:2px 8px; border-radius:3px; font-size:7.5pt; font-weight:bold;">СТР. 1</div>
+        <div style="font-weight:bold; font-size:8.5pt;">👷 РАБОЧИЙ · ПОСУТОЧНЫЙ ЖУРНАЛ</div>
+      </div>
+      <div style="background:white; border-radius:4px; padding:6px; border:1px solid #e0e0e0; margin-bottom:6px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; margin-bottom:5px;">
+          <div style="background:#e8f5e9; border-radius:3px; padding:4px 6px; font-size:7pt; text-align:center;"><div style="color:#888;">Сегодня норма</div><b style="color:#1a4d2e; font-size:9pt;">325 м</b></div>
+          <div style="background:#fff3cd; border-radius:3px; padding:4px 6px; font-size:7pt; text-align:center;"><div style="color:#888;">Бригада</div><b style="color:#856404; font-size:9pt;">В · Капля</b></div>
+          <div style="background:#f3e8ff; border-radius:3px; padding:4px 6px; font-size:7pt; text-align:center;"><div style="color:#888;">Нараст. план</div><b style="color:#6b21a8; font-size:9pt;">___ м</b></div>
+        </div>
+        <table style="width:100%; border-collapse:collapse; font-size:7pt;">
+          <tr style="background:#1a4d2e; color:white;"><td style="padding:2px 4px;">Дата</td><td style="padding:2px 4px;">Блок</td><td style="padding:2px 4px;">Факт м</td><td style="padding:2px 4px;">✓</td></tr>
+          <tr><td style="padding:2px 4px; border-bottom:1px solid #eee;">09.06</td><td style="padding:2px 4px; border-bottom:1px solid #eee;"></td><td style="padding:2px 4px; border-bottom:1px solid #eee;"></td><td style="padding:2px 4px; border-bottom:1px solid #eee;"></td></tr>
+          <tr><td style="padding:2px 4px;">10.06</td><td style="padding:2px 4px;"></td><td style="padding:2px 4px;"></td><td style="padding:2px 4px;"></td></tr>
+        </table>
+      </div>
+
+      <!-- Page 2 marker -->
+      <div style="display:flex; align-items:center; gap:6px; margin-bottom:5px;">
+        <div style="background:#2d6a4f; color:white; padding:2px 8px; border-radius:3px; font-size:7.5pt; font-weight:bold;">СТР. 2</div>
+        <div style="font-weight:bold; font-size:8.5pt;">🦺 БРИГАДИР · НЕДЕЛЬНЫЙ ОТЧЁТ</div>
+      </div>
+      <div style="background:white; border-radius:4px; padding:6px; border:1px solid #e0e0e0; font-size:7.5pt; color:#555;">
+        Бригада А/Б/В · план/факт/отклонение...
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Б — Страницы по ролям</h3>
+      <p>Один длинный документ, разбитый на страницы A4: стр.1 = Рабочий, стр.2 = Бригадир, стр.3 = Руководитель, стр.4 = Директор. Идеально для печати — каждый получает свою страницу.</p>
+    </div>
+  </div>
+
+  <!-- OPTION C: Dashboard + detail sheets -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="font-family:Arial,sans-serif; font-size:8pt; background:#f8f9fa; border-radius:6px; padding:10px;">
+
+      <!-- Dashboard overview -->
+      <div style="background:linear-gradient(135deg,#1a4d2e,#2d7a50); color:white; border-radius:6px; padding:8px; margin-bottom:7px;">
+        <div style="font-weight:bold; font-size:9pt; margin-bottom:5px;">📊 ДАШБОРД ОБЪЕКТА · Виноградник 56,7 га</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:4px;">
+          <div style="background:rgba(255,255,255,.15); border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:6.5pt; opacity:.8;">Готовность</div>
+            <div style="font-size:12pt; font-weight:bold;">0%</div>
+          </div>
+          <div style="background:rgba(255,255,255,.15); border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:6.5pt; opacity:.8;">Капля уложена</div>
+            <div style="font-size:12pt; font-weight:bold;">0м</div>
+          </div>
+          <div style="background:rgba(255,255,255,.15); border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:6.5pt; opacity:.8;">Рабочих</div>
+            <div style="font-size:12pt; font-weight:bold;">15</div>
+          </div>
+          <div style="background:rgba(255,255,255,.15); border-radius:4px; padding:4px; text-align:center;">
+            <div style="font-size:6.5pt; opacity:.8;">Финиш</div>
+            <div style="font-size:10pt; font-weight:bold;">29.08</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role cards row -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px;">
+        <div style="background:white; border-radius:4px; padding:5px; border:1px solid #e0e0e0; font-size:7pt;">
+          <div style="font-weight:bold; color:#1a4d2e; margin-bottom:3px;">👷 РАБОЧИЙ · День</div>
+          <div style="color:#555;">Норма: 325м/день<br>Блок сегодня: ___<br>Факт: ___м</div>
+        </div>
+        <div style="background:white; border-radius:4px; padding:5px; border:1px solid #e0e0e0; font-size:7pt;">
+          <div style="font-weight:bold; color:#1a4d2e; margin-bottom:3px;">🦺 БРИГАДИР · Неделя</div>
+          <div style="color:#555;">Plan: 15 600м/нед<br>Факт: ___м<br>Откл: ___</div>
+        </div>
+        <div style="background:white; border-radius:4px; padding:5px; border:1px solid #e0e0e0; font-size:7pt;">
+          <div style="font-weight:bold; color:#1a4d2e; margin-bottom:3px;">📋 РУК-ЛЬ · Месяц</div>
+          <div style="color:#555;">Нараст: ___м / 217 000м<br>3 бригады: план/факт</div>
+        </div>
+        <div style="background:white; border-radius:4px; padding:5px; border:1px solid #e0e0e0; font-size:7pt;">
+          <div style="font-weight:bold; color:#1a4d2e; margin-bottom:3px;">👔 ДИРЕКТОР · Объект</div>
+          <div style="color:#555;">Бюджет: ___₽<br>Финиш: 29.08 (план)<br>Риски: ___</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>В — Дашборд + детали</h3>
+      <p>Первая страница — общий дашборд объекта. Следующие 4 страницы — детальные листы для каждой роли. Директор смотрит только стр.1, рабочий — только свою страницу.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:14px;">Для нового объекта нужно изменить только исходные данные — всё остальное пересчитается автоматически.</p>

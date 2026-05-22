@@ -1,0 +1,292 @@
+<h2>Макет документа — 5 страниц A4</h2>
+<p class="subtitle">Реальные данные Виноградник 56,7 га · нажмите на страницу чтобы выбрать ту, которую хотите изменить</p>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:12px;">
+
+<!-- PAGE 1: DASHBOARD -->
+<div class="option" data-choice="p1" onclick="toggleSelect(this)" style="border-radius:8px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.12);">
+  <div style="background:#1a4d2e; color:white; padding:5px 10px; font-size:7.5pt; font-weight:bold; display:flex; justify-content:space-between;">
+    <span>СТР. 1 · ДАШБОРД ОБЪЕКТА</span><span style="opacity:.7;">Директор видит всё отсюда</span>
+  </div>
+  <div style="background:white; padding:10px; font-family:Arial,sans-serif; font-size:7.5pt;">
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#1a4d2e,#2d7a50); color:white; border-radius:6px; padding:8px 10px; margin-bottom:8px;">
+      <div style="font-size:9.5pt; font-weight:bold;">КАПЕЛЬНОЕ ОРОШЕНИЕ · ПОЛЕ №78 · ВИНОГРАДНИК</div>
+      <div style="font-size:7pt; opacity:.85; margin-top:2px;">с. Пожарское, Крым · 56,7 га · 217 000 м капли · ООО «СУЛАНЖ» + ООО «Гарден Сити»</div>
+    </div>
+    <!-- KPI Cards -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:5px; margin-bottom:7px;">
+      <div style="background:#f0f7f0; border-radius:5px; padding:6px; text-align:center; border:1px solid #c8e6c9;">
+        <div style="font-size:6.5pt; color:#555; text-transform:uppercase;">Готовность</div>
+        <div style="font-size:14pt; font-weight:bold; color:#1a4d2e; line-height:1.2;">___%</div>
+        <div style="font-size:6pt; color:#888;">заполнить</div>
+      </div>
+      <div style="background:#fff9e6; border-radius:5px; padding:6px; text-align:center; border:1px solid #ffe082;">
+        <div style="font-size:6.5pt; color:#555; text-transform:uppercase;">Капля уложена</div>
+        <div style="font-size:10pt; font-weight:bold; color:#e65100; line-height:1.2;">___ м</div>
+        <div style="font-size:6pt; color:#888;">из 217 000 м</div>
+      </div>
+      <div style="background:#e8f5e9; border-radius:5px; padding:6px; text-align:center; border:1px solid #a5d6a7;">
+        <div style="font-size:6.5pt; color:#555; text-transform:uppercase;">На объекте</div>
+        <div style="font-size:14pt; font-weight:bold; color:#1a4d2e; line-height:1.2;">15</div>
+        <div style="font-size:6pt; color:#888;">чел. (13 пол. + 2 ИТР)</div>
+      </div>
+      <div style="background:#fce4ec; border-radius:5px; padding:6px; text-align:center; border:1px solid #f48fb1;">
+        <div style="font-size:6.5pt; color:#555; text-transform:uppercase;">Финиш план</div>
+        <div style="font-size:10pt; font-weight:bold; color:#c62828; line-height:1.2;">29.08</div>
+        <div style="font-size:6pt; color:#888;">осталось ___ к.д.</div>
+      </div>
+    </div>
+    <!-- Progress bar -->
+    <div style="margin-bottom:7px;">
+      <div style="display:flex; justify-content:space-between; font-size:6.5pt; color:#555; margin-bottom:2px;"><span>Прогресс капли: 0 / 217 000 м</span><span>0%</span></div>
+      <div style="background:#e0e0e0; border-radius:10px; height:8px;"><div style="background:#1a4d2e; width:0%; height:8px; border-radius:10px;"></div></div>
+      <div style="display:flex; justify-content:space-between; font-size:6pt; color:#aaa; margin-top:1px;"><span>▲30.06: 46 800м</span><span>▲21.07: 85 800м</span><span>▲01.08: 163 800м</span><span>▲23.08: 217 000м</span></div>
+    </div>
+    <!-- Brigades summary -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; margin-bottom:6px;">
+      <div style="background:#f5f5f5; border-radius:4px; padding:5px; border-left:3px solid #1a4d2e;">
+        <div style="font-weight:bold; font-size:7pt; color:#1a4d2e;">БРИГАДА А · 5 чел. ГС</div>
+        <div style="font-size:6.5pt; color:#555; margin-top:2px;">Примачок, Темников,<br>Швец-Роговой, Васильев, Рыков</div>
+        <div style="font-size:6.5pt; color:#888; margin-top:2px;">Магистраль → Капля</div>
+      </div>
+      <div style="background:#f5f5f5; border-radius:4px; padding:5px; border-left:3px solid #2d6a4f;">
+        <div style="font-weight:bold; font-size:7pt; color:#2d6a4f;">БРИГАДА Б · 4 чел. ГС</div>
+        <div style="font-size:6.5pt; color:#555; margin-top:2px;">Прусаков, Борисов Д.,<br>Борисов А., Браковенко</div>
+        <div style="font-size:6.5pt; color:#888; margin-top:2px;">Земляные → Капля</div>
+      </div>
+      <div style="background:#f5f5f5; border-radius:4px; padding:5px; border-left:3px solid #40916c;">
+        <div style="font-weight:bold; font-size:7pt; color:#40916c;">БРИГАДА В · 4 чел. СУЛАНЖ</div>
+        <div style="font-size:6.5pt; color:#555; margin-top:2px;">Костров, Моисеенко,<br>Божко, Высидалко</div>
+        <div style="font-size:6.5pt; color:#888; margin-top:2px;">d140 → Капля (весь период)</div>
+      </div>
+    </div>
+    <!-- Milestones -->
+    <div style="background:#f9f9f9; border-radius:4px; padding:5px; border:1px solid #eee; font-size:6.5pt;">
+      <div style="font-weight:bold; color:#555; margin-bottom:3px;">КЛЮЧЕВЫЕ ТОЧКИ</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:3px;">
+        <div style="background:#e8f5e9; border-radius:3px; padding:3px; text-align:center;"><div style="color:#888;">30.06</div><div style="font-weight:bold; color:#1a4d2e;">46 800 м</div></div>
+        <div style="background:#e8f5e9; border-radius:3px; padding:3px; text-align:center;"><div style="color:#888;">21.07</div><div style="font-weight:bold; color:#1a4d2e;">85 800 м</div></div>
+        <div style="background:#e8f5e9; border-radius:3px; padding:3px; text-align:center;"><div style="color:#888;">01.08</div><div style="font-weight:bold; color:#1a4d2e;">163 800 м</div></div>
+        <div style="background:#1a4d2e; border-radius:3px; padding:3px; text-align:center;"><div style="color:#aed581;">23.08</div><div style="font-weight:bold; color:white;">217 000 м</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:6px 10px; background:#f0f7f0; font-size:7pt; color:#2d6a4f;">
+    ✅ Стр. 1 — дашборд. Директор видит здесь всё сразу.
+  </div>
+</div>
+
+<!-- PAGE 2: WORKER -->
+<div class="option" data-choice="p2" onclick="toggleSelect(this)" style="border-radius:8px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.12);">
+  <div style="background:#2d6a4f; color:white; padding:5px 10px; font-size:7.5pt; font-weight:bold; display:flex; justify-content:space-between;">
+    <span>СТР. 2 · РАБОЧИЙ · ПОСУТОЧНЫЙ ЖУРНАЛ</span><span style="opacity:.7;">ежедневно</span>
+  </div>
+  <div style="background:white; padding:10px; font-family:Arial,sans-serif; font-size:7.5pt;">
+    <!-- Worker header -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:8px;">
+      <div style="background:#e8f5e9; border-radius:5px; padding:6px; text-align:center;">
+        <div style="font-size:6.5pt; color:#555;">БРИГАДА / ФИО</div>
+        <div style="font-size:8pt; font-weight:bold; color:#1a4d2e;">_____________</div>
+      </div>
+      <div style="background:#fff3cd; border-radius:5px; padding:6px; text-align:center;">
+        <div style="font-size:6.5pt; color:#555;">НОРМА В ДЕНЬ (10ч)</div>
+        <div style="font-size:11pt; font-weight:bold; color:#e65100;">325 м</div>
+        <div style="font-size:6pt; color:#888;">капельная трубка</div>
+      </div>
+      <div style="background:#e3f2fd; border-radius:5px; padding:6px; text-align:center;">
+        <div style="font-size:6.5pt; color:#555;">ПЕРИОД</div>
+        <div style="font-size:8pt; font-weight:bold; color:#1565c0;">09.06 – 29.08</div>
+      </div>
+    </div>
+    <!-- Daily log table -->
+    <table style="width:100%; border-collapse:collapse; font-size:7pt; margin-bottom:6px;">
+      <tr style="background:#1a4d2e; color:white;">
+        <td style="padding:3px 5px; width:14%;">Дата</td>
+        <td style="padding:3px 5px; width:25%;">Участок / Блок</td>
+        <td style="padding:3px 5px; width:13%; text-align:center;">Норма, м</td>
+        <td style="padding:3px 5px; width:15%; text-align:center;">Факт, м</td>
+        <td style="padding:3px 5px; width:15%; text-align:center;">Нараст., м</td>
+        <td style="padding:3px 5px;">Подпись бригадира</td>
+      </tr>
+      <tr style="background:#fffde7;"><td style="padding:3px 5px; border-bottom:1px solid #eee; font-weight:bold;">09.06 пн</td><td style="padding:3px 5px; border-bottom:1px solid #eee; color:#1a4d2e; font-weight:bold;">СТАРТ КАПЛИ</td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center; font-weight:bold;">325</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td></tr>
+      <tr><td style="padding:3px 5px; border-bottom:1px solid #eee;">10.06 вт</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;">325</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td></tr>
+      <tr style="background:#f8fdf8;"><td style="padding:3px 5px; border-bottom:1px solid #eee;">11.06 ср</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;">325</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td></tr>
+      <tr><td style="padding:3px 5px; border-bottom:1px solid #eee;">12.06 чт</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;">325</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td></tr>
+      <tr style="background:#f8fdf8;"><td style="padding:3px 5px; border-bottom:1px solid #eee;">13.06 пт</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;">325</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td></tr>
+      <tr style="background:#e8f5e9;"><td style="padding:3px 5px; border-bottom:1px solid #eee; font-weight:bold;">14.06 сб</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center; font-weight:bold;">325</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td></tr>
+      <tr style="background:#fff3cd;"><td style="padding:3px 5px; font-weight:bold; color:#856404;" colspan="2">ИТОГО НЕДЕЛЯ Н4</td><td style="padding:3px 5px; text-align:center; font-weight:bold; color:#856404;">1 950 м</td><td style="padding:3px 5px; border-left:2px solid #f0a000; font-weight:bold;"></td><td style="padding:3px 5px;"></td><td style="padding:3px 5px;"></td></tr>
+    </table>
+    <div style="font-size:6.5pt; color:#888; font-style:italic;">86 строк на весь период. Печатается постранично — выдать рабочему.</div>
+  </div>
+  <div style="padding:6px 10px; background:#e8f5e9; font-size:7pt; color:#2d6a4f;">
+    👷 Стр. 2 — посуточный журнал. Выдаётся каждому рабочему.
+  </div>
+</div>
+
+<!-- PAGE 3: FOREMAN -->
+<div class="option" data-choice="p3" onclick="toggleSelect(this)" style="border-radius:8px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.12);">
+  <div style="background:#40916c; color:white; padding:5px 10px; font-size:7.5pt; font-weight:bold; display:flex; justify-content:space-between;">
+    <span>СТР. 3 · БРИГАДИР · НЕДЕЛЬНЫЙ ОТЧЁТ</span><span style="opacity:.7;">каждый понедельник</span>
+  </div>
+  <div style="background:white; padding:10px; font-family:Arial,sans-serif; font-size:7.5pt;">
+    <div style="font-size:6.5pt; color:#888; margin-bottom:6px;">Бригадир сдаёт РП каждый понедельник утром. Заполнить факт прошлой недели + задание следующей.</div>
+    <!-- Weekly summary per brigade -->
+    <table style="width:100%; border-collapse:collapse; font-size:7pt; margin-bottom:7px;">
+      <tr style="background:#1a4d2e; color:white;">
+        <td style="padding:3px 6px;">Неделя</td>
+        <td style="padding:3px 6px;">Дата</td>
+        <td style="padding:3px 6px; text-align:center;">Бриг. А (5 чел.)<br><span style="font-size:6pt; opacity:.8;">план 9 750м</span></td>
+        <td style="padding:3px 6px; text-align:center;">Бриг. Б (4 чел.)<br><span style="font-size:6pt; opacity:.8;">план 7 800м</span></td>
+        <td style="padding:3px 6px; text-align:center;">Бриг. В (4 чел.)<br><span style="font-size:6pt; opacity:.8;">план 7 800м</span></td>
+        <td style="padding:3px 6px; text-align:center;">ИТОГО<br><span style="font-size:6pt; opacity:.8;">план 25 350м</span></td>
+        <td style="padding:3px 6px; text-align:center;">Откл. %</td>
+      </tr>
+      <tr><td style="padding:3px 5px; border-bottom:1px solid #eee;">Н4</td><td style="padding:3px 5px; border-bottom:1px solid #eee; color:#888;">09–14.06</td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;"></td></tr>
+      <tr style="background:#f8fdf8;"><td style="padding:3px 5px; border-bottom:1px solid #eee;">Н5</td><td style="padding:3px 5px; border-bottom:1px solid #eee; color:#888;">16–21.06</td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;"></td></tr>
+      <tr style="background:#fff3cd; font-weight:bold;"><td style="padding:3px 5px; border-bottom:1px solid #eee; color:#856404;">Н7 ⚑</td><td style="padding:3px 5px; border-bottom:1px solid #eee; color:#888;">30.06</td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center; font-size:6.5pt;">план нараст.<br>15 600м</td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center; font-size:6.5pt;">план нараст.<br>12 480м</td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center; font-size:6.5pt;">план нараст.<br>18 720м</td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center; color:#c62828; font-size:6.5pt;">КТ: 46 800м</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td></tr>
+    </table>
+    <!-- Next week assignment -->
+    <div style="background:#f0f7f0; border-radius:4px; padding:6px; border:1px solid #c8e6c9; font-size:7pt;">
+      <div style="font-weight:bold; color:#1a4d2e; margin-bottom:4px;">ЗАДАНИЕ НА СЛЕДУЮЩУЮ НЕДЕЛЮ</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px;">
+        <div><b>Бриг. А:</b><br><span style="color:#888;">Вид работ: ___<br>Участок: ___</span></div>
+        <div><b>Бриг. Б:</b><br><span style="color:#888;">Вид работ: ___<br>Участок: ___</span></div>
+        <div><b>Бриг. В:</b><br><span style="color:#888;">Вид работ: ___<br>Участок: ___</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:6px 10px; background:#e8f5e9; font-size:7pt; color:#2d6a4f;">
+    🦺 Стр. 3 — недельный план/факт по 3 бригадам.
+  </div>
+</div>
+
+<!-- PAGE 4: PM -->
+<div class="option" data-choice="p4" onclick="toggleSelect(this)" style="border-radius:8px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.12);">
+  <div style="background:#1565c0; color:white; padding:5px 10px; font-size:7.5pt; font-weight:bold; display:flex; justify-content:space-between;">
+    <span>СТР. 4 · РУКОВОДИТЕЛЬ · МЕСЯЧНЫЙ КОНТРОЛЬ</span><span style="opacity:.7;">1-го числа каждого месяца</span>
+  </div>
+  <div style="background:white; padding:10px; font-family:Arial,sans-serif; font-size:7.5pt;">
+    <!-- Monthly progress -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; margin-bottom:7px;">
+      <div style="background:#e3f2fd; border-radius:5px; padding:6px; text-align:center;">
+        <div style="font-size:6.5pt; color:#555;">Капля нараст.</div>
+        <div style="font-size:11pt; font-weight:bold; color:#1565c0;">___ м</div>
+        <div style="font-size:6pt; color:#888;">из 217 000 м</div>
+      </div>
+      <div style="background:#e8f5e9; border-radius:5px; padding:6px; text-align:center;">
+        <div style="font-size:6.5pt; color:#555;">Отклонение</div>
+        <div style="font-size:11pt; font-weight:bold; color:#1a4d2e;">± ___ м</div>
+        <div style="font-size:6pt; color:#888;">от плана</div>
+      </div>
+      <div style="background:#fce4ec; border-radius:5px; padding:6px; text-align:center;">
+        <div style="font-size:6.5pt; color:#555;">Прогноз финиша</div>
+        <div style="font-size:10pt; font-weight:bold; color:#c62828;">___.08.2026</div>
+        <div style="font-size:6pt; color:#888;">план: 29.08</div>
+      </div>
+    </div>
+    <!-- Cumulative table -->
+    <table style="width:100%; border-collapse:collapse; font-size:7pt; margin-bottom:6px;">
+      <tr style="background:#1565c0; color:white;">
+        <td style="padding:3px 5px;">Месяц / КТ</td>
+        <td style="padding:3px 5px; text-align:center;">План нараст., м</td>
+        <td style="padding:3px 5px; text-align:center;">Факт нараст., м</td>
+        <td style="padding:3px 5px; text-align:center;">Δ, м</td>
+        <td style="padding:3px 5px; text-align:center;">% вып.</td>
+        <td style="padding:3px 5px;">Причина откл.</td>
+      </tr>
+      <tr><td style="padding:3px 5px; border-bottom:1px solid #eee; color:#888;">Май (22–31.05)</td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center; color:#888; font-style:italic;">НС + трубы</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td></tr>
+      <tr style="background:#fff3cd; font-weight:bold;"><td style="padding:3px 5px; border-bottom:1px solid #eee; color:#856404;">30.06 ⚑ КТ-1</td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center; color:#856404;">46 800</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td></tr>
+      <tr style="background:#f8fdf8;"><td style="padding:3px 5px; border-bottom:1px solid #eee; color:#888;">Июль</td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center;">+97 500</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td></tr>
+      <tr style="background:#fff3cd; font-weight:bold;"><td style="padding:3px 5px; border-bottom:1px solid #eee; color:#856404;">01.08 ⚑ КТ-2</td><td style="padding:3px 5px; border-bottom:1px solid #eee; text-align:center; color:#856404;">163 800</td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td><td style="padding:3px 5px; border-bottom:1px solid #eee;"></td></tr>
+      <tr style="background:#e8f5e9; font-weight:bold;"><td style="padding:3px 5px; color:#1a4d2e;">23.08 ⚑ ФИНИШ</td><td style="padding:3px 5px; text-align:center; color:#1a4d2e;">217 000</td><td style="padding:3px 5px;"></td><td style="padding:3px 5px;"></td><td style="padding:3px 5px;"></td><td style="padding:3px 5px;"></td></tr>
+    </table>
+  </div>
+  <div style="padding:6px 10px; background:#e3f2fd; font-size:7pt; color:#1565c0;">
+    📋 Стр. 4 — месячный контроль. Руководитель проекта.
+  </div>
+</div>
+
+<!-- PAGE 5: DIRECTOR -->
+<div class="option" data-choice="p5" onclick="toggleSelect(this)" style="border-radius:8px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.12); grid-column:1/3;">
+  <div style="background:#4a148c; color:white; padding:5px 10px; font-size:7.5pt; font-weight:bold; display:flex; justify-content:space-between;">
+    <span>СТР. 5 · ДИРЕКТОР · СТАТУС ОБЪЕКТА + ШАБЛОН ДЛЯ НОВОГО ОБЪЕКТА</span><span style="opacity:.7;">раз в 2 недели / при запуске нового объекта</span>
+  </div>
+  <div style="background:white; padding:10px; font-family:Arial,sans-serif; font-size:7.5pt; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+    <!-- Left: Director view -->
+    <div>
+      <div style="font-weight:bold; color:#4a148c; margin-bottom:6px; font-size:8.5pt;">ТЕКУЩИЙ ОБЪЕКТ · ВИНОГРАДНИК 56,7 ГА</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:7px;">
+        <div style="border:1px solid #ce93d8; border-radius:4px; padding:5px;">
+          <div style="font-size:6.5pt; color:#888;">Договор</div>
+          <div style="font-weight:bold; color:#4a148c;">38,4 млн ₽</div>
+          <div style="font-size:6.5pt; color:#888;">№ГС-12-05 от 12.05.2026</div>
+        </div>
+        <div style="border:1px solid #ce93d8; border-radius:4px; padding:5px;">
+          <div style="font-size:6.5pt; color:#888;">ФОТ факт / план</div>
+          <div style="font-weight:bold; color:#4a148c;">___ / 2,19 млн ₽</div>
+          <div style="font-size:6.5pt; color:#888;">15 чел × 45к × 3,25 мес</div>
+        </div>
+        <div style="border:1px solid #ce93d8; border-radius:4px; padding:5px;">
+          <div style="font-size:6.5pt; color:#888;">Готовность объекта</div>
+          <div style="font-weight:bold; color:#c62828; font-size:11pt;">___%</div>
+        </div>
+        <div style="border:1px solid #ce93d8; border-radius:4px; padding:5px;">
+          <div style="font-size:6.5pt; color:#888;">Прогноз финиша</div>
+          <div style="font-weight:bold; color:#1a4d2e;">__.08.2026</div>
+          <div style="font-size:6.5pt; color:#888;">план: 29.08.2026</div>
+        </div>
+      </div>
+      <div style="background:#fce4ec; border-radius:4px; padding:6px; border:1px solid #f48fb1; font-size:7pt;">
+        <div style="font-weight:bold; color:#c62828; margin-bottom:3px;">⚠ ТОП-3 РИСКА</div>
+        <div>1. Дефицит персонала ~45 чел. к 30.06</div>
+        <div>2. Нет ГРО от Максима</div>
+        <div>3. Поставка METZER не подтверждена</div>
+      </div>
+    </div>
+    <!-- Right: New project template -->
+    <div>
+      <div style="font-weight:bold; color:#1a4d2e; margin-bottom:6px; font-size:8.5pt;">🔄 ШАБЛОН: НОВЫЙ ОБЪЕКТ</div>
+      <div style="background:#f0f7f0; border-radius:4px; padding:8px; border:1px dashed #2d6a4f; font-size:7pt;">
+        <div style="font-weight:bold; color:#1a4d2e; margin-bottom:5px;">Заменить только эти поля:</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+          <div style="background:white; border-radius:3px; padding:4px; border:1px solid #ddd;">
+            <div style="font-size:6.5pt; color:#888;">Площадь, га</div>
+            <div style="border-bottom:1px dashed #999; height:14px; margin-top:2px;"></div>
+          </div>
+          <div style="background:white; border-radius:3px; padding:4px; border:1px solid #ddd;">
+            <div style="font-size:6.5pt; color:#888;">Межрядье, м</div>
+            <div style="border-bottom:1px dashed #999; height:14px; margin-top:2px;"></div>
+          </div>
+          <div style="background:white; border-radius:3px; padding:4px; border:1px solid #ddd;">
+            <div style="font-size:6.5pt; color:#888;">Дата старта</div>
+            <div style="border-bottom:1px dashed #999; height:14px; margin-top:2px;"></div>
+          </div>
+          <div style="background:white; border-radius:3px; padding:4px; border:1px solid #ddd;">
+            <div style="font-size:6.5pt; color:#888;">Срок (к.д.)</div>
+            <div style="border-bottom:1px dashed #999; height:14px; margin-top:2px;"></div>
+          </div>
+          <div style="background:white; border-radius:3px; padding:4px; border:1px solid #ddd;">
+            <div style="font-size:6.5pt; color:#888;">Кол-во рабочих</div>
+            <div style="border-bottom:1px dashed #999; height:14px; margin-top:2px;"></div>
+          </div>
+          <div style="background:white; border-radius:3px; padding:4px; border:1px solid #ddd;">
+            <div style="font-size:6.5pt; color:#888;">Ставка, ₽/мес</div>
+            <div style="border-bottom:1px dashed #999; height:14px; margin-top:2px;"></div>
+          </div>
+        </div>
+        <div style="margin-top:6px; padding:4px; background:#e8f5e9; border-radius:3px; font-size:6.5pt; color:#1a4d2e;">
+          <b>Всё остальное пересчитается автоматически:</b><br>
+          L_капли → T_капли → N_min → ФЧД → Δ → Финиш
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:6px 10px; background:#f3e5f5; font-size:7pt; color:#4a148c;">
+    👔 Стр. 5 — статус для директора + шаблон для нового объекта. Замените 6 полей — документ готов.
+  </div>
+</div>
+
+</div>
+
+<p class="subtitle" style="margin-top:12px;">Нажмите на страницу, если хотите что-то изменить в её составе. Или напишите в терминале что поправить.</p>

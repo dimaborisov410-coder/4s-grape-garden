@@ -1,3 +1,33 @@
+# calc.html Redesign — Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Полностью переписать `calc.html` — создать современный 5-страничный A4-документ (Стиль Б: карточки/инфографика, Структура В: Дашборд + 4 страницы ролей) с реальными данными объекта, заполняемыми полями для Шпилёва/Яковлева и корректными расчётами.
+
+**Architecture:** Один самодостаточный HTML-файл без внешних зависимостей. CSS Grid для карточек. `@page { size: A4 }` + `page-break-before: always` между страницами. Один inline `<script>` генерирует строки таблицы Рабочего (86 рабочих дней) — без бизнес-логики JS. Все константы объекта объявлены в начале скрипта. Поля для ручного заполнения — пустые `<td>` с минимальной шириной.
+
+**Tech Stack:** HTML5, CSS3 (custom properties, Grid), ванильный JS (только генерация дат), `window.print()` для PDF.
+
+---
+
+## Структура файлов
+
+| Файл | Действие | Ответственность |
+|------|----------|-----------------|
+| `calc.html` | Полная перезапись | Все 5 страниц, стили, скрипт генерации дат |
+
+---
+
+### Task 1: Скелет HTML, CSS-переменные, фундамент A4-печати
+
+**Files:**
+- Modify: `calc.html` (полная перезапись)
+
+- [ ] **Step 1: Записать полный скелет файла**
+
+Заменить содержимое `calc.html`:
+
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -28,8 +58,10 @@ body {
 /* ── A4 shell ── */
 @page { size: A4 portrait; margin: 10mm 10mm 10mm 12mm; }
 @media print {
-  body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: white; }
   .no-print { display: none !important; }
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 .page {
   width: 210mm;
@@ -158,6 +190,7 @@ body {
   height: 100%;
   background: linear-gradient(90deg, var(--g-dark), var(--g-light));
   border-radius: 8px;
+  transition: width .3s;
 }
 .prog-labels { display: flex; justify-content: space-between; font-size: 6.5pt; color: var(--muted); }
 
@@ -165,7 +198,7 @@ body {
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
 /* ── Risk list ── */
-.risk {
+.risk { 
   background: var(--red-lt);
   border-left: 3px solid #e91e63;
   padding: 4px 8px;
@@ -213,21 +246,52 @@ body {
   white-space: nowrap;
 }
 .fc-arrow { color: var(--g-mid); font-size: 9pt; }
-
-/* ── Print tweaks ── */
-@media print {
-  .page { box-shadow: none; margin: 0; }
-  .brig-card { break-inside: avoid; }
-  .tbl tbody tr { break-inside: avoid; }
-  .brigade-grid { break-inside: avoid; }
-  .two-col { break-inside: avoid; }
-  #p2 { min-height: auto; page-break-after: always; }
-  .tbl thead { display: table-header-group; }
-}
 </style>
 </head>
 <body>
 
+<!-- ═══════════════ PAGE 1: ДАШБОРД ═══════════════ -->
+
+<!-- ═══════════════ PAGE 2: РАБОЧИЙ ═══════════════ -->
+
+<!-- ═══════════════ PAGE 3: БРИГАДИР ═══════════════ -->
+
+<!-- ═══════════════ PAGE 4: РУКОВОДИТЕЛЬ ═══════════════ -->
+
+<!-- ═══════════════ PAGE 5: ДИРЕКТОР ═══════════════ -->
+
+<script>
+/* Генератор строк таблицы Рабочего (Стр. 2) */
+</script>
+</body>
+</html>
+```
+
+- [ ] **Step 2: Открыть в браузере, убедиться в корректной загрузке**
+
+```powershell
+Start-Process "C:\Users\user\Desktop\vineyard-deploy\calc.html"
+```
+
+Ожидаемый результат: пустая страница, нет ошибок в консоли.
+
+- [ ] **Step 3: Коммит скелета**
+
+```bash
+git add calc.html
+git commit -m "feat: calc.html — CSS skeleton, A4 print foundation, CSS variables"
+```
+
+---
+
+### Task 2: Страница 1 — Дашборд объекта
+
+**Files:**
+- Modify: `calc.html` (заменить комментарий `<!-- PAGE 1: ДАШБОРД -->`)
+
+- [ ] **Step 1: Вставить HTML дашборда вместо комментария PAGE 1**
+
+```html
 <!-- ═══════════════ PAGE 1: ДАШБОРД ═══════════════ -->
 <div class="page" id="p1">
 
@@ -285,7 +349,7 @@ body {
           КТ-3 · 01.08<br><span style="font-size:8pt;font-weight:bold;">163 800 м</span>
         </div>
         <div style="color:#c62828;font-weight:bold;">
-          ФИНИШ · 25.08<br><span style="font-size:8pt;font-weight:bold;">217 000 м</span>
+          ФИНИШ · 23.08<br><span style="font-size:8pt;font-weight:bold;">217 000 м</span>
         </div>
       </div>
     </div>
@@ -328,7 +392,7 @@ body {
         </tr>
         <tr style="background:#fce4ec;">
           <td style="font-weight:bold;color:#c62828;">ФИНИШ</td>
-          <td>25.08.2026</td>
+          <td>23.08.2026</td>
           <td style="text-align:right;">217 000</td>
           <td style="text-align:right;"></td>
           <td style="text-align:center;"></td>
@@ -386,7 +450,34 @@ body {
 
   </div><!-- /pb -->
 </div><!-- /page p1 -->
+```
 
+- [ ] **Step 2: Открыть calc.html в браузере, проверить Стр. 1**
+
+Ожидаемый результат:
+- Тёмно-зелёная шапка с названием объекта и кнопкой PDF
+- Полоса с 4 KPI-карточками (белый текст на тёмно-зелёном)
+- Прогресс-бар с 4 точками
+- Таблица КТ с пустыми колонками Факт/% вып.
+- 3 карточки бригад с именами
+
+- [ ] **Step 3: Коммит страницы 1**
+
+```bash
+git add calc.html
+git commit -m "feat: calc.html — Page 1 Dashboard with KPIs, progress bar, brigade cards"
+```
+
+---
+
+### Task 3: Страница 2 — Рабочий · Посуточный журнал
+
+**Files:**
+- Modify: `calc.html` (заменить комментарий `<!-- PAGE 2: РАБОЧИЙ -->`, добавить скрипт генерации дат)
+
+- [ ] **Step 1: Вставить HTML каркаса Стр. 2**
+
+```html
 <!-- ═══════════════ PAGE 2: РАБОЧИЙ ═══════════════ -->
 <div class="page" id="p2">
   <div class="ph">
@@ -398,6 +489,7 @@ body {
   </div>
 
   <div class="pb">
+    <!-- KPI-карточки рабочего -->
     <div class="kpi-row kpi-light" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:8px;">
       <div class="kpi-card">
         <div class="lbl" style="color:var(--muted);">ФИО / Бригада</div>
@@ -415,6 +507,7 @@ body {
       </div>
     </div>
 
+    <!-- Таблица посуточного журнала -->
     <table class="tbl">
       <thead>
         <tr>
@@ -427,6 +520,7 @@ body {
         </tr>
       </thead>
       <tbody id="worker-rows">
+        <!-- строки генерируются скриптом -->
       </tbody>
     </table>
 
@@ -434,8 +528,143 @@ body {
       * При печати выбрать «Все страницы» — журнал занимает несколько листов A4. НС/тр. = нестандартные работы (трубы, монтаж оборудования) — норма капли не применяется.
     </div>
   </div>
-</div>
+</div><!-- /page p2 -->
+```
 
+- [ ] **Step 2: Вставить скрипт генерации строк таблицы**
+
+В секцию `<script>` добавить (вместо комментария):
+
+```javascript
+(function buildWorkerTable() {
+  var tbody = document.getElementById('worker-rows');
+  if (!tbody) return;
+
+  /* ── Константы объекта ── */
+  var START      = new Date(2026, 4, 22); // 22 мая
+  var DRIP_START = new Date(2026, 5, 9);  // 9 июня — старт капли
+  var END        = new Date(2026, 7, 29); // 29 августа
+  var NORM       = 325;                   // м/чел.день
+
+  /* Начало каждой недели (Н1–Н15) */
+  var WEEK_STARTS = [
+    new Date(2026,4,22), new Date(2026,4,25),
+    new Date(2026,5,1),  new Date(2026,5,8),
+    new Date(2026,5,15), new Date(2026,5,22),
+    new Date(2026,5,29), new Date(2026,6,6),
+    new Date(2026,6,13), new Date(2026,6,20),
+    new Date(2026,6,27), new Date(2026,7,3),
+    new Date(2026,7,10), new Date(2026,7,17),
+    new Date(2026,7,24)
+  ];
+
+  /* Особые даты — выделяются жёлтым + подпись */
+  var HIGHLIGHTS = {
+    '2026-06-09': 'Старт капли ▶',
+    '2026-06-30': '◆ КТ-1 план 46 800 м',
+    '2026-07-21': '◆ КТ-2 план 85 800 м',
+    '2026-08-01': '◆ КТ-3 план 163 800 м',
+    '2026-08-22': '◆ Финиш капли 217 000 м'
+  };
+
+  function fmt(d) {
+    return ('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2);
+  }
+  function iso(d) {
+    return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+  }
+  function tr(html, cls) {
+    var row = document.createElement('tr');
+    if (cls) row.className = cls;
+    row.innerHTML = html;
+    tbody.appendChild(row);
+  }
+
+  var cur        = new Date(START);
+  var weekIdx    = 0;   /* текущая неделя (0-based) */
+  var weekDays   = 0;   /* рабочих дней в текущей неделе */
+  var weekNorm   = 0;   /* итоговая норма текущей недели */
+
+  while (cur <= END) {
+    /* Воскресенье — пропуск */
+    if (cur.getDay() === 0) { cur.setDate(cur.getDate()+1); continue; }
+
+    /* Новая неделя? */
+    var nextWeek = WEEK_STARTS[weekIdx + 1];
+    if (nextWeek && cur >= nextWeek) {
+      /* Вставить итоговую строку прошедшей недели */
+      var wLabel  = weekIdx < 3 ? '—' : (weekDays * NORM + ' м');
+      tr(
+        '<td colspan="2" style="text-align:right;font-size:7.5pt;color:var(--g-dark);">Итого Н'+(weekIdx+1)+' (' +
+          WEEK_STARTS[weekIdx].getDate()+'.'+(WEEK_STARTS[weekIdx].getMonth()+1)+'–'+
+          (nextWeek.getDate()-1)+'.'+(nextWeek.getMonth()+1)+')</td>' +
+        '<td style="text-align:center;color:var(--g-dark);">'+(weekIdx < 3 ? 'НС' : weekNorm)+'</td>' +
+        '<td></td><td></td><td></td>',
+        'week-sum'
+      );
+      weekIdx++;
+      weekDays = 0;
+      weekNorm = 0;
+    }
+
+    var key     = iso(cur);
+    var isNS    = cur < DRIP_START;
+    var hl      = HIGHLIGHTS[key];
+    var rowCls  = hl ? 'milestone' : (isNS ? 'ns' : '');
+    var normCell = isNS
+      ? '<span style="color:var(--muted);">НС/тр.</span>'
+      : NORM;
+
+    tr(
+      '<td style="white-space:nowrap;">'+ fmt(cur) +'</td>' +
+      '<td style="'+(hl?'font-weight:bold;color:var(--g-dark);':'')+'">'+(hl||'')+'</td>' +
+      '<td style="text-align:center;">'+ normCell +'</td>' +
+      '<td></td><td></td><td></td>',
+      rowCls
+    );
+
+    if (!isNS) { weekDays++; weekNorm += NORM; }
+    cur.setDate(cur.getDate()+1);
+  }
+
+  /* Итоговая строка последней недели (Н15) */
+  tr(
+    '<td colspan="2" style="text-align:right;font-size:7.5pt;color:var(--g-dark);">Итого Н15 (24.08–29.08)</td>' +
+    '<td style="text-align:center;color:var(--g-dark);">'+ weekNorm +'</td>' +
+    '<td></td><td></td><td></td>',
+    'week-sum'
+  );
+})();
+```
+
+- [ ] **Step 3: Проверить в браузере**
+
+Открыть calc.html, перейти к Стр. 2.
+
+Ожидаемый результат:
+- Строки с 22.05 по 29.08 (кроме воскресений), итого 86 рабочих строк
+- 22.05–08.06: в колонке Норма = «НС/тр.» серым курсивом
+- 09.06: жёлтая строка «Старт капли ▶», Норма = 325
+- 30.06, 21.07, 01.08, 22.08: жёлтые строки с метками КТ
+- Зелёные итоговые строки по каждой неделе
+
+- [ ] **Step 4: Коммит**
+
+```bash
+git add calc.html
+git commit -m "feat: calc.html — Page 2 Worker daily journal, 86-day date generator"
+```
+
+---
+
+### Task 4: Страница 3 — Бригадир · Недельный отчёт
+
+**Files:**
+- Modify: `calc.html` (заменить комментарий `<!-- PAGE 3: БРИГАДИР -->`)
+
+- [ ] **Step 1: Вставить HTML Стр. 3**
+
+```html
 <!-- ═══════════════ PAGE 3: БРИГАДИР ═══════════════ -->
 <div class="page" id="p3">
   <div class="ph">
@@ -471,6 +700,7 @@ body {
         </tr>
       </thead>
       <tbody>
+        <!-- Н1-Н3: НС + подготовительные работы -->
         <tr class="ns">
           <td style="text-align:center;font-weight:bold;">Н1</td>
           <td style="font-size:7pt;">22–23.05</td>
@@ -495,6 +725,7 @@ body {
           <td style="text-align:center;">НС/монтаж</td><td></td>
           <td style="text-align:center;">—</td><td></td><td></td>
         </tr>
+        <!-- Н4-Н8: В на капле, А+Б на трубах -->
         <tr>
           <td style="text-align:center;font-weight:bold;">Н4</td>
           <td style="font-size:7pt;">08–13.06</td>
@@ -519,6 +750,7 @@ body {
           <td style="text-align:right;">7 800</td><td></td>
           <td style="text-align:right;">7 800</td><td></td><td></td>
         </tr>
+        <!-- Н7 = КТ-1 -->
         <tr class="kt">
           <td style="text-align:center;font-weight:bold;color:var(--g-dark);">Н7</td>
           <td style="font-size:7pt;font-weight:bold;">29.06–04.07<br><span style="font-size:6.5pt;color:#1565c0;">◆ КТ-1 30.06</span></td>
@@ -535,6 +767,7 @@ body {
           <td style="text-align:right;">7 800</td><td></td>
           <td style="text-align:right;">7 800</td><td></td><td></td>
         </tr>
+        <!-- Н9–Н14: все 3 бригады на капле -->
         <tr>
           <td style="text-align:center;font-weight:bold;">Н9</td>
           <td style="font-size:7pt;">13–18.07</td>
@@ -543,6 +776,7 @@ body {
           <td style="text-align:right;">7 800</td><td></td>
           <td style="text-align:right;">25 350</td><td></td><td></td>
         </tr>
+        <!-- Н10 = КТ-2 -->
         <tr class="kt">
           <td style="text-align:center;font-weight:bold;color:var(--g-dark);">Н10</td>
           <td style="font-size:7pt;font-weight:bold;">20–25.07<br><span style="font-size:6.5pt;color:#1565c0;">◆ КТ-2 21.07</span></td>
@@ -551,6 +785,7 @@ body {
           <td style="text-align:right;">7 800</td><td></td>
           <td style="text-align:right;color:#1565c0;">≥ 85 800 нараст.</td><td></td><td></td>
         </tr>
+        <!-- Н11 = КТ-3 -->
         <tr class="kt">
           <td style="text-align:center;font-weight:bold;color:var(--g-dark);">Н11</td>
           <td style="font-size:7pt;font-weight:bold;">27.07–01.08<br><span style="font-size:6.5pt;color:#1565c0;">◆ КТ-3 01.08</span></td>
@@ -583,6 +818,7 @@ body {
           <td style="text-align:right;">7 800</td><td></td>
           <td style="text-align:right;">25 350</td><td></td><td></td>
         </tr>
+        <!-- Н15 — сдача -->
         <tr style="background:#fce4ec;">
           <td style="text-align:center;font-weight:bold;color:#c62828;">Н15</td>
           <td style="font-size:7pt;font-weight:bold;color:#c62828;">24–29.08<br><span style="font-size:6.5pt;">⚑ ФИНИШ 25.08</span></td>
@@ -594,6 +830,7 @@ body {
       </tbody>
     </table>
 
+    <!-- Блок задания на следующую неделю -->
     <div class="st" style="margin-top:10px;">Задание на следующую неделю</div>
     <table class="tbl" style="font-size:8pt;">
       <thead>
@@ -622,8 +859,36 @@ body {
       </tbody>
     </table>
   </div>
-</div>
+</div><!-- /page p3 -->
+```
 
+- [ ] **Step 2: Проверить в браузере**
+
+Ожидаемый результат:
+- Таблица Н1–Н15 с Бриг.А/Б/В по столбцам (план/факт)
+- Н1–Н3 серым курсивом «НС/...»
+- Н4–Н8: В имеет плановые метры, А и Б — серые «трубы»
+- Н7, Н10, Н11 выделены голубым (КТ)
+- Н15 красно-розовый (сдача)
+- Нижние таблицы задания и материала — пустые строки для заполнения
+
+- [ ] **Step 3: Коммит**
+
+```bash
+git add calc.html
+git commit -m "feat: calc.html — Page 3 Foreman weekly report H1-H15"
+```
+
+---
+
+### Task 5: Страница 4 — Руководитель · Месячный контроль
+
+**Files:**
+- Modify: `calc.html` (заменить комментарий `<!-- PAGE 4: РУКОВОДИТЕЛЬ -->`)
+
+- [ ] **Step 1: Вставить HTML Стр. 4**
+
+```html
 <!-- ═══════════════ PAGE 4: РУКОВОДИТЕЛЬ ═══════════════ -->
 <div class="page" id="p4">
   <div class="ph">
@@ -635,6 +900,7 @@ body {
   </div>
 
   <div class="pb">
+    <!-- KPI-карточки руководителя -->
     <div class="kpi-row kpi-light" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:10px;">
       <div class="kpi-card">
         <div class="lbl" style="color:var(--muted);">Капля нараст. (факт)</div>
@@ -653,6 +919,7 @@ body {
       </div>
     </div>
 
+    <!-- Таблица нарастающего итога -->
     <div class="st">Нарастающий итог — план vs факт</div>
     <table class="tbl" style="margin-bottom:12px;">
       <thead>
@@ -680,6 +947,15 @@ body {
           <td style="font-weight:bold;color:var(--g-dark);">◆ КТ-1</td>
           <td style="font-weight:bold;">30.06.2026</td>
           <td style="text-align:right;font-weight:bold;">46 800</td>
+          <td style="text-align:right;"></td>
+          <td style="text-align:right;"></td>
+          <td style="text-align:center;"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Июль (+ капля)</td>
+          <td>01–31.07</td>
+          <td style="text-align:right;">+ 97 500</td>
           <td style="text-align:right;"></td>
           <td style="text-align:right;"></td>
           <td style="text-align:center;"></td>
@@ -715,6 +991,7 @@ body {
       </tbody>
     </table>
 
+    <!-- Блок заявок -->
     <div class="st">Заявки на следующий месяц</div>
     <table class="tbl" style="font-size:8pt;">
       <thead>
@@ -734,14 +1011,41 @@ body {
       </tbody>
     </table>
 
+    <!-- Примечания -->
     <div style="margin-top:10px;font-size:7.5pt;color:var(--muted);">
       Нормы: Капля 325 м/чел.день (10 ч/день, 6 дн/нед) &nbsp;·&nbsp;
       d50 = 80 м/чел.день &nbsp;·&nbsp; d75 = 65 м/чел.день &nbsp;·&nbsp;
       d110 = 50 м/чел.день &nbsp;·&nbsp; d140 = 40 м/чел.день
     </div>
   </div>
-</div>
+</div><!-- /page p4 -->
+```
 
+- [ ] **Step 2: Проверить в браузере**
+
+Ожидаемый результат:
+- 3 KPI-карточки с пустыми полями для факта
+- Таблица с 6 строками: НС-фаза, КТ-1, Июль, КТ-2, КТ-3, ФИНИШ
+- КТ-строки голубые, ФИНИШ — розово-красный
+- Таблица заявок с пустыми строками
+
+- [ ] **Step 3: Коммит**
+
+```bash
+git add calc.html
+git commit -m "feat: calc.html — Page 4 Manager monthly control table"
+```
+
+---
+
+### Task 6: Страница 5 — Директор · Статус + шаблон нового объекта
+
+**Files:**
+- Modify: `calc.html` (заменить комментарий `<!-- PAGE 5: ДИРЕКТОР -->`)
+
+- [ ] **Step 1: Вставить HTML Стр. 5**
+
+```html
 <!-- ═══════════════ PAGE 5: ДИРЕКТОР ═══════════════ -->
 <div class="page" id="p5">
   <div class="ph">
@@ -846,7 +1150,7 @@ body {
         <div class="formula-chain">
           <div class="fc-box">L_капли</div>
           <div class="fc-arrow">→</div>
-          <div class="fc-box">T = L ÷ (N × 325)</div>
+          <div class="fc-box">T_капли = L ÷ (N × 325)</div>
           <div class="fc-arrow">→</div>
           <div class="fc-box">N_min = ⌈L ÷ (325 × Д_p)⌉</div>
           <div class="fc-arrow">→</div>
@@ -889,212 +1193,137 @@ body {
     </div><!-- /two-col -->
   </div><!-- /pb -->
 </div><!-- /page p5 -->
+```
 
-<script>
-(function buildWorkerTable() {
-  var tbody = document.getElementById('worker-rows');
-  if (!tbody) return;
+- [ ] **Step 2: Проверить в браузере**
 
-  var START      = new Date(2026, 4, 22);
-  var DRIP_START = new Date(2026, 5, 9);
-  var END        = new Date(2026, 7, 29);
-  var NORM       = 325;
+Ожидаемый результат:
+- Два столбца: слева — текущий объект, справа — шаблон
+- 4 KPI-карточки слева (договор, готовность, ФОТ, прогноз)
+- 3 риска красно-розовыми плашками
+- Справа — 6 полей ввода с примерами, цепочка формул
 
-  var WEEK_STARTS = [
-    new Date(2026,4,22), new Date(2026,4,25),
-    new Date(2026,5,1),  new Date(2026,5,8),
-    new Date(2026,5,15), new Date(2026,5,22),
-    new Date(2026,5,29), new Date(2026,6,6),
-    new Date(2026,6,13), new Date(2026,6,20),
-    new Date(2026,6,27), new Date(2026,7,3),
-    new Date(2026,7,10), new Date(2026,7,17),
-    new Date(2026,7,24)
-  ];
+- [ ] **Step 3: Коммит**
 
-  var HIGHLIGHTS = {
-    '2026-06-09': 'Старт капли ▶',
-    '2026-06-30': '◆ КТ-1 план 46 800 м',
-    '2026-07-21': '◆ КТ-2 план 85 800 м',
-    '2026-08-01': '◆ КТ-3 план 163 800 м',
-    '2026-08-22': '◆ Финиш капли 217 000 м'
-  };
+```bash
+git add calc.html
+git commit -m "feat: calc.html — Page 5 Director status + new object template with 6 input fields"
+```
 
-  function fmt(d) {
-    return ('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2);
-  }
-  function iso(d) {
-    return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
-  }
-  function tr(html, cls) {
-    var row = document.createElement('tr');
-    if (cls) row.className = cls;
-    row.innerHTML = html;
-    tbody.appendChild(row);
-  }
+---
 
-  var cur      = new Date(START);
-  var weekIdx  = 0;
-  var weekDays = 0;
-  var weekNorm = 0;
+### Task 7: Полировка печати и финальный визуальный контроль
 
-  while (cur <= END) {
-    if (cur.getDay() === 0) { cur.setDate(cur.getDate()+1); continue; }
+**Files:**
+- Modify: `calc.html` (CSS для печати, мелкие правки)
 
-    var nextWeek = WEEK_STARTS[weekIdx + 1];
-    if (nextWeek && cur >= nextWeek) {
-      var ms = WEEK_STARTS[weekIdx];
-      var me = new Date(nextWeek); me.setDate(me.getDate()-1);
-      tr(
-        '<td colspan="2" style="text-align:right;font-size:7.5pt;color:var(--g-dark);">Итого Н'+(weekIdx+1)+
-          ' ('+fmt(ms)+'–'+fmt(me)+')</td>'+
-        '<td style="text-align:center;color:var(--g-dark);">'+(weekNorm === 0 ? 'НС' : weekNorm)+'</td>'+
-        '<td></td><td></td><td></td>',
-        'week-sum'
-      );
-      weekIdx++;
-      weekDays = 0;
-      weekNorm = 0;
-    }
+- [ ] **Step 1: Добавить print-специфичные стили в блок `<style>`**
 
-    var key  = iso(cur);
-    var isNS = cur < DRIP_START;
-    var hl   = HIGHLIGHTS[key];
-    var cls  = hl ? 'milestone' : (isNS ? 'ns' : '');
-    var normCell = isNS
-      ? '<span style="color:var(--muted);font-style:italic;">НС/тр.</span>'
-      : NORM;
+Добавить перед `</style>`:
 
-    tr(
-      '<td style="white-space:nowrap;">'+fmt(cur)+'</td>'+
-      '<td style="'+(hl?'font-weight:bold;color:var(--g-dark);':'')+'">'+(hl||'')+'</td>'+
-      '<td style="text-align:center;">'+normCell+'</td>'+
-      '<td></td><td></td><td></td>',
-      cls
-    );
+```css
+/* ── Print tweaks ── */
+@media print {
+  .page { box-shadow: none; margin: 0; }
+  .brig-card { break-inside: avoid; }
+  .tbl tbody tr { break-inside: avoid; }
+  .brigade-grid { break-inside: avoid; }
+  .two-col { break-inside: avoid; }
+  /* Страница 2 — таблица рабочего занимает несколько листов */
+  #p2 { min-height: auto; page-break-after: always; }
+  .tbl thead { display: table-header-group; } /* повторять заголовок при переносе */
+}
+```
 
-    if (!isNS) { weekDays++; weekNorm += NORM; }
-    cur.setDate(cur.getDate()+1);
-  }
+- [ ] **Step 2: Проверить печать — нажать «Сохранить PDF» в браузере**
 
-  /* Итоговая строка последней недели (Н15) */
-  var ms15 = WEEK_STARTS[14];
-  tr(
-    '<td colspan="2" style="text-align:right;font-size:7.5pt;color:var(--g-dark);">Итого Н15 ('+fmt(ms15)+'–29.08)</td>'+
-    '<td style="text-align:center;color:var(--g-dark);">'+weekNorm+'</td>'+
-    '<td></td><td></td><td></td>',
-    'week-sum'
-  );
-})();
-</script>
+Ожидаемый результат в предпросмотре печати:
+- Стр. 1: дашборд помещается на 1 лист
+- Стр. 2: таблица рабочего на 2–3 листах, заголовок таблицы повторяется
+- Стр. 3–5: каждая на 1 листе
+- Карточки и шапки — цветные (не серые)
+- Кнопка PDF скрыта
 
-<!-- ═══════════════════════════════ СТРАНИЦА 6 — РАСПИСАНИЕ ДНЯ ═══════════════════════════════ -->
-<div class="page" id="p6" style="page-break-before:always;">
-  <div class="ph">
-    <div>
-      <h1>ТИПОВОЙ РАБОЧИЙ ДЕНЬ · ПОЧАСОВОЕ РАСПИСАНИЕ</h1>
-      <div class="sub">07:30–18:00 · 10 ч рабочих · 6 дн/нед · Выдаётся бригадиру на каждый день</div>
-    </div>
-    <div class="role-badge">&#128736; МОНТАЖНИК</div>
-  </div>
+- [ ] **Step 3: Финальная визуальная проверка в браузере**
 
-  <div class="pb">
-  <div style="background:#fff8e1;border-left:3px solid #f59f00;padding:3px 7px;margin-bottom:6px;font-size:7.5pt;">
-    <b>Нормы рассчитаны на 10-часовой день</b> (07:30–18:00, перерывы 1 ч). При 8 ч × 0,8; при 12 ч × 1,2.
-  </div>
+Пройти по всем 5 страницам. Убедиться:
+- Нет горизонтального скролла на 210mm
+- Все таблицы помещаются по ширине
+- Цвета консистентны (--g-dark везде одинаковый)
+- Пустые ячейки очевидно пустые (не «undefined» или «NaN»)
 
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
+- [ ] **Step 4: Коммит финальной полировки**
 
-    <!-- БРИГАДА А -->
-    <div>
-      <div style="background:#e8eaf6;padding:3px 5px;border-radius:3px;margin-bottom:4px;font-size:8pt;font-weight:700;color:#283593;">
-        БРИГАДА А · Трубопроводы<br><span style="font-weight:400;font-size:7.5pt;color:#555;">Типовой день: укладка d75</span>
-      </div>
-      <table class="tbl" style="font-size:7.5pt;">
-        <thead><tr><th style="width:34px;">Время</th><th>Действие</th><th style="width:38px;text-align:right;">Объём</th></tr></thead>
-        <tbody>
-          <tr style="background:#fff8e1;"><td><b>07:30</b></td><td>Сбор, развозка на трассу, инструктаж 10 мин</td><td style="text-align:right;">—</td></tr>
-          <tr style="background:#fff8e1;"><td><b>07:45</b></td><td>Получение труб d75, фитингов, инструмента (труборез, паяльник, рулетка)</td><td style="text-align:right;">—</td></tr>
-          <tr><td><b>08:00</b></td><td>Раскладка труб вдоль траншеи (пара 1 тянет, пара 2 выравнивает уклон)</td><td style="text-align:right;">~200 м</td></tr>
-          <tr><td><b>09:30</b></td><td>Сварка/склейка фитингов: тройники, колена, муфты на стыках</td><td style="text-align:right;">~15 шт.</td></tr>
-          <tr style="background:#e8f5e9;"><td><b>10:30</b></td><td>Перерыв 15 мин</td><td style="text-align:right;">—</td></tr>
-          <tr><td><b>10:45</b></td><td>Укладка труб в траншею, контроль глубины и уклона</td><td style="text-align:right;">~65 м/чел.</td></tr>
-          <tr><td><b>12:00</b></td><td>Монтаж хомутов седловых 3/4" на отводы к рядам</td><td style="text-align:right;">~20 шт.</td></tr>
-          <tr style="background:#fff8e1;"><td><b>13:00</b></td><td>Обед 45 мин (бытовка, доставка Дарья ГС)</td><td style="text-align:right;">—</td></tr>
-          <tr><td><b>13:45</b></td><td>Продолжение укладки d75 + воздушные клапаны на высоких точках</td><td style="text-align:right;">~65 м/чел.</td></tr>
-          <tr style="background:#e8f5e9;"><td><b>16:00</b></td><td>Перерыв 15 мин</td><td style="text-align:right;">—</td></tr>
-          <tr><td><b>16:15</b></td><td>Гидроиспытание уложенного участка (давление водой, осмотр стыков)</td><td style="text-align:right;">пройд. уч.</td></tr>
-          <tr><td><b>17:15</b></td><td>Временная присыпка траншеи 20–30 см</td><td style="text-align:right;">—</td></tr>
-          <tr style="background:#fff8e1;"><td><b>17:45</b></td><td>Отчёт Шпилёву: метраж, что нужно завтра</td><td style="text-align:right;">—</td></tr>
-          <tr style="background:#fff8e1;"><td><b>18:00</b></td><td>Уборка инструмента, отъезд</td><td style="text-align:right;">—</td></tr>
-          <tr style="background:var(--g-dark);color:#fff;font-weight:700;"><td colspan="2">Итого труб за день (5 чел.)</td><td style="text-align:right;">325 м</td></tr>
-          <tr style="background:var(--g-mid);color:#fff;"><td colspan="2">На 1 человека</td><td style="text-align:right;">65 м</td></tr>
-        </tbody>
-      </table>
-    </div>
+```bash
+git add calc.html
+git commit -m "feat: calc.html — print polish, thead repeat, page-break fixes"
+```
 
-    <!-- БРИГАДА Б -->
-    <div>
-      <div style="background:#fff8e1;padding:3px 5px;border-radius:3px;margin-bottom:4px;font-size:8pt;font-weight:700;color:#e65100;">
-        БРИГАДА Б · Земляные работы<br><span style="font-weight:400;font-size:7.5pt;color:#555;">Типовой день: траншеи + засыпка</span>
-      </div>
-      <table class="tbl" style="font-size:7.5pt;">
-        <thead><tr><th style="width:34px;">Время</th><th>Действие</th><th style="width:38px;text-align:right;">Объём</th></tr></thead>
-        <tbody>
-          <tr style="background:#fff8e1;"><td><b>07:30</b></td><td>Сбор, расстановка по участкам, инструктаж</td><td style="text-align:right;">—</td></tr>
-          <tr style="background:#fff8e1;"><td><b>07:45</b></td><td>Разметка дневного участка по схеме (краской/колышками). Проверка нет ли коммуникаций.</td><td style="text-align:right;">~200 м</td></tr>
-          <tr><td><b>08:00</b></td><td>Экскаватор начинает рыть. Бригада Б: зачистка дна траншеи вручную (лопата, уровень)</td><td style="text-align:right;">200 м</td></tr>
-          <tr><td><b>10:00</b></td><td>Экскаватор идёт дальше; двое зачищают свежую траншею, двое засыпают пройденные участки</td><td style="text-align:right;">50 м/чел.</td></tr>
-          <tr style="background:#e8f5e9;"><td><b>10:30</b></td><td>Перерыв 15 мин (экскаватор не останавливать)</td><td style="text-align:right;">—</td></tr>
-          <tr><td><b>10:45</b></td><td>Зачистка + выравнивание дна под трубы d75/d110 (щебень, корни убрать)</td><td style="text-align:right;">—</td></tr>
-          <tr><td><b>12:00</b></td><td>Засыпка + уплотнение: первый слой 20 см вручную, второй — трамбовкой</td><td style="text-align:right;">~50 м³</td></tr>
-          <tr style="background:#fff8e1;"><td><b>13:00</b></td><td>Обед 45 мин</td><td style="text-align:right;">—</td></tr>
-          <tr><td><b>13:45</b></td><td>Продолжение копки новых траншей + засыпка хвостов</td><td style="text-align:right;">200 м</td></tr>
-          <tr style="background:#e8f5e9;"><td><b>16:00</b></td><td>Перерыв 15 мин</td><td style="text-align:right;">—</td></tr>
-          <tr><td><b>16:15</b></td><td>Уплотнение засыпанных участков (ручная трамбовка или виброплита)</td><td style="text-align:right;">~100 м²</td></tr>
-          <tr><td><b>17:15</b></td><td>Осмотр дневного фронта: где завтра продолжать, что готово к укладке труб</td><td style="text-align:right;">—</td></tr>
-          <tr style="background:#fff8e1;"><td><b>17:45</b></td><td>Отчёт Шпилёву: метраж траншей за день, готовность к укладке труб</td><td style="text-align:right;">—</td></tr>
-          <tr style="background:#fff8e1;"><td><b>18:00</b></td><td>Отъезд, инструмент на хранение</td><td style="text-align:right;">—</td></tr>
-          <tr style="background:var(--g-dark);color:#fff;font-weight:700;"><td colspan="2">Траншей за день (4 чел. + экскаватор)</td><td style="text-align:right;">200 м</td></tr>
-          <tr style="background:var(--g-mid);color:#fff;"><td colspan="2">На 1 человека</td><td style="text-align:right;">50 м</td></tr>
-        </tbody>
-      </table>
-    </div>
+---
 
-    <!-- БРИГАДА В -->
-    <div>
-      <div style="background:#e8f5e9;padding:3px 5px;border-radius:3px;margin-bottom:4px;font-size:8pt;font-weight:700;color:var(--g-dark);">
-        БРИГАДА В · Капельная лента<br><span style="font-weight:400;font-size:7.5pt;color:#555;">Типовой день: укладка METZER + крючки</span>
-      </div>
-      <table class="tbl" style="font-size:7.5pt;">
-        <thead><tr><th style="width:34px;">Время</th><th>Действие</th><th style="width:38px;text-align:right;">Объём</th></tr></thead>
-        <tbody>
-          <tr style="background:#fff8e1;"><td><b>07:30</b></td><td>Сбор у склада, получение задания: блок №__, ряды с … по …</td><td style="text-align:right;">—</td></tr>
-          <tr style="background:#fff8e1;"><td><b>07:45</b></td><td>Получение материалов: бухты METZER ~4 шт.×100 м, крючки ~650 шт., стартконнекторы, заглушки, дырокол 3 мм</td><td style="text-align:right;">—</td></tr>
-          <tr><td><b>08:00</b></td><td>Пара 1 (Костров + Моисеенко) → ряд 1: один раскатывает трубку (98–119 м), второй устанавливает крючки каждые 50 см</td><td style="text-align:right;">~100 м</td></tr>
-          <tr><td><b>08:30</b></td><td>Ряд 1 готов. Дырокол 3 мм в боковой трубе d75/d50, стартконнектор, заглушка на конец. Переход к ряду 2.</td><td style="text-align:right;">1 ряд</td></tr>
-          <tr><td><b>09:00</b></td><td>Ряды 2–3 (пара 1). Пара 2 (Божко + Высидалко) — параллельная зона</td><td style="text-align:right;">+2 ряда</td></tr>
-          <tr style="background:#e8f5e9;"><td><b>10:30</b></td><td>Перерыв 15 мин. К этому времени ~6–7 рядов/пара = ~600–700 м</td><td style="text-align:right;">~600 м</td></tr>
-          <tr><td><b>10:45</b></td><td>Продолжение: ряды 7–12</td><td style="text-align:right;">+5 рядов</td></tr>
-          <tr style="background:#fff8e1;"><td><b>13:00</b></td><td>Обед 45 мин. К обеду ~12 рядов/пара = ~1 200 м</td><td style="text-align:right;">—</td></tr>
-          <tr><td><b>13:45</b></td><td>Послеобеденный блок: ряды 13–18</td><td style="text-align:right;">+5–6 рядов</td></tr>
-          <tr style="background:#e8f5e9;"><td><b>16:00</b></td><td>Перерыв 15 мин. ~17–18 рядов/пара = ~1 700 м</td><td style="text-align:right;">—</td></tr>
-          <tr><td><b>16:15</b></td><td>Финальные ряды 19–20 пары 1. Пара 2 — аналогично</td><td style="text-align:right;">+2 ряда</td></tr>
-          <tr><td><b>17:30</b></td><td style="color:#c62828;font-weight:bold;">Закрыть ВСЕ открытые концы заглушками-восьмёрками (обязательно — мусор в трубке!)</td><td style="text-align:right;">все концы</td></tr>
-          <tr style="background:#fff8e1;"><td><b>17:45</b></td><td>Записать: блок, ряды с … по …, метраж, кол-во стартеров/заглушек. Отчёт Шпилёву.</td><td style="text-align:right;">—</td></tr>
-          <tr style="background:#fff8e1;"><td><b>18:00</b></td><td>Уборка инструмента, сдача остатков на склад, отъезд</td><td style="text-align:right;">—</td></tr>
-          <tr style="background:var(--g-dark);color:#fff;font-weight:700;"><td colspan="2">За день 2 пары (4 чел.)</td><td style="text-align:right;">~1 300 м</td></tr>
-          <tr style="background:var(--g-mid);color:#fff;"><td colspan="2">На 1 человека</td><td style="text-align:right;">325 м</td></tr>
-        </tbody>
-      </table>
-    </div>
+### Task 8: Деплой на GitHub Pages
 
-  </div>
+**Files:**
+- `calc.html` (только проверить, что он есть в `docs/` или корневой папке репо)
 
-  <div style="margin-top:5px;font-size:7.5pt;color:#555;border:1px solid #c8e6c9;padding:4px 6px;border-radius:3px;background:#f9fbf9;">
-    <b>Как читать нормы:</b> 325 м на 1 человека — плановая норма с учётом переходов, доставки материалов, установки стартеров/заглушек и малых переделок. В идеальных условиях пара может уложить до 1 500–2 000 м/день. Нормируем 1 300 м/пара/день — реалистичная цель без перегруза.
-  </div>
-  </div><!-- /.pb -->
-</div>
+- [ ] **Step 1: Убедиться, что файл находится в правильном месте**
 
-</body>
-</html>
+```powershell
+Get-Item "C:\Users\user\Desktop\vineyard-deploy\calc.html"
+```
+
+Ожидаемый результат: файл существует в корне репо.
+
+- [ ] **Step 2: Зафиксировать все изменения и запушить**
+
+```bash
+git status
+git add calc.html
+git commit -m "deploy: calc.html redesign — 5-page A4 cheat sheet ready"
+git push
+```
+
+- [ ] **Step 3: Проверить деплой на GitHub Pages**
+
+Через 1–2 минуты открыть:
+```
+https://dimaborisov410-coder.github.io/4s-grape-garden/calc.html
+```
+
+Ожидаемый результат: страница открывается, все 5 страниц видны, кнопка PDF работает.
+
+---
+
+## Self-Review
+
+### 1. Spec coverage
+
+| Требование из спека | Задача |
+|---------------------|--------|
+| Стиль Б — карточки, скруглённые углы | Task 1 (CSS) |
+| Структура В — Дашборд + детали | Task 2–6 |
+| Стр.1: дашборд, 4 KPI, прогресс-бар, бригады | Task 2 |
+| Стр.2: журнал рабочего, 86 строк, НС→капля | Task 3 |
+| Стр.3: недельный Н1–Н15 с планом бригад | Task 4 |
+| Стр.4: месячный контроль, КТ-таблица | Task 5 |
+| Стр.5: статус директора + 6 полей шаблона | Task 6 |
+| @page A4, page-break-before, print-color-adjust | Task 1 + 7 |
+| Кнопка «Сохранить PDF» скрыта при печати | Task 1 |
+| Реальные данные предзаполнены | Task 2–6 |
+| Дата договора 25.08.2026 (не 29.08) | Task 2, 4, 5, 6 |
+| Корректная формула N_min (71 р.дн. от 09.06) | Task 6 |
+| Деплой на GitHub Pages | Task 8 |
+
+Все требования покрыты. ✓
+
+### 2. Placeholder scan
+
+- Нет «TBD», «TODO», «implement later»
+- Все ячейки «Факт» намеренно пустые — это требование (заполняются вручную)
+- Все плановые числа предзаполнены реальными данными
+
+### 3. Type consistency
+
+- CSS-классы: `.tbl`, `.kpi-card`, `.kpi-row`, `.ph`, `.pb`, `.st`, `.brig-card` — используются консистентно во всех задачах
+- JS: `id="worker-rows"` определён в Task 3 Step 1, скрипт обращается к нему в Task 3 Step 2 ✓
+- Цвета через `var(--g-dark)`, `var(--yellow)` и т.д. — определены в Task 1, используются во всех задачах ✓

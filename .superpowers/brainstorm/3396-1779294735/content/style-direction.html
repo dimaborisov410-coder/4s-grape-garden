@@ -1,0 +1,138 @@
+<h2>Какой визуальный стиль для шпаргалки?</h2>
+<p class="subtitle">Три направления — выберите то, что ближе к вашему ощущению «отличного результата»</p>
+
+<div class="cards">
+
+  <!-- OPTION A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f8f9fa; border-radius:6px; padding:12px; font-family:Arial,sans-serif;">
+      <div style="background:#1a4d2e; color:white; padding:8px 12px; font-size:11pt; font-weight:bold; border-radius:3px; margin-bottom:8px;">
+        ШПАРГАЛКА РАСЧЁТОВ · КАПЕЛЬНОЕ ОРОШЕНИЕ
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:5px; margin-bottom:8px;">
+        <div style="border:1px dashed #aaa; padding:5px; border-radius:3px; font-size:8pt; color:#333;">
+          <div style="font-size:7pt; color:#888;">Площадь, га</div>
+          <div style="border-bottom:1px solid #333; height:12px; margin-top:3px;"></div>
+        </div>
+        <div style="border:1px dashed #aaa; padding:5px; border-radius:3px; font-size:8pt; color:#333;">
+          <div style="font-size:7pt; color:#888;">Межрядье, м</div>
+          <div style="border-bottom:1px solid #333; height:12px; margin-top:3px;"></div>
+        </div>
+        <div style="border:1px dashed #aaa; padding:5px; border-radius:3px; font-size:8pt; color:#333;">
+          <div style="font-size:7pt; color:#888;">Срок, к.д.</div>
+          <div style="border-bottom:1px solid #333; height:12px; margin-top:3px;"></div>
+        </div>
+        <div style="border:1px dashed #aaa; padding:5px; border-radius:3px; font-size:8pt; color:#333;">
+          <div style="font-size:7pt; color:#888;">Рабочих, чел.</div>
+          <div style="border-bottom:1px solid #333; height:12px; margin-top:3px;"></div>
+        </div>
+      </div>
+      <div style="background:#f0f7f0; border-left:3px solid #2d6a4f; padding:5px 8px; font-family:monospace; font-size:8pt; border-radius:0 3px 3px 0;">
+        <span style="color:#1a4d2e; font-weight:bold;">L_капли = га × 10 000 ÷ межр. × 1,1</span><br>
+        <span style="color:#888; font-size:7.5pt;">Пример: 56,7 × 10000 ÷ 3 × 1,1 = 207 900 м</span>
+      </div>
+      <table style="width:100%; border-collapse:collapse; margin-top:6px; font-size:7.5pt;">
+        <tr style="background:#1a4d2e; color:white;">
+          <td style="padding:3px 5px;">Вид работ</td>
+          <td style="padding:3px 5px;">Норма (10ч)</td>
+          <td style="padding:3px 5px;">Пример</td>
+        </tr>
+        <tr style="background:#fff3cd;">
+          <td style="padding:2px 5px; font-weight:bold;">Капельная трубка</td>
+          <td style="padding:2px 5px; text-align:center; font-weight:bold;">325 м/чел.день</td>
+          <td style="padding:2px 5px; font-style:italic; color:#888;">217000÷325=668 чел.дн.</td>
+        </tr>
+        <tr>
+          <td style="padding:2px 5px;">Труба d110</td>
+          <td style="padding:2px 5px; text-align:center;">50</td>
+          <td style="padding:2px 5px; font-style:italic; color:#888;"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="card-body">
+      <h3>А — Технический документ</h3>
+      <p>Строгий корпоративный стиль. Таблицы, зелёные заголовки, блоки формул. Выглядит как официальный производственный регламент. Легко распечатать и подписать.</p>
+    </div>
+  </div>
+
+  <!-- OPTION B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f0f4ff; border-radius:6px; padding:12px; font-family:Arial,sans-serif;">
+      <div style="background:linear-gradient(135deg,#1a4d2e,#2d7a50); color:white; padding:8px 14px; font-size:11pt; font-weight:bold; border-radius:5px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+        <span style="font-size:16pt;">🌱</span>
+        <div>
+          <div style="font-size:10pt;">ШПАРГАЛКА РАСЧЁТОВ</div>
+          <div style="font-size:7.5pt; opacity:.8;">Капельное орошение · быстрый расчёт</div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-bottom:8px;">
+        <div style="background:white; border-radius:8px; padding:8px; box-shadow:0 2px 6px rgba(0,0,0,.08);">
+          <div style="font-size:7pt; color:#888; text-transform:uppercase; letter-spacing:.5px; margin-bottom:4px;">📐 Длина капли</div>
+          <div style="font-family:monospace; font-size:8pt; color:#1a4d2e; font-weight:bold; background:#f0f7f0; padding:4px 6px; border-radius:4px;">
+            га × 10000 ÷ межр. × 1,1
+          </div>
+          <div style="font-size:7pt; color:#888; margin-top:3px;">56,7га → <b>217 000 м</b></div>
+        </div>
+        <div style="background:white; border-radius:8px; padding:8px; box-shadow:0 2px 6px rgba(0,0,0,.08);">
+          <div style="font-size:7pt; color:#888; text-transform:uppercase; letter-spacing:.5px; margin-bottom:4px;">👷 Мин. людей</div>
+          <div style="font-family:monospace; font-size:8pt; color:#1a4d2e; font-weight:bold; background:#f0f7f0; padding:4px 6px; border-radius:4px;">
+            L ÷ (325 × Д_раб)
+          </div>
+          <div style="font-size:7pt; color:#888; margin-top:3px;">217000÷(325×86) = <b>8 чел.</b></div>
+        </div>
+      </div>
+      <div style="background:white; border-radius:8px; padding:8px; box-shadow:0 2px 6px rgba(0,0,0,.08);">
+        <div style="font-size:7pt; color:#888; text-transform:uppercase; letter-spacing:.5px; margin-bottom:5px;">⚡ Нормы выработки (10ч/день)</div>
+        <div style="display:flex; gap:5px; flex-wrap:wrap;">
+          <span style="background:#fff3cd; padding:3px 7px; border-radius:12px; font-size:7.5pt; font-weight:bold;">Капля: 325м</span>
+          <span style="background:#e8f5e9; padding:3px 7px; border-radius:12px; font-size:7.5pt;">d50: 80м</span>
+          <span style="background:#e8f5e9; padding:3px 7px; border-radius:12px; font-size:7.5pt;">d75: 65м</span>
+          <span style="background:#e8f5e9; padding:3px 7px; border-radius:12px; font-size:7.5pt;">d110: 50м</span>
+          <span style="background:#e8f5e9; padding:3px 7px; border-radius:12px; font-size:7.5pt;">d140: 40м</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Б — Современная инфографика</h3>
+      <p>Карточки, скруглённые углы, теги с нормами. Ближе к дашборду. Приятно смотрится на экране. Чуть сложнее для печати на ч/б принтере.</p>
+    </div>
+  </div>
+
+  <!-- OPTION C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fffef5; border-radius:6px; padding:12px; font-family:'Courier New',monospace; font-size:8pt;">
+      <div style="border:2px solid #333; padding:6px 10px; margin-bottom:8px; text-align:center;">
+        <div style="font-size:10pt; font-weight:bold; letter-spacing:1px;">РАСЧЁТНАЯ ШПАРГАЛКА</div>
+        <div style="font-size:7.5pt; color:#555;">МОНТАЖ КАПЕЛЬНОГО ОРОШЕНИЯ</div>
+      </div>
+      <div style="border:1.5px solid #999; padding:6px; margin-bottom:7px;">
+        <div style="background:#333; color:#fff; padding:2px 6px; font-size:7.5pt; margin:-6px -6px 5px; font-family:Arial;">НОРМЫ ВЫРАБОТКИ (10ч/день)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:5px;">
+          <div>▶ Капля:&nbsp;&nbsp;<b>325 м/чд</b></div>
+          <div>▶ d50:&nbsp;&nbsp;&nbsp;&nbsp;<b>80 м/чд</b></div>
+          <div>▶ d75:&nbsp;&nbsp;&nbsp;&nbsp;<b>65 м/чд</b></div>
+          <div>▶ d110:&nbsp;&nbsp;&nbsp;<b>50 м/чд</b></div>
+          <div>▶ d140:&nbsp;&nbsp;&nbsp;<b>40 м/чд</b></div>
+          <div>▶ Транш:&nbsp;<b>50 м/чд</b></div>
+        </div>
+      </div>
+      <div style="border:1.5px solid #f0a000; padding:6px; background:#fffde7;">
+        <div style="background:#f0a000; color:white; padding:2px 6px; font-size:7.5pt; margin:-6px -6px 5px; font-family:Arial; font-weight:bold;">⚡ КЛЮЧЕВЫЕ ФОРМУЛЫ</div>
+        <div style="margin-top:5px; line-height:1.7;">
+          L_кап = га×10000÷межр.×1,1<br>
+          T_кап = L ÷ 325<br>
+          N_min = T ÷ Д_раб<br>
+          ФЧД&nbsp;&nbsp; = N × Д_раб<br>
+          <b>Δ&nbsp;&nbsp;&nbsp;&nbsp; = ФЧД − T_итого</b>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>В — Инженерный справочник</h3>
+      <p>Строгий монохром + жёлтые акценты на ключевых формулах. Минимум украшений, максимум информации. Отлично печатается, в том числе ч/б.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:16px;">Кликните на карточку, чтобы выбрать. Можно просто написать А, Б или В в терминале — или описать словами, что нравится в каждом.</p>

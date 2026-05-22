@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:Arial,sans-serif; font-size:9.5pt; color:#111; background:#f5f5f7; padding:16px; }
+h1 { font-size:13pt; color:#1a4d2e; border-bottom:2px solid #1a4d2e; padding-bottom:4px; margin:14px 0 8px; }
+h2 { font-size:10.5pt; color:#1a4d2e; margin:10px 0 5px; }
+.section { background:white; border-radius:8px; padding:12px 14px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+.badge { display:inline-block; padding:2px 8px; border-radius:12px; font-size:8pt; font-weight:bold; margin-right:4px; }
+.b-red { background:#ffebee; color:#c62828; }
+.b-orange { background:#fff3e0; color:#e65100; }
+.b-green { background:#e8f5e9; color:#1a4d2e; }
+.b-blue { background:#e3f2fd; color:#1565c0; }
+table { width:100%; border-collapse:collapse; font-size:8.8pt; margin:6px 0; }
+th { background:#1a4d2e; color:white; padding:4px 7px; text-align:left; font-size:8.3pt; }
+td { padding:3px 7px; border-bottom:1px solid #eee; vertical-align:top; }
+tr:nth-child(even) td { background:#f9fdf9; }
+.row-red td { background:#fff5f5 !important; }
+.row-orange td { background:#fff8f0 !important; }
+.row-green td { background:#f0fff4 !important; }
+.num { text-align:right; }
+.alert-r { background:#ffebee; border-left:4px solid #c62828; padding:6px 10px; margin:6px 0; font-size:8.8pt; border-radius:0 4px 4px 0; }
+.alert-o { background:#fff8e1; border-left:4px solid #f0a000; padding:6px 10px; margin:6px 0; font-size:8.8pt; border-radius:0 4px 4px 0; }
+.alert-g { background:#e8f5e9; border-left:4px solid #2d6a4f; padding:6px 10px; margin:6px 0; font-size:8.8pt; border-radius:0 4px 4px 0; }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+.kpi { border:1.5px solid #c8e6c9; border-radius:6px; padding:8px; text-align:center; }
+.kpi .num2 { font-size:18pt; font-weight:900; color:#1a4d2e; line-height:1.1; }
+.kpi .lbl { font-size:7.5pt; color:#777; text-transform:uppercase; margin-bottom:3px; }
+.kpi.red { border-color:#ffcdd2; }
+.kpi.red .num2 { color:#c62828; }
+.kpi.orange { border-color:#ffe0b2; }
+.kpi.orange .num2 { color:#e65100; }
+ul { padding-left:16px; }
+li { margin:3px 0; }
+.check { color:#2d6a4f; font-weight:bold; }
+.cross { color:#c62828; font-weight:bold; }
+.warn { color:#e65100; font-weight:bold; }
+</style>
+</head>
+<body>
+
+<div style="background:#1a4d2e; color:white; padding:10px 14px; border-radius:8px; margin-bottom:14px;">
+  <div style="font-size:13pt; font-weight:bold;">АНАЛИЗ ПРОЕКТА · ВИНОГРАДНИК 56,7 ГА</div>
+  <div style="font-size:8.5pt; opacity:.82; margin-top:3px;">Проверка всех данных schedule.html, montage.html, памяти проекта · 21.05.2026</div>
+</div>
+
+<!-- KPI SUMMARY -->
+<div class="grid3" style="margin-bottom:12px;">
+  <div class="kpi red">
+    <div class="lbl">Критических несоответствий</div>
+    <div class="num2">3</div>
+    <div style="font-size:7.5pt; color:#c62828; margin-top:2px;">требуют исправления</div>
+  </div>
+  <div class="kpi orange">
+    <div class="lbl">Нужно уточнить у Шпилёва</div>
+    <div class="num2">7</div>
+    <div style="font-size:7.5pt; color:#e65100; margin-top:2px;">данные неподтверждены</div>
+  </div>
+  <div class="kpi">
+    <div class="lbl">Что можно добавить</div>
+    <div class="num2">6</div>
+    <div style="font-size:7.5pt; color:#1a4d2e; margin-top:2px;">улучшений документов</div>
+  </div>
+</div>
+
+<!-- ERRORS -->
+<div class="section">
+<h1>🔴 Критические несоответствия — исправить до запуска</h1>
+
+<table>
+  <tr>
+    <th style="width:5%">№</th>
+    <th style="width:25%">Что не так</th>
+    <th style="width:25%">Текущее значение</th>
+    <th style="width:25%">Правильно</th>
+    <th style="width:20%">Где поправить</th>
+  </tr>
+  <tr class="row-red">
+    <td><b>1</b></td>
+    <td><b>Дата сдачи по договору</b></td>
+    <td>В schedule.html: <b>29.08.2026</b></td>
+    <td>По договору п.5.1: <b>25.08.2026</b> (100 к.д. от предоплаты 18.05). Разница — 4 дня!</td>
+    <td>schedule.html, montage.html, calc.html</td>
+  </tr>
+  <tr class="row-red">
+    <td><b>2</b></td>
+    <td><b>Расчёт минимума людей на капле</b></td>
+    <td>calc.html Разд.7: «217000 ÷ (325×86) = 7,75 → 8 чел.»</td>
+    <td>Капля стартует с Н4 (09.06), у бригады В только 71 р.дн, А+Б — 36 р.дн. Реальный минимум: <b>≥10 чел. с Н4</b>, иначе дефицит 19 400м неустраним</td>
+    <td>calc.html Разд.7, Разд.12</td>
+  </tr>
+  <tr class="row-red">
+    <td><b>3</b></td>
+    <td><b>Базовый сценарий в calc.html</b></td>
+    <td>calc.html Разд.8: «8 чел → 217 000 ÷ 2600 = 83 дня, укладываемся ✓»</td>
+    <td>Реальный базовый сценарий (schedule.html): <b>197 600м, дефицит 19 400м</b>. Базовые 13 рабочих НЕ укладываются в срок без доп. найма!</td>
+    <td>calc.html Разд.8</td>
+  </tr>
+</table>
+</div>
+
+<!-- CLARIFY WITH SHPILYOV -->
+<div class="section">
+<h1>🟡 Нужно уточнить у Шпилёва и Яковлева</h1>
+<table>
+  <tr>
+    <th style="width:5%">№</th>
+    <th style="width:30%">Вопрос</th>
+    <th style="width:30%">Текущие данные</th>
+    <th>Как влияет на план</th>
+  </tr>
+  <tr class="row-orange">
+    <td>1</td>
+    <td><b>Реальные нормы выработки</b> — Шпилёв видел 325м/день?</td>
+    <td>Норма 325м/чел.день принята расчётно. Не подтверждена Шпилёвым.</td>
+    <td>Если реальная норма 200–250м → дефицит капли гораздо больше, нужно ещё +5–8 чел.</td>
+  </tr>
+  <tr class="row-orange">
+    <td>2</td>
+    <td><b>Ставки оплаты труда</b> — 45 000 ₽/мес для всех?</td>
+    <td>calc.html: 45 000 ₽/мес. В памяти ставки не подтверждены.</td>
+    <td>Влияет на ФОТ (2,19 млн ₽) и расчёт доп. найма (+3 чел. = ~130 000 ₽).</td>
+  </tr>
+  <tr class="row-orange">
+    <td>3</td>
+    <td><b>Насосы Masdaf заказаны?</b> Срок поставки?</td>
+    <td>Решение принято 15.05, счёт 1 973 899 ₽. Статус оплаты/отгрузки — неизвестен.</td>
+    <td>Бригада А+В не может начать НС-2 22.05 без насосов. Риск сдвига на 2–4 недели.</td>
+  </tr>
+  <tr class="row-orange">
+    <td>4</td>
+    <td><b>Стартконнекторы: 2 300 или 4 600 шт.?</b></td>
+    <td>Заявка Шпилёва: 2 300 шт. В schedule.html: «4 600 шт.» (коннекторы + заглушки вместе).</td>
+    <td>Если 2 300 — хватит только на половину рядов. Нужно ли 4 600 = 2×2 300?</td>
+  </tr>
+  <tr class="row-orange">
+    <td>5</td>
+    <td><b>d140 SDR21 — откуда 800м?</b> По смете?</td>
+    <td>В schedule.html: 800м d140 SDR21, бригада Б, 5 дней (02–06.06). В памяти: d140 в смете есть.</td>
+    <td>Нужно подтвердить объём по смете Приложение №2. Сейчас расходится с ориентирами.</td>
+  </tr>
+  <tr class="row-orange">
+    <td>6</td>
+    <td><b>Объём траншей 8 278 м.п.</b> — откуда цифра?</td>
+    <td>schedule.html Этап 3: 8 278 м.п., бригада Б, 4 чел., 42 дня.</td>
+    <td>Нужно проверить по схеме трасс: сходится ли с расположением магистралей?</td>
+  </tr>
+  <tr class="row-orange">
+    <td>7</td>
+    <td><b>Предоплата 10 млн получена?</b></td>
+    <td>Память: «Предоплата 10 млн ₽, срок 15.05, ПРОСРОЧЕНА»</td>
+    <td>Если не получена — 100 к.д. ещё не начались! Срок сдачи может сдвинуться.</td>
+  </tr>
+</table>
+</div>
+
+<!-- WHAT TO ADD -->
+<div class="section">
+<h1>🟢 Что можно добавить в документы</h1>
+<div class="grid2">
+  <div>
+    <h2>В calc.html (шпаргалку)</h2>
+    <ul>
+      <li><b>Строка «Слепая трубка 16мм»:</b> 3 470 м, включено в норму укладки. Сейчас в calc.html этой позиции нет.</li>
+      <li><b>Строка «Фертигационный узел»:</b> 420 000 ₽ материал, Н15. Монтаж ≈ 5 чел.дн.</li>
+      <li><b>ФОТ ставки по категориям:</b> ГС vs СУЛАНЖ vs ИТР — разные ставки? Нужна колонка.</li>
+      <li><b>Реальные нормы Шпилёва:</b> пустые поля для ввода «норма по факту» рядом с расчётными 325м.</li>
+      <li><b>Дата сдачи 25.08 вместо 29.08</b> — исправить везде.</li>
+    </ul>
+  </div>
+  <div>
+    <h2>В schedule.html (график)</h2>
+    <ul>
+      <li><b>Дата сдачи 25.08 вместо 29.08</b> на обложке и всех ключевых точках.</li>
+      <li><b>Строка «Фертигация»</b> в Этапе 7 (отдельный монтаж узла, Н15).</li>
+      <li><b>Статус поставок:</b> добавить колонку «Статус» в таблицу материалов (Разд.7) — заказано/в пути/на складе.</li>
+      <li><b>НС-1 — результат подбора</b> (КвадроГрупп, ответ ожидался 18.05 — что пришло?).</li>
+      <li><b>Оплаты по счетам</b> — добавить мини-таблицу просроченных счетов в Раздел 10 (Риски).</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- PROJECT ACTION PLAN -->
+<div class="section">
+<h1>📋 ПЛАН ПОСЛЕДУЮЩИХ ДЕЙСТВИЙ ПО ПРОЕКТУ</h1>
+
+<h2 style="color:#c62828; margin-top:6px;">🔴 СРОЧНО — эта неделя (21–25.05.2026)</h2>
+<table>
+  <tr><th style="width:5%">№</th><th style="width:35%">Действие</th><th style="width:15%">Ответственный</th><th style="width:15%">Срок</th><th>Что будет если не сделать</th></tr>
+  <tr class="row-red">
+    <td>1</td>
+    <td><b>Получить предоплату 10 млн ₽</b> от АО «Янтарный» — подтвердить дату платежа у Надежды/ГС</td>
+    <td>Директор</td>
+    <td><b>22.05</b></td>
+    <td>100 к.д. не отсчитываются — договорная дата сдачи сдвигается на каждый день просрочки</td>
+  </tr>
+  <tr class="row-red">
+    <td>2</td>
+    <td><b>Подтвердить отгрузку Masdaf</b> (КвадроГрупп, 1 973 899 ₽) — когда насосы будут на объекте?</td>
+    <td>Яковлев</td>
+    <td><b>22.05</b></td>
+    <td>Бригада А+В стоит без дела — каждый день простоя = ~22 500 ₽ ФОТ впустую</td>
+  </tr>
+  <tr class="row-red">
+    <td>3</td>
+    <td><b>Заказать METZER 1-ю партию</b> 46 800м (~94 бухты). Нужно на объекте до 06.06.</td>
+    <td>Яковлев</td>
+    <td><b>23.05</b></td>
+    <td>Бригада В встаёт 09.06 без материала — срыв старта капли и всего критического пути</td>
+  </tr>
+  <tr class="row-red">
+    <td>4</td>
+    <td><b>Получить ГРО от геодезиста Максима</b> (съёмка с ГРО) — без этого нельзя начать разметку НС</td>
+    <td>Шпилёв</td>
+    <td><b>22.05</b></td>
+    <td>Старт разметки 22.05 откладывается — сдвигает весь Этап 1</td>
+  </tr>
+  <tr class="row-red">
+    <td>5</td>
+    <td><b>Оплатить счёт №290 СТИЛЕКС</b> (2 359 810 ₽, трубы ПЭ + фитинги) — просрочен 18.05</td>
+    <td>Яковлев</td>
+    <td><b>22.05</b></td>
+    <td>Трубы d110/d140 не приедут → Этап 3–4 стоит с 02.06</td>
+  </tr>
+</table>
+
+<h2 style="color:#e65100; margin-top:10px;">🟡 ВАЖНО — ближайшие 2 недели (26.05–07.06)</h2>
+<table>
+  <tr><th style="width:5%">№</th><th style="width:35%">Действие</th><th style="width:15%">Ответственный</th><th style="width:15%">Срок</th><th>Примечание</th></tr>
+  <tr class="row-orange">
+    <td>6</td>
+    <td><b>Провести инструктаж по ТБ</b> для всех 15 человек. Оформить журнал.</td>
+    <td>Шпилёв</td>
+    <td>22.05 старт</td>
+    <td>Без подписей в журнале нельзя допускать к работе</td>
+  </tr>
+  <tr class="row-orange">
+    <td>7</td>
+    <td><b>Оплатить счёт №224 СИМПЛАСТ</b> (144 657 ₽, трубы d140) — срок 20.05</td>
+    <td>Яковлев</td>
+    <td>22.05</td>
+    <td>Трубы d140 нужны к 02.06 (Н3)</td>
+  </tr>
+  <tr class="row-orange">
+    <td>8</td>
+    <td><b>Оплатить счёт ЦБ-253</b> (276 999 ₽, фильтры Aytok) + ЦБ-242 (632 200 ₽, ПГФ 3050)</td>
+    <td>Яковлев</td>
+    <td>до 28.05</td>
+    <td>Фильтрация нужна к 07.06 (Н3)</td>
+  </tr>
+  <tr class="row-orange">
+    <td>9</td>
+    <td><b>Уточнить нормы выработки у Шпилёва</b> — реально ли 325м/чел.день? Заполнить в calc.html.</td>
+    <td>Шпилёв</td>
+    <td>до 26.05</td>
+    <td>От этого зависит весь план — если 200м, нужно срочно менять план найма</td>
+  </tr>
+  <tr class="row-orange">
+    <td>10</td>
+    <td><b>Начать поиск +3–5 разнорабочих</b> на укладку капли с 01.07 (~130 000 ₽ за период)</td>
+    <td>Яковлев / Шпилёв</td>
+    <td>до 31.05</td>
+    <td>Без них дефицит 19 400м — капля не будет закончена к сроку</td>
+  </tr>
+  <tr class="row-orange">
+    <td>11</td>
+    <td><b>Результат подбора НС-1</b> — ответ КвадроГрупп (ожидался 18.05). Заказать насос НС-1.</td>
+    <td>Яковлев</td>
+    <td>до 26.05</td>
+    <td>НС-1 монтируется в Н1 (22.05). Если насоса нет — бригада А работает на НС-2.</td>
+  </tr>
+  <tr class="row-orange">
+    <td>12</td>
+    <td><b>Заказать инструмент</b> (счёт №7175, 215 888 ₽ — скорректировать состав)</td>
+    <td>Шпилёв / Яковлев</td>
+    <td>до 23.05</td>
+    <td>Нужен с 1-го дня работы. Дыроколы 3мм ×5 шт. — критично для капли.</td>
+  </tr>
+</table>
+
+<h2 style="color:#1a4d2e; margin-top:10px;">🟢 ПЛАНОВЫЕ действия по месяцам</h2>
+<table>
+  <tr><th>Период</th><th>Ключевые события / действия</th><th>Контроль</th></tr>
+  <tr><td style="font-weight:bold; background:#e8f5e9;">Май 22–31</td><td>Старт. НС-1+НС-2 монтаж. 8 ёмкостей. Разметка трасс. Начало траншей.</td><td>Шпилёв ежедневно → вечерний прогресс-трекер</td></tr>
+  <tr><td style="font-weight:bold; background:#e8f5e9;">Июнь 1–14</td><td>ПГФ + фильтры (до 07.06). d140 уложить (до 07.06). Бригада В → СТАРТ КАПЛИ (09.06). d110 начало.</td><td>КТ: 07.06 фильтрация, 09.06 старт капли</td></tr>
+  <tr><td style="font-weight:bold; background:#e8f5e9;">Июнь 15–30</td><td>d110 SDR17 (до 20.06). d110 SDR21 (до 20.06). Начало d75. ⚡ КТ 30.06: капля ≥46 800м</td><td>Еженедельный отчёт бригадира → Шпилёв → директор</td></tr>
+  <tr><td style="font-weight:bold; background:#fff3cd;">Июль 1–13</td><td>d75 завершить (до 05.07). d50+хомуты (до 11.07). +3 разнорабочих на капле (с 01.07). КТ 14.07: А+Б → капля.</td><td>Решение по доп. найму принять не позднее 25.05!</td></tr>
+  <tr><td style="font-weight:bold; background:#fff3cd;">Июль 14–31</td><td>Все 13 человек на капле. Макс. темп 4 225м/день (при +3). КТ 21.07: капля ≥85 800м</td><td>Еженедельный отчёт → контроль отставания</td></tr>
+  <tr><td style="font-weight:bold; background:#fff3cd;">Август 1–22</td><td>Капля финиш (план 16.08 при +3, 23.08 базовый). Заказать клапаны ПИОНЕР до 15.08. КТ 01.08: ≥163 800м.</td><td>Шпилёв: ежедневный учёт — прогресс-трекер</td></tr>
+  <tr><td style="font-weight:bold; background:#e8f5e9;">Август 23–25</td><td>Клапаны ПИОНЕР 3"+2"+PRV монтаж. Фертигация. Пусконаладка 11 смен. КС-2/КС-3. Инструктаж Кочеткова.</td><td>Сдача <b>25.08.2026</b> по договору</td></tr>
+</table>
+</div>
+
+<!-- DOCS STATUS -->
+<div class="section">
+<h1>📂 Статус документов проекта</h1>
+<div class="grid2">
+  <div>
+    <table>
+      <tr><th>Документ</th><th>Статус</th><th>Что сделать</th></tr>
+      <tr class="row-green"><td>index.html (дашборд)</td><td><span class="badge b-green">✓ актуален</span></td><td>—</td></tr>
+      <tr class="row-green"><td>montage.html (монтажники)</td><td><span class="badge b-green">✓ 20.05.2026</span></td><td>Исправить дату сдачи 29.08→25.08</td></tr>
+      <tr class="row-orange"><td>schedule.html (график)</td><td><span class="badge b-orange">⚠ данные</span></td><td>Дата 29.08→25.08, статус поставок</td></tr>
+      <tr class="row-red"><td>calc.html (шпаргалка)</td><td><span class="badge b-red">🔴 в работе</span></td><td>Редизайн + исправить расчёты капли</td></tr>
+    </table>
+  </div>
+  <div>
+    <div class="alert-g" style="margin-bottom:6px;">
+      <b>Открытые QA-вопросы (5 шт.):</b><br>
+      q4: площадь Смены 1 (7,02 vs 8,02 га) — ответ Магарача<br>
+      q5: площадь Смены 2 (6,64 vs 7,04 га) — ответ Магарача<br>
+      q11: клетка 8 — сорт не определён<br>
+      q12: блоки 4–24 — стартконнекторы не заполнены<br>
+      q13: договор СУЛАНЖ — не загружен в систему
+    </div>
+    <div class="alert-o">
+      <b>Просроченные счета (4 шт.):</b><br>
+      КОИ52 — 671 040 ₽ (ёмкости) · №3933 — 267 750 ₽ (генераторы)<br>
+      №290 — 2 359 810 ₽ (трубы) · №125 — 58 900 ₽ (транспорт)
+    </div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
