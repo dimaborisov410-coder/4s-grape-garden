@@ -2602,7 +2602,7 @@ details.card .card-inner{padding:0 14px 14px}
 @page { size: A4 landscape; margin: 10mm 12mm; }
 @media print { .no-print { display:none!important; } body { font-size:8pt; } }
 * { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:Arial,sans-serif; font-size:9.5pt; color:#1a1a1a; line-height:1.4; background:#fff; }
+#page-schedule{ font-family:Arial,sans-serif; font-size:9.5pt; color:#1a1a1a; line-height:1.4; background:#fff; padding:16px 24px; }
 .no-print { position:fixed; top:16px; right:16px; background:#1b5e20; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-size:12px; font-weight:700; cursor:pointer; z-index:999; }
 .no-print:hover { background:#2e7d32; }
 h1 { font-size:13pt; font-weight:900; color:#1b5e20; border-bottom:2px solid #1b5e20; padding-bottom:3px; margin:6mm 0 3mm; }
@@ -3867,7 +3867,7 @@ tr.deficit td { background:#ffebee; color:#c62828; font-weight:700; }
   .week-sep { page-break-inside:avoid; }
 }
 *{ box-sizing:border-box; margin:0; padding:0; }
-body{ font-family:Arial,sans-serif; font-size:9.5pt; color:#1a1a1a; background:#fff; line-height:1.4; }
+#page-daily{ font-family:Arial,sans-serif; font-size:9.5pt; color:#1a1a1a; background:#fff; line-height:1.4; padding:16px; }
 .no-print{ position:fixed; top:14px; right:16px; background:#1b5e20; color:#fff; border:none;
   border-radius:6px; padding:8px 18px; font-size:12px; font-weight:700; cursor:pointer; z-index:999; }
 .no-print:hover{ background:#2e7d32; }
@@ -4386,7 +4386,7 @@ init();
 @page { size: A4 landscape; margin: 8mm 10mm; }
 @media print { .no-print{display:none!important} body{font-size:7pt} }
 *{ box-sizing:border-box; margin:0; padding:0; }
-body{ font-family:Arial,sans-serif; font-size:9pt; color:#1a1a1a; background:#fff; line-height:1.4; padding:8mm 10mm; }
+#page-field-map{ font-family:Arial,sans-serif; font-size:9pt; color:#1a1a1a; background:#fff; line-height:1.4; padding:16px 20px; }
 .no-print{ position:fixed; top:14px; right:16px; background:#1b5e20; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-size:12px; font-weight:700; cursor:pointer; z-index:999; }
 .no-print:hover{ background:#2e7d32; }
 h1{ font-size:12pt; font-weight:900; color:#1b5e20; border-bottom:2px solid #1b5e20; padding-bottom:3px; margin:5mm 0 3mm; }
@@ -4797,7 +4797,7 @@ render();
 @page { size: A4 portrait; margin: 10mm 12mm; }
 @media print { .no-print{display:none!important} body{font-size:8pt} }
 *{ box-sizing:border-box; margin:0; padding:0; }
-body{ font-family:Arial,sans-serif; font-size:9.5pt; color:#1a1a1a; background:#fff; line-height:1.4; max-width:900px; margin:0 auto; padding:10mm; }
+#page-routine{ font-family:Arial,sans-serif; font-size:9.5pt; color:#1a1a1a; background:#fff; line-height:1.4; padding:16px 24px; }
 .no-print{ position:fixed; top:14px; right:16px; background:#1b5e20; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-size:12px; font-weight:700; cursor:pointer; z-index:999; }
 .no-print:hover{ background:#2e7d32; }
 
@@ -5134,10 +5134,10 @@ h2{ font-size:10pt; font-weight:800; margin:4mm 0 2mm; }
   --muted:   #6c757d;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body {
+#page-calc {
   font-family: Arial, sans-serif;
   font-size: 9pt;
-  color: var(--text);
+  color: #333;
   background: #ecf0ec;
 }
 
