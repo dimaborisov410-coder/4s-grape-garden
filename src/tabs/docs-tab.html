@@ -1,10 +1,10 @@
-<div class="page" id="page-docs">
+<div class="page" id="page-docs-tab">
   <div class="page-title">Реестр документов</div>
 
   <div class="kpi-row">
-    <div class="kpi" style="cursor:pointer" onclick="showPage('docs')" title="Показать все документы"><div class="kpi-num">10</div><div class="kpi-lbl">файлов на сайте</div></div>
+    <div class="kpi" style="cursor:pointer" onclick="showPage('docs-tab')" title="Показать все документы"><div class="kpi-num">10</div><div class="kpi-lbl">файлов на сайте</div></div>
     <div class="kpi danger-kpi" style="cursor:pointer" onclick="showPage('finance');setTimeout(()=>{const el=document.getElementById('anchor-invoices');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},150)" title="Перейти к счетам на оплату"><div class="kpi-num">8</div><div class="kpi-lbl">счетов к оплате ↗</div></div>
-    <div class="kpi danger-kpi" style="cursor:pointer" onclick="showPage('docs');setTimeout(()=>{const el=document.getElementById('anchor-missing');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},150)" title="Показать отсутствующие документы"><div class="kpi-num">3</div><div class="kpi-lbl">документа отсутствуют ↗</div></div>
+    <div class="kpi danger-kpi" style="cursor:pointer" onclick="showPage('docs-tab');setTimeout(()=>{const el=document.getElementById('anchor-missing');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},150)" title="Показать отсутствующие документы"><div class="kpi-num">3</div><div class="kpi-lbl">документа отсутствуют ↗</div></div>
     <div class="kpi" style="cursor:pointer" onclick="showPage('finance');setTimeout(()=>{const el=document.getElementById('anchor-contract');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},150)" title="Перейти к договору №ГС-12-05"><div class="kpi-num">1</div><div class="kpi-lbl">договор действующий ↗</div></div>
   </div>
 

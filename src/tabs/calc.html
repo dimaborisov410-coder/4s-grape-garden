@@ -27,7 +27,7 @@ body {
   body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .no-print { display: none !important; }
 }
-.page {
+.a4-page {
   width: 210mm;
   min-height: 297mm;
   background: white;
@@ -37,7 +37,7 @@ body {
   page-break-after: always;
   overflow: hidden;
 }
-.page:first-of-type { page-break-before: avoid; }
+.a4-page:first-of-type { page-break-before: avoid; }
 
 /* ── Page header bar ── */
 .ph {
@@ -212,7 +212,7 @@ body {
 
 /* ── Print tweaks ── */
 @media print {
-  .page { box-shadow: none; margin: 0; }
+  .a4-page { box-shadow: none; margin: 0; }
   .brig-card { break-inside: avoid; }
   .tbl tbody tr { break-inside: avoid; }
   .brigade-grid { break-inside: avoid; }
@@ -224,7 +224,7 @@ body {
 </style>
 <div class="page-inner-doc">
 <!-- ═══════════════ PAGE 1: ДАШБОРД ═══════════════ -->
-<div class="page" id="p1">
+<div class="a4-page" id="p1">
 
   <!-- Шапка с кнопкой PDF -->
   <div class="ph">
@@ -383,7 +383,7 @@ body {
 </div><!-- /page p1 -->
 
 <!-- ═══════════════ PAGE 2: РАБОЧИЙ ═══════════════ -->
-<div class="page" id="p2">
+<div class="a4-page" id="p2">
   <div class="ph">
     <div>
       <h1>РАБОЧИЙ · ПОСУТОЧНЫЙ ЖУРНАЛ</h1>
@@ -432,7 +432,7 @@ body {
 </div>
 
 <!-- ═══════════════ PAGE 3: БРИГАДИР ═══════════════ -->
-<div class="page" id="p3">
+<div class="a4-page" id="p3">
   <div class="ph">
     <div>
       <h1>БРИГАДИР · НЕДЕЛЬНЫЙ ОТЧЁТ</h1>
@@ -620,7 +620,7 @@ body {
 </div>
 
 <!-- ═══════════════ PAGE 4: РУКОВОДИТЕЛЬ ═══════════════ -->
-<div class="page" id="p4">
+<div class="a4-page" id="p4">
   <div class="ph">
     <div>
       <h1>РУКОВОДИТЕЛЬ · МЕСЯЧНЫЙ КОНТРОЛЬ</h1>
@@ -738,7 +738,7 @@ body {
 </div>
 
 <!-- ═══════════════ PAGE 5: ДИРЕКТОР ═══════════════ -->
-<div class="page" id="p5">
+<div class="a4-page" id="p5">
   <div class="ph">
     <div>
       <h1>ДИРЕКТОР · СТАТУС ОБЪЕКТА + ШАБЛОН НОВОГО ОБЪЕКТА</h1>
@@ -983,7 +983,7 @@ body {
 </script>
 
 <!-- ═══════════════════════════════ СТРАНИЦА 6 — РАСПИСАНИЕ ДНЯ ═══════════════════════════════ -->
-<div class="page" id="p6" style="page-break-before:always;">
+<div class="a4-page" id="p6" style="page-break-before:always;">
   <div class="ph">
     <div>
       <h1>ТИПОВОЙ РАБОЧИЙ ДЕНЬ · ПОЧАСОВОЕ РАСПИСАНИЕ</h1>
