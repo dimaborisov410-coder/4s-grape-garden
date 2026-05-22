@@ -1,0 +1,30 @@
+{
+  "tranches": [
+    { "amount": 10000000, "date": "2026-05-18", "label": "Транш 1", "status": "paid" },
+    { "amount": 20000000, "date": "2026-05-22", "label": "Транш 2", "status": "paid" }
+  ],
+  "totalReceived": 30000000,
+  "expenses": [
+    { "name": "СТИЛЕКС трубы ПЭ (счёт 290)", "amount": 700000, "status": "paid", "date": "2026-05-18", "remainder": 1659810 },
+    { "name": "Авто Lada Granta ИП Парамонов (счёт 125)", "amount": 58900, "status": "paid", "date": "2026-05-18" },
+    { "name": "Озон товары бытовка (счёт 545)", "amount": 15054, "status": "paid", "date": "2026-05-18" },
+    { "name": "Биотуалет 1 кабина + 4 обсл. ИП Сазыкин (счёт 86)", "amount": 14000, "status": "paid", "date": "2026-05-18" },
+    { "name": "Бытовки × 2 + доставка (Крымтехкаркас)", "amount": null, "status": "paid", "note": "сумма не уточнена" }
+  ],
+  "pending": [
+    { "name": "Ёмкости ПЭ 10 000 л × 8 шт. (КОИ52)", "amount": 671040, "due": "2026-05-15", "overdue": true }
+  ],
+  "confirmedTotal": 787954,
+  "paymentSchedule": {
+    "official": [
+      { "date": "2026-05-15", "amount": 10000000, "note": "просрочена" },
+      { "date": "2026-06-05", "amount": 24000000 },
+      { "date": "2026-06-19", "amount": 4393848 }
+    ],
+    "unofficial": [
+      { "date": "2026-05-18", "amount": 7000000, "status": "paid" },
+      { "date": "2026-05-25", "amount": 5000000, "status": "pending" },
+      { "date": "2026-06-12", "amount": 20000000, "status": "scheduled" }
+    ]
+  }
+}
