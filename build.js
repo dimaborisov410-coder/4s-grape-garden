@@ -15,9 +15,7 @@ const topbar    = fs.readFileSync('src/shared/topbar.html',  'utf8');
 const sidebar   = fs.readFileSync('src/shared/sidebar.html', 'utf8');
 
 // ── Попап карты и мобильная навигация ────────────────────────
-// Строки 3312–3375 из index.html (индексы 3311–3374)
-const originalLines = fs.readFileSync('index.html', 'utf8').split('\n');
-const extras = originalLines.slice(3311, 3375).join('\n');
+const extras = fs.readFileSync('src/shared/extras.html', 'utf8');
 
 // ── Порядок вкладок ──────────────────────────────────────────
 const TAB_ORDER = [

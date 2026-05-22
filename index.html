@@ -487,7 +487,7 @@ details.card .card-inner{padding:0 14px 14px}
   <div class="nav-item" data-roles="all монтаж заказчик" onclick="showPage('build',this)"><span class="ni">🔨</span>Монтаж</div>
   <div class="nav-item" data-roles="all монтаж финансы" onclick="showPage('crew',this)"><span class="ni">👷</span>Бригада</div>
   <div class="nav-item" data-roles="all финансы" onclick="showPage('smeta',this)"><span class="ni">📋</span>Смета</div>
-  <div class="nav-item" data-roles="all финансы" onclick="showPage('docs',this)"><span class="ni">📄</span>Документы</div>
+  <div class="nav-item" data-roles="all финансы" onclick="showPage('docs-tab',this)"><span class="ni">📄</span>Документы</div>
   <div class="nav-item" data-roles="all" onclick="showPage('qa',this)"><span class="ni">❓</span>Вопросы<span class="nav-badge" id="qa-badge">7</span></div>
   <div class="nav-item" data-roles="all" onclick="showPage('ops',this)"><span class="ni">⚡</span>Оперативка</div>
   <div class="nav-divider" data-roles="all монтаж"></div>
@@ -7505,70 +7505,46 @@ h2{ font-size:10pt; font-weight:800; margin:4mm 0 2mm; }
   </div></div>
 </div>
 
-    <div style="font-size:7.5pt;color:#777;text-transform:uppercase">Зарплата +3 чел. за период</div>
-    <div style="font-size:18pt;font-weight:900;color:#1b5e20">~130 000 ₽</div>
-    <div style="font-size:8pt;color:#555">54 дня × 3 чел. × ~800 ₽/день</div>
-  </div>
-  <div style="border:1.5px solid #c8e6c9;border-radius:4px;padding:3mm;text-align:center">
-    <div style="font-size:7.5pt;color:#777;text-transform:uppercase">Выигрыш по срокам</div>
-    <div style="font-size:18pt;font-weight:900;color:#1b5e20">+7–9 дн.</div>
-    <div style="font-size:8pt;color:#555">Капля готова 16.08 вместо 26.08</div>
-  </div>
-  <div style="border:1.5px solid #c8e6c9;border-radius:4px;padding:3mm;text-align:center">
-    <div style="font-size:7.5pt;color:#777;text-transform:uppercase">Риск без доп. набора</div>
-    <div style="font-size:18pt;font-weight:900;color:#c62828">срыв</div>
-    <div style="font-size:8pt;color:#c62828">19 400 м не успеть без доп. людей</div>
-  </div>
+<!-- MAP OVERLAY + POPUP -->
+<div class="map-overlay" id="map-overlay" onclick="closeMapPopup()"></div>
+<div class="map-popup" id="map-popup">
+  <button onclick="closeMapPopup()" style="position:absolute;top:8px;right:10px;background:none;border:none;color:var(--text);font-size:20px;cursor:pointer;line-height:1">✕</button>
+  <div id="map-popup-content"></div>
 </div>
 
-<div class="alert-green">
-  <b>✅ Рекомендация:</b> Нанять <b>3 человека с 01.07.2026</b> — разнорабочих без квалификации, обучение 2 дня. Стоимость ~130 000 ₽. Даёт запас 21 100 м и финиш капли 16.08 вместо срыва. Самый дешёвый способ снять риск по критическому пути.
-</div>
+<!-- MOBILE BOTTOM NAV -->
+<nav class="bot-nav">
+  <div class="bot-nav-inner">
+    <button class="bot-tab" onclick="showPage('overview',this)">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Главная
+    </button>
+    <button class="bot-tab" onclick="showPage('blocks',this)">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Блоки
+    </button>
+    <button class="bot-tab" onclick="showPage('finance',this)">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Финансы
+    </button>
+    <button class="bot-tab" onclick="showPage('tasks',this)">
+      <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Задачи
+    </button>
+    <button class="bot-tab" onclick="showPage('build',this)">
+      <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Монтаж
+    </button>
+    <button class="bot-tab" onclick="showPage('crew',this)">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Бригада
+    </button>
+    <button class="bot-tab" onclick="showPage('map',this)">
+      <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>Карта
+    </button>
+    <button class="bot-tab" onclick="showPage('qa',this)">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Вопросы
+    </button>
+    <button class="bot-tab" onclick="showPage('ops',this)">
+      <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Опер.
+    </button>
+  </div>
+</nav>
 
-<!-- PROGRESS TRACKER -->
-<div class="page-break"></div>
-<h1>9. Прогресс-трекер — ежедневный учёт (распечатать и заполнять)</h1>
-<p style="font-size:8.5pt;color:#555;margin-bottom:3mm">Заполняет <b>Шпилёв А.А.</b> каждый вечер. Вносить фактический метраж и сравнивать с планом. Красный цвет = отставание более 10%.</p>
-
-<table style="font-size:8pt">
-  <thead>
-    <tr>
-      <th style="width:60px">Дата</th>
-      <th style="width:55px">День №</th>
-      <th style="width:55px">Работало чел.</th>
-      <th>Брг. А (трубы → капля)<br>факт, м</th>
-      <th>Брг. Б (земля → капля)<br>факт, м</th>
-      <th>Брг. В (капельная)<br>факт, м</th>
-      <th class="num" style="width:70px">Капля<br>нараст., м</th>
-      <th class="num" style="width:60px">Капля<br>план, м</th>
-      <th style="width:50px">%<br>план</th>
-      <th>Примечание</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>22.05</td><td>1</td><td></td><td>НС монтаж</td><td>Ёмкости</td><td>НС помощь</td><td class="num">0</td><td class="num">0</td><td>—</td><td></td></tr>
-    <tr><td>23.05</td><td>2</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>24.05</td><td>3</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr style="background:#e8f5e9"><td><b>26.05</b></td><td><b>4</b></td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>27.05</td><td>5</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>28.05</td><td>6</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>29.05</td><td>7</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>30.05</td><td>8</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>31.05</td><td>9</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr style="background:#e8f5e9"><td><b>02.06</b></td><td><b>10</b></td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>03.06</td><td>11</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>04.06</td><td>12</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>05.06</td><td>13</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>06.06</td><td>14</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>07.06</td><td>15</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">0</td><td></td><td></td></tr>
-    <tr style="background:#e8f5e9"><td><b>09.06</b></td><td><b>16</b></td><td></td><td></td><td></td><td style="color:#1b5e20;font-weight:700">СТАРТ КАПЛИ</td><td class="num">0</td><td class="num">0</td><td></td><td></td></tr>
-    <tr><td>10.06</td><td>17</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">1 300</td><td></td><td></td></tr>
-    <tr><td>11.06</td><td>18</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">2 600</td><td></td><td></td></tr>
-    <tr><td>12.06</td><td>19</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">3 900</td><td></td><td></td></tr>
-    <tr><td>13.06</td><td>20</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">5 200</td><td></td><td></td></tr>
-    <tr><td>14.06</td><td>21</td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num">6 500</td><td></td><td></td></tr>
-    <tr style="background:#fff3cd"><td><b>30.06</b></td><td><b>34</b></td><td></td><td></td><td></td><td></td><td class="num"></td><td class="num"><b>46 800</b></td><td><b>⚠ КТ</b></td><td>Контр. точка</td></tr>
-    <tr style="background:#fff3cd"><td><b>14.07</b></td><td><b>54</b></td><td></td><td style="color:#1b5e20;font-weight:700">→ КАПЛЯ</td><td style="color:#1b5e20;font-weight:700">→ КАПЛЯ</td><td></td><td class="num"></td><td class="num"><b>85 800</b></td><td><b>⚠ КТ</b></td><td>А+Б на капле</td></tr>
 
 <script>
 window.DATA = {
